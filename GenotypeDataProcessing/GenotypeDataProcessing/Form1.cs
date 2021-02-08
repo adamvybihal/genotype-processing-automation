@@ -16,5 +16,18 @@ namespace GenotypeDataProcessing
         {
             InitializeComponent();
         }
+
+        private void btnChooseDataFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            lblDataFile.Text = fileDialog.FileName;
+        }
+
+        private void btnStartAnalysis_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
