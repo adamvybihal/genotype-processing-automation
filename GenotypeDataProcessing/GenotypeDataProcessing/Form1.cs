@@ -27,7 +27,8 @@ namespace GenotypeDataProcessing
 
         private void btnStartAnalysis_Click(object sender, EventArgs e)
         {
-            
+            FormDataParams formDataParams = new FormDataParams();
+            formDataParams.ShowDialog();
         }
     }
 }
