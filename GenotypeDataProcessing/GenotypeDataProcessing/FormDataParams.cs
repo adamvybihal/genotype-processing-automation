@@ -16,5 +16,10 @@ namespace GenotypeDataProcessing
         {
             InitializeComponent();
         }
+
+        private void cbxExtraCols_CheckedChanged(object sender, EventArgs e)
+        {
+            numExtraCols.Enabled = cbxExtraCols.Checked;
+        }
     }
 }
