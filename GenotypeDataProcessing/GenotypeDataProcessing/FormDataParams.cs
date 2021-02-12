@@ -53,6 +53,8 @@ namespace GenotypeDataProcessing
             stStructureMainParams.notAmbiguous = -999;
 
             StructureMainParam structureMainParam = new StructureMainParam(stStructureMainParams);
+
+            structureMainParam.createParamFile();
     }
     }
 }
