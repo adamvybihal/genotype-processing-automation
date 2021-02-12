@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GenotypeDataProcessing.Structures;
+using GenotypeDataProcessing.ParamFiles;
 
 namespace GenotypeDataProcessing
 {
@@ -21,5 +23,36 @@ namespace GenotypeDataProcessing
         {
             numExtraCols.Enabled = cbxExtraCols.Checked;
         }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            ST_StructureMainParams stStructureMainParams;
+
+            stStructureMainParams.burin = (int)numBurninPeriod.Value;
+            stStructureMainParams.numReps = (int)numRepsAfterBurnin.Value;
+
+            stStructureMainParams.numInds = (int)numIndividuals.Value;
+            stStructureMainParams.numLoci = (int)numLoci.Value;
+            stStructureMainParams.ploidy = (int)numPloidy.Value;
+            stStructureMainParams.missing = (int)numMissingDataValue.Value;
+            stStructureMainParams.oneRowPerInd = cbxSingleLine.Checked;
+
+            stStructureMainParams.label = cbxIdCol.Checked;
+            stStructureMainParams.popData = cbxPopOriginCol.Checked;
+            stStructureMainParams.popFlag = cbxPopInfoFlagCol.Checked;
+            stStructureMainParams.locData = cbxSampleInfoCol.Checked;
+            stStructureMainParams.phenotype = cbxPhenotypeCol.Checked;
+            stStructureMainParams.extraCols = (int)numExtraCols.Value;
+            stStructureMainParams.markerNames = cbxMarkerRow.Checked;
+            stStructureMainParams.recessiveAlleles = cbxAlelesRow.Checked;
+            stStructureMainParams.mapDistances = cbxLociDistancesRow.Checked;
+
+            stStructureMainParams.phased = false;
+            stStructureMainParams.phaseInfo = false;
+            stStructureMainParams.markovPhase = false;
+            stStructureMainParams.notAmbiguous = -999;
+
+            StructureMainParam structureMainParam = new StructureMainParam(stStructureMainParams);
+    }
     }
 }

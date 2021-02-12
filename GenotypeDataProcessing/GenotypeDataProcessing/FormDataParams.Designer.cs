@@ -40,6 +40,9 @@ namespace GenotypeDataProcessing
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numExtraCols = new System.Windows.Forms.NumericUpDown();
+            this.cbxExtraCols = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.cbxPhenotypeCol = new System.Windows.Forms.CheckBox();
             this.cbxSampleInfoCol = new System.Windows.Forms.CheckBox();
             this.cbxPopInfoFlagCol = new System.Windows.Forms.CheckBox();
@@ -50,14 +53,11 @@ namespace GenotypeDataProcessing
             this.label5 = new System.Windows.Forms.Label();
             this.cbxMarkerRow = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnApply = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbxExtraCols = new System.Windows.Forms.CheckBox();
-            this.numExtraCols = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.numBurninPeriod = new System.Windows.Forms.NumericUpDown();
             this.numRepsAfterBurnin = new System.Windows.Forms.NumericUpDown();
+            this.numBurninPeriod = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnApply = new System.Windows.Forms.Button();
             this.btnAdvanced = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMissingDataValue)).BeginInit();
@@ -65,10 +65,10 @@ namespace GenotypeDataProcessing
             ((System.ComponentModel.ISupportInitialize)(this.numLoci)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numExtraCols)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numBurninPeriod)).BeginInit();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRepsAfterBurnin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numBurninPeriod)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -209,6 +209,49 @@ namespace GenotypeDataProcessing
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data Format";
             // 
+            // numExtraCols
+            // 
+            this.numExtraCols.Enabled = false;
+            this.numExtraCols.Location = new System.Drawing.Point(315, 323);
+            this.numExtraCols.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numExtraCols.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numExtraCols.Name = "numExtraCols";
+            this.numExtraCols.Size = new System.Drawing.Size(65, 22);
+            this.numExtraCols.TabIndex = 11;
+            this.numExtraCols.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // cbxExtraCols
+            // 
+            this.cbxExtraCols.AutoSize = true;
+            this.cbxExtraCols.Location = new System.Drawing.Point(29, 324);
+            this.cbxExtraCols.Name = "cbxExtraCols";
+            this.cbxExtraCols.Size = new System.Drawing.Size(283, 21);
+            this.cbxExtraCols.TabIndex = 10;
+            this.cbxExtraCols.Text = "other extra columns => if so, how many?";
+            this.cbxExtraCols.UseVisualStyleBackColor = true;
+            this.cbxExtraCols.CheckedChanged += new System.EventHandler(this.cbxExtraCols_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(56, 160);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(287, 17);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Check if data file contains following columns:";
+            // 
             // cbxPhenotypeCol
             // 
             this.cbxPhenotypeCol.AutoSize = true;
@@ -312,75 +355,17 @@ namespace GenotypeDataProcessing
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Program Parameters";
             // 
-            // btnApply
+            // numRepsAfterBurnin
             // 
-            this.btnApply.Location = new System.Drawing.Point(525, 404);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(96, 47);
-            this.btnApply.TabIndex = 3;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 160);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(287, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Check if data file contains following columns:";
-            // 
-            // cbxExtraCols
-            // 
-            this.cbxExtraCols.AutoSize = true;
-            this.cbxExtraCols.Location = new System.Drawing.Point(29, 324);
-            this.cbxExtraCols.Name = "cbxExtraCols";
-            this.cbxExtraCols.Size = new System.Drawing.Size(283, 21);
-            this.cbxExtraCols.TabIndex = 10;
-            this.cbxExtraCols.Text = "other extra columns => if so, how many?";
-            this.cbxExtraCols.UseVisualStyleBackColor = true;
-            this.cbxExtraCols.CheckedChanged += new System.EventHandler(this.cbxExtraCols_CheckedChanged);
-            // 
-            // numExtraCols
-            // 
-            this.numExtraCols.Enabled = false;
-            this.numExtraCols.Location = new System.Drawing.Point(315, 323);
-            this.numExtraCols.Maximum = new decimal(new int[] {
-            999,
+            this.numRepsAfterBurnin.Location = new System.Drawing.Point(577, 43);
+            this.numRepsAfterBurnin.Maximum = new decimal(new int[] {
+            2147483647,
             0,
             0,
             0});
-            this.numExtraCols.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numExtraCols.Name = "numExtraCols";
-            this.numExtraCols.Size = new System.Drawing.Size(65, 22);
-            this.numExtraCols.TabIndex = 11;
-            this.numExtraCols.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(155, 17);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "length of burnin period:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(342, 45);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(229, 17);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "number of MCMC reps after burnin:";
+            this.numRepsAfterBurnin.Name = "numRepsAfterBurnin";
+            this.numRepsAfterBurnin.Size = new System.Drawing.Size(99, 22);
+            this.numRepsAfterBurnin.TabIndex = 10;
             // 
             // numBurninPeriod
             // 
@@ -394,17 +379,33 @@ namespace GenotypeDataProcessing
             this.numBurninPeriod.Size = new System.Drawing.Size(99, 22);
             this.numBurninPeriod.TabIndex = 9;
             // 
-            // numRepsAfterBurnin
+            // label8
             // 
-            this.numRepsAfterBurnin.Location = new System.Drawing.Point(577, 43);
-            this.numRepsAfterBurnin.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.numRepsAfterBurnin.Name = "numRepsAfterBurnin";
-            this.numRepsAfterBurnin.Size = new System.Drawing.Size(99, 22);
-            this.numRepsAfterBurnin.TabIndex = 10;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(342, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(229, 17);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "number of MCMC reps after burnin:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(27, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(155, 17);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "length of burnin period:";
+            // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(525, 404);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(96, 47);
+            this.btnApply.TabIndex = 3;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnAdvanced
             // 
@@ -435,11 +436,11 @@ namespace GenotypeDataProcessing
             ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numExtraCols)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numExtraCols)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numBurninPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRepsAfterBurnin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numBurninPeriod)).EndInit();
             this.ResumeLayout(false);
 
         }
