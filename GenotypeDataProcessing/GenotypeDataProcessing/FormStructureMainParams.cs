@@ -12,9 +12,9 @@ using GenotypeDataProcessing.ParamFilesCreation;
 
 namespace GenotypeDataProcessing
 {
-    public partial class FormDataParams : Form
+    public partial class FormStructureMainParams : Form
     {
-        public FormDataParams()
+        public FormStructureMainParams()
         {
             InitializeComponent();
         }

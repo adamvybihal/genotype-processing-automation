@@ -17,18 +17,45 @@ namespace GenotypeDataProcessing
             InitializeComponent();
         }
 
-        private void btnChooseDataFile_Click(object sender, EventArgs e)
+        private void structureParameterFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormStructureMainParams formDataParams = new FormStructureMainParams();
+            formDataParams.ShowDialog();
+        }
+
+        private void cbxPerformStructureHarvester_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxPerformCLUMPPStr.Enabled = cbxPerformStructureHarvesterStr.Checked;
+            if (!cbxPerformStructureHarvesterStr.Checked) cbxPerformCLUMPPStr.Checked = false; 
+        }
+
+        private void cbxPerformCLUMPP_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxPerformDistructStr.Enabled = cbxPerformCLUMPPStr.Checked;
+            if (!cbxPerformCLUMPPStr.Checked) cbxPerformDistructStr.Checked = false;
+        }
+
+        private void btnChooseStructureFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.ShowDialog();
 
-            lblDataFile.Text = fileDialog.FileName;
+            if (fileDialog.FileName != "")
+            {
+                txtStructureDataFile.Text = fileDialog.FileName;
+
+                cbxPerformStructureHarvesterStr.Enabled = true;
+            }
         }
 
-        private void btnStartAnalysis_Click(object sender, EventArgs e)
+        private void btnStartAnalysisStr_Click(object sender, EventArgs e)
         {
-            FormDataParams formDataParams = new FormDataParams();
-            formDataParams.ShowDialog();
+            ; ;
+        }
+
+        private void llblStructureHarvesterWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://taylor0.biology.ucla.edu/structureHarvester/");
         }
     }
 }
