@@ -1,7 +1,7 @@
 ﻿
 namespace GenotypeDataProcessing
 {
-    partial class FormDataParams
+    partial class FormStructureMainParams
     {
         /// <summary>
         /// Required designer variable.
@@ -416,7 +416,7 @@ namespace GenotypeDataProcessing
             this.btnAdvanced.Text = "Advanced Options";
             this.btnAdvanced.UseVisualStyleBackColor = true;
             // 
-            // FormDataParams
+            // FormStructureMainParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -426,8 +426,8 @@ namespace GenotypeDataProcessing
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FormDataParams";
-            this.Text = "Parameter Set";
+            this.Name = "FormStructureMainParams";
+            this.Text = "Set Structure Main Parameters";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMissingDataValue)).EndInit();
