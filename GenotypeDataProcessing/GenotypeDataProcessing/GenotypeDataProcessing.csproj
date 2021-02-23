@@ -52,6 +52,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClumppParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClumppParams.Designer.cs">
+      <DependentUpon>FormClumppParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDistructParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDistructParams.Designer.cs">
+      <DependentUpon>FormDistructParams.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStructureMainParams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +76,12 @@
     <Compile Include="Structures\ST_StructureMainParams.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClumppParams.resx">
+      <DependentUpon>FormClumppParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDistructParams.resx">
+      <DependentUpon>FormDistructParams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStructureMainParams.resx">
       <DependentUpon>FormStructureMainParams.cs</DependentUpon>

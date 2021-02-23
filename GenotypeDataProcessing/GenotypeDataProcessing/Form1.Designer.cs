@@ -48,36 +48,42 @@ namespace GenotypeDataProcessing
             this.tabStructure = new System.Windows.Forms.TabPage();
             this.btnChooseStructureFile = new System.Windows.Forms.Button();
             this.tabStructureHarvester = new System.Windows.Forms.TabPage();
+            this.llblStructureHarvesterWeb = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnStartAnalysisStrHv = new System.Windows.Forms.Button();
+            this.btnChooseArchive = new System.Windows.Forms.Button();
+            this.txtStructureHarvesterArchive = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbxDistructStrHv = new System.Windows.Forms.CheckBox();
             this.cbxCLUMPPStrHv = new System.Windows.Forms.CheckBox();
             this.tabCLUMPP = new System.Windows.Forms.TabPage();
+            this.btnStartAnalysisCLUMPP = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnChoosePopulationsFile = new System.Windows.Forms.Button();
+            this.txtPopulationsFile = new System.Windows.Forms.TextBox();
+            this.btnChooseIndividualsFile = new System.Windows.Forms.Button();
+            this.txtIndividualsFile = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbxDistructClmp = new System.Windows.Forms.CheckBox();
             this.tabDistruct = new System.Windows.Forms.TabPage();
-            this.btnChooseArchive = new System.Windows.Forms.Button();
-            this.txtStructureHarvesterArchive = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnStartAnalysisStrHv = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.llblStructureHarvesterWeb = new System.Windows.Forms.LinkLabel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnStartAnalysisCLUMPP = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.btnStartAnalysisDistruct = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.btnChooseIndivFile = new System.Windows.Forms.Button();
+            this.txtIndivFile = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnChoosePopFile = new System.Windows.Forms.Button();
+            this.txtPopFile = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblStructureParamfileStatus = new System.Windows.Forms.Label();
+            this.lblCLUMPPParamfileStatus = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblDistructParamfileStatus = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -92,7 +98,7 @@ namespace GenotypeDataProcessing
             // btnStartAnalysisStr
             // 
             this.btnStartAnalysisStr.Enabled = false;
-            this.btnStartAnalysisStr.Location = new System.Drawing.Point(194, 236);
+            this.btnStartAnalysisStr.Location = new System.Drawing.Point(194, 240);
             this.btnStartAnalysisStr.Name = "btnStartAnalysisStr";
             this.btnStartAnalysisStr.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisStr.TabIndex = 2;
@@ -243,6 +249,8 @@ namespace GenotypeDataProcessing
             // tabStructure
             // 
             this.tabStructure.BackColor = System.Drawing.SystemColors.Control;
+            this.tabStructure.Controls.Add(this.lblStructureParamfileStatus);
+            this.tabStructure.Controls.Add(this.label11);
             this.tabStructure.Controls.Add(this.btnChooseStructureFile);
             this.tabStructure.Controls.Add(this.btnStartAnalysisStr);
             this.tabStructure.Controls.Add(this.groupBox1);
@@ -283,6 +291,72 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.TabIndex = 1;
             this.tabStructureHarvester.Text = "Structure Harvester";
             // 
+            // llblStructureHarvesterWeb
+            // 
+            this.llblStructureHarvesterWeb.AutoSize = true;
+            this.llblStructureHarvesterWeb.Location = new System.Drawing.Point(387, 315);
+            this.llblStructureHarvesterWeb.Name = "llblStructureHarvesterWeb";
+            this.llblStructureHarvesterWeb.Size = new System.Drawing.Size(132, 17);
+            this.llblStructureHarvesterWeb.TabIndex = 16;
+            this.llblStructureHarvesterWeb.TabStop = true;
+            this.llblStructureHarvesterWeb.Text = "Structure Harvester";
+            this.llblStructureHarvesterWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblStructureHarvesterWeb_LinkClicked);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 315);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(359, 17);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "In case you don\'t have Python, use web version via link:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(45, 294);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(454, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Analysis with Structure Harvester requires Python installed on your PC.";
+            // 
+            // btnStartAnalysisStrHv
+            // 
+            this.btnStartAnalysisStrHv.Enabled = false;
+            this.btnStartAnalysisStrHv.Location = new System.Drawing.Point(185, 211);
+            this.btnStartAnalysisStrHv.Name = "btnStartAnalysisStrHv";
+            this.btnStartAnalysisStrHv.Size = new System.Drawing.Size(160, 38);
+            this.btnStartAnalysisStrHv.TabIndex = 13;
+            this.btnStartAnalysisStrHv.Text = "Start Analysis";
+            this.btnStartAnalysisStrHv.UseVisualStyleBackColor = true;
+            // 
+            // btnChooseArchive
+            // 
+            this.btnChooseArchive.Location = new System.Drawing.Point(375, 53);
+            this.btnChooseArchive.Name = "btnChooseArchive";
+            this.btnChooseArchive.Size = new System.Drawing.Size(107, 23);
+            this.btnChooseArchive.TabIndex = 12;
+            this.btnChooseArchive.Text = "Choose File";
+            this.btnChooseArchive.UseVisualStyleBackColor = true;
+            // 
+            // txtStructureHarvesterArchive
+            // 
+            this.txtStructureHarvesterArchive.Location = new System.Drawing.Point(86, 53);
+            this.txtStructureHarvesterArchive.Name = "txtStructureHarvesterArchive";
+            this.txtStructureHarvesterArchive.ReadOnly = true;
+            this.txtStructureHarvesterArchive.Size = new System.Drawing.Size(273, 22);
+            this.txtStructureHarvesterArchive.TabIndex = 11;
+            this.txtStructureHarvesterArchive.Text = "choose file ...";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Select .zip Archive";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cbxDistructStrHv);
@@ -319,14 +393,16 @@ namespace GenotypeDataProcessing
             // tabCLUMPP
             // 
             this.tabCLUMPP.BackColor = System.Drawing.SystemColors.Control;
+            this.tabCLUMPP.Controls.Add(this.lblCLUMPPParamfileStatus);
+            this.tabCLUMPP.Controls.Add(this.label16);
             this.tabCLUMPP.Controls.Add(this.btnStartAnalysisCLUMPP);
             this.tabCLUMPP.Controls.Add(this.label7);
             this.tabCLUMPP.Controls.Add(this.label6);
             this.tabCLUMPP.Controls.Add(this.label5);
-            this.tabCLUMPP.Controls.Add(this.button3);
-            this.tabCLUMPP.Controls.Add(this.textBox2);
-            this.tabCLUMPP.Controls.Add(this.button2);
-            this.tabCLUMPP.Controls.Add(this.textBox1);
+            this.tabCLUMPP.Controls.Add(this.btnChoosePopulationsFile);
+            this.tabCLUMPP.Controls.Add(this.txtPopulationsFile);
+            this.tabCLUMPP.Controls.Add(this.btnChooseIndividualsFile);
+            this.tabCLUMPP.Controls.Add(this.txtIndividualsFile);
             this.tabCLUMPP.Controls.Add(this.groupBox3);
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
             this.tabCLUMPP.Name = "tabCLUMPP";
@@ -334,6 +410,79 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Size = new System.Drawing.Size(546, 359);
             this.tabCLUMPP.TabIndex = 2;
             this.tabCLUMPP.Text = "CLUMPP";
+            // 
+            // btnStartAnalysisCLUMPP
+            // 
+            this.btnStartAnalysisCLUMPP.Enabled = false;
+            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(186, 273);
+            this.btnStartAnalysisCLUMPP.Name = "btnStartAnalysisCLUMPP";
+            this.btnStartAnalysisCLUMPP.Size = new System.Drawing.Size(160, 38);
+            this.btnStartAnalysisCLUMPP.TabIndex = 20;
+            this.btnStartAnalysisCLUMPP.Text = "Start Analysis";
+            this.btnStartAnalysisCLUMPP.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 337);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(186, 17);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "* select at least one data file";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(175, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(187, 17);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Select Population Data File* ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(183, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 17);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Select Individual Data File* ";
+            // 
+            // btnChoosePopulationsFile
+            // 
+            this.btnChoosePopulationsFile.Location = new System.Drawing.Point(364, 115);
+            this.btnChoosePopulationsFile.Name = "btnChoosePopulationsFile";
+            this.btnChoosePopulationsFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChoosePopulationsFile.TabIndex = 16;
+            this.btnChoosePopulationsFile.Text = "Choose File";
+            this.btnChoosePopulationsFile.UseVisualStyleBackColor = true;
+            // 
+            // txtPopulationsFile
+            // 
+            this.txtPopulationsFile.Location = new System.Drawing.Point(75, 115);
+            this.txtPopulationsFile.Name = "txtPopulationsFile";
+            this.txtPopulationsFile.ReadOnly = true;
+            this.txtPopulationsFile.Size = new System.Drawing.Size(273, 22);
+            this.txtPopulationsFile.TabIndex = 15;
+            this.txtPopulationsFile.Text = "choose file ...";
+            // 
+            // btnChooseIndividualsFile
+            // 
+            this.btnChooseIndividualsFile.Location = new System.Drawing.Point(364, 53);
+            this.btnChooseIndividualsFile.Name = "btnChooseIndividualsFile";
+            this.btnChooseIndividualsFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChooseIndividualsFile.TabIndex = 14;
+            this.btnChooseIndividualsFile.Text = "Choose File";
+            this.btnChooseIndividualsFile.UseVisualStyleBackColor = true;
+            // 
+            // txtIndividualsFile
+            // 
+            this.txtIndividualsFile.Location = new System.Drawing.Point(75, 53);
+            this.txtIndividualsFile.Name = "txtIndividualsFile";
+            this.txtIndividualsFile.ReadOnly = true;
+            this.txtIndividualsFile.Size = new System.Drawing.Size(273, 22);
+            this.txtIndividualsFile.TabIndex = 13;
+            this.txtIndividualsFile.Text = "choose file ...";
             // 
             // groupBox3
             // 
@@ -345,6 +494,17 @@ namespace GenotypeDataProcessing
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Continue analysis with:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(61, 61);
+            this.label10.MaximumSize = new System.Drawing.Size(300, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(293, 34);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "subsequent distruct run available, only if you run CLUMPP analysis of population " +
+    "data file";
             // 
             // cbxDistructClmp
             // 
@@ -360,13 +520,15 @@ namespace GenotypeDataProcessing
             // tabDistruct
             // 
             this.tabDistruct.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDistruct.Controls.Add(this.lblDistructParamfileStatus);
+            this.tabDistruct.Controls.Add(this.label18);
             this.tabDistruct.Controls.Add(this.btnStartAnalysisDistruct);
-            this.tabDistruct.Controls.Add(this.button4);
-            this.tabDistruct.Controls.Add(this.textBox4);
+            this.tabDistruct.Controls.Add(this.btnChooseIndivFile);
+            this.tabDistruct.Controls.Add(this.txtIndivFile);
             this.tabDistruct.Controls.Add(this.label9);
             this.tabDistruct.Controls.Add(this.label8);
-            this.tabDistruct.Controls.Add(this.button1);
-            this.tabDistruct.Controls.Add(this.textBox3);
+            this.tabDistruct.Controls.Add(this.btnChoosePopFile);
+            this.tabDistruct.Controls.Add(this.txtPopFile);
             this.tabDistruct.Location = new System.Drawing.Point(4, 25);
             this.tabDistruct.Name = "tabDistruct";
             this.tabDistruct.Padding = new System.Windows.Forms.Padding(3);
@@ -374,171 +536,33 @@ namespace GenotypeDataProcessing
             this.tabDistruct.TabIndex = 3;
             this.tabDistruct.Text = "distruct";
             // 
-            // btnChooseArchive
+            // btnStartAnalysisDistruct
             // 
-            this.btnChooseArchive.Location = new System.Drawing.Point(375, 53);
-            this.btnChooseArchive.Name = "btnChooseArchive";
-            this.btnChooseArchive.Size = new System.Drawing.Size(107, 23);
-            this.btnChooseArchive.TabIndex = 12;
-            this.btnChooseArchive.Text = "Choose File";
-            this.btnChooseArchive.UseVisualStyleBackColor = true;
+            this.btnStartAnalysisDistruct.Enabled = false;
+            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(195, 192);
+            this.btnStartAnalysisDistruct.Name = "btnStartAnalysisDistruct";
+            this.btnStartAnalysisDistruct.Size = new System.Drawing.Size(160, 38);
+            this.btnStartAnalysisDistruct.TabIndex = 24;
+            this.btnStartAnalysisDistruct.Text = "Start Analysis";
+            this.btnStartAnalysisDistruct.UseVisualStyleBackColor = true;
             // 
-            // txtStructureHarvesterArchive
+            // btnChooseIndivFile
             // 
-            this.txtStructureHarvesterArchive.Location = new System.Drawing.Point(86, 53);
-            this.txtStructureHarvesterArchive.Name = "txtStructureHarvesterArchive";
-            this.txtStructureHarvesterArchive.ReadOnly = true;
-            this.txtStructureHarvesterArchive.Size = new System.Drawing.Size(273, 22);
-            this.txtStructureHarvesterArchive.TabIndex = 11;
-            this.txtStructureHarvesterArchive.Text = "choose file ...";
+            this.btnChooseIndivFile.Location = new System.Drawing.Point(361, 115);
+            this.btnChooseIndivFile.Name = "btnChooseIndivFile";
+            this.btnChooseIndivFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChooseIndivFile.TabIndex = 23;
+            this.btnChooseIndivFile.Text = "Choose File";
+            this.btnChooseIndivFile.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // txtIndivFile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 17);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Select .zip Archive";
-            // 
-            // btnStartAnalysisStrHv
-            // 
-            this.btnStartAnalysisStrHv.Enabled = false;
-            this.btnStartAnalysisStrHv.Location = new System.Drawing.Point(183, 236);
-            this.btnStartAnalysisStrHv.Name = "btnStartAnalysisStrHv";
-            this.btnStartAnalysisStrHv.Size = new System.Drawing.Size(160, 38);
-            this.btnStartAnalysisStrHv.TabIndex = 13;
-            this.btnStartAnalysisStrHv.Text = "Start Analysis";
-            this.btnStartAnalysisStrHv.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 294);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(454, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Analysis with Structure Harvester requires Python installed on your PC.";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 315);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(359, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "In case you don\'t have Python, use web version via link:";
-            // 
-            // llblStructureHarvesterWeb
-            // 
-            this.llblStructureHarvesterWeb.AutoSize = true;
-            this.llblStructureHarvesterWeb.Location = new System.Drawing.Point(387, 315);
-            this.llblStructureHarvesterWeb.Name = "llblStructureHarvesterWeb";
-            this.llblStructureHarvesterWeb.Size = new System.Drawing.Size(132, 17);
-            this.llblStructureHarvesterWeb.TabIndex = 16;
-            this.llblStructureHarvesterWeb.TabStop = true;
-            this.llblStructureHarvesterWeb.Text = "Structure Harvester";
-            this.llblStructureHarvesterWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblStructureHarvesterWeb_LinkClicked);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(364, 53);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Choose File";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(75, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(273, 22);
-            this.textBox1.TabIndex = 13;
-            this.textBox1.Text = "choose file ...";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(364, 115);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 23);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Choose File";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(75, 115);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(273, 22);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "choose file ...";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(183, 19);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 17);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Select Individual Data File* ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(175, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(187, 17);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Select Population Data File* ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 337);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(186, 17);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "* select at least one data file";
-            // 
-            // btnStartAnalysisCLUMPP
-            // 
-            this.btnStartAnalysisCLUMPP.Enabled = false;
-            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(178, 265);
-            this.btnStartAnalysisCLUMPP.Name = "btnStartAnalysisCLUMPP";
-            this.btnStartAnalysisCLUMPP.Size = new System.Drawing.Size(160, 38);
-            this.btnStartAnalysisCLUMPP.TabIndex = 20;
-            this.btnStartAnalysisCLUMPP.Text = "Start Analysis";
-            this.btnStartAnalysisCLUMPP.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(121, 81);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(308, 17);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Select Input File of Individual Q-Matrix (optional)";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(361, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Choose File";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(72, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(273, 22);
-            this.textBox3.TabIndex = 18;
-            this.textBox3.Text = "choose file ...";
+            this.txtIndivFile.Location = new System.Drawing.Point(72, 115);
+            this.txtIndivFile.Name = "txtIndivFile";
+            this.txtIndivFile.ReadOnly = true;
+            this.txtIndivFile.Size = new System.Drawing.Size(273, 22);
+            this.txtIndivFile.TabIndex = 22;
+            this.txtIndivFile.Text = "choose file ...";
             // 
             // label9
             // 
@@ -549,44 +573,86 @@ namespace GenotypeDataProcessing
             this.label9.TabIndex = 21;
             this.label9.Text = "Select Input File of Population Q-Matrix (required) ";
             // 
-            // button4
+            // label8
             // 
-            this.button4.Location = new System.Drawing.Point(361, 115);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 23);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "Choose File";
-            this.button4.UseVisualStyleBackColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(121, 81);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(308, 17);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Select Input File of Individual Q-Matrix (optional)";
             // 
-            // textBox4
+            // btnChoosePopFile
             // 
-            this.textBox4.Location = new System.Drawing.Point(72, 115);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(273, 22);
-            this.textBox4.TabIndex = 22;
-            this.textBox4.Text = "choose file ...";
+            this.btnChoosePopFile.Location = new System.Drawing.Point(361, 53);
+            this.btnChoosePopFile.Name = "btnChoosePopFile";
+            this.btnChoosePopFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChoosePopFile.TabIndex = 19;
+            this.btnChoosePopFile.Text = "Choose File";
+            this.btnChoosePopFile.UseVisualStyleBackColor = true;
             // 
-            // btnStartAnalysisDistruct
+            // txtPopFile
             // 
-            this.btnStartAnalysisDistruct.Enabled = false;
-            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(193, 160);
-            this.btnStartAnalysisDistruct.Name = "btnStartAnalysisDistruct";
-            this.btnStartAnalysisDistruct.Size = new System.Drawing.Size(160, 38);
-            this.btnStartAnalysisDistruct.TabIndex = 24;
-            this.btnStartAnalysisDistruct.Text = "Start Analysis";
-            this.btnStartAnalysisDistruct.UseVisualStyleBackColor = true;
+            this.txtPopFile.Location = new System.Drawing.Point(72, 53);
+            this.txtPopFile.Name = "txtPopFile";
+            this.txtPopFile.ReadOnly = true;
+            this.txtPopFile.Size = new System.Drawing.Size(273, 22);
+            this.txtPopFile.TabIndex = 18;
+            this.txtPopFile.Text = "choose file ...";
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(61, 61);
-            this.label10.MaximumSize = new System.Drawing.Size(300, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(293, 34);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "subsequent distruct run available, only if you run CLUMPP analysis of population " +
-    "data file";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(157, 220);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 17);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Parameter File Status:";
+            // 
+            // lblStructureParamfileStatus
+            // 
+            this.lblStructureParamfileStatus.AutoSize = true;
+            this.lblStructureParamfileStatus.Location = new System.Drawing.Point(312, 220);
+            this.lblStructureParamfileStatus.Name = "lblStructureParamfileStatus";
+            this.lblStructureParamfileStatus.Size = new System.Drawing.Size(54, 17);
+            this.lblStructureParamfileStatus.TabIndex = 11;
+            this.lblStructureParamfileStatus.Text = "label12";
+            // 
+            // lblCLUMPPParamfileStatus
+            // 
+            this.lblCLUMPPParamfileStatus.AutoSize = true;
+            this.lblCLUMPPParamfileStatus.Location = new System.Drawing.Point(311, 253);
+            this.lblCLUMPPParamfileStatus.Name = "lblCLUMPPParamfileStatus";
+            this.lblCLUMPPParamfileStatus.Size = new System.Drawing.Size(54, 17);
+            this.lblCLUMPPParamfileStatus.TabIndex = 22;
+            this.lblCLUMPPParamfileStatus.Text = "label15";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(156, 253);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(148, 17);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Parameter File Status:";
+            // 
+            // lblDistructParamfileStatus
+            // 
+            this.lblDistructParamfileStatus.AutoSize = true;
+            this.lblDistructParamfileStatus.Location = new System.Drawing.Point(323, 161);
+            this.lblDistructParamfileStatus.Name = "lblDistructParamfileStatus";
+            this.lblDistructParamfileStatus.Size = new System.Drawing.Size(54, 17);
+            this.lblDistructParamfileStatus.TabIndex = 26;
+            this.lblDistructParamfileStatus.Text = "label17";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(168, 161);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(148, 17);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "Parameter File Status:";
             // 
             // Form1
             // 
@@ -656,20 +722,26 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.LinkLabel llblStructureHarvesterWeb;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnChoosePopulationsFile;
+        private System.Windows.Forms.TextBox txtPopulationsFile;
+        private System.Windows.Forms.Button btnChooseIndividualsFile;
+        private System.Windows.Forms.TextBox txtIndividualsFile;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnStartAnalysisCLUMPP;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button btnChooseIndivFile;
+        private System.Windows.Forms.TextBox txtIndivFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnChoosePopFile;
+        private System.Windows.Forms.TextBox txtPopFile;
         private System.Windows.Forms.Button btnStartAnalysisDistruct;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblStructureParamfileStatus;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblCLUMPPParamfileStatus;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblDistructParamfileStatus;
+        private System.Windows.Forms.Label label18;
     }
 }
 
