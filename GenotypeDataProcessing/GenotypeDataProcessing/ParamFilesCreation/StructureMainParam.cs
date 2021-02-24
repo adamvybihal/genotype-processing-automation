@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GenotypeDataProcessing.Structures;
+using GenotypeDataProcessing.DUTs;
 
 namespace GenotypeDataProcessing.ParamFilesCreation
 {

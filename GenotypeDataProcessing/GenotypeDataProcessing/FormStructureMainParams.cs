@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GenotypeDataProcessing.Structures;
+using GenotypeDataProcessing.DUTs;
 using GenotypeDataProcessing.ParamFilesCreation;
 
 namespace GenotypeDataProcessing
