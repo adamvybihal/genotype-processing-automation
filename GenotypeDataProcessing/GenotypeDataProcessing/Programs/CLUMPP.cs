@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +59,7 @@ namespace GenotypeDataProcessing.Programs
         /// <summary>
         /// Run CLUMPP software.
         /// </summary>
-        public void RunCLUMPP()
+        public void StartProcess()
         {
             Process clumppRun = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo
