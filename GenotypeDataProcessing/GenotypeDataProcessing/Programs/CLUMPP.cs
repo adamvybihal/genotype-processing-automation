@@ -16,11 +16,11 @@ namespace GenotypeDataProcessing.Programs
     /// </summary>
     public class CLUMPP
     {
-        private string c_paramfilePath;
-        private string c_outuputName;
-        private E_DataTypeCLUMPP c_dataType;
-        private string c_outputType;
-        private string c_dataPath;
+        private string paramFilePath;
+        private string outuputFileName;
+        private E_DataTypeCLUMPP inputDataType;
+        private string outputFileType;
+        private string outputDataPath;
 
         /// <summary>
         /// Constructor with three parameters
@@ -28,14 +28,14 @@ namespace GenotypeDataProcessing.Programs
         /// <param name="paramfilePath">A string path to CLUMPP's parameter file</param>
         /// <param name="outputName">A name of CLUMPP's output file</param>
         /// <param name="dataType">dataType defines the type of data to be read in to CLUMPP</param>
-        /// <param name="dataPath">A path to a folder where output will be generated</param>
-        public CLUMPP(string paramfilePath, E_DataTypeCLUMPP dataType, string outputName, string dataPath)
+        /// <param name="outputPath">A path to a folder where output will be generated</param>
+        public CLUMPP(string paramfilePath, E_DataTypeCLUMPP dataType, string outputName, string outputPath)
         {
-            c_paramfilePath = paramfilePath;
-            c_outuputName = outputName;
-            c_dataType = dataType;
+            paramFilePath = paramfilePath;
+            outuputFileName = outputName;
+            inputDataType = dataType;
             SetOutputType();
-            c_dataPath = dataPath;
+            outputDataPath = outputPath;
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace GenotypeDataProcessing.Programs
         /// </summary>
         private void SetOutputType()
         {
-            if (c_dataType == E_DataTypeCLUMPP.ONE) c_outputType = ".popq";
-            else c_outputType = ".indivq";
+            if (inputDataType == E_DataTypeCLUMPP.ONE) outputFileType = ".popq";
+            else outputFileType = ".indivq";
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace GenotypeDataProcessing.Programs
         /// <returns>Returns string containing the whole name of CLUMPP's output file</returns>
         public string GetOutputFile()
         {
-            return c_outuputName + c_outputType;
+            return outuputFileName + outputFileType;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace GenotypeDataProcessing.Programs
                 clumppRun.StartInfo = startInfo;
                 clumppRun.Start();
 
-                clumppRun.StandardInput.WriteLine("CLUMPP " + c_paramfilePath + " -o " + c_dataPath + c_outuputName + c_outputType);
+                clumppRun.StandardInput.WriteLine("CLUMPP " + paramFilePath + " -o " + outputDataPath + outuputFileName + outputFileType);
 
                 clumppRun.StandardInput.Flush();
                 clumppRun.StandardInput.Close();
