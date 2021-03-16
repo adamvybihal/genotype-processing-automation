@@ -26,35 +26,35 @@ namespace GenotypeDataProcessing
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            ST_StructureMainParams stStructureMainParams;
+            ST_StructureMainParams structureMainParams;
 
-            stStructureMainParams.burin = (int)numBurninPeriod.Value;
-            stStructureMainParams.numReps = (int)numRepsAfterBurnin.Value;
+            structureMainParams.burin = (int)numBurninPeriod.Value;
+            structureMainParams.numReps = (int)numRepsAfterBurnin.Value;
 
-            stStructureMainParams.numInds = (int)numIndividuals.Value;
-            stStructureMainParams.numLoci = (int)numLoci.Value;
-            stStructureMainParams.ploidy = (int)numPloidy.Value;
-            stStructureMainParams.missing = (int)numMissingDataValue.Value;
-            stStructureMainParams.oneRowPerInd = cbxSingleLine.Checked;
+            structureMainParams.numInds = (int)numIndividuals.Value;
+            structureMainParams.numLoci = (int)numLoci.Value;
+            structureMainParams.ploidy = (int)numPloidy.Value;
+            structureMainParams.missingDataValue = (int)numMissingDataValue.Value;
+            structureMainParams.oneRowPerInd = cbxSingleLine.Checked;
 
-            stStructureMainParams.label = cbxIdCol.Checked;
-            stStructureMainParams.popData = cbxPopOriginCol.Checked;
-            stStructureMainParams.popFlag = cbxPopInfoFlagCol.Checked;
-            stStructureMainParams.locData = cbxSampleInfoCol.Checked;
-            stStructureMainParams.phenotype = cbxPhenotypeCol.Checked;
-            stStructureMainParams.extraCols = (int)numExtraCols.Value;
-            stStructureMainParams.markerNames = cbxMarkerRow.Checked;
-            stStructureMainParams.recessiveAlleles = cbxAlelesRow.Checked;
-            stStructureMainParams.mapDistances = cbxLociDistancesRow.Checked;
+            structureMainParams.label = cbxIdCol.Checked;
+            structureMainParams.popData = cbxPopOriginCol.Checked;
+            structureMainParams.popFlag = cbxPopInfoFlagCol.Checked;
+            structureMainParams.locData = cbxSampleInfoCol.Checked;
+            structureMainParams.phenotype = cbxPhenotypeCol.Checked;
+            structureMainParams.extraCols = (int)numExtraCols.Value;
+            structureMainParams.markerNames = cbxMarkerRow.Checked;
+            structureMainParams.recessiveAlleles = cbxAlelesRow.Checked;
+            structureMainParams.mapDistances = cbxLociDistancesRow.Checked;
 
-            stStructureMainParams.phased = false;
-            stStructureMainParams.phaseInfo = false;
-            stStructureMainParams.markovPhase = false;
-            stStructureMainParams.notAmbiguous = -999;
+            structureMainParams.phased = false;
+            structureMainParams.phaseInfo = false;
+            structureMainParams.markovPhase = false;
+            structureMainParams.notAmbiguous = -999;
 
-            StructureMainParam structureMainParam = new StructureMainParam(stStructureMainParams);
+            StructureMainParamFile structureMainParamFile = new StructureMainParamFile(structureMainParams);
 
-            structureMainParam.createParamFile();
+            structureMainParamFile.createParamFile();
     }
     }
 }

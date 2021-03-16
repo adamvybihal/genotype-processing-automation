@@ -14,14 +14,14 @@ namespace GenotypeDataProcessing.Programs
     public class Distruct
     {
 
-        private string c_drawparamsPath;
-        private string c_indivqPath;
-        private string c_popqPath;
-        private string c_outuputName;
-        private string c_dataPath;
+        private string drawparamsFilePath;
+        private string indivqFilePath;
+        private string popqFilePath;
+        private string outuputFileName;
+        private string outputDataPath;
 
         /// <summary>
-        /// Constructor with two parameters
+        /// Class constructor
         /// </summary>
         /// <param name="drawparamsPath">A string path to distruct's parameter file</param>
         /// <param name="indivqPath">A string path to input file of individual q's</param>
@@ -30,11 +30,11 @@ namespace GenotypeDataProcessing.Programs
         /// <param name="dataPath">A path to a folder where output will be generated</param>
         public Distruct(string drawparamsPath, string indivqPath, string popqPath, string outputName, string dataPath)
         {
-            c_drawparamsPath = drawparamsPath;
-            c_indivqPath = indivqPath;
-            c_popqPath = popqPath;
-            c_outuputName = outputName;
-            c_dataPath = dataPath;
+            drawparamsFilePath = drawparamsPath;
+            indivqFilePath = indivqPath;
+            popqFilePath = popqPath;
+            outuputFileName = outputName;
+            outputDataPath = dataPath;
         }
 
         /// <summary>
@@ -43,12 +43,11 @@ namespace GenotypeDataProcessing.Programs
         /// <returns>Returns string containing the whole name of distruct's output file</returns>
         public string GetOutputFile()
         {
-            return c_outuputName + ".ps";
+            return outuputFileName + ".ps";
         }
 
         /// <summary>
         /// Method that launches distruct.
-        /// Runs when there have been two succesful structure runs, which created necessary files to run distruct.
         /// </summary>
         public void RunDistruct()
         {
@@ -69,7 +68,7 @@ namespace GenotypeDataProcessing.Programs
                 distructRun.StartInfo = startInfo;
                 distructRun.Start();
 
-                distructRun.StandardInput.WriteLine("distructWindows1.1 -d " + c_drawparamsPath + " -p " + c_popqPath + " -i " + c_indivqPath + " -o " + c_dataPath + c_outuputName + ".ps");
+                distructRun.StandardInput.WriteLine("distructWindows1.1 -d " + drawparamsFilePath + " -p " + popqFilePath + " -i " + indivqFilePath + " -o " + outputDataPath + outuputFileName + ".ps");
                 distructRun.StandardInput.Flush();
                 distructRun.StandardInput.Close();
 

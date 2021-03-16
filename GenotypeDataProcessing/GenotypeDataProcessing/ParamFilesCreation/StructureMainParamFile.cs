@@ -8,18 +8,19 @@ using GenotypeDataProcessing.DUTs;
 
 namespace GenotypeDataProcessing.ParamFilesCreation
 {
-    class StructureMainParam
+    class StructureMainParamFile
     {
-        ST_StructureMainParams cParams;
-        string strParamString;
+        private ST_StructureMainParams mainParams;
+        private string fileString;
+        private string filePath;
 
-        public StructureMainParam(ST_StructureMainParams iMainParams)
+        public StructureMainParamFile(ST_StructureMainParams structureMainParams)
         {
-            cParams = iMainParams;
-            strParamString = setString(iMainParams);
+            mainParams = structureMainParams;
+            fileString = setString(structureMainParams);
         }
 
-        private string setString(ST_StructureMainParams iParams)
+        private string setString(ST_StructureMainParams structureMainParams)
         {
             return "#define MAXPOPS   1" + "\n" +
                 "#define BURNIN    10000" + "\n" +
@@ -58,7 +59,7 @@ namespace GenotypeDataProcessing.ParamFilesCreation
             {
                 using (FileStream fs = File.Create(path))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes(strParamString);
+                    byte[] info = new UTF8Encoding(true).GetBytes(fileString);
                     fs.Write(info, 0, info.Length);
                 }
             }
