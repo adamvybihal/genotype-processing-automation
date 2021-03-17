@@ -58,6 +58,8 @@ namespace GenotypeDataProcessing.Structure
         {
             try
             {
+                char[] delimiterChars = { ' ', '\t' };
+
                 string[] rawData = File.ReadAllLines(Path.Combine(structureDirectoryPath, "structureData."));
                 int numOfRows = CalculateRows();
                 int numOfCols = CalculateCols();
@@ -82,7 +84,7 @@ namespace GenotypeDataProcessing.Structure
                     // (only if there are any)
                     if (i < extraRows)
                     {
-                        string[] cols = row.Trim().Split(' ');
+                        string[] cols = row.Trim().Split(delimiterChars);
                         if (cols.Length != ProjectInfo.structureMainParams.numLoci) return;
 
                         string[] completeRow = blank.Concat(cols).ToArray();
@@ -97,7 +99,7 @@ namespace GenotypeDataProcessing.Structure
                     // checks individual data
                     else
                     {
-                        string[] cols = row.Trim().Split(' ');
+                        string[] cols = row.Trim().Split(delimiterChars);
                         if (cols.Length != numOfCols) return;
 
                         foreach (var col in cols)
