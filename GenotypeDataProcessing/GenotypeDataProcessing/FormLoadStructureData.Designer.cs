@@ -35,7 +35,6 @@ namespace GenotypeDataProcessing
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnNext1to2 = new System.Windows.Forms.Button();
             this.gbxStep2 = new System.Windows.Forms.GroupBox();
-            this.btnShowDataFormat2 = new System.Windows.Forms.Button();
             this.btnCancel2 = new System.Windows.Forms.Button();
             this.numMissingDataValue = new System.Windows.Forms.NumericUpDown();
             this.btnBack2to1 = new System.Windows.Forms.Button();
@@ -48,7 +47,6 @@ namespace GenotypeDataProcessing
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbxStep3 = new System.Windows.Forms.GroupBox();
-            this.btnShowDataFormat3 = new System.Windows.Forms.Button();
             this.btnCancel3 = new System.Windows.Forms.Button();
             this.btnBack3to2 = new System.Windows.Forms.Button();
             this.btnNext3to4 = new System.Windows.Forms.Button();
@@ -59,7 +57,6 @@ namespace GenotypeDataProcessing
             this.label5 = new System.Windows.Forms.Label();
             this.cbxMarkerRow = new System.Windows.Forms.CheckBox();
             this.gbxStep4 = new System.Windows.Forms.GroupBox();
-            this.btnShowDataFormat4 = new System.Windows.Forms.Button();
             this.btnCancel4 = new System.Windows.Forms.Button();
             this.numExtraCols = new System.Windows.Forms.NumericUpDown();
             this.btnBack4to3 = new System.Windows.Forms.Button();
@@ -137,7 +134,6 @@ namespace GenotypeDataProcessing
             // 
             // gbxStep2
             // 
-            this.gbxStep2.Controls.Add(this.btnShowDataFormat2);
             this.gbxStep2.Controls.Add(this.btnCancel2);
             this.gbxStep2.Controls.Add(this.numMissingDataValue);
             this.gbxStep2.Controls.Add(this.btnBack2to1);
@@ -155,16 +151,6 @@ namespace GenotypeDataProcessing
             this.gbxStep2.TabIndex = 1;
             this.gbxStep2.TabStop = false;
             this.gbxStep2.Text = "Step 2 of 4: Input Data File Information";
-            // 
-            // btnShowDataFormat2
-            // 
-            this.btnShowDataFormat2.Location = new System.Drawing.Point(129, 223);
-            this.btnShowDataFormat2.Name = "btnShowDataFormat2";
-            this.btnShowDataFormat2.Size = new System.Drawing.Size(148, 35);
-            this.btnShowDataFormat2.TabIndex = 29;
-            this.btnShowDataFormat2.Text = "Show Data Format";
-            this.btnShowDataFormat2.UseVisualStyleBackColor = true;
-            this.btnShowDataFormat2.Click += new System.EventHandler(this.btnShowDataFormat2_Click);
             // 
             // btnCancel2
             // 
@@ -287,7 +273,6 @@ namespace GenotypeDataProcessing
             // 
             // gbxStep3
             // 
-            this.gbxStep3.Controls.Add(this.btnShowDataFormat3);
             this.gbxStep3.Controls.Add(this.btnCancel3);
             this.gbxStep3.Controls.Add(this.btnBack3to2);
             this.gbxStep3.Controls.Add(this.btnNext3to4);
@@ -303,16 +288,6 @@ namespace GenotypeDataProcessing
             this.gbxStep3.TabIndex = 1;
             this.gbxStep3.TabStop = false;
             this.gbxStep3.Text = "Step 3 of 4: Format of Input";
-            // 
-            // btnShowDataFormat3
-            // 
-            this.btnShowDataFormat3.Location = new System.Drawing.Point(134, 216);
-            this.btnShowDataFormat3.Name = "btnShowDataFormat3";
-            this.btnShowDataFormat3.Size = new System.Drawing.Size(148, 35);
-            this.btnShowDataFormat3.TabIndex = 33;
-            this.btnShowDataFormat3.Text = "Show Data Format";
-            this.btnShowDataFormat3.UseVisualStyleBackColor = true;
-            this.btnShowDataFormat3.Click += new System.EventHandler(this.btnShowDataFormat2_Click);
             // 
             // btnCancel3
             // 
@@ -405,7 +380,6 @@ namespace GenotypeDataProcessing
             // 
             // gbxStep4
             // 
-            this.gbxStep4.Controls.Add(this.btnShowDataFormat4);
             this.gbxStep4.Controls.Add(this.btnCancel4);
             this.gbxStep4.Controls.Add(this.numExtraCols);
             this.gbxStep4.Controls.Add(this.btnBack4to3);
@@ -423,16 +397,6 @@ namespace GenotypeDataProcessing
             this.gbxStep4.TabIndex = 1;
             this.gbxStep4.TabStop = false;
             this.gbxStep4.Text = "Step 4 of 4: Format of Input";
-            // 
-            // btnShowDataFormat4
-            // 
-            this.btnShowDataFormat4.Location = new System.Drawing.Point(130, 225);
-            this.btnShowDataFormat4.Name = "btnShowDataFormat4";
-            this.btnShowDataFormat4.Size = new System.Drawing.Size(148, 35);
-            this.btnShowDataFormat4.TabIndex = 37;
-            this.btnShowDataFormat4.Text = "Show Data Format";
-            this.btnShowDataFormat4.UseVisualStyleBackColor = true;
-            this.btnShowDataFormat4.Click += new System.EventHandler(this.btnShowDataFormat2_Click);
             // 
             // btnCancel4
             // 
@@ -561,7 +525,7 @@ namespace GenotypeDataProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 343);
+            this.ClientSize = new System.Drawing.Size(444, 341);
             this.Controls.Add(this.gbxStep4);
             this.Controls.Add(this.gbxStep3);
             this.Controls.Add(this.gbxStep2);
@@ -618,15 +582,12 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.CheckBox cbxPhase;
         private System.Windows.Forms.Button btnChooseStructureFile;
         private System.Windows.Forms.TextBox txtStructureDataFile;
-        private System.Windows.Forms.Button btnShowDataFormat2;
         private System.Windows.Forms.Button btnCancel2;
         private System.Windows.Forms.Button btnBack2to1;
         private System.Windows.Forms.Button btnNext2to3;
-        private System.Windows.Forms.Button btnShowDataFormat3;
         private System.Windows.Forms.Button btnCancel3;
         private System.Windows.Forms.Button btnBack3to2;
         private System.Windows.Forms.Button btnNext3to4;
-        private System.Windows.Forms.Button btnShowDataFormat4;
         private System.Windows.Forms.Button btnCancel4;
         private System.Windows.Forms.Button btnBack4to3;
         private System.Windows.Forms.Button btnFinish;

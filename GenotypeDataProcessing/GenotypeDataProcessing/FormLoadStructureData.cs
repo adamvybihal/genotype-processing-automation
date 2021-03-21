@@ -33,17 +33,11 @@ namespace GenotypeDataProcessing
             gbxStep4.Visible = false;
 
             // todo - implement code, co user can use these !!
-            btnShowDataFormat2.Visible = false;
-            btnShowDataFormat3.Visible = false;
-            btnShowDataFormat4.Visible = false;
-
-            // todo - implement code, co user can use these !!
             cbxPhase.Enabled = false;
             cbxSingleLine.Enabled = false;
         }
 
         //STEP 1
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -69,12 +63,6 @@ namespace GenotypeDataProcessing
         }
 
         //STEP 2
-
-        private void btnShowDataFormat2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Input data has " + rowsInFile + " row(s) and " + colsInFile + " column(s)");
-        }
-
         private void btnNext2to3_Click(object sender, EventArgs e)
         {
             gbxStep2.Visible = false;
@@ -88,7 +76,6 @@ namespace GenotypeDataProcessing
         }
 
         // STEP 3
-
         private void btnNext3to4_Click(object sender, EventArgs e)
         {
             gbxStep3.Visible = false;
@@ -102,7 +89,6 @@ namespace GenotypeDataProcessing
         }
 
         // STEP 4
-
         private void btnFinish_Click(object sender, EventArgs e)
         {
             ProjectScreen.canShowStructureData = false;
@@ -114,13 +100,12 @@ namespace GenotypeDataProcessing
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
                 ProjectScreen.canShowStructureData = true;
-                MessageBox.Show("Data set loaded succesfully.");
+                MessageBox.Show("Data set loaded succesfully.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Data set does not match your inputs.");
-                // todo - message box should say something about data set format
+                MessageBox.Show(ProjectInfo.structureInputData.GetErrorString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

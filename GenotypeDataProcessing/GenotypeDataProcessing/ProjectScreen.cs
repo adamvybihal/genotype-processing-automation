@@ -102,6 +102,8 @@ namespace GenotypeDataProcessing
                 lsvStructureInputData.Visible = true;
                 lsvStructureInputData.View = View.Details;
 
+                lsvStructureInputData.Columns.Clear();
+
                 // populate - listview (todo-later make a function!)
                 if (ProjectInfo.structureMainParams.label) lsvStructureInputData.Columns.Add("Label");
                 if (ProjectInfo.structureMainParams.popData) lsvStructureInputData.Columns.Add("Pop");

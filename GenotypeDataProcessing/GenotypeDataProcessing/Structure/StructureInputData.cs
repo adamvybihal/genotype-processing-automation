@@ -5,21 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GenotypeDataProcessing.DUTs;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Class which loads and checks input data for Structure software.
+    /// </summary>
     public class StructureInputData
     {
 
         private string structureDirectoryPath;
         private string[,] structureData;
         private bool dataLoaded = false;
+        private ST_InputDataError inputDataError;
 
+        /// <summary>
+        /// Two value constructor
+        /// </summary>
+        /// <param name="inputPath">Path of input</param>
+        /// <param name="projectPath">Path of project</param>
         public StructureInputData(string inputPath, string projectPath)
         {
             CreateStructureDirectory();
             CopyToProjectDir(inputPath, projectPath);
-            // nacist data do promenne
             LoadInputData();
         }
 
@@ -64,9 +73,21 @@ namespace GenotypeDataProcessing.Structure
                 int numOfRows = CalculateRows();
                 int numOfCols = CalculateCols();
 
-                if (rawData.Length != numOfRows) return;
+                if (rawData.Length != numOfRows)
+                {
+                    inputDataError.rowsError = true;
+                    inputDataError.expectedRows = numOfRows;
+                    inputDataError.actualRows = rawData.Length;
 
-                if (numOfRows == 0 | numOfCols == 0) return;
+                    return;
+                }
+
+                if (numOfRows == 0 | numOfCols == 0)
+                {
+                    inputDataError.zeroExpectedColsOrRows = true;
+
+                    return;
+                }
 
                 structureData = new string[numOfRows, numOfCols];
 
@@ -85,8 +106,16 @@ namespace GenotypeDataProcessing.Structure
                     if (i < extraRows)
                     {
                         string[] cols = row.Trim().Split(delimiterChars);
-                        if (cols.Length != ProjectInfo.structureMainParams.numLoci) return;
+                        if (cols.Length != ProjectInfo.structureMainParams.numLoci)
+                        {
+                            inputDataError.columnsError = true;
+                            inputDataError.errorRow = i;
+                            inputDataError.expectedColumns = numOfCols;
+                            inputDataError.actualColumns = cols.Length;
 
+                            return;
+                        }
+                        
                         string[] completeRow = blank.Concat(cols).ToArray();
 
                         foreach (var col in completeRow)
@@ -100,7 +129,15 @@ namespace GenotypeDataProcessing.Structure
                     else
                     {
                         string[] cols = row.Trim().Split(delimiterChars);
-                        if (cols.Length != numOfCols) return;
+                        if (cols.Length != numOfCols)
+                        {
+                            inputDataError.columnsError = true;
+                            inputDataError.errorRow = i;
+                            inputDataError.expectedColumns = numOfCols;
+                            inputDataError.actualColumns = cols.Length;
+
+                            return;
+                        }
 
                         foreach (var col in cols)
                         {
@@ -170,14 +207,50 @@ namespace GenotypeDataProcessing.Structure
             return blankCols;
         }
 
+        /// <summary>
+        /// Informs whether data have been loaded, or not.
+        /// </summary>
+        /// <returns>Bool value</returns>
         public bool DataLoadedSuccesfully()
         {
             return dataLoaded;
         }
 
+        /// <summary>
+        /// Returns 2D array containig loaded data.
+        /// </summary>
+        /// <returns>2D array of strings</returns>
         public string[,] GetStructureData()
         {
             return structureData;
+        }
+
+        /// <summary>
+        /// Returns string, describing certain error.
+        /// </summary>
+        /// <returns>Error string</returns>
+        public string GetErrorString()
+        {
+            string errorStr;
+
+            if (inputDataError.zeroExpectedColsOrRows)
+            {
+                errorStr = "Wrong user input!\n Expected 0 columns or rows in data file.";
+            }
+            else if (inputDataError.rowsError)
+            {
+                errorStr = "Wrong user input!\n"
+                    + "Expected " + inputDataError.expectedRows + " row(s).\n"
+                    + "Data file has " + inputDataError.actualRows + " row(s).";
+            }
+            else
+            {
+                errorStr = "Wrong user input!\n"
+                    + "Expected " + inputDataError.expectedColumns + " value(s) on row " + (inputDataError.errorRow + 1) + ".\n"
+                    + "Data file has " + inputDataError.actualColumns + " value(s) there.";
+            }
+
+            return errorStr;
         }
     }
 }

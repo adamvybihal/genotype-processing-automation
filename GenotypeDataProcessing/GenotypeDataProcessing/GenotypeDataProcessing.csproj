@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_DataTypeCLUMPP.cs" />
+    <Compile Include="DUTs\ST_InputDataError.cs" />
     <Compile Include="FormLoadStructureData.cs">
       <SubType>Form</SubType>
     </Compile>
