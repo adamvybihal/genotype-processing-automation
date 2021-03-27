@@ -4,22 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenotypeDataProcessing.DUTs
+namespace GenotypeDataProcessing.Structure
 {
     /// <summary>
-    /// Contains all of Structure's main parameters 
+    /// Contains information about Structure's input file 
     /// </summary>
-    public struct ST_StructureMainParams
+    public struct StructureInputInfoStruct
     {
-        /// <summary>
-        /// Burnin period
-        /// </summary>
-        public int burin;
-        /// <summary>
-        /// Number of MCMC repetitions after burnin 
-        /// </summary>
-        public int numReps;
-
         /// <summary>
         /// Number of individuals in input file
         /// </summary>
@@ -79,22 +70,15 @@ namespace GenotypeDataProcessing.DUTs
         public bool mapDistances;
 
         /// <summary>
-        /// For use with linkage model. Indicates that data are in correct phase.
-        /// </summary>
-        public bool phased;
-        /// <summary>
         /// The row(s) of genotype data for each individual are followed by a row of information about haplotype phase
         /// </summary>
         public bool phaseInfo;
-        /// <summary>
-        /// The phase information follows a Markov model.
-        /// </summary>
-        public bool markovPhase;
-        /// <summary>
-        /// For use with polyploids when RECESSIVEALLELES=1
-        /// Defines the code indicating that genotype data at a marker are unambiguous
-        /// Must not match MISSING or any allele value in the data
-        /// </summary>
-        public int notAmbiguous;
+
+        ///// <summary>
+        ///// For use with polyploids when RECESSIVEALLELES=1
+        ///// Defines the code indicating that genotype data at a marker are unambiguous
+        ///// Must not match MISSING or any allele value in the data
+        ///// </summary>
+        //public int notAmbiguous;
     }
 }

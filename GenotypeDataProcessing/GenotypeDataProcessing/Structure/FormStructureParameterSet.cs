@@ -12,16 +12,92 @@ namespace GenotypeDataProcessing.Structure
 {
     public partial class FormStructureParameterSet : Form
     {
-        public FormStructureParameterSet()
+        StructureParamSetStruct structureParamSetStruct;
+        ProjectScreen callerProjectScreen;
+
+        public FormStructureParameterSet(ProjectScreen projectScreen)
         {
             InitializeComponent();
+
+            callerProjectScreen = projectScreen;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            // todo - save parameters
-            // todo - generate files
-            // todo - refresh treeview in project screen
+            string paramSetName = txtSetName.Text;
+
+            if (paramSetName != "")
+            {
+                SetStrucutreParamSet();
+
+                StructureParamSet structureParamSet = new StructureParamSet(paramSetName, structureParamSetStruct, ProjectInfo.structureInputInfo);
+                if (structureParamSet.IsParamSetNameValid())
+                {
+                    structureParamSet.CreateMainparamsFile();
+                    structureParamSet.CreateExtraparamsFile();
+
+                    callerProjectScreen.UpdateTreeView();
+                    
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Parameter set with this name already exists!", "Invalid name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a name of parameter set!", "Invalid name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }  
+        }
+
+        private void SetStrucutreParamSet()
+        {
+            structureParamSetStruct.burnin = (int)numBurninPeriod.Value;
+            structureParamSetStruct.numReps = (int)numRepsAfterBurnin.Value;
+            structureParamSetStruct.phased = cbxPhased.Checked;
+            structureParamSetStruct.markovPhase = cbxMarkovPhase.Checked;
+
+            structureParamSetStruct.noAdmix = cbxNoAdmix.Checked;
+            structureParamSetStruct.locPrior = cbxLocPrior.Checked;
+
+            structureParamSetStruct.linkage = cbxLinkage.Checked;
+            structureParamSetStruct.logRMax = (double)numLogRMax.Value;
+            structureParamSetStruct.logRMin = (double)numLogRMin.Value;
+            structureParamSetStruct.logRPropSD = (double)numLogRProPSD.Value;
+            structureParamSetStruct.logRStart = (double)numLogRStart.Value;
+
+            structureParamSetStruct.usePopInfo = cbxUsePopInfo.Checked;
+            structureParamSetStruct.gensBack = (int)numGensback.Value;
+            structureParamSetStruct.migPrior = (double)numMigprior.Value;
+
+            if (rdbInferAlpha.Checked) structureParamSetStruct.alpha = (double)numInitAlpha.Value;
+            else structureParamSetStruct.alpha = (double)numSetAlpha.Value;
+            structureParamSetStruct.inferAlpha = rdbInferAlpha.Checked;
+            structureParamSetStruct.popAlphas = cbxPopAlphas.Checked;
+            structureParamSetStruct.unifPriorAlphas = cbxUnifPriorAlpha.Checked;
+            structureParamSetStruct.alphaMax = (double)numAlphaMax.Value;
+            structureParamSetStruct.alphaPropSD = (double)numAlphaProPsd.Value;
+            structureParamSetStruct.alphaPriorA = (double)numAlphaPriorA.Value;
+            structureParamSetStruct.alphaPriorB = (double)numAlphaPriorB.Value;
+
+            structureParamSetStruct.freqsCorr = cbxFreqsCorr.Checked;
+            structureParamSetStruct.oneFst = cbxOneFst.Checked;
+            structureParamSetStruct.priorMean = (double)numPriorMean.Value;
+            structureParamSetStruct.priorSD = (double)numPriorSD.Value;
+
+            if (rdbInferLambda.Checked) structureParamSetStruct.lambda = (double)numInitLambda.Value;
+            else structureParamSetStruct.lambda = (double)numSetLambda.Value;
+            structureParamSetStruct.inferLambda = rdbInferLambda.Checked;
+            structureParamSetStruct.popSpecifiLambda = cbxPopAlphas.Checked;
+
+            structureParamSetStruct.computePorb = cbxComputeProb.Checked;
+            structureParamSetStruct.ancestDist = cbxAncestdist.Checked;
+            structureParamSetStruct.numboxes = (int)numNumboxes.Value;
+            structureParamSetStruct.ancestPint = (double)numAncestpint.Value;
+            structureParamSetStruct.startPopInfo = cbxStartPopInfo.Checked;
+            structureParamSetStruct.metroFreq = (int)numMetroFreq.Value;
+            structureParamSetStruct.printQHat = cbxPrintQHat.Checked;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -14,12 +14,15 @@ namespace GenotypeDataProcessing
     public static class ProjectInfo
     {
         public const string projectName = "testProject";
+
         public const string structureFolder = "structure";
+        public const string structureDataCopyName = "structureData.";
+
         public const string structureHarvesterFolder = "structureHarvester";
         public const string clumppFolder = "clumpp";
         public const string distructFolder = "distruct";
 
         public static StructureInputData structureInputData;
-        public static ST_StructureMainParams structureMainParams;
+        public static StructureInputInfoStruct structureInputInfo;
     }
 }

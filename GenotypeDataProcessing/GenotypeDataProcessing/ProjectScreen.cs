@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GenotypeDataProcessing.Programs;
 using GenotypeDataProcessing.Structure;
+using GenotypeDataProcessing.StructureHarvester;
 
 namespace GenotypeDataProcessing
 {
@@ -21,13 +22,7 @@ namespace GenotypeDataProcessing
         /// <summary>
         /// Indicates whether Structure input data were loaded succesfully
         /// </summary>
-        public static bool canShowStructureData = false;
-
-        private const bool lbl = true;
-        private const bool location = true;
-        private const int individuals = 200;
-        private const int ploidy = 2;
-        private const int loci = 6;
+        public static bool structureDataLoaded = false;
 
         /// <summary>
         /// Default constructor of ProjectScreen
@@ -39,84 +34,44 @@ namespace GenotypeDataProcessing
             this.WindowState = FormWindowState.Maximized;
 
             lsvStructureInputData.Width = tabControl1.Width;
-            lsvStructureInputData.Visible = false;
+            rtxStructureText.Width = tabControl1.Width / 2;
+            //lsvStructureInputData.Visible = false;
 
             CreateProjectDirectory();
+
+            UpdateTreeView();
         }
 
-        private void CreateProjectDirectory()
+        /// <summary>
+        /// Loads data, enables buttons, when data are loaded
+        /// </summary>
+        public void ExecuteWhenStructureDataLoaded()
         {
-            try
-            {
-                string structureDirectoryPath = ProjectInfo.projectName;
-
-                if (Directory.Exists(structureDirectoryPath))
-                {
-                    return;
-                }
-
-                Directory.CreateDirectory(structureDirectoryPath);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            createToolStripMenuItem1.Enabled = true;
+            PopulateStructureListView();
         }
 
-        // ******* main menu ******* //
-
-        private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PopulateStructureListView()
         {
-            // todo
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        // ******* Structure TAB ******* //
-
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormLoadStructureData formLoadStructureData = new FormLoadStructureData();
-            formLoadStructureData.ShowDialog();
-        }
-
-        private void cbxPerformStructureHarvesterStr_CheckedChanged(object sender, EventArgs e)
-        {
-            cbxPerformCLUMPPStr.Enabled = cbxPerformStructureHarvesterStr.Checked;
-            if (!cbxPerformStructureHarvesterStr.Checked) cbxPerformCLUMPPStr.Checked = false;
-        }
-
-        private void cbxPerformCLUMPPStr_CheckedChanged(object sender, EventArgs e)
-        {
-            cbxPerformDistructStr.Enabled = cbxPerformCLUMPPStr.Checked;
-            if (!cbxPerformCLUMPPStr.Checked) cbxPerformDistructStr.Checked = false;
-        }
-
-        private void btnReload_Click(object sender, EventArgs e)
-        {
-            if (canShowStructureData)
+            if (structureDataLoaded)
             {
                 lsvStructureInputData.Visible = true;
                 lsvStructureInputData.View = View.Details;
 
                 lsvStructureInputData.Columns.Clear();
 
-                // populate - listview (todo-later make a function!)
-                if (ProjectInfo.structureMainParams.label) lsvStructureInputData.Columns.Add("Label");
-                if (ProjectInfo.structureMainParams.popData) lsvStructureInputData.Columns.Add("Pop");
-                if (ProjectInfo.structureMainParams.popFlag) lsvStructureInputData.Columns.Add("Flag");
-                if (ProjectInfo.structureMainParams.locData) lsvStructureInputData.Columns.Add("Sample Location");
-                if (ProjectInfo.structureMainParams.phenotype) lsvStructureInputData.Columns.Add("Phenotype");
+                if (ProjectInfo.structureInputInfo.label) lsvStructureInputData.Columns.Add("Label");
+                if (ProjectInfo.structureInputInfo.popData) lsvStructureInputData.Columns.Add("Pop");
+                if (ProjectInfo.structureInputInfo.popFlag) lsvStructureInputData.Columns.Add("Flag");
+                if (ProjectInfo.structureInputInfo.locData) lsvStructureInputData.Columns.Add("Sample Location");
+                if (ProjectInfo.structureInputInfo.phenotype) lsvStructureInputData.Columns.Add("Phenotype");
 
-                for (int i = 1; i <= ProjectInfo.structureMainParams.extraCols; i++)
+                for (int i = 1; i <= ProjectInfo.structureInputInfo.extraCols; i++)
                 {
                     lsvStructureInputData.Columns.Add("Extra " + i);
                 }
 
-                for (int i = 1; i <= ProjectInfo.structureMainParams.numLoci; i++)
+                for (int i = 1; i <= ProjectInfo.structureInputInfo.numLoci; i++)
                 {
                     lsvStructureInputData.Columns.Add("Locus " + i);
                 }
@@ -140,6 +95,101 @@ namespace GenotypeDataProcessing
             }
         }
 
+        private void CreateProjectDirectory()
+        {
+            try
+            {
+                string structureDirectoryPath = ProjectInfo.projectName;
+
+                if (Directory.Exists(structureDirectoryPath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(structureDirectoryPath);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Updates TreeView of Structure folder
+        /// </summary>
+        public void UpdateTreeView()
+        {
+            string structureFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+
+            treeStructureFolder.Nodes.Clear();
+
+            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureFolder);
+            treeStructureFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+        }
+        
+        private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
+        {
+            var directoryNode = new TreeNode(directoryInfo.Name);
+            foreach (var directory in directoryInfo.GetDirectories())
+                directoryNode.Nodes.Add(CreateDirectoryNode(directory));
+            foreach (var file in directoryInfo.GetFiles())
+                directoryNode.Nodes.Add(new TreeNode(file.Name));
+            return directoryNode;
+        }
+
+        // ******* main menu ******* //
+
+        private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // todo
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // ******* Structure TAB ******* //
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLoadStructureData formLoadStructureData = new FormLoadStructureData(this);
+            formLoadStructureData.ShowDialog();
+        }
+
+        private void createToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(this);
+            formStructureParameterSet.ShowDialog();
+        }
+
+        private void treeStructureFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+
+            try
+            {   
+                if (e.Node.Nodes.Count == 0)
+                    rtxStructureText.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbxPerformStructureHarvesterStr_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxPerformCLUMPPStr.Enabled = cbxPerformStructureHarvesterStr.Checked;
+            if (!cbxPerformStructureHarvesterStr.Checked) cbxPerformCLUMPPStr.Checked = false;
+        }
+
+        private void cbxPerformCLUMPPStr_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxPerformDistructStr.Enabled = cbxPerformCLUMPPStr.Checked;
+            if (!cbxPerformCLUMPPStr.Checked) cbxPerformDistructStr.Checked = false;
+        }
+
         private void btnStartAnalysisStr_Click(object sender, EventArgs e)
         {
             // todo - ask user for K range + iterations over one K
@@ -158,6 +208,35 @@ namespace GenotypeDataProcessing
             cbxDistructStrHv.Enabled = cbxCLUMPPStrHv.Checked;
             if (!cbxCLUMPPStrHv.Checked) cbxDistructStrHv.Checked = false;
         }
+
+        private void btnChooseArchive_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.ShowDialog();
+
+            if (fbd.SelectedPath != "")
+            {
+                txtStructureHarvesterArchive.Text = fbd.SelectedPath;
+
+                btnStartAnalysisStrHv.Enabled = true;
+            }
+        }
+
+        private void btnStartAnalysisStrHv_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureHarvesterFolder);
+
+            StructureHarvesterDataHandle structureHarvesterDataHandle = new StructureHarvesterDataHandle(txtStructureHarvesterArchive.Text, path);
+
+            structureHarvesterDataHandle.StartJob();
+
+            if (structureHarvesterDataHandle.IsStructureHarvesterJobDone())
+            {
+
+            }
+        }
+
+
 
         // ******* CLUMPP TAB ******* //
 

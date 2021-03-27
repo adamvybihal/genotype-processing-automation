@@ -17,16 +17,16 @@ namespace GenotypeDataProcessing
     /// </summary>
     public partial class FormLoadStructureData : Form
     {
-        // calculated from actual input file
-        private int colsInFile = 0;
-        private int rowsInFile = 0;
+        private ProjectScreen callerProjectScreen;
 
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public FormLoadStructureData()
+        public FormLoadStructureData(ProjectScreen projectScreen)
         {
             InitializeComponent();
+
+            callerProjectScreen = projectScreen;
 
             gbxStep2.Visible = false;
             gbxStep3.Visible = false;
@@ -91,16 +91,20 @@ namespace GenotypeDataProcessing
         // STEP 4
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            ProjectScreen.canShowStructureData = false;
+            ProjectScreen.structureDataLoaded = false;
             SetProjectInputInfo();
 
-            string projectPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, "structureData.");
+            string projectPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
             ProjectInfo.structureInputData = new StructureInputData(txtStructureDataFile.Text, projectPath);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
-                ProjectScreen.canShowStructureData = true;
+                ProjectScreen.structureDataLoaded = true;
                 MessageBox.Show("Data set loaded succesfully.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                callerProjectScreen.ExecuteWhenStructureDataLoaded();
+                callerProjectScreen.UpdateTreeView();
+
                 this.Close();
             }
             else
@@ -111,25 +115,25 @@ namespace GenotypeDataProcessing
 
         private void SetProjectInputInfo()
         {
-            ProjectInfo.structureMainParams.numInds = (int)numIndividuals.Value;
-            ProjectInfo.structureMainParams.numLoci = (int)numLoci.Value;
-            ProjectInfo.structureMainParams.ploidy = (int)numPloidy.Value;
-            ProjectInfo.structureMainParams.missingDataValue = (int)numMissingDataValue.Value;
+            ProjectInfo.structureInputInfo.numInds = (int)numIndividuals.Value;
+            ProjectInfo.structureInputInfo.numLoci = (int)numLoci.Value;
+            ProjectInfo.structureInputInfo.ploidy = (int)numPloidy.Value;
+            ProjectInfo.structureInputInfo.missingDataValue = (int)numMissingDataValue.Value;
 
-            ProjectInfo.structureMainParams.oneRowPerInd = cbxSingleLine.Checked;
-            ProjectInfo.structureMainParams.label = cbxIdCol.Checked;
-            ProjectInfo.structureMainParams.popData = cbxPopOriginCol.Checked;
-            ProjectInfo.structureMainParams.popFlag = cbxPopInfoFlagCol.Checked;
-            ProjectInfo.structureMainParams.locData = cbxSampleInfoCol.Checked;
-            ProjectInfo.structureMainParams.phenotype = cbxPhenotypeCol.Checked;
+            ProjectInfo.structureInputInfo.oneRowPerInd = cbxSingleLine.Checked;
+            ProjectInfo.structureInputInfo.label = cbxIdCol.Checked;
+            ProjectInfo.structureInputInfo.popData = cbxPopOriginCol.Checked;
+            ProjectInfo.structureInputInfo.popFlag = cbxPopInfoFlagCol.Checked;
+            ProjectInfo.structureInputInfo.locData = cbxSampleInfoCol.Checked;
+            ProjectInfo.structureInputInfo.phenotype = cbxPhenotypeCol.Checked;
 
-            if (cbxExtraCols.Checked) ProjectInfo.structureMainParams.extraCols = (int)numExtraCols.Value;
-            else ProjectInfo.structureMainParams.extraCols = 0;
+            if (cbxExtraCols.Checked) ProjectInfo.structureInputInfo.extraCols = (int)numExtraCols.Value;
+            else ProjectInfo.structureInputInfo.extraCols = 0;
 
-            ProjectInfo.structureMainParams.markerNames = cbxMarkerRow.Checked;
-            ProjectInfo.structureMainParams.recessiveAlleles = cbxAlelesRow.Checked;
-            ProjectInfo.structureMainParams.mapDistances = cbxLociDistancesRow.Checked;
-            ProjectInfo.structureMainParams.phaseInfo = cbxPhase.Checked;
+            ProjectInfo.structureInputInfo.markerNames = cbxMarkerRow.Checked;
+            ProjectInfo.structureInputInfo.recessiveAlleles = cbxAlelesRow.Checked;
+            ProjectInfo.structureInputInfo.mapDistances = cbxLociDistancesRow.Checked;
+            ProjectInfo.structureInputInfo.phaseInfo = cbxPhase.Checked;
         }
 
         private void btnBack4to3_Click(object sender, EventArgs e)

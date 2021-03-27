@@ -106,7 +106,7 @@ namespace GenotypeDataProcessing.Structure
                     if (i < extraRows)
                     {
                         string[] cols = row.Trim().Split(delimiterChars);
-                        if (cols.Length != ProjectInfo.structureMainParams.numLoci)
+                        if (cols.Length != ProjectInfo.structureInputInfo.numLoci)
                         {
                             inputDataError.columnsError = true;
                             inputDataError.errorRow = i;
@@ -160,13 +160,13 @@ namespace GenotypeDataProcessing.Structure
         {
             int rows = 0;
 
-            if (ProjectInfo.structureMainParams.oneRowPerInd) rows += ProjectInfo.structureMainParams.numInds;
-            else rows += (ProjectInfo.structureMainParams.numInds * ProjectInfo.structureMainParams.ploidy);
+            if (ProjectInfo.structureInputInfo.oneRowPerInd) rows += ProjectInfo.structureInputInfo.numInds;
+            else rows += (ProjectInfo.structureInputInfo.numInds * ProjectInfo.structureInputInfo.ploidy);
 
-            if (ProjectInfo.structureMainParams.markerNames) rows++;
-            if (ProjectInfo.structureMainParams.recessiveAlleles) rows++;
-            if (ProjectInfo.structureMainParams.mapDistances) rows++;
-            if (ProjectInfo.structureMainParams.phaseInfo) rows += ProjectInfo.structureMainParams.numInds;
+            if (ProjectInfo.structureInputInfo.markerNames) rows++;
+            if (ProjectInfo.structureInputInfo.recessiveAlleles) rows++;
+            if (ProjectInfo.structureInputInfo.mapDistances) rows++;
+            if (ProjectInfo.structureInputInfo.phaseInfo) rows += ProjectInfo.structureInputInfo.numInds;
 
             return rows;
         }
@@ -175,9 +175,9 @@ namespace GenotypeDataProcessing.Structure
         {
             int extraRows = 0;
 
-            if (ProjectInfo.structureMainParams.markerNames) extraRows++;
-            if (ProjectInfo.structureMainParams.recessiveAlleles) extraRows++;
-            if (ProjectInfo.structureMainParams.mapDistances) extraRows++;
+            if (ProjectInfo.structureInputInfo.markerNames) extraRows++;
+            if (ProjectInfo.structureInputInfo.recessiveAlleles) extraRows++;
+            if (ProjectInfo.structureInputInfo.mapDistances) extraRows++;
 
             return extraRows;
         }
@@ -186,14 +186,14 @@ namespace GenotypeDataProcessing.Structure
         {
             int cols = 0;
 
-            cols += ProjectInfo.structureMainParams.numLoci;
+            cols += ProjectInfo.structureInputInfo.numLoci;
 
-            if (ProjectInfo.structureMainParams.label) cols++;
-            if (ProjectInfo.structureMainParams.popData) cols++;
-            if (ProjectInfo.structureMainParams.popFlag) cols++;
-            if (ProjectInfo.structureMainParams.locData) cols++;
-            if (ProjectInfo.structureMainParams.phenotype) cols++;
-            cols += ProjectInfo.structureMainParams.extraCols;
+            if (ProjectInfo.structureInputInfo.label) cols++;
+            if (ProjectInfo.structureInputInfo.popData) cols++;
+            if (ProjectInfo.structureInputInfo.popFlag) cols++;
+            if (ProjectInfo.structureInputInfo.locData) cols++;
+            if (ProjectInfo.structureInputInfo.phenotype) cols++;
+            cols += ProjectInfo.structureInputInfo.extraCols;
 
             //todo - single line format
 
@@ -202,7 +202,7 @@ namespace GenotypeDataProcessing.Structure
 
         private int CalculateBlankCols()
         {
-            int blankCols = CalculateCols() - ProjectInfo.structureMainParams.numLoci;
+            int blankCols = CalculateCols() - ProjectInfo.structureInputInfo.numLoci;
 
             return blankCols;
         }
