@@ -161,6 +161,22 @@ namespace GenotypeDataProcessing
         {
             FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(this);
             formStructureParameterSet.ShowDialog();
+
+            if (ProjectInfo.structureParameterSets.Count > 0)
+            {
+                deleteToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormDeleteParamSet formDeleteParamSet = new FormDeleteParamSet(this);
+            formDeleteParamSet.ShowDialog();
+
+            if (ProjectInfo.structureParameterSets.Count == 0)
+            {
+                deleteToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void treeStructureFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -235,6 +251,8 @@ namespace GenotypeDataProcessing
 
             }
         }
+
+        
 
 
 

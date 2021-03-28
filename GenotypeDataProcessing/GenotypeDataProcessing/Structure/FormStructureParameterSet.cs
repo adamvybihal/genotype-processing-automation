@@ -37,6 +37,8 @@ namespace GenotypeDataProcessing.Structure
                     structureParamSet.CreateExtraparamsFile();
 
                     callerProjectScreen.UpdateTreeView();
+
+                    ProjectInfo.structureParameterSets.Add(paramSetName);
                     
                     this.Close();
                 }

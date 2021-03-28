@@ -133,6 +133,12 @@
     <Compile Include="DUTs\E_DataTypeCLUMPP.cs" />
     <Compile Include="DUTs\ST_InputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
+    <Compile Include="Structure\FormDeleteParamSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Structure\FormDeleteParamSet.Designer.cs">
+      <DependentUpon>FormDeleteParamSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Structure\FormLoadStructureData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     <Compile Include="Structure\StructureInputData.cs" />
     <Compile Include="Structure\StructureParamSet.cs" />
     <Compile Include="Structure\StructureParamSetStruct.cs" />
+    <EmbeddedResource Include="Structure\FormDeleteParamSet.resx">
+      <DependentUpon>FormDeleteParamSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Structure\FormLoadStructureData.resx">
       <DependentUpon>FormLoadStructureData.cs</DependentUpon>
     </EmbeddedResource>

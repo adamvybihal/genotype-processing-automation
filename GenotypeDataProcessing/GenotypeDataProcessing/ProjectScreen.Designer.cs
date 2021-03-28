@@ -282,7 +282,7 @@ namespace GenotypeDataProcessing
             // 
             this.createToolStripMenuItem1.Enabled = false;
             this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(149, 26);
+            this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.createToolStripMenuItem1.Text = "Create ...";
             this.createToolStripMenuItem1.Click += new System.EventHandler(this.createToolStripMenuItem1_Click);
             // 
@@ -290,8 +290,9 @@ namespace GenotypeDataProcessing
             // 
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.deleteToolStripMenuItem.Text = "Delete ...";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // tabStructureHarvester
             // 
