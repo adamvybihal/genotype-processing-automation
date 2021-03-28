@@ -80,6 +80,10 @@ namespace GenotypeDataProcessing
             this.label8 = new System.Windows.Forms.Label();
             this.btnChoosePopFile = new System.Windows.Forms.Button();
             this.txtPopFile = new System.Windows.Forms.TextBox();
+            this.mnsClumpp = new System.Windows.Forms.MenuStrip();
+            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -90,6 +94,7 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabDistruct.SuspendLayout();
+            this.mnsClumpp.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartAnalysisStr
@@ -282,7 +287,7 @@ namespace GenotypeDataProcessing
             // 
             this.createToolStripMenuItem1.Enabled = false;
             this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.createToolStripMenuItem1.Size = new System.Drawing.Size(149, 26);
             this.createToolStripMenuItem1.Text = "Create ...";
             this.createToolStripMenuItem1.Click += new System.EventHandler(this.createToolStripMenuItem1_Click);
             // 
@@ -290,7 +295,7 @@ namespace GenotypeDataProcessing
             // 
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.deleteToolStripMenuItem.Text = "Delete ...";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -426,6 +431,7 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Controls.Add(this.btnChooseIndividualsFile);
             this.tabCLUMPP.Controls.Add(this.txtIndividualsFile);
             this.tabCLUMPP.Controls.Add(this.groupBox3);
+            this.tabCLUMPP.Controls.Add(this.mnsClumpp);
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
             this.tabCLUMPP.Name = "tabCLUMPP";
             this.tabCLUMPP.Padding = new System.Windows.Forms.Padding(3);
@@ -620,6 +626,39 @@ namespace GenotypeDataProcessing
             this.txtPopFile.TabIndex = 18;
             this.txtPopFile.Text = "choose file ...";
             // 
+            // mnsClumpp
+            // 
+            this.mnsClumpp.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnsClumpp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem1,
+            this.createToolStripMenuItem});
+            this.mnsClumpp.Location = new System.Drawing.Point(3, 3);
+            this.mnsClumpp.Name = "mnsClumpp";
+            this.mnsClumpp.Size = new System.Drawing.Size(1023, 28);
+            this.mnsClumpp.TabIndex = 21;
+            this.mnsClumpp.Text = "menuStrip1";
+            // 
+            // loadToolStripMenuItem1
+            // 
+            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
+            this.loadToolStripMenuItem1.Text = "Load";
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.paramfilesToolStripMenuItem});
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.createToolStripMenuItem.Text = "Create";
+            // 
+            // paramfilesToolStripMenuItem
+            // 
+            this.paramfilesToolStripMenuItem.Name = "paramfilesToolStripMenuItem";
+            this.paramfilesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.paramfilesToolStripMenuItem.Text = "paramfiles ...";
+            this.paramfilesToolStripMenuItem.Click += new System.EventHandler(this.paramfilesToolStripMenuItem_Click);
+            // 
             // ProjectScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -650,6 +689,8 @@ namespace GenotypeDataProcessing
             this.groupBox3.PerformLayout();
             this.tabDistruct.ResumeLayout(false);
             this.tabDistruct.PerformLayout();
+            this.mnsClumpp.ResumeLayout(false);
+            this.mnsClumpp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -707,6 +748,10 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.TreeView treeStructureFolder;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.RichTextBox rtxStructureText;
+        private System.Windows.Forms.MenuStrip mnsClumpp;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paramfilesToolStripMenuItem;
     }
 }
 

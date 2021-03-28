@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GenotypeDataProcessing.DUTs;
+using GenotypeDataProcessing.CLUMPP;
 
 namespace GenotypeDataProcessing.Programs
 {
@@ -18,7 +18,7 @@ namespace GenotypeDataProcessing.Programs
     {
         private string paramFilePath;
         private string outuputFileName;
-        private E_DataTypeCLUMPP inputDataType;
+        private DataTypeClumppEn inputDataType;
         private string outputFileType;
         private string outputDataPath;
 
@@ -29,7 +29,7 @@ namespace GenotypeDataProcessing.Programs
         /// <param name="outputName">A name of CLUMPP's output file</param>
         /// <param name="dataType">dataType defines the type of data to be read in to CLUMPP</param>
         /// <param name="outputPath">A path to a folder where output will be generated</param>
-        public CLUMPP(string paramfilePath, E_DataTypeCLUMPP dataType, string outputName, string outputPath)
+        public CLUMPP(string paramfilePath, DataTypeClumppEn dataType, string outputName, string outputPath)
         {
             paramFilePath = paramfilePath;
             outuputFileName = outputName;
@@ -43,7 +43,7 @@ namespace GenotypeDataProcessing.Programs
         /// </summary>
         private void SetOutputType()
         {
-            if (inputDataType == E_DataTypeCLUMPP.ONE) outputFileType = ".popq";
+            if (inputDataType == DataTypeClumppEn.ONE) outputFileType = ".popq";
             else outputFileType = ".indivq";
         }
 

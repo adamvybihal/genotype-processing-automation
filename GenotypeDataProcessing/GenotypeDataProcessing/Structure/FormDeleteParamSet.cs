@@ -64,7 +64,7 @@ namespace GenotypeDataProcessing.Structure
                         DeleteFromList(ProjectInfo.structureParameterSets, itm.Text);
                     }
 
-                    callerProjectScreen.UpdateTreeView();
+                    callerProjectScreen.UpdateStructureTreeView();
                 }
             }
             else

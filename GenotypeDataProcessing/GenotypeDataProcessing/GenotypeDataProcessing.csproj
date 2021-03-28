@@ -130,7 +130,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DUTs\E_DataTypeCLUMPP.cs" />
+    <Compile Include="CLUMPP\ClumppParameterSet.cs" />
+    <Compile Include="CLUMPP\ClumppParamStruct.cs" />
+    <Compile Include="CLUMPP\DataTypeClumppEn.cs" />
     <Compile Include="DUTs\ST_InputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
     <Compile Include="Structure\FormDeleteParamSet.cs">
@@ -152,16 +154,16 @@
     <Compile Include="ProjectScreen.Designer.cs">
       <DependentUpon>ProjectScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClumppParams.cs">
+    <Compile Include="CLUMPP\FormClumppParams.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClumppParams.Designer.cs">
+    <Compile Include="CLUMPP\FormClumppParams.Designer.cs">
       <DependentUpon>FormClumppParams.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDistructParams.cs">
+    <Compile Include="distruct\FormDistructParams.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDistructParams.Designer.cs">
+    <Compile Include="distruct\FormDistructParams.Designer.cs">
       <DependentUpon>FormDistructParams.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -187,10 +189,10 @@
     <EmbeddedResource Include="ProjectScreen.resx">
       <DependentUpon>ProjectScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClumppParams.resx">
+    <EmbeddedResource Include="CLUMPP\FormClumppParams.resx">
       <DependentUpon>FormClumppParams.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDistructParams.resx">
+    <EmbeddedResource Include="distruct\FormDistructParams.resx">
       <DependentUpon>FormDistructParams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

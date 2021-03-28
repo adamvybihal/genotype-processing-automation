@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GenotypeDataProcessing.Structure;
 
+
 namespace GenotypeDataProcessing
 {
     static class Program
@@ -18,7 +19,7 @@ namespace GenotypeDataProcessing
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ProjectScreen());
-            //Application.Run(new FormStructureParameterSet());
+            //Application.Run(new FormClumppParams());
         }
     }
 }

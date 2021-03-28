@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using GenotypeDataProcessing.Programs;
 using GenotypeDataProcessing.Structure;
 using GenotypeDataProcessing.StructureHarvester;
+using GenotypeDataProcessing.CLUMPP;
 
 namespace GenotypeDataProcessing
 {
@@ -39,7 +40,7 @@ namespace GenotypeDataProcessing
 
             CreateProjectDirectory();
 
-            UpdateTreeView();
+            UpdateStructureTreeView();
         }
 
         /// <summary>
@@ -117,21 +118,21 @@ namespace GenotypeDataProcessing
         /// <summary>
         /// Updates TreeView of Structure folder
         /// </summary>
-        public void UpdateTreeView()
+        public void UpdateStructureTreeView()
         {
             string structureFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
 
             treeStructureFolder.Nodes.Clear();
 
             DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureFolder);
-            treeStructureFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+            treeStructureFolder.Nodes.Add(CreateStructureDirectoryNode(rootDirectoryInfo));
         }
         
-        private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
+        private static TreeNode CreateStructureDirectoryNode(DirectoryInfo directoryInfo)
         {
             var directoryNode = new TreeNode(directoryInfo.Name);
             foreach (var directory in directoryInfo.GetDirectories())
-                directoryNode.Nodes.Add(CreateDirectoryNode(directory));
+                directoryNode.Nodes.Add(CreateStructureDirectoryNode(directory));
             foreach (var file in directoryInfo.GetFiles())
                 directoryNode.Nodes.Add(new TreeNode(file.Name));
             return directoryNode;
@@ -252,11 +253,14 @@ namespace GenotypeDataProcessing
             }
         }
 
-        
-
-
-
         // ******* CLUMPP TAB ******* //
+
+        private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormClumppParams formClumppParams = new FormClumppParams();
+            formClumppParams.ShowDialog();
+
+        }
 
         // ******* distruct ******* //
     }

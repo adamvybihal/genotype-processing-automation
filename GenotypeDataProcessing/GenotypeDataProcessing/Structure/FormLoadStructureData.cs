@@ -103,7 +103,7 @@ namespace GenotypeDataProcessing
                 MessageBox.Show("Data set loaded succesfully.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 callerProjectScreen.ExecuteWhenStructureDataLoaded();
-                callerProjectScreen.UpdateTreeView();
+                callerProjectScreen.UpdateStructureTreeView();
 
                 this.Close();
             }
