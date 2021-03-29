@@ -75,5 +75,38 @@ namespace GenotypeDataProcessing
             distructParamStruct.boxHeight = (double)numFigureHeight.Value;
             distructParamStruct.indivWidth = (double)numIndividualWidth.Value;
         }
+
+        private void btnChooseLblsBelowFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                txtLblBelowFile.Text = fileDialog.FileName;
+            }
+        }
+
+        private void btnChooseLblsAtopFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                txtLblAtopFile.Text = fileDialog.FileName;
+            }
+        }
+
+        private void btnChoosePermutationFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                txtPermutationFile.Text = fileDialog.FileName;
+            }
+        }
     }
 }

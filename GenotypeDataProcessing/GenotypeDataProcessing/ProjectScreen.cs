@@ -105,12 +105,10 @@ namespace GenotypeDataProcessing
             {
                 string projectDirectoryPath = ProjectInfo.projectName;
 
-                if (Directory.Exists(projectDirectoryPath))
+                if (!Directory.Exists(projectDirectoryPath))
                 {
-                    return;
-                }
-
-                Directory.CreateDirectory(projectDirectoryPath);
+                    Directory.CreateDirectory(projectDirectoryPath);
+                }                
             }
             catch (Exception e)
             {
@@ -122,12 +120,10 @@ namespace GenotypeDataProcessing
             {
                 string structureDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
 
-                if (Directory.Exists(structureDirectoryPath))
+                if (!Directory.Exists(structureDirectoryPath))
                 {
-                    return;
+                    Directory.CreateDirectory(structureDirectoryPath);
                 }
-
-                Directory.CreateDirectory(structureDirectoryPath);
             }
             catch (Exception e)
             {
@@ -139,12 +135,10 @@ namespace GenotypeDataProcessing
             {
                 string strucHarvesterDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureHarvesterFolder);
 
-                if (Directory.Exists(strucHarvesterDirectoryPath))
+                if (!Directory.Exists(strucHarvesterDirectoryPath))
                 {
-                    return;
-                }
-
-                Directory.CreateDirectory(strucHarvesterDirectoryPath);
+                    Directory.CreateDirectory(strucHarvesterDirectoryPath);
+                }     
             }
             catch (Exception e)
             {
@@ -157,12 +151,10 @@ namespace GenotypeDataProcessing
                 string clumppDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
 
 
-                if (Directory.Exists(clumppDirectoryPath))
+                if (!Directory.Exists(clumppDirectoryPath))
                 {
-                    return;
+                    Directory.CreateDirectory(clumppDirectoryPath);
                 }
-
-                Directory.CreateDirectory(clumppDirectoryPath);
             }
             catch (Exception e)
             {
@@ -174,12 +166,10 @@ namespace GenotypeDataProcessing
             {
                 string distructDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
 
-                if (Directory.Exists(distructDirectoryPath))
+                if (!Directory.Exists(distructDirectoryPath))
                 {
-                    return;
-                }
-
-                Directory.CreateDirectory(distructDirectoryPath);
+                    Directory.CreateDirectory(distructDirectoryPath);
+                }          
             }
             catch (Exception e)
             {
@@ -284,7 +274,7 @@ namespace GenotypeDataProcessing
 
             try
             {   
-                if (e.Node.Nodes.Count == 0)
+                if ((e.Node.Nodes.Count == 0) && (e.Node.Text != ProjectInfo.structureDataCopyName))
                     rtxStructureText.Text = File.ReadAllText(path);
             }
             catch (Exception ex)

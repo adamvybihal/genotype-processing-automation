@@ -54,17 +54,17 @@ namespace GenotypeDataProcessing
         {
             switch (cmbGreedyOption.Text)
             {
-                case "1":
+                case "all possible input orders":
                     numRepeats.Enabled = false;
                     btnChoosePermutationFile.Enabled = false;
                     cbxPrintRandomInputOrder.Enabled = false;
                     break;
-                case "2":
+                case "random input orders":
                     numRepeats.Enabled = true;
                     btnChoosePermutationFile.Enabled = false;
                     cbxPrintRandomInputOrder.Enabled = true;
                     break;
-                case "3":
+                case "pre-specified input orders":
                     numRepeats.Enabled = true;
                     btnChoosePermutationFile.Enabled = true;
                     cbxPrintRandomInputOrder.Enabled = false;
@@ -117,10 +117,34 @@ namespace GenotypeDataProcessing
                     break;
             }
 
-            clumppParamStruct.greedyOption = Convert.ToInt32(cmbGreedyOption.Text);
+            switch (cmbGreedyOption.Text)
+            {
+                case "all possible input orders":
+                    clumppParamStruct.greedyOption = 1;
+                    break;
+                case "random input orders":
+                    clumppParamStruct.greedyOption = 2;
+                    break;
+                case "pre-specified input orders":
+                    clumppParamStruct.greedyOption = 3;
+                    break;
+            }
+
             clumppParamStruct.repeats = (int)numRepeats.Value;
 
-            clumppParamStruct.printPermutedData = Convert.ToInt32(cmbPrintPermutedData.Text);
+            switch (cmbPrintPermutedData.Text)
+            {
+                case "don't print":
+                    clumppParamStruct.printPermutedData = 0;
+                    break;
+                case "print into one file":
+                    clumppParamStruct.printPermutedData = 1;
+                    break;
+                case "print each run into separate files":
+                    clumppParamStruct.printPermutedData = 2;
+                    break;
+            }
+
             clumppParamStruct.printEveryPerm = cbxPrintEveryPerm.Checked;
             clumppParamStruct.printRandomInputOrder = cbxPrintRandomInputOrder.Checked;
 
