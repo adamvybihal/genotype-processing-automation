@@ -72,6 +72,10 @@ namespace GenotypeDataProcessing
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cbxDistructClmp = new System.Windows.Forms.CheckBox();
+            this.mnsClumpp = new System.Windows.Forms.MenuStrip();
+            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDistruct = new System.Windows.Forms.TabPage();
             this.btnStartAnalysisDistruct = new System.Windows.Forms.Button();
             this.btnChooseIndivFile = new System.Windows.Forms.Button();
@@ -80,10 +84,14 @@ namespace GenotypeDataProcessing
             this.label8 = new System.Windows.Forms.Label();
             this.btnChoosePopFile = new System.Windows.Forms.Button();
             this.txtPopFile = new System.Windows.Forms.TextBox();
-            this.mnsClumpp = new System.Windows.Forms.MenuStrip();
-            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnsDistruct = new System.Windows.Forms.MenuStrip();
+            this.loadToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawparamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rtxClumpp = new System.Windows.Forms.RichTextBox();
+            this.rtxDistruct = new System.Windows.Forms.RichTextBox();
+            this.treeClumppFolder = new System.Windows.Forms.TreeView();
+            this.treeDistructFolder = new System.Windows.Forms.TreeView();
             this.mnsMainMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -93,8 +101,9 @@ namespace GenotypeDataProcessing
             this.groupBox2.SuspendLayout();
             this.tabCLUMPP.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabDistruct.SuspendLayout();
             this.mnsClumpp.SuspendLayout();
+            this.tabDistruct.SuspendLayout();
+            this.mnsDistruct.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartAnalysisStr
@@ -422,6 +431,8 @@ namespace GenotypeDataProcessing
             // tabCLUMPP
             // 
             this.tabCLUMPP.BackColor = System.Drawing.SystemColors.Control;
+            this.tabCLUMPP.Controls.Add(this.treeClumppFolder);
+            this.tabCLUMPP.Controls.Add(this.rtxClumpp);
             this.tabCLUMPP.Controls.Add(this.btnStartAnalysisCLUMPP);
             this.tabCLUMPP.Controls.Add(this.label7);
             this.tabCLUMPP.Controls.Add(this.label6);
@@ -545,9 +556,44 @@ namespace GenotypeDataProcessing
             this.cbxDistructClmp.Text = "distruct";
             this.cbxDistructClmp.UseVisualStyleBackColor = true;
             // 
+            // mnsClumpp
+            // 
+            this.mnsClumpp.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnsClumpp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem1,
+            this.createToolStripMenuItem});
+            this.mnsClumpp.Location = new System.Drawing.Point(3, 3);
+            this.mnsClumpp.Name = "mnsClumpp";
+            this.mnsClumpp.Size = new System.Drawing.Size(1023, 28);
+            this.mnsClumpp.TabIndex = 21;
+            this.mnsClumpp.Text = "menuStrip1";
+            // 
+            // loadToolStripMenuItem1
+            // 
+            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
+            this.loadToolStripMenuItem1.Text = "Load";
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.paramfilesToolStripMenuItem});
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.createToolStripMenuItem.Text = "Create";
+            // 
+            // paramfilesToolStripMenuItem
+            // 
+            this.paramfilesToolStripMenuItem.Name = "paramfilesToolStripMenuItem";
+            this.paramfilesToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.paramfilesToolStripMenuItem.Text = "paramfiles ...";
+            this.paramfilesToolStripMenuItem.Click += new System.EventHandler(this.paramfilesToolStripMenuItem_Click);
+            // 
             // tabDistruct
             // 
             this.tabDistruct.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDistruct.Controls.Add(this.treeDistructFolder);
+            this.tabDistruct.Controls.Add(this.rtxDistruct);
             this.tabDistruct.Controls.Add(this.btnStartAnalysisDistruct);
             this.tabDistruct.Controls.Add(this.btnChooseIndivFile);
             this.tabDistruct.Controls.Add(this.txtIndivFile);
@@ -555,6 +601,7 @@ namespace GenotypeDataProcessing
             this.tabDistruct.Controls.Add(this.label8);
             this.tabDistruct.Controls.Add(this.btnChoosePopFile);
             this.tabDistruct.Controls.Add(this.txtPopFile);
+            this.tabDistruct.Controls.Add(this.mnsDistruct);
             this.tabDistruct.Location = new System.Drawing.Point(4, 25);
             this.tabDistruct.Name = "tabDistruct";
             this.tabDistruct.Padding = new System.Windows.Forms.Padding(3);
@@ -626,38 +673,74 @@ namespace GenotypeDataProcessing
             this.txtPopFile.TabIndex = 18;
             this.txtPopFile.Text = "choose file ...";
             // 
-            // mnsClumpp
+            // mnsDistruct
             // 
-            this.mnsClumpp.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnsClumpp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem1,
-            this.createToolStripMenuItem});
-            this.mnsClumpp.Location = new System.Drawing.Point(3, 3);
-            this.mnsClumpp.Name = "mnsClumpp";
-            this.mnsClumpp.Size = new System.Drawing.Size(1023, 28);
-            this.mnsClumpp.TabIndex = 21;
-            this.mnsClumpp.Text = "menuStrip1";
+            this.mnsDistruct.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnsDistruct.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem2,
+            this.createToolStripMenuItem2});
+            this.mnsDistruct.Location = new System.Drawing.Point(3, 3);
+            this.mnsDistruct.Name = "mnsDistruct";
+            this.mnsDistruct.Size = new System.Drawing.Size(1023, 28);
+            this.mnsDistruct.TabIndex = 25;
+            this.mnsDistruct.Text = "menuStrip1";
             // 
-            // loadToolStripMenuItem1
+            // loadToolStripMenuItem2
             // 
-            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
-            this.loadToolStripMenuItem1.Text = "Load";
+            this.loadToolStripMenuItem2.Name = "loadToolStripMenuItem2";
+            this.loadToolStripMenuItem2.Size = new System.Drawing.Size(56, 24);
+            this.loadToolStripMenuItem2.Text = "Load";
             // 
-            // createToolStripMenuItem
+            // createToolStripMenuItem2
             // 
-            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.paramfilesToolStripMenuItem});
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
-            this.createToolStripMenuItem.Text = "Create";
+            this.createToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drawparamsToolStripMenuItem});
+            this.createToolStripMenuItem2.Name = "createToolStripMenuItem2";
+            this.createToolStripMenuItem2.Size = new System.Drawing.Size(66, 24);
+            this.createToolStripMenuItem2.Text = "Create";
             // 
-            // paramfilesToolStripMenuItem
+            // drawparamsToolStripMenuItem
             // 
-            this.paramfilesToolStripMenuItem.Name = "paramfilesToolStripMenuItem";
-            this.paramfilesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.paramfilesToolStripMenuItem.Text = "paramfiles ...";
-            this.paramfilesToolStripMenuItem.Click += new System.EventHandler(this.paramfilesToolStripMenuItem_Click);
+            this.drawparamsToolStripMenuItem.Name = "drawparamsToolStripMenuItem";
+            this.drawparamsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.drawparamsToolStripMenuItem.Text = "drawparams";
+            this.drawparamsToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
+            // 
+            // rtxClumpp
+            // 
+            this.rtxClumpp.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtxClumpp.Location = new System.Drawing.Point(558, 31);
+            this.rtxClumpp.Name = "rtxClumpp";
+            this.rtxClumpp.ReadOnly = true;
+            this.rtxClumpp.Size = new System.Drawing.Size(468, 465);
+            this.rtxClumpp.TabIndex = 22;
+            this.rtxClumpp.Text = "";
+            // 
+            // rtxDistruct
+            // 
+            this.rtxDistruct.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtxDistruct.Location = new System.Drawing.Point(563, 31);
+            this.rtxDistruct.Name = "rtxDistruct";
+            this.rtxDistruct.ReadOnly = true;
+            this.rtxDistruct.Size = new System.Drawing.Size(463, 465);
+            this.rtxDistruct.TabIndex = 26;
+            this.rtxDistruct.Text = "";
+            // 
+            // treeClumppFolder
+            // 
+            this.treeClumppFolder.Location = new System.Drawing.Point(374, 257);
+            this.treeClumppFolder.Name = "treeClumppFolder";
+            this.treeClumppFolder.Size = new System.Drawing.Size(164, 223);
+            this.treeClumppFolder.TabIndex = 23;
+            this.treeClumppFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeClumppFolder_NodeMouseDoubleClick);
+            // 
+            // treeDistructFolder
+            // 
+            this.treeDistructFolder.Location = new System.Drawing.Point(377, 274);
+            this.treeDistructFolder.Name = "treeDistructFolder";
+            this.treeDistructFolder.Size = new System.Drawing.Size(149, 174);
+            this.treeDistructFolder.TabIndex = 27;
+            this.treeDistructFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeDistructFolder_NodeMouseDoubleClick);
             // 
             // ProjectScreen
             // 
@@ -687,10 +770,12 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabDistruct.ResumeLayout(false);
-            this.tabDistruct.PerformLayout();
             this.mnsClumpp.ResumeLayout(false);
             this.mnsClumpp.PerformLayout();
+            this.tabDistruct.ResumeLayout(false);
+            this.tabDistruct.PerformLayout();
+            this.mnsDistruct.ResumeLayout(false);
+            this.mnsDistruct.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -752,6 +837,14 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paramfilesToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip mnsDistruct;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem drawparamsToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox rtxClumpp;
+        private System.Windows.Forms.RichTextBox rtxDistruct;
+        private System.Windows.Forms.TreeView treeClumppFolder;
+        private System.Windows.Forms.TreeView treeDistructFolder;
     }
 }
 

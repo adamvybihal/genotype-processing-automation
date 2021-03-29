@@ -41,6 +41,8 @@ namespace GenotypeDataProcessing
             CreateProjectDirectory();
 
             UpdateStructureTreeView();
+            UpdateClumppTreeView();
+            UpdateDistructTreeView();
         }
 
         /// <summary>
@@ -98,9 +100,27 @@ namespace GenotypeDataProcessing
 
         private void CreateProjectDirectory()
         {
+            // main dir
             try
             {
-                string structureDirectoryPath = ProjectInfo.projectName;
+                string projectDirectoryPath = ProjectInfo.projectName;
+
+                if (Directory.Exists(projectDirectoryPath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(projectDirectoryPath);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            //structure dir
+            try
+            {
+                string structureDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
 
                 if (Directory.Exists(structureDirectoryPath))
                 {
@@ -108,6 +128,58 @@ namespace GenotypeDataProcessing
                 }
 
                 Directory.CreateDirectory(structureDirectoryPath);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            // structure harvester dir
+            try
+            {
+                string strucHarvesterDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureHarvesterFolder);
+
+                if (Directory.Exists(strucHarvesterDirectoryPath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(strucHarvesterDirectoryPath);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            // clumpp dir
+            try
+            {
+                string clumppDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+
+
+                if (Directory.Exists(clumppDirectoryPath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(clumppDirectoryPath);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            // distruct dir
+            try
+            {
+                string distructDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+
+                if (Directory.Exists(distructDirectoryPath))
+                {
+                    return;
+                }
+
+                Directory.CreateDirectory(distructDirectoryPath);
             }
             catch (Exception e)
             {
@@ -125,14 +197,40 @@ namespace GenotypeDataProcessing
             treeStructureFolder.Nodes.Clear();
 
             DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureFolder);
-            treeStructureFolder.Nodes.Add(CreateStructureDirectoryNode(rootDirectoryInfo));
+            treeStructureFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+        }
+
+        /// <summary>
+        /// Updates TreeView of CLUMPP folder
+        /// </summary>
+        public void UpdateClumppTreeView()
+        {
+            string clumppFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+
+            treeClumppFolder.Nodes.Clear();
+
+            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(clumppFolder);
+            treeClumppFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+        }
+
+        /// <summary>
+        /// Updates TreeView of Distruct folder
+        /// </summary>
+        public void UpdateDistructTreeView()
+        {
+            string distructFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+
+            treeDistructFolder.Nodes.Clear();
+
+            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(distructFolder);
+            treeDistructFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
         }
         
-        private static TreeNode CreateStructureDirectoryNode(DirectoryInfo directoryInfo)
+        private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
         {
             var directoryNode = new TreeNode(directoryInfo.Name);
             foreach (var directory in directoryInfo.GetDirectories())
-                directoryNode.Nodes.Add(CreateStructureDirectoryNode(directory));
+                directoryNode.Nodes.Add(CreateDirectoryNode(directory));
             foreach (var file in directoryInfo.GetFiles())
                 directoryNode.Nodes.Add(new TreeNode(file.Name));
             return directoryNode;
@@ -257,11 +355,47 @@ namespace GenotypeDataProcessing
 
         private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormClumppParams formClumppParams = new FormClumppParams();
+            FormClumppParams formClumppParams = new FormClumppParams(this);
             formClumppParams.ShowDialog();
 
         }
 
+        private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+
+            try
+            {
+                if (e.Node.Nodes.Count == 0)
+                    rtxClumpp.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // ******* distruct ******* //
+
+        private void drawparamsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormDistructParams formDistructParams = new FormDistructParams(this);
+            formDistructParams.ShowDialog();
+        }
+
+        private void treeDistructFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+
+            try
+            {
+                if (e.Node.Nodes.Count == 0)
+                    rtxDistruct.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -51,28 +51,29 @@ namespace GenotypeDataProcessing
             this.cbxPrintLblsBelow = new System.Windows.Forms.CheckBox();
             this.cbxPrintSeparatingLines = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numIndividualWidth = new System.Windows.Forms.NumericUpDown();
+            this.numFigureHeight = new System.Windows.Forms.NumericUpDown();
+            this.numDistanceBelow = new System.Windows.Forms.NumericUpDown();
+            this.numDistanceAbove = new System.Windows.Forms.NumericUpDown();
+            this.numFontSize = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numClusters = new System.Windows.Forms.NumericUpDown();
-            this.numPreDefPopulations = new System.Windows.Forms.NumericUpDown();
             this.numIndividuals = new System.Windows.Forms.NumericUpDown();
-            this.numFontSize = new System.Windows.Forms.NumericUpDown();
-            this.numDistanceAbove = new System.Windows.Forms.NumericUpDown();
-            this.numDistanceBelow = new System.Windows.Forms.NumericUpDown();
-            this.numFigureHeight = new System.Windows.Forms.NumericUpDown();
-            this.numIndividualWidth = new System.Windows.Forms.NumericUpDown();
+            this.numPreDefPopulations = new System.Windows.Forms.NumericUpDown();
+            this.numClusters = new System.Windows.Forms.NumericUpDown();
             this.btnApply = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIndividualWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFigureHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFigureHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numIndividualWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -295,6 +296,106 @@ namespace GenotypeDataProcessing
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Figure Appearance";
             // 
+            // numIndividualWidth
+            // 
+            this.numIndividualWidth.DecimalPlaces = 1;
+            this.numIndividualWidth.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numIndividualWidth.Location = new System.Drawing.Point(251, 161);
+            this.numIndividualWidth.Name = "numIndividualWidth";
+            this.numIndividualWidth.Size = new System.Drawing.Size(120, 22);
+            this.numIndividualWidth.TabIndex = 26;
+            this.numIndividualWidth.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+            // 
+            // numFigureHeight
+            // 
+            this.numFigureHeight.DecimalPlaces = 1;
+            this.numFigureHeight.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numFigureHeight.Location = new System.Drawing.Point(251, 132);
+            this.numFigureHeight.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numFigureHeight.Name = "numFigureHeight";
+            this.numFigureHeight.Size = new System.Drawing.Size(120, 22);
+            this.numFigureHeight.TabIndex = 25;
+            this.numFigureHeight.Value = new decimal(new int[] {
+            36,
+            0,
+            0,
+            0});
+            // 
+            // numDistanceBelow
+            // 
+            this.numDistanceBelow.DecimalPlaces = 1;
+            this.numDistanceBelow.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numDistanceBelow.Location = new System.Drawing.Point(251, 101);
+            this.numDistanceBelow.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numDistanceBelow.Name = "numDistanceBelow";
+            this.numDistanceBelow.Size = new System.Drawing.Size(120, 22);
+            this.numDistanceBelow.TabIndex = 24;
+            this.numDistanceBelow.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            -2147483648});
+            // 
+            // numDistanceAbove
+            // 
+            this.numDistanceAbove.DecimalPlaces = 1;
+            this.numDistanceAbove.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numDistanceAbove.Location = new System.Drawing.Point(251, 70);
+            this.numDistanceAbove.Name = "numDistanceAbove";
+            this.numDistanceAbove.Size = new System.Drawing.Size(120, 22);
+            this.numDistanceAbove.TabIndex = 23;
+            this.numDistanceAbove.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // numFontSize
+            // 
+            this.numFontSize.DecimalPlaces = 1;
+            this.numFontSize.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numFontSize.Location = new System.Drawing.Point(251, 41);
+            this.numFontSize.Name = "numFontSize";
+            this.numFontSize.Size = new System.Drawing.Size(120, 22);
+            this.numFontSize.TabIndex = 22;
+            this.numFontSize.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cbxPrintLblsBelow);
@@ -333,12 +434,12 @@ namespace GenotypeDataProcessing
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Data Settings";
             // 
-            // numClusters
+            // numIndividuals
             // 
-            this.numClusters.Location = new System.Drawing.Point(369, 196);
-            this.numClusters.Name = "numClusters";
-            this.numClusters.Size = new System.Drawing.Size(120, 22);
-            this.numClusters.TabIndex = 16;
+            this.numIndividuals.Location = new System.Drawing.Point(369, 255);
+            this.numIndividuals.Name = "numIndividuals";
+            this.numIndividuals.Size = new System.Drawing.Size(120, 22);
+            this.numIndividuals.TabIndex = 18;
             // 
             // numPreDefPopulations
             // 
@@ -347,122 +448,60 @@ namespace GenotypeDataProcessing
             this.numPreDefPopulations.Size = new System.Drawing.Size(120, 22);
             this.numPreDefPopulations.TabIndex = 17;
             // 
-            // numIndividuals
+            // numClusters
             // 
-            this.numIndividuals.Location = new System.Drawing.Point(369, 255);
-            this.numIndividuals.Name = "numIndividuals";
-            this.numIndividuals.Size = new System.Drawing.Size(120, 22);
-            this.numIndividuals.TabIndex = 18;
-            // 
-            // numFontSize
-            // 
-            this.numFontSize.DecimalPlaces = 1;
-            this.numFontSize.Location = new System.Drawing.Point(251, 41);
-            this.numFontSize.Name = "numFontSize";
-            this.numFontSize.Size = new System.Drawing.Size(120, 22);
-            this.numFontSize.TabIndex = 22;
-            this.numFontSize.Value = new decimal(new int[] {
-            6,
-            0,
-            0,
-            0});
-            // 
-            // numDistanceAbove
-            // 
-            this.numDistanceAbove.DecimalPlaces = 1;
-            this.numDistanceAbove.Location = new System.Drawing.Point(251, 70);
-            this.numDistanceAbove.Name = "numDistanceAbove";
-            this.numDistanceAbove.Size = new System.Drawing.Size(120, 22);
-            this.numDistanceAbove.TabIndex = 23;
-            this.numDistanceAbove.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // numDistanceBelow
-            // 
-            this.numDistanceBelow.DecimalPlaces = 1;
-            this.numDistanceBelow.Location = new System.Drawing.Point(251, 101);
-            this.numDistanceBelow.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.numDistanceBelow.Name = "numDistanceBelow";
-            this.numDistanceBelow.Size = new System.Drawing.Size(120, 22);
-            this.numDistanceBelow.TabIndex = 24;
-            this.numDistanceBelow.Value = new decimal(new int[] {
-            7,
-            0,
-            0,
-            -2147483648});
-            // 
-            // numFigureHeight
-            // 
-            this.numFigureHeight.DecimalPlaces = 1;
-            this.numFigureHeight.Location = new System.Drawing.Point(251, 132);
-            this.numFigureHeight.Name = "numFigureHeight";
-            this.numFigureHeight.Size = new System.Drawing.Size(120, 22);
-            this.numFigureHeight.TabIndex = 25;
-            this.numFigureHeight.Value = new decimal(new int[] {
-            36,
-            0,
-            0,
-            0});
-            // 
-            // numIndividualWidth
-            // 
-            this.numIndividualWidth.DecimalPlaces = 1;
-            this.numIndividualWidth.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numIndividualWidth.Location = new System.Drawing.Point(251, 161);
-            this.numIndividualWidth.Name = "numIndividualWidth";
-            this.numIndividualWidth.Size = new System.Drawing.Size(120, 22);
-            this.numIndividualWidth.TabIndex = 26;
-            this.numIndividualWidth.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
+            this.numClusters.Location = new System.Drawing.Point(369, 196);
+            this.numClusters.Name = "numClusters";
+            this.numClusters.Size = new System.Drawing.Size(120, 22);
+            this.numClusters.TabIndex = 16;
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(310, 509);
+            this.btnApply.Location = new System.Drawing.Point(256, 509);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(96, 47);
+            this.btnApply.Size = new System.Drawing.Size(76, 26);
             this.btnApply.TabIndex = 30;
-            this.btnApply.Text = "Apply";
+            this.btnApply.Text = "apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(384, 509);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 26);
+            this.btnCancel.TabIndex = 31;
+            this.btnCancel.Text = "cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FormDistructParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 564);
+            this.ClientSize = new System.Drawing.Size(754, 548);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormDistructParams";
             this.Text = "Set distruct Parameters";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIndividualWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFigureHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFigureHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numIndividualWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -502,5 +541,6 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.NumericUpDown numPreDefPopulations;
         private System.Windows.Forms.NumericUpDown numClusters;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

@@ -133,6 +133,8 @@
     <Compile Include="CLUMPP\ClumppParameterSet.cs" />
     <Compile Include="CLUMPP\ClumppParamStruct.cs" />
     <Compile Include="CLUMPP\DataTypeClumppEn.cs" />
+    <Compile Include="distruct\DistructParameterSet.cs" />
+    <Compile Include="distruct\DistructParamStruct.cs" />
     <Compile Include="DUTs\ST_InputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
     <Compile Include="Structure\FormDeleteParamSet.cs">

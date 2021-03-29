@@ -19,7 +19,7 @@ namespace GenotypeDataProcessing
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ProjectScreen());
-            //Application.Run(new FormClumppParams());
+            //Application.Run(new FormDistructParams());
         }
     }
 }

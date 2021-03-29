@@ -16,10 +16,13 @@ namespace GenotypeDataProcessing
     {
 
         private ClumppParamStruct clumppParamStruct;
+        private ProjectScreen callerProjectScreen;
 
-        public FormClumppParams()
+        public FormClumppParams(ProjectScreen projectScreen)
         {
             InitializeComponent();
+
+            callerProjectScreen = projectScreen;
         }
 
         private void cmbMethodToBeUsed_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,7 +89,11 @@ namespace GenotypeDataProcessing
             if (clumppParameterSet.IsParamfileCreated())
             {
                 clumppParameterSet.CreateParamfile(DataTypeClumppEn.ONE);
-                if (clumppParameterSet.IsParamfileCreated()) this.Close();
+                if (clumppParameterSet.IsParamfileCreated())
+                {
+                    callerProjectScreen.UpdateClumppTreeView();
+                    this.Close();
+                }
             }
         }
 
