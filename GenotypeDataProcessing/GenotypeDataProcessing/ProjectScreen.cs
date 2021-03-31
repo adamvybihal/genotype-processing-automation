@@ -251,7 +251,7 @@ namespace GenotypeDataProcessing
             FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(this);
             formStructureParameterSet.ShowDialog();
 
-            if (ProjectInfo.structureParameterSets.Count > 0)
+            if (ProjectInfo.structureParamSets.Count > 0)
             {
                 deleteToolStripMenuItem.Enabled = true;
             }
@@ -262,7 +262,7 @@ namespace GenotypeDataProcessing
             FormDeleteParamSet formDeleteParamSet = new FormDeleteParamSet(this);
             formDeleteParamSet.ShowDialog();
 
-            if (ProjectInfo.structureParameterSets.Count == 0)
+            if (ProjectInfo.structureParamSets.Count == 0)
             {
                 deleteToolStripMenuItem.Enabled = false;
             }
@@ -273,8 +273,8 @@ namespace GenotypeDataProcessing
             string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
 
             try
-            {   
-                if ((e.Node.Nodes.Count == 0) && (e.Node.Text != ProjectInfo.structureDataCopyName))
+            {
+                if ((e.Node.Nodes.Count == 0) && ((e.Node.Text + ".") != ProjectInfo.structureDataCopyName))
                     rtxStructureText.Text = File.ReadAllText(path);
             }
             catch (Exception ex)

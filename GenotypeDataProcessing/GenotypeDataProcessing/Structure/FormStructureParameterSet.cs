@@ -30,22 +30,28 @@ namespace GenotypeDataProcessing.Structure
             {
                 SetStrucutreParamSet();
 
+                try
+                {
+                    ProjectInfo.structureParamSets.Add(paramSetName, structureParamSetStruct);
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show(
+                        "Parameter set with this name already exists!",
+                        "Invalid Name",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                    return;
+                }
+
                 StructureParamSet structureParamSet = new StructureParamSet(paramSetName, structureParamSetStruct, ProjectInfo.structureInputInfo);
-                if (structureParamSet.IsParamSetNameValid())
-                {
-                    structureParamSet.CreateMainparamsFile();
-                    structureParamSet.CreateExtraparamsFile();
+                structureParamSet.CreateMainparamsFile();
+                structureParamSet.CreateExtraparamsFile();
 
-                    callerProjectScreen.UpdateStructureTreeView();
+                callerProjectScreen.UpdateStructureTreeView();
 
-                    ProjectInfo.structureParameterSets.Add(paramSetName);
-                    
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Parameter set with this name already exists!", "Invalid name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                this.Close();
             }
             else
             {

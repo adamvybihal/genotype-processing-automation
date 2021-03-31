@@ -24,6 +24,6 @@ namespace GenotypeDataProcessing
 
         public static StructureInputData structureInputData;
         public static StructureInputInfoStruct structureInputInfo;
-        public static List<string> structureParameterSets = new List<string>();
+        public static Dictionary<string, StructureParamSetStruct> structureParamSets = new Dictionary<string, StructureParamSetStruct>();
     }
 }

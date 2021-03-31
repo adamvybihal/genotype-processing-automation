@@ -61,6 +61,8 @@ namespace GenotypeDataProcessing
             this.cbxDistructStrHv = new System.Windows.Forms.CheckBox();
             this.cbxCLUMPPStrHv = new System.Windows.Forms.CheckBox();
             this.tabCLUMPP = new System.Windows.Forms.TabPage();
+            this.treeClumppFolder = new System.Windows.Forms.TreeView();
+            this.rtxClumpp = new System.Windows.Forms.RichTextBox();
             this.btnStartAnalysisCLUMPP = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,6 +79,8 @@ namespace GenotypeDataProcessing
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDistruct = new System.Windows.Forms.TabPage();
+            this.treeDistructFolder = new System.Windows.Forms.TreeView();
+            this.rtxDistruct = new System.Windows.Forms.RichTextBox();
             this.btnStartAnalysisDistruct = new System.Windows.Forms.Button();
             this.btnChooseIndivFile = new System.Windows.Forms.Button();
             this.txtIndivFile = new System.Windows.Forms.TextBox();
@@ -88,10 +92,7 @@ namespace GenotypeDataProcessing
             this.loadToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.drawparamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rtxClumpp = new System.Windows.Forms.RichTextBox();
-            this.rtxDistruct = new System.Windows.Forms.RichTextBox();
-            this.treeClumppFolder = new System.Windows.Forms.TreeView();
-            this.treeDistructFolder = new System.Windows.Forms.TreeView();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -287,6 +288,7 @@ namespace GenotypeDataProcessing
             // 
             this.parameterSetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createToolStripMenuItem1,
+            this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.parameterSetToolStripMenuItem.Name = "parameterSetToolStripMenuItem";
             this.parameterSetToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
@@ -296,7 +298,7 @@ namespace GenotypeDataProcessing
             // 
             this.createToolStripMenuItem1.Enabled = false;
             this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(149, 26);
+            this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.createToolStripMenuItem1.Text = "Create ...";
             this.createToolStripMenuItem1.Click += new System.EventHandler(this.createToolStripMenuItem1_Click);
             // 
@@ -304,7 +306,7 @@ namespace GenotypeDataProcessing
             // 
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.deleteToolStripMenuItem.Text = "Delete ...";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -449,6 +451,24 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Size = new System.Drawing.Size(1029, 499);
             this.tabCLUMPP.TabIndex = 2;
             this.tabCLUMPP.Text = "CLUMPP";
+            // 
+            // treeClumppFolder
+            // 
+            this.treeClumppFolder.Location = new System.Drawing.Point(374, 257);
+            this.treeClumppFolder.Name = "treeClumppFolder";
+            this.treeClumppFolder.Size = new System.Drawing.Size(164, 223);
+            this.treeClumppFolder.TabIndex = 23;
+            this.treeClumppFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeClumppFolder_NodeMouseDoubleClick);
+            // 
+            // rtxClumpp
+            // 
+            this.rtxClumpp.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtxClumpp.Location = new System.Drawing.Point(558, 31);
+            this.rtxClumpp.Name = "rtxClumpp";
+            this.rtxClumpp.ReadOnly = true;
+            this.rtxClumpp.Size = new System.Drawing.Size(468, 465);
+            this.rtxClumpp.TabIndex = 22;
+            this.rtxClumpp.Text = "";
             // 
             // btnStartAnalysisCLUMPP
             // 
@@ -609,6 +629,24 @@ namespace GenotypeDataProcessing
             this.tabDistruct.TabIndex = 3;
             this.tabDistruct.Text = "distruct";
             // 
+            // treeDistructFolder
+            // 
+            this.treeDistructFolder.Location = new System.Drawing.Point(377, 274);
+            this.treeDistructFolder.Name = "treeDistructFolder";
+            this.treeDistructFolder.Size = new System.Drawing.Size(149, 174);
+            this.treeDistructFolder.TabIndex = 27;
+            this.treeDistructFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeDistructFolder_NodeMouseDoubleClick);
+            // 
+            // rtxDistruct
+            // 
+            this.rtxDistruct.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtxDistruct.Location = new System.Drawing.Point(563, 31);
+            this.rtxDistruct.Name = "rtxDistruct";
+            this.rtxDistruct.ReadOnly = true;
+            this.rtxDistruct.Size = new System.Drawing.Size(463, 465);
+            this.rtxDistruct.TabIndex = 26;
+            this.rtxDistruct.Text = "";
+            // 
             // btnStartAnalysisDistruct
             // 
             this.btnStartAnalysisDistruct.Enabled = false;
@@ -702,45 +740,16 @@ namespace GenotypeDataProcessing
             // drawparamsToolStripMenuItem
             // 
             this.drawparamsToolStripMenuItem.Name = "drawparamsToolStripMenuItem";
-            this.drawparamsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.drawparamsToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.drawparamsToolStripMenuItem.Text = "drawparams";
             this.drawparamsToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
             // 
-            // rtxClumpp
+            // updateToolStripMenuItem
             // 
-            this.rtxClumpp.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxClumpp.Location = new System.Drawing.Point(558, 31);
-            this.rtxClumpp.Name = "rtxClumpp";
-            this.rtxClumpp.ReadOnly = true;
-            this.rtxClumpp.Size = new System.Drawing.Size(468, 465);
-            this.rtxClumpp.TabIndex = 22;
-            this.rtxClumpp.Text = "";
-            // 
-            // rtxDistruct
-            // 
-            this.rtxDistruct.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxDistruct.Location = new System.Drawing.Point(563, 31);
-            this.rtxDistruct.Name = "rtxDistruct";
-            this.rtxDistruct.ReadOnly = true;
-            this.rtxDistruct.Size = new System.Drawing.Size(463, 465);
-            this.rtxDistruct.TabIndex = 26;
-            this.rtxDistruct.Text = "";
-            // 
-            // treeClumppFolder
-            // 
-            this.treeClumppFolder.Location = new System.Drawing.Point(374, 257);
-            this.treeClumppFolder.Name = "treeClumppFolder";
-            this.treeClumppFolder.Size = new System.Drawing.Size(164, 223);
-            this.treeClumppFolder.TabIndex = 23;
-            this.treeClumppFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeClumppFolder_NodeMouseDoubleClick);
-            // 
-            // treeDistructFolder
-            // 
-            this.treeDistructFolder.Location = new System.Drawing.Point(377, 274);
-            this.treeDistructFolder.Name = "treeDistructFolder";
-            this.treeDistructFolder.Size = new System.Drawing.Size(149, 174);
-            this.treeDistructFolder.TabIndex = 27;
-            this.treeDistructFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeDistructFolder_NodeMouseDoubleClick);
+            this.updateToolStripMenuItem.Enabled = false;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem.Text = "Update ...";
             // 
             // ProjectScreen
             // 
@@ -845,6 +854,7 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.RichTextBox rtxDistruct;
         private System.Windows.Forms.TreeView treeClumppFolder;
         private System.Windows.Forms.TreeView treeDistructFolder;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
     }
 }
 

@@ -17,8 +17,6 @@ namespace GenotypeDataProcessing.Structure
         private StructureInputInfoStruct stStructureInputInfo;
         private string directoryPath;
 
-        private bool isNameValid = false;
-
         public StructureParamSet(string nameOfSet, StructureParamSetStruct structureParamSetStruct, StructureInputInfoStruct structureInputInfoStruct)
         {
             parameterSetName = nameOfSet;
@@ -26,15 +24,6 @@ namespace GenotypeDataProcessing.Structure
             stStructureInputInfo = structureInputInfoStruct;
 
             CreateDirectory();
-        }
-
-        /// <summary>
-        /// Checks if there is not parameterset with the same name
-        /// </summary>
-        /// <returns>True if name is valid</returns>
-        public bool IsParamSetNameValid()
-        {
-            return isNameValid;
         }
 
         private void CreateDirectory()
@@ -49,7 +38,6 @@ namespace GenotypeDataProcessing.Structure
                 }
 
                 Directory.CreateDirectory(directoryPath);
-                isNameValid = true;
             }
             catch (Exception e)
             {

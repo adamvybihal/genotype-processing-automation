@@ -33,9 +33,9 @@ namespace GenotypeDataProcessing.Structure
             lsvParamSets.Columns.Add("parameter set");
             lsvParamSets.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            foreach (string item in ProjectInfo.structureParameterSets)
+            foreach (KeyValuePair<string, StructureParamSetStruct> kvp in ProjectInfo.structureParamSets)
             {
-                lsvParamSets.Items.Add(item);
+                lsvParamSets.Items.Add(kvp.Key);
             }
         }
 
@@ -61,7 +61,8 @@ namespace GenotypeDataProcessing.Structure
                         string fullParamSetPath = Path.Combine(structureFolderPath, itm.Text);
                         DeleteParamsetDirectory(fullParamSetPath);
 
-                        DeleteFromList(ProjectInfo.structureParameterSets, itm.Text);
+                        DeleteFromDictionary(ProjectInfo.structureParamSets, itm.Text);
+                        
                     }
 
                     callerProjectScreen.UpdateStructureTreeView();
@@ -95,12 +96,12 @@ namespace GenotypeDataProcessing.Structure
             }
         }
 
-        private void DeleteFromList(List<string> list, string paramset)
+        private void DeleteFromDictionary(Dictionary<string, StructureParamSetStruct> keyValuePairs, string paramset)
         {
-            var index = list.FindIndex(i => i == paramset);
-            
-            if (index >= 0)
-                list.RemoveAt(index);
+            if (keyValuePairs.ContainsKey(paramset))
+            {
+                keyValuePairs.Remove(paramset);
             }
         }
     }
+}
