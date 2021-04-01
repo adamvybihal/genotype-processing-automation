@@ -48,6 +48,7 @@ namespace GenotypeDataProcessing
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parameterSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabStructureHarvester = new System.Windows.Forms.TabPage();
             this.llblStructureHarvesterWeb = new System.Windows.Forms.LinkLabel();
@@ -92,7 +93,6 @@ namespace GenotypeDataProcessing
             this.loadToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.drawparamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -301,6 +301,14 @@ namespace GenotypeDataProcessing
             this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.createToolStripMenuItem1.Text = "Create ...";
             this.createToolStripMenuItem1.Click += new System.EventHandler(this.createToolStripMenuItem1_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Enabled = false;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem.Text = "Update ...";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -743,13 +751,6 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.drawparamsToolStripMenuItem.Text = "drawparams";
             this.drawparamsToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Enabled = false;
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.updateToolStripMenuItem.Text = "Update ...";
             // 
             // ProjectScreen
             // 

@@ -103,5 +103,10 @@ namespace GenotypeDataProcessing.Structure
                 keyValuePairs.Remove(paramset);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

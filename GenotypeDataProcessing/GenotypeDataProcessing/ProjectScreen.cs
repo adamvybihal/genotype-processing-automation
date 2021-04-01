@@ -188,6 +188,8 @@ namespace GenotypeDataProcessing
 
             DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureFolder);
             treeStructureFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+
+            rtxStructureText.Text = "";
         }
 
         /// <summary>
@@ -201,6 +203,8 @@ namespace GenotypeDataProcessing
 
             DirectoryInfo rootDirectoryInfo = new DirectoryInfo(clumppFolder);
             treeClumppFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+
+            rtxClumpp.Text = "";
         }
 
         /// <summary>
@@ -214,6 +218,8 @@ namespace GenotypeDataProcessing
 
             DirectoryInfo rootDirectoryInfo = new DirectoryInfo(distructFolder);
             treeDistructFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+
+            rtxDistruct.Text = "";
         }
         
         private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
@@ -248,13 +254,20 @@ namespace GenotypeDataProcessing
 
         private void createToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(this);
+            FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(this, FormStructureParameterSetState.NEW);
             formStructureParameterSet.ShowDialog();
 
             if (ProjectInfo.structureParamSets.Count > 0)
             {
                 deleteToolStripMenuItem.Enabled = true;
+                updateToolStripMenuItem.Enabled = true;
             }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this);
+            formSelectParamSet.ShowDialog();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -265,6 +278,7 @@ namespace GenotypeDataProcessing
             if (ProjectInfo.structureParamSets.Count == 0)
             {
                 deleteToolStripMenuItem.Enabled = false;
+                updateToolStripMenuItem.Enabled = false;
             }
         }
 

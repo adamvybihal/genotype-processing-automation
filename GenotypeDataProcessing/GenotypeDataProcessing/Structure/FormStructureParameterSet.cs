@@ -12,14 +12,96 @@ namespace GenotypeDataProcessing.Structure
 {
     public partial class FormStructureParameterSet : Form
     {
-        StructureParamSetStruct structureParamSetStruct;
-        ProjectScreen callerProjectScreen;
+        private StructureParamSetStruct structureParamSetStruct;
+        private ProjectScreen callerProjectScreen;
+        private FormStructureParameterSetState state;
 
-        public FormStructureParameterSet(ProjectScreen projectScreen)
+
+        public FormStructureParameterSet(ProjectScreen projectScreen, FormStructureParameterSetState parameterSetState)
         {
             InitializeComponent();
 
             callerProjectScreen = projectScreen;
+            state = parameterSetState;
+        }
+
+        public FormStructureParameterSet(ProjectScreen projectScreen, FormStructureParameterSetState parameterSetState, string paramSet)
+        {
+            InitializeComponent();
+
+            callerProjectScreen = projectScreen;
+            state = parameterSetState;
+
+            UpdateFormSetup(paramSet);
+        }
+
+        private void UpdateFormSetup(string paramSet)
+        {
+            if (ProjectInfo.structureParamSets.ContainsKey(paramSet))
+            {
+                SetComponentsValues(paramSet, ProjectInfo.structureParamSets[paramSet]);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Error - Parameter set not found!",
+                    "Not Found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        private void SetComponentsValues(string paramSet, StructureParamSetStruct structureParamSetStruct)
+        {
+            txtSetName.Text = paramSet;
+            txtSetName.Enabled = false;
+
+            numBurninPeriod.Value = structureParamSetStruct.burnin;
+            numRepsAfterBurnin.Value = structureParamSetStruct.numReps;
+            cbxPhased.Checked = structureParamSetStruct.phased;
+            cbxMarkovPhase.Checked = structureParamSetStruct.markovPhase;
+
+            cbxNoAdmix.Checked = structureParamSetStruct.noAdmix;
+            cbxLocPrior.Checked = structureParamSetStruct.locPrior;
+
+            cbxLinkage.Checked = structureParamSetStruct.linkage;
+            numLogRMax.Value = (decimal)structureParamSetStruct.logRMax;
+            numLogRMin.Value = (decimal)structureParamSetStruct.logRMin;
+            numLogRProPSD.Value = (decimal)structureParamSetStruct.logRPropSD;
+            numLogRStart.Value = (decimal)structureParamSetStruct.logRStart;
+
+            cbxUsePopInfo.Checked = structureParamSetStruct.usePopInfo;
+            numGensback.Value = structureParamSetStruct.gensBack;
+            numMigprior.Value = (decimal)structureParamSetStruct.migPrior;
+
+            if (structureParamSetStruct.inferAlpha) numInitAlpha.Value = (decimal)structureParamSetStruct.alpha;
+            else numSetAlpha.Value = (decimal)structureParamSetStruct.alpha;
+            rdbInferAlpha.Checked = structureParamSetStruct.inferAlpha;
+            cbxPopAlphas.Checked = structureParamSetStruct.popAlphas;
+            cbxUnifPriorAlpha.Checked = structureParamSetStruct.unifPriorAlphas;
+            numAlphaMax.Value = (decimal)structureParamSetStruct.alphaMax;
+            numAlphaProPsd.Value = (decimal)structureParamSetStruct.alphaPropSD;
+            numAlphaPriorA.Value = (decimal)structureParamSetStruct.alphaPriorA;
+            numAlphaPriorB.Value = (decimal)structureParamSetStruct.alphaPriorB;
+
+            cbxFreqsCorr.Checked = structureParamSetStruct.freqsCorr;
+            cbxOneFst.Checked = structureParamSetStruct.oneFst;
+            numPriorMean.Value = (decimal)structureParamSetStruct.priorMean;
+            numPriorSD.Value = (decimal)structureParamSetStruct.priorSD;
+
+            if (structureParamSetStruct.inferLambda) numInitLambda.Value = (decimal)structureParamSetStruct.lambda;
+            else numSetLambda.Value = (decimal)structureParamSetStruct.lambda;
+            rdbInferLambda.Checked = structureParamSetStruct.inferLambda;
+            cbxPopAlphas.Checked = structureParamSetStruct.popSpecifiLambda;
+
+            cbxComputeProb.Checked = structureParamSetStruct.computePorb;
+            cbxAncestdist.Checked = structureParamSetStruct.ancestDist;
+            numNumboxes.Value = structureParamSetStruct.numboxes;
+            numAncestpint.Value = (decimal)structureParamSetStruct.ancestPint;
+            cbxStartPopInfo.Checked = structureParamSetStruct.startPopInfo;
+            numMetroFreq.Value = structureParamSetStruct.metroFreq;
+            cbxPrintQHat.Checked = structureParamSetStruct.printQHat;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -28,26 +110,15 @@ namespace GenotypeDataProcessing.Structure
 
             if (paramSetName != "")
             {
-                SetStrucutreParamSet();
-
-                try
+                switch (state)
                 {
-                    ProjectInfo.structureParamSets.Add(paramSetName, structureParamSetStruct);
+                    case FormStructureParameterSetState.NEW:
+                        CreateNewParameterSet(paramSetName);
+                        break;
+                    case FormStructureParameterSetState.UPDATE:
+                        UpdateParameterSet(paramSetName);
+                        break;
                 }
-                catch (ArgumentException)
-                {
-                    MessageBox.Show(
-                        "Parameter set with this name already exists!",
-                        "Invalid Name",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                        );
-                    return;
-                }
-
-                StructureParamSet structureParamSet = new StructureParamSet(paramSetName, structureParamSetStruct, ProjectInfo.structureInputInfo);
-                structureParamSet.CreateMainparamsFile();
-                structureParamSet.CreateExtraparamsFile();
 
                 callerProjectScreen.UpdateStructureTreeView();
 
@@ -57,6 +128,48 @@ namespace GenotypeDataProcessing.Structure
             {
                 MessageBox.Show("Please enter a name of parameter set!", "Invalid name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }  
+        }
+
+        private void CreateNewParameterSet(string paramSetName)
+        {
+            SetStrucutreParamSet();
+
+            try
+            {
+                ProjectInfo.structureParamSets.Add(paramSetName, structureParamSetStruct);
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show(
+                    "Parameter set with this name already exists!",
+                    "Invalid Name",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return;
+            }
+
+            StructureParamSet structureParamSet = new StructureParamSet(paramSetName, structureParamSetStruct, ProjectInfo.structureInputInfo);
+            structureParamSet.CreateMainparamsFile();
+            structureParamSet.CreateExtraparamsFile();
+        }
+
+        private void UpdateParameterSet(string paramSetName)
+        {
+            if (ProjectInfo.structureParamSets.ContainsKey(paramSetName))
+            {
+                SetStrucutreParamSet();
+
+                ProjectInfo.structureParamSets[paramSetName] = structureParamSetStruct;
+
+                StructureParamSet structureParamSet = new StructureParamSet(paramSetName, structureParamSetStruct, ProjectInfo.structureInputInfo);
+                structureParamSet.CreateMainparamsFile();
+                structureParamSet.CreateExtraparamsFile();
+            }
+            else
+            {
+                CreateNewParameterSet(paramSetName);
+            }
         }
 
         private void SetStrucutreParamSet()
