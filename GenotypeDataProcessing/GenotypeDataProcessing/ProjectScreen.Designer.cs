@@ -93,6 +93,8 @@ namespace GenotypeDataProcessing
             this.loadToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.drawparamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prbJobProgressBar = new System.Windows.Forms.ProgressBar();
+            this.lblStructureJobLabel = new System.Windows.Forms.Label();
             this.mnsMainMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -209,13 +211,15 @@ namespace GenotypeDataProcessing
             this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1037, 528);
+            this.tabControl1.Size = new System.Drawing.Size(1037, 598);
             this.tabControl1.TabIndex = 9;
             // 
             // tabStructure
             // 
             this.tabStructure.AutoScroll = true;
             this.tabStructure.BackColor = System.Drawing.SystemColors.Control;
+            this.tabStructure.Controls.Add(this.lblStructureJobLabel);
+            this.tabStructure.Controls.Add(this.prbJobProgressBar);
             this.tabStructure.Controls.Add(this.rtxStructureText);
             this.tabStructure.Controls.Add(this.treeStructureFolder);
             this.tabStructure.Controls.Add(this.lsvStructureInputData);
@@ -225,17 +229,17 @@ namespace GenotypeDataProcessing
             this.tabStructure.Location = new System.Drawing.Point(4, 25);
             this.tabStructure.Name = "tabStructure";
             this.tabStructure.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStructure.Size = new System.Drawing.Size(1029, 499);
+            this.tabStructure.Size = new System.Drawing.Size(1029, 569);
             this.tabStructure.TabIndex = 0;
             this.tabStructure.Text = "Structure";
             // 
             // rtxStructureText
             // 
             this.rtxStructureText.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxStructureText.Location = new System.Drawing.Point(252, 31);
+            this.rtxStructureText.Location = new System.Drawing.Point(370, 33);
             this.rtxStructureText.Name = "rtxStructureText";
             this.rtxStructureText.ReadOnly = true;
-            this.rtxStructureText.Size = new System.Drawing.Size(273, 465);
+            this.rtxStructureText.Size = new System.Drawing.Size(335, 533);
             this.rtxStructureText.TabIndex = 18;
             this.rtxStructureText.Text = "";
             // 
@@ -251,9 +255,9 @@ namespace GenotypeDataProcessing
             // 
             this.lsvStructureInputData.Dock = System.Windows.Forms.DockStyle.Right;
             this.lsvStructureInputData.HideSelection = false;
-            this.lsvStructureInputData.Location = new System.Drawing.Point(525, 31);
+            this.lsvStructureInputData.Location = new System.Drawing.Point(705, 33);
             this.lsvStructureInputData.Name = "lsvStructureInputData";
-            this.lsvStructureInputData.Size = new System.Drawing.Size(501, 465);
+            this.lsvStructureInputData.Size = new System.Drawing.Size(321, 533);
             this.lsvStructureInputData.TabIndex = 14;
             this.lsvStructureInputData.UseCompatibleStateImageBehavior = false;
             // 
@@ -265,7 +269,7 @@ namespace GenotypeDataProcessing
             this.parameterSetToolStripMenuItem});
             this.mnsStructure.Location = new System.Drawing.Point(3, 3);
             this.mnsStructure.Name = "mnsStructure";
-            this.mnsStructure.Size = new System.Drawing.Size(1023, 28);
+            this.mnsStructure.Size = new System.Drawing.Size(1023, 30);
             this.mnsStructure.TabIndex = 13;
             this.mnsStructure.Text = "menuStrip2";
             // 
@@ -274,7 +278,7 @@ namespace GenotypeDataProcessing
             this.dataFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem});
             this.dataFileToolStripMenuItem.Name = "dataFileToolStripMenuItem";
-            this.dataFileToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.dataFileToolStripMenuItem.Size = new System.Drawing.Size(82, 26);
             this.dataFileToolStripMenuItem.Text = "Data File";
             // 
             // loadToolStripMenuItem
@@ -291,14 +295,14 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.parameterSetToolStripMenuItem.Name = "parameterSetToolStripMenuItem";
-            this.parameterSetToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
+            this.parameterSetToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
             this.parameterSetToolStripMenuItem.Text = "Parameter Set";
             // 
             // createToolStripMenuItem1
             // 
             this.createToolStripMenuItem1.Enabled = false;
             this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.createToolStripMenuItem1.Size = new System.Drawing.Size(154, 26);
             this.createToolStripMenuItem1.Text = "Create ...";
             this.createToolStripMenuItem1.Click += new System.EventHandler(this.createToolStripMenuItem1_Click);
             // 
@@ -306,7 +310,7 @@ namespace GenotypeDataProcessing
             // 
             this.updateToolStripMenuItem.Enabled = false;
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.updateToolStripMenuItem.Text = "Update ...";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
@@ -314,7 +318,7 @@ namespace GenotypeDataProcessing
             // 
             this.deleteToolStripMenuItem.Enabled = false;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.deleteToolStripMenuItem.Text = "Delete ...";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -332,7 +336,7 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.Location = new System.Drawing.Point(4, 25);
             this.tabStructureHarvester.Name = "tabStructureHarvester";
             this.tabStructureHarvester.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStructureHarvester.Size = new System.Drawing.Size(1029, 499);
+            this.tabStructureHarvester.Size = new System.Drawing.Size(1029, 497);
             this.tabStructureHarvester.TabIndex = 1;
             this.tabStructureHarvester.Text = "Structure Harvester";
             // 
@@ -456,7 +460,7 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
             this.tabCLUMPP.Name = "tabCLUMPP";
             this.tabCLUMPP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCLUMPP.Size = new System.Drawing.Size(1029, 499);
+            this.tabCLUMPP.Size = new System.Drawing.Size(1029, 497);
             this.tabCLUMPP.TabIndex = 2;
             this.tabCLUMPP.Text = "CLUMPP";
             // 
@@ -474,7 +478,7 @@ namespace GenotypeDataProcessing
             this.rtxClumpp.Location = new System.Drawing.Point(558, 31);
             this.rtxClumpp.Name = "rtxClumpp";
             this.rtxClumpp.ReadOnly = true;
-            this.rtxClumpp.Size = new System.Drawing.Size(468, 465);
+            this.rtxClumpp.Size = new System.Drawing.Size(468, 463);
             this.rtxClumpp.TabIndex = 22;
             this.rtxClumpp.Text = "";
             // 
@@ -633,7 +637,7 @@ namespace GenotypeDataProcessing
             this.tabDistruct.Location = new System.Drawing.Point(4, 25);
             this.tabDistruct.Name = "tabDistruct";
             this.tabDistruct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDistruct.Size = new System.Drawing.Size(1029, 499);
+            this.tabDistruct.Size = new System.Drawing.Size(1029, 497);
             this.tabDistruct.TabIndex = 3;
             this.tabDistruct.Text = "distruct";
             // 
@@ -651,7 +655,7 @@ namespace GenotypeDataProcessing
             this.rtxDistruct.Location = new System.Drawing.Point(563, 31);
             this.rtxDistruct.Name = "rtxDistruct";
             this.rtxDistruct.ReadOnly = true;
-            this.rtxDistruct.Size = new System.Drawing.Size(463, 465);
+            this.rtxDistruct.Size = new System.Drawing.Size(463, 463);
             this.rtxDistruct.TabIndex = 26;
             this.rtxDistruct.Text = "";
             // 
@@ -752,12 +756,30 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem.Text = "drawparams";
             this.drawparamsToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
             // 
+            // prbJobProgressBar
+            // 
+            this.prbJobProgressBar.Location = new System.Drawing.Point(56, 468);
+            this.prbJobProgressBar.Name = "prbJobProgressBar";
+            this.prbJobProgressBar.Size = new System.Drawing.Size(160, 23);
+            this.prbJobProgressBar.TabIndex = 19;
+            this.prbJobProgressBar.Visible = false;
+            // 
+            // lblStructureJobLabel
+            // 
+            this.lblStructureJobLabel.AutoSize = true;
+            this.lblStructureJobLabel.Location = new System.Drawing.Point(56, 498);
+            this.lblStructureJobLabel.Name = "lblStructureJobLabel";
+            this.lblStructureJobLabel.Size = new System.Drawing.Size(146, 17);
+            this.lblStructureJobLabel.TabIndex = 20;
+            this.lblStructureJobLabel.Text = "structure is running ...";
+            this.lblStructureJobLabel.Visible = false;
+            // 
             // ProjectScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1037, 556);
+            this.ClientSize = new System.Drawing.Size(1037, 626);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.mnsMainMenu);
             this.MainMenuStrip = this.mnsMainMenu;
@@ -856,6 +878,8 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.TreeView treeClumppFolder;
         private System.Windows.Forms.TreeView treeDistructFolder;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar prbJobProgressBar;
+        private System.Windows.Forms.Label lblStructureJobLabel;
     }
 }
 

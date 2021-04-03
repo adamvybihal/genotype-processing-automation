@@ -36,7 +36,9 @@ namespace GenotypeDataProcessing
 
             lsvStructureInputData.Width = tabControl1.Width;
             rtxStructureText.Width = tabControl1.Width / 2;
-            //lsvStructureInputData.Visible = false;
+
+            prbJobProgressBar.Minimum = 0;
+            prbJobProgressBar.Maximum = 100;
 
             CreateProjectDirectory();
 
@@ -261,6 +263,7 @@ namespace GenotypeDataProcessing
             {
                 deleteToolStripMenuItem.Enabled = true;
                 updateToolStripMenuItem.Enabled = true;
+                btnStartAnalysisStr.Enabled = true;
             }
         }
 
@@ -311,8 +314,80 @@ namespace GenotypeDataProcessing
 
         private void btnStartAnalysisStr_Click(object sender, EventArgs e)
         {
-            // todo - ask user for K range + iterations over one K
-            ; ;
+            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+
+            FormStructureJobSettings formStructureJobSettings = new FormStructureJobSettings();
+            formStructureJobSettings.ShowDialog();
+
+            string selectedParamSet = formStructureJobSettings.GetSelectedParamSet();
+
+            if (selectedParamSet != "")
+            {
+                btnStartAnalysisStr.Enabled = false;
+
+                prbJobProgressBar.Visible = true;
+                prbJobProgressBar.Value = 0;
+
+                lblStructureJobLabel.Visible = true;
+
+                StructureJob structureJob = new StructureJob(this, 
+                                                            selectedParamSet, 
+                                                            path, 
+                                                            ProjectInfo.structureJobInfo[selectedParamSet].startingK,
+                                                            ProjectInfo.structureJobInfo[selectedParamSet].endingK,
+                                                            ProjectInfo.structureJobInfo[selectedParamSet].iterations);
+                structureJob.BatchRunExecute();
+            }
+            // todo - disable this button till the job is done !!!
+            //
+        }
+
+        public void ChangeStructureJobProgress(int add)
+        {
+            StructureProgressBarAdd(add);
+
+            IsStructureJobDone();
+        }
+
+        private void StructureProgressBarAdd(int add)
+        {
+            int newProgressValue = prbJobProgressBar.Value + add;
+            if (newProgressValue > prbJobProgressBar.Maximum)
+                SafeChangeStructureProgressBar(prbJobProgressBar.Maximum);
+            else
+                SafeChangeStructureProgressBar(newProgressValue);
+        }
+
+        private delegate void SafeCallDelegate(int newValue);
+
+        private void SafeChangeStructureProgressBar(int newValue)
+        {
+            if (prbJobProgressBar.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(SafeChangeStructureProgressBar);
+                prbJobProgressBar.Invoke(d, new object[] { newValue });
+            }
+            else
+            {
+                prbJobProgressBar.Value = newValue;
+            }
+        }
+
+        private void IsStructureJobDone()
+        {
+            if (prbJobProgressBar.Value == prbJobProgressBar.Maximum)
+            {
+                btnStartAnalysisStr.Enabled = true;
+                lblStructureJobLabel.Visible = false;
+
+                MessageBox.Show(
+                    "Structure job done!",
+                    "Done",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                UpdateStructureTreeView();
+            }
         }
 
         // ******* Structure Harvester TAB ******* //
