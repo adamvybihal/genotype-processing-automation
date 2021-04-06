@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Form for selecting Structure's parameter set
+    /// </summary>
     public partial class FormSelectParamSet : Form
     {
 
         private ProjectScreen callerProjectScreen;
 
+        /// <summary>
+        /// FormSelectParamSet constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen form calling this class</param>
         public FormSelectParamSet(ProjectScreen projectScreen)
         {
             InitializeComponent();

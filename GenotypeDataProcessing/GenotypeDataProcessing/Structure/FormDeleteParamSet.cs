@@ -11,11 +11,18 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Form for deleting Structure's parameter sets
+    /// </summary>
     public partial class FormDeleteParamSet : Form
     {
 
         private ProjectScreen callerProjectScreen;
 
+        /// <summary>
+        /// FormDeleteParamSet constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen Form calling this class</param>
         public FormDeleteParamSet(ProjectScreen projectScreen)
         {
             InitializeComponent();

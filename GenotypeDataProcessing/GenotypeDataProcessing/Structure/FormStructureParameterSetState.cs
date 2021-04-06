@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Enum of two states for FormStructureParameterSet class
+    /// </summary>
     public enum FormStructureParameterSetState
     {
         /// <summary>

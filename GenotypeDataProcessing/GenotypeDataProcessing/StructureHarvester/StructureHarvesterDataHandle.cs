@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.StructureHarvester
 {
+    /// <summary>
+    /// Class managing Structure Harvester's data
+    /// </summary>
     public class StructureHarvesterDataHandle
     {
 
@@ -61,9 +64,12 @@ namespace GenotypeDataProcessing.StructureHarvester
             }
         }
 
+        /// <summary>
+        /// Structure Harvester's job execution
+        /// </summary>
         public void StartJob()
         {
-
+            //todo!!
         }
 
         /// <summary>

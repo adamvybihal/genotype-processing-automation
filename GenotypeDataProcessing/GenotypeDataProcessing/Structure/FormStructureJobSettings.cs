@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Form for setting info about Structure job
+    /// </summary>
     public partial class FormStructureJobSettings : Form
     {
 
         private string parameterSet = "";
 
+        /// <summary>
+        /// FormStructureJobSettings constructor
+        /// </summary>
         public FormStructureJobSettings()
         {
             InitializeComponent();

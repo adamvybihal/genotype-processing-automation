@@ -338,10 +338,12 @@ namespace GenotypeDataProcessing
                                                             ProjectInfo.structureJobInfo[selectedParamSet].iterations);
                 structureJob.BatchRunExecute();
             }
-            // todo - disable this button till the job is done !!!
-            //
         }
 
+        /// <summary>
+        /// Method to change Project Screen's progress bar for Structure job
+        /// </summary>
+        /// <param name="add">integer to add to progress bar</param>
         public void ChangeStructureJobProgress(int add)
         {
             StructureProgressBarAdd(add);

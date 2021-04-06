@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Class for managing Structure's parameter sets
+    /// </summary>
     public class StructureParamSet
     {
 
@@ -17,6 +20,12 @@ namespace GenotypeDataProcessing.Structure
         private StructureInputInfoStruct stStructureInputInfo;
         private string directoryPath;
 
+        /// <summary>
+        /// StructureParamSet constructor
+        /// </summary>
+        /// <param name="nameOfSet">Parameter set name</param>
+        /// <param name="structureParamSetStruct">Structure of data of certain parameter set</param>
+        /// <param name="structureInputInfoStruct">Structure of info about input for Structure</param>
         public StructureParamSet(string nameOfSet, StructureParamSetStruct structureParamSetStruct, StructureInputInfoStruct structureInputInfoStruct)
         {
             parameterSetName = nameOfSet;

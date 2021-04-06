@@ -1,6 +1,9 @@
 ﻿
 namespace GenotypeDataProcessing
 {
+    /// <summary>
+    /// Form for setting CLUMPP parameters
+    /// </summary>
     partial class FormClumppParams
     {
         /// <summary>
@@ -150,11 +153,11 @@ namespace GenotypeDataProcessing
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(120, 41);
+            this.label4.Location = new System.Drawing.Point(174, 41);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 17);
+            this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 19;
-            this.label4.Text = "Number of clusters:";
+            this.label4.Text = "Number K:";
             // 
             // numClusters
             // 
@@ -216,11 +219,11 @@ namespace GenotypeDataProcessing
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(141, 71);
+            this.label5.Location = new System.Drawing.Point(66, 71);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 17);
+            this.label5.Size = new System.Drawing.Size(185, 17);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Number of runs:";
+            this.label5.Text = "Number of iterations over K:";
             // 
             // label1
             // 
@@ -244,7 +247,7 @@ namespace GenotypeDataProcessing
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(503, 227);
+            this.tabPage2.Size = new System.Drawing.Size(509, 227);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Options for algorithms";
             // 
@@ -342,7 +345,7 @@ namespace GenotypeDataProcessing
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(503, 227);
+            this.tabPage3.Size = new System.Drawing.Size(509, 227);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Optional outputs";
             // 
@@ -397,7 +400,7 @@ namespace GenotypeDataProcessing
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(503, 227);
+            this.tabPage4.Size = new System.Drawing.Size(509, 227);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Advanced options";
             // 

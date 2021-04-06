@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Class for managing Structure SW job
+    /// </summary>
     public class StructureJob
     {
 
@@ -25,6 +28,15 @@ namespace GenotypeDataProcessing.Structure
 
         private double progressChangeRate;
 
+        /// <summary>
+        /// StructureJob constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen form which is calling this class</param>
+        /// <param name="paramSetName">Selected parameter set for Structure job</param>
+        /// <param name="structureFolderPath">Path to projects' Structure folder</param>
+        /// <param name="kFrom">Starting K</param>
+        /// <param name="kTo">Ending K</param>
+        /// <param name="reps">Iterations over each K</param>
         public StructureJob(ProjectScreen projectScreen, string paramSetName, string structureFolderPath, int kFrom, int kTo, int reps)
         {
             initK = kFrom;
@@ -62,6 +74,9 @@ namespace GenotypeDataProcessing.Structure
             }
         }
 
+        /// <summary>
+        /// Execution of Structure runs
+        /// </summary>
         public void BatchRunExecute()
         {
             for (int k = initK; k <= endingK; k++)

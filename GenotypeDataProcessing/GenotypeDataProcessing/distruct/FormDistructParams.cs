@@ -12,6 +12,9 @@ using GenotypeDataProcessing.distruct;
 
 namespace GenotypeDataProcessing
 {
+    /// <summary>
+    /// Form for setting distruct params
+    /// </summary>
     public partial class FormDistructParams : Form
     {
 
@@ -20,6 +23,10 @@ namespace GenotypeDataProcessing
         private DistructParamStruct distructParamStruct;
         private ProjectScreen callerProjectScreen;
 
+        /// <summary>
+        /// One parameter constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen Form which is calling this Form</param>
         public FormDistructParams(ProjectScreen projectScreen)
         {
             InitializeComponent();

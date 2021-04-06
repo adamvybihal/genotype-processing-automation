@@ -18,6 +18,10 @@ namespace GenotypeDataProcessing
         private ClumppParamStruct clumppParamStruct;
         private ProjectScreen callerProjectScreen;
 
+        /// <summary>
+        /// FormClumppParams constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen form calling this class</param>
         public FormClumppParams(ProjectScreen projectScreen)
         {
             InitializeComponent();

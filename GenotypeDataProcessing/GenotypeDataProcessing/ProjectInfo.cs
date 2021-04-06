@@ -13,18 +13,47 @@ namespace GenotypeDataProcessing
     /// </summary>
     public static class ProjectInfo
     {
+        /// <summary>
+        /// Name of current project
+        /// </summary>
         public const string projectName = "testProject";
 
+        /// <summary>
+        /// Name of folder, containing Structure data for current project
+        /// </summary>
         public const string structureFolder = "structure";
+        /// <summary>
+        /// Name of copied input data file for Structure
+        /// </summary>
         public const string structureDataCopyName = "structureData.";
-
+        /// <summary>
+        /// Name of folder, containing Structure Harvester data for current project
+        /// </summary>
         public const string structureHarvesterFolder = "structureHarvester";
+        /// <summary>
+        /// Name of folder, containing CLUMPP data for current project
+        /// </summary>
         public const string clumppFolder = "clumpp";
+        /// <summary>
+        /// Name of folder, containing distruct data for current project
+        /// </summary>
         public const string distructFolder = "distruct";
 
+        /// <summary>
+        /// Class holding Structure's input data
+        /// </summary>
         public static StructureInputData structureInputData;
+        /// <summary>
+        /// Structure holding info about Structure's input data
+        /// </summary>
         public static StructureInputInfoStruct structureInputInfo;
+        /// <summary>
+        /// Dicitionary containing KeyValuePairs of name of Structure's parameter set, and structure which holds Structure's parameters
+        /// </summary>
         public static Dictionary<string, StructureParamSetStruct> structureParamSets = new Dictionary<string, StructureParamSetStruct>();
+        /// <summary>
+        /// Dicitionary containing KeyValuePairs of name of Structure's parameter set, and info about job with that parameter set
+        /// </summary>
         public static Dictionary<string, StructureJobInfoStruct> structureJobInfo = new Dictionary<string, StructureJobInfoStruct>();
     }
 }

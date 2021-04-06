@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.CLUMPP
 {
+    /// <summary>
+    /// Class managing parameter set for CLUMPP
+    /// </summary>
     public class ClumppParameterSet
     {
 
@@ -17,7 +20,11 @@ namespace GenotypeDataProcessing.CLUMPP
 
         private bool isParamfileCreated = false;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="clumppParams">Structure containg CLUMPP parameters</param>
+        /// <param name="path">Path of projects' CLUMPP folder</param>
         public ClumppParameterSet(ClumppParamStruct clumppParams, string path)
         {
             clumppParamStruct = clumppParams;
@@ -86,8 +93,7 @@ namespace GenotypeDataProcessing.CLUMPP
             if (dataTypeClumpp == DataTypeClumppEn.ZERO) paramString = "DATATYPE 0\n";
             else paramString = "DATATYPE 1\n";
 
-            paramString += "DATATYPE " + clumppParamStruct.dataType + "\n" +
-                "INDFILE indiv.indfile" + "\n" +
+            paramString += "INDFILE indiv.indfile" + "\n" +
                 "POPFILE pop.popfile" + "\n" +
                 "OUTFILE outf.indivq" + "\n" +
                 "MISCFILE mis.miscfile" + "\n" +
@@ -120,13 +126,17 @@ namespace GenotypeDataProcessing.CLUMPP
             return paramString;
         }
 
+        /// <summary>
+        /// Informs about successful paramfile creation
+        /// </summary>
+        /// <returns>true if paramfile was created</returns>
         public bool IsParamfileCreated()
         {
             return isParamfileCreated;
         }
 
         /// <summary>
-        /// returns 0 or 1, based on bool value
+        /// Returns 0 or 1, based on bool value
         /// </summary>
         /// <param name="boolValue">bool param</param>
         /// <returns>0 or 1</returns>

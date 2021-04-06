@@ -10,13 +10,20 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.Structure
 {
+    /// <summary>
+    /// Form for creating or updating Structure parameter set
+    /// </summary>
     public partial class FormStructureParameterSet : Form
     {
         private StructureParamSetStruct structureParamSetStruct;
         private ProjectScreen callerProjectScreen;
         private FormStructureParameterSetState state;
 
-
+        /// <summary>
+        /// FormStructureParameterSet constructor for creating new parameter set
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen class calling this form</param>
+        /// <param name="parameterSetState">State of this form, update existing set or create new set</param>
         public FormStructureParameterSet(ProjectScreen projectScreen, FormStructureParameterSetState parameterSetState)
         {
             InitializeComponent();
@@ -25,6 +32,12 @@ namespace GenotypeDataProcessing.Structure
             state = parameterSetState;
         }
 
+        /// <summary>
+        /// FormStructureParameterSet constructor for updating existing parameter set
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen class calling this form</param>
+        /// <param name="parameterSetState">State of this form, update existing set or create new set</param>
+        /// <param name="paramSet">Selected parameter set, which is to be updated</param>
         public FormStructureParameterSet(ProjectScreen projectScreen, FormStructureParameterSetState parameterSetState, string paramSet)
         {
             InitializeComponent();

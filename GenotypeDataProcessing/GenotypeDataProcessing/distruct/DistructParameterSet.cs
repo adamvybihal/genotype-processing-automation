@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace GenotypeDataProcessing.distruct
 {
+    /// <summary>
+    /// Class for managing distruct parameter sets
+    /// </summary>
     public class DistructParameterSet
     {
 
@@ -16,6 +19,11 @@ namespace GenotypeDataProcessing.distruct
         private string directoryPath;
         private bool isDrawparamsCreated = false;
 
+        /// <summary>
+        /// Constructor with two parameters
+        /// </summary>
+        /// <param name="distructParam">Structure containing distruct parameters</param>
+        /// <param name="path">path where will distruct parameter file be created</param>
         public DistructParameterSet(DistructParamStruct distructParam, string path)
         {
             distructParamStruct = distructParam;
@@ -47,6 +55,9 @@ namespace GenotypeDataProcessing.distruct
             }
         }
 
+        /// <summary>
+        /// Method creates drawparams file
+        /// </summary>
         public void CreateDrawparams()
         {
             isDrawparamsCreated = false;
@@ -110,7 +121,11 @@ namespace GenotypeDataProcessing.distruct
                 "#define PRINT_INFILE_NAME 0" + "\n" +
                 "#define PRINT_COLOR_BREWER 1";
         }
-
+        
+        /// <summary>
+        /// Informs of successful creation of file drawparams
+        /// </summary>
+        /// <returns>true if drawparams was created, false if not</returns>
         public bool IsDrawparamsCreated()
         {
             return isDrawparamsCreated;
