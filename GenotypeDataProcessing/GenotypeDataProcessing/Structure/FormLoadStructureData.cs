@@ -91,17 +91,17 @@ namespace GenotypeDataProcessing
         // STEP 4
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            ProjectScreen.structureDataLoaded = false;
             SetProjectInputInfo();
 
-            string projectPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
-            ProjectInfo.structureInputData = new StructureInputData(txtStructureDataFile.Text, projectPath);
+            string strucureInputCopyPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
+            ProjectInfo.structureInputData = new StructureInputData(txtStructureDataFile.Text, strucureInputCopyPath);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
-                ProjectScreen.structureDataLoaded = true;
                 MessageBox.Show("Data set loaded succesfully.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+                CreateProjectInfoFile();
+
                 callerProjectScreen.ExecuteWhenStructureDataLoaded();
                 callerProjectScreen.UpdateStructureTreeView();
 
@@ -111,6 +111,52 @@ namespace GenotypeDataProcessing
             {
                 MessageBox.Show(ProjectInfo.structureInputData.GetErrorString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void CreateProjectInfoFile()
+        {
+            string infoString = GetProjectInfoFileString();
+
+            string filePath = Path.Combine(ProjectInfo.projectName, ProjectInfo.projectName + ".myproj");
+
+            try
+            {
+                using (FileStream fs = File.Create(filePath))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes(infoString);
+                    fs.Write(info, 0, info.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+        }
+
+        private string GetProjectInfoFileString()
+        {
+            return "NAME " + ProjectInfo.projectName + "\n" +
+                "NUMINDS " + numIndividuals.Value + "\n" +
+                "NUMLOCI " + numLoci.Value + "\n" +
+                "PLOIDY " + numPloidy.Value + "\n" +
+                "MISSING " + numMissingDataValue.Value + "\n" +
+                "ONEROWPERIND " + StructureParamSet.ReturnLogical(cbxSingleLine.Checked) + "\n" +
+
+                "LABEL " + StructureParamSet.ReturnLogical(cbxIdCol.Checked) + "\n" +
+                "POPDATA " + StructureParamSet.ReturnLogical(cbxPopOriginCol.Checked) + "\n" +
+                "POPFLAG " + StructureParamSet.ReturnLogical(cbxPopInfoFlagCol.Checked) + "\n" +
+                "LOCDATA " + StructureParamSet.ReturnLogical(cbxSampleInfoCol.Checked) + "\n" +
+                "PHENOTYPE " + StructureParamSet.ReturnLogical(cbxPhenotypeCol.Checked) + "\n" +
+                "EXTRACOLS " + numExtraCols.Value + "\n" +
+                "MARKERNAMES " + StructureParamSet.ReturnLogical(cbxMarkerRow.Checked) + "\n" +
+                "RECESSIVEALLELES " + StructureParamSet.ReturnLogical(cbxAlelesRow.Checked) + "\n" +
+                "MAPDISTANCES " + StructureParamSet.ReturnLogical(cbxLociDistancesRow.Checked) + "\n" +
+                "PHASEINFO " + StructureParamSet.ReturnLogical(cbxPhase.Checked);
         }
 
         private void SetProjectInputInfo()

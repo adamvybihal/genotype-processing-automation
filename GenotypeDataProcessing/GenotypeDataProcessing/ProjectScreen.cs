@@ -20,10 +20,6 @@ namespace GenotypeDataProcessing
     /// </summary>
     public partial class ProjectScreen : Form
     {
-        /// <summary>
-        /// Indicates whether Structure input data were loaded succesfully
-        /// </summary>
-        public static bool structureDataLoaded = false;
 
         /// <summary>
         /// Default constructor of ProjectScreen
@@ -58,45 +54,38 @@ namespace GenotypeDataProcessing
 
         private void PopulateStructureListView()
         {
-            if (structureDataLoaded)
+            lsvStructureInputData.Visible = true;
+            lsvStructureInputData.View = View.Details;
+
+            lsvStructureInputData.Columns.Clear();
+
+            if (ProjectInfo.structureInputInfo.label) lsvStructureInputData.Columns.Add("Label");
+            if (ProjectInfo.structureInputInfo.popData) lsvStructureInputData.Columns.Add("Pop");
+            if (ProjectInfo.structureInputInfo.popFlag) lsvStructureInputData.Columns.Add("Flag");
+            if (ProjectInfo.structureInputInfo.locData) lsvStructureInputData.Columns.Add("Sample Location");
+            if (ProjectInfo.structureInputInfo.phenotype) lsvStructureInputData.Columns.Add("Phenotype");
+
+            for (int i = 1; i <= ProjectInfo.structureInputInfo.extraCols; i++)
             {
-                lsvStructureInputData.Visible = true;
-                lsvStructureInputData.View = View.Details;
-
-                lsvStructureInputData.Columns.Clear();
-
-                if (ProjectInfo.structureInputInfo.label) lsvStructureInputData.Columns.Add("Label");
-                if (ProjectInfo.structureInputInfo.popData) lsvStructureInputData.Columns.Add("Pop");
-                if (ProjectInfo.structureInputInfo.popFlag) lsvStructureInputData.Columns.Add("Flag");
-                if (ProjectInfo.structureInputInfo.locData) lsvStructureInputData.Columns.Add("Sample Location");
-                if (ProjectInfo.structureInputInfo.phenotype) lsvStructureInputData.Columns.Add("Phenotype");
-
-                for (int i = 1; i <= ProjectInfo.structureInputInfo.extraCols; i++)
-                {
-                    lsvStructureInputData.Columns.Add("Extra " + i);
-                }
-
-                for (int i = 1; i <= ProjectInfo.structureInputInfo.numLoci; i++)
-                {
-                    lsvStructureInputData.Columns.Add("Locus " + i);
-                }
-
-                string[,] data = ProjectInfo.structureInputData.GetStructureData();
-
-                int maxRow = data.GetUpperBound(0);
-                int maxCol = data.GetUpperBound(1);
-                for (int row = 0; row <= maxRow; row++)
-                {
-                    ListViewItem newItem = lsvStructureInputData.Items.Add(data[row, 0]);
-                    for (int col = 1; col <= maxCol; col++)
-                    {
-                        newItem.SubItems.Add(data[row, col]);
-                    }
-                }
+                lsvStructureInputData.Columns.Add("Extra " + i);
             }
-            else
+
+            for (int i = 1; i <= ProjectInfo.structureInputInfo.numLoci; i++)
             {
-                MessageBox.Show("No valid data loaded");
+                lsvStructureInputData.Columns.Add("Locus " + i);
+            }
+
+            string[,] data = ProjectInfo.structureInputData.GetStructureData();
+
+            int maxRow = data.GetUpperBound(0);
+            int maxCol = data.GetUpperBound(1);
+            for (int row = 0; row <= maxRow; row++)
+            {
+                ListViewItem newItem = lsvStructureInputData.Items.Add(data[row, 0]);
+                for (int col = 1; col <= maxCol; col++)
+                {
+                    newItem.SubItems.Add(data[row, col]);
+                }
             }
         }
 
