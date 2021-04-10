@@ -17,16 +17,19 @@ namespace GenotypeDataProcessing.Structure
     {
 
         private ProjectScreen callerProjectScreen;
+        private FormSelectParamSetState selectParamSetState;
 
         /// <summary>
         /// FormSelectParamSet constructor
         /// </summary>
         /// <param name="projectScreen">ProjectScreen form calling this class</param>
-        public FormSelectParamSet(ProjectScreen projectScreen)
+        /// <param name="state">Current form state</param>
+        public FormSelectParamSet(ProjectScreen projectScreen, FormSelectParamSetState state)
         {
             InitializeComponent();
 
             callerProjectScreen = projectScreen;
+            selectParamSetState = state;
 
             PopulateListView();
         }
@@ -39,7 +42,20 @@ namespace GenotypeDataProcessing.Structure
             lsvParamSets.Columns.Add("parameter set");
             lsvParamSets.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            foreach (KeyValuePair<string, StructureParamSetStruct> kvp in ProjectInfo.structureParamSets)
+            switch (selectParamSetState)
+            {
+                case FormSelectParamSetState.UPDATE_SET:
+                    PopulateWithParamSetsNames<StructureParamSetStruct>(ProjectInfo.structureParamSets);
+                    break;
+                case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
+                    PopulateWithParamSetsNames<StructureJobInfoStruct>(ProjectInfo.structureJobInfo);
+                    break;
+            }
+        }
+
+        private void PopulateWithParamSetsNames<TValue>(Dictionary<string,TValue> paramSets)
+        {
+            foreach (KeyValuePair<string, TValue> kvp in paramSets)
             {
                 lsvParamSets.Items.Add(kvp.Key);
             }
@@ -51,10 +67,15 @@ namespace GenotypeDataProcessing.Structure
             {
                 ListViewItem itm = lsvParamSets.SelectedItems[0];
 
-                FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(callerProjectScreen, FormStructureParameterSetState.UPDATE, itm.Text);
-                formStructureParameterSet.ShowDialog();
-
-                this.Close();
+                switch (selectParamSetState)
+                {
+                    case FormSelectParamSetState.UPDATE_SET:
+                        GoToParameterSetUpdate(itm.Text);
+                        break;
+                    case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
+                        SelectSetForStructureHarvester(itm.Text);
+                        break;
+                }
             }
             else
             {
@@ -62,8 +83,24 @@ namespace GenotypeDataProcessing.Structure
                     "Nothing was selected.",
                     "Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    MessageBoxIcon.Warning
+                    );
             }
+        }
+
+        private void GoToParameterSetUpdate(string paramSet)
+        {
+            FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(callerProjectScreen, FormStructureParameterSetState.UPDATE, paramSet);
+            formStructureParameterSet.ShowDialog();
+
+            this.Close();
+        }
+
+        private void SelectSetForStructureHarvester(string paramSet)
+        {
+            callerProjectScreen.SetSelectedStructureResults(paramSet);
+
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

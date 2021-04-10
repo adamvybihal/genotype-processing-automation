@@ -18,8 +18,8 @@ namespace GenotypeDataProcessing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjectScreen());
-            //Application.Run(new FormDistructParams());
+            //Application.Run(new ProjectScreen());
+            Application.Run(new ProjectScreen("testProject"));
         }
     }
 }

@@ -39,7 +39,7 @@ namespace GenotypeDataProcessing.Structure
         {
             try
             {
-                directoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, parameterSetName);
+                directoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder, parameterSetName);
 
                 if (Directory.Exists(directoryPath))
                 {
@@ -79,7 +79,7 @@ namespace GenotypeDataProcessing.Structure
 
         private string MainparamsString()
         {
-            string inputDataFilePath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
+            string inputDataFilePath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
             const string outFile = "outfile";
 
             return "#define MAXPOPS   1" + "\n" +                               // value will change via command line

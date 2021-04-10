@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.Structure
     /// <summary>
     /// Contains information about Structure's input file 
     /// </summary>
+    [Serializable]
     public struct StructureInputInfoStruct
     {
         /// <summary>

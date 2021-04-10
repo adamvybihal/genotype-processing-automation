@@ -36,7 +36,7 @@ namespace GenotypeDataProcessing.distruct
         {
             try
             {
-                directoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+                directoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
 
                 if (Directory.Exists(directoryPath))
                 {

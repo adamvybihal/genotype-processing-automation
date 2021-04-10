@@ -37,7 +37,7 @@ namespace GenotypeDataProcessing.CLUMPP
         {
             try
             {
-                directoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+                directoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
 
                 if (Directory.Exists(directoryPath))
                 {

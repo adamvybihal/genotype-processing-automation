@@ -93,8 +93,8 @@ namespace GenotypeDataProcessing
         {
             SetProjectInputInfo();
 
-            string strucureInputCopyPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
-            ProjectInfo.structureInputData = new StructureInputData(txtStructureDataFile.Text, strucureInputCopyPath);
+            string strucureInputCopyPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder, ProjectInfo.structureDataCopyName);
+            ProjectInfo.structureInputData = new StructureInputData(txtStructureDataFile.Text, strucureInputCopyPath, ProjectInfo.structureInputInfo);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
@@ -117,7 +117,7 @@ namespace GenotypeDataProcessing
         {
             string infoString = GetProjectInfoFileString();
 
-            string filePath = Path.Combine(ProjectInfo.projectName, ProjectInfo.projectName + ".myproj");
+            string filePath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.projectName + ".myproj");
 
             try
             {
@@ -140,23 +140,23 @@ namespace GenotypeDataProcessing
 
         private string GetProjectInfoFileString()
         {
-            return "NAME " + ProjectInfo.projectName + "\n" +
-                "NUMINDS " + numIndividuals.Value + "\n" +
-                "NUMLOCI " + numLoci.Value + "\n" +
-                "PLOIDY " + numPloidy.Value + "\n" +
-                "MISSING " + numMissingDataValue.Value + "\n" +
-                "ONEROWPERIND " + StructureParamSet.ReturnLogical(cbxSingleLine.Checked) + "\n" +
+            return "NAME " + ProjectInfo.projectNamePath; // + "\n" +
+                //"NUMINDS " + numIndividuals.Value + "\n" +
+                //"NUMLOCI " + numLoci.Value + "\n" +
+                //"PLOIDY " + numPloidy.Value + "\n" +
+                //"MISSING " + numMissingDataValue.Value + "\n" +
+                //"ONEROWPERIND " + StructureParamSet.ReturnLogical(cbxSingleLine.Checked) + "\n" +
 
-                "LABEL " + StructureParamSet.ReturnLogical(cbxIdCol.Checked) + "\n" +
-                "POPDATA " + StructureParamSet.ReturnLogical(cbxPopOriginCol.Checked) + "\n" +
-                "POPFLAG " + StructureParamSet.ReturnLogical(cbxPopInfoFlagCol.Checked) + "\n" +
-                "LOCDATA " + StructureParamSet.ReturnLogical(cbxSampleInfoCol.Checked) + "\n" +
-                "PHENOTYPE " + StructureParamSet.ReturnLogical(cbxPhenotypeCol.Checked) + "\n" +
-                "EXTRACOLS " + numExtraCols.Value + "\n" +
-                "MARKERNAMES " + StructureParamSet.ReturnLogical(cbxMarkerRow.Checked) + "\n" +
-                "RECESSIVEALLELES " + StructureParamSet.ReturnLogical(cbxAlelesRow.Checked) + "\n" +
-                "MAPDISTANCES " + StructureParamSet.ReturnLogical(cbxLociDistancesRow.Checked) + "\n" +
-                "PHASEINFO " + StructureParamSet.ReturnLogical(cbxPhase.Checked);
+                //"LABEL " + StructureParamSet.ReturnLogical(cbxIdCol.Checked) + "\n" +
+                //"POPDATA " + StructureParamSet.ReturnLogical(cbxPopOriginCol.Checked) + "\n" +
+                //"POPFLAG " + StructureParamSet.ReturnLogical(cbxPopInfoFlagCol.Checked) + "\n" +
+                //"LOCDATA " + StructureParamSet.ReturnLogical(cbxSampleInfoCol.Checked) + "\n" +
+                //"PHENOTYPE " + StructureParamSet.ReturnLogical(cbxPhenotypeCol.Checked) + "\n" +
+                //"EXTRACOLS " + numExtraCols.Value + "\n" +
+                //"MARKERNAMES " + StructureParamSet.ReturnLogical(cbxMarkerRow.Checked) + "\n" +
+                //"RECESSIVEALLELES " + StructureParamSet.ReturnLogical(cbxAlelesRow.Checked) + "\n" +
+                //"MAPDISTANCES " + StructureParamSet.ReturnLogical(cbxLociDistancesRow.Checked) + "\n" +
+                //"PHASEINFO " + StructureParamSet.ReturnLogical(cbxPhase.Checked);
         }
 
         private void SetProjectInputInfo()

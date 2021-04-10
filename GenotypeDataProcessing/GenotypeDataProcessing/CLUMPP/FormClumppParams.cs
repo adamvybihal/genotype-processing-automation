@@ -85,7 +85,7 @@ namespace GenotypeDataProcessing
         {
             SetClumppParams();
 
-            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
 
             ClumppParameterSet clumppParameterSet = new ClumppParameterSet(clumppParamStruct, path);
 

@@ -98,8 +98,8 @@ namespace GenotypeDataProcessing.Structure
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSetName = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.txtSetName = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRepsAfterBurnin)).BeginInit();
@@ -1138,6 +1138,8 @@ namespace GenotypeDataProcessing.Structure
             // cbxComputeProb
             // 
             this.cbxComputeProb.AutoSize = true;
+            this.cbxComputeProb.Checked = true;
+            this.cbxComputeProb.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxComputeProb.Location = new System.Drawing.Point(127, 59);
             this.cbxComputeProb.Name = "cbxComputeProb";
             this.cbxComputeProb.Size = new System.Drawing.Size(355, 21);
@@ -1185,13 +1187,6 @@ namespace GenotypeDataProcessing.Structure
             this.panel2.Size = new System.Drawing.Size(673, 42);
             this.panel2.TabIndex = 2;
             // 
-            // txtSetName
-            // 
-            this.txtSetName.Location = new System.Drawing.Point(339, 12);
-            this.txtSetName.Name = "txtSetName";
-            this.txtSetName.Size = new System.Drawing.Size(118, 22);
-            this.txtSetName.TabIndex = 0;
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -1200,6 +1195,13 @@ namespace GenotypeDataProcessing.Structure
             this.label20.Size = new System.Drawing.Size(139, 17);
             this.label20.TabIndex = 1;
             this.label20.Text = "parameter set name:";
+            // 
+            // txtSetName
+            // 
+            this.txtSetName.Location = new System.Drawing.Point(339, 12);
+            this.txtSetName.Name = "txtSetName";
+            this.txtSetName.Size = new System.Drawing.Size(118, 22);
+            this.txtSetName.TabIndex = 0;
             // 
             // FormStructureParameterSet
             // 

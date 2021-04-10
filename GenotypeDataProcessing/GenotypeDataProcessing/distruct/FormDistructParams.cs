@@ -43,7 +43,7 @@ namespace GenotypeDataProcessing
         {
             SetDistructParams();
 
-            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
 
             DistructParameterSet distructParameterSet = new DistructParameterSet(distructParamStruct, path);
 

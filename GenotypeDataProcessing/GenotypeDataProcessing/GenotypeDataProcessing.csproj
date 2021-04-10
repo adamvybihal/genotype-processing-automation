@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,11 +52,29 @@
     <Reference Include="Aspose.Zip, Version=21.2.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Zip.21.2.0\lib\net40\Aspose.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="DansCSharpLibrary, Version=5.3.0.0, Culture=neutral, PublicKeyToken=1c2616cf3f9f529d, processorArchitecture=MSIL">
+      <HintPath>..\packages\DansUtilityLibraries.CSharpLibrary.5.3.0.0\lib\net45\DansCSharpLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.SQLite, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Wpf, Version=2.7.11.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.11\lib\net45\IronPython.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MailChimp.Net, Version=5.1.0.0, Culture=neutral, PublicKeyToken=37d26d538413c581, processorArchitecture=MSIL">
       <HintPath>..\packages\MailChimp.Net.V3.5.1.0\lib\net472\MailChimp.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.8\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
@@ -87,6 +105,12 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.8\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -135,7 +159,8 @@
     <Compile Include="CLUMPP\DataTypeClumppEn.cs" />
     <Compile Include="distruct\DistructParameterSet.cs" />
     <Compile Include="distruct\DistructParamStruct.cs" />
-    <Compile Include="DUTs\ST_InputDataError.cs" />
+    <Compile Include="Structure\FormSelectParamSetState.cs" />
+    <Compile Include="Structure\StructureInputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
     <Compile Include="Structure\FormStructureJobSettings.cs">
       <SubType>Form</SubType>
@@ -240,6 +265,650 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="python27\DLLs\bz2.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\pyexpat.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\select.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\unicodedata.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\winsound.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_bsddb.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_ctypes.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_elementtree.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_hashlib.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_msi.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_multiprocessing.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_socket.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_sqlite3.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\DLLs\_ssl.pyd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\bz2.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\pyexpat.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\python27.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\select.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\sqlite3.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\unicodedata.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\winsound.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_bsddb.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_ctypes.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_elementtree.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_hashlib.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_msi.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_multiprocessing.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_socket.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_sqlite3.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_ssl.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\libs\_tkinter.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\abc.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\argparse.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\codecs.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\collections.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\copy.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\copy_reg.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\ctypes\macholib\fetch_macholib" />
+    <None Include="python27\Lib\ctypes\macholib\fetch_macholib.bat" />
+    <None Include="python27\Lib\ctypes\macholib\README.ctypes" />
+    <None Include="python27\Lib\distutils\command\command_template" />
+    <None Include="python27\Lib\distutils\README" />
+    <None Include="python27\Lib\encodings\aliases.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\encodings\cp1250.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\encodings\__init__.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\fnmatch.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\functools.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\genericpath.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\gettext.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\glob.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\heapq.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\keyword.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\linecache.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\locale.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\ntpath.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\os.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\pdb.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\posixpath.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\re.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\site-packages\easy_install.pyc" />
+    <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\INSTALLER" />
+    <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\METADATA" />
+    <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\RECORD" />
+    <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\WHEEL" />
+    <None Include="python27\Lib\site-packages\pip\_internal\build_env.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cache.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\autocompletion.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\base_command.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\cmdoptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\main_parser.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\parser.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\status_codes.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\cli\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\check.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\completion.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\configuration.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\debug.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\download.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\freeze.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\hash.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\help.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\install.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\list.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\search.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\show.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\uninstall.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\wheel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\commands\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\configuration.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\distributions\base.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\distributions\installed.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\distributions\source.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\distributions\wheel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\distributions\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\download.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\exceptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\index.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\legacy_resolve.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\locations.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\candidate.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\format_control.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\index.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\link.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\search_scope.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\selection_prefs.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\target_python.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\models\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\operations\check.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\operations\freeze.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\operations\prepare.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\operations\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\pep425tags.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\pyproject.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\constructors.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\req_file.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\req_install.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\req_set.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\req_tracker.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\req_uninstall.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\req\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\appdirs.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\deprecation.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\encoding.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\filesystem.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\glibc.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\hashes.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\logging.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\marker_files.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\misc.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\models.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\outdated.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\packaging.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\setuptools_build.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\temp_dir.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\typing.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\ui.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\virtualenv.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\utils\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\bazaar.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\git.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\mercurial.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\subversion.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\versioncontrol.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\vcs\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\wheel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_internal\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\appdirs.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\adapter.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\cache.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\file_cache.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\redis_cache.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\controller.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\filewrapper.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\heuristics.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\serialize.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\wrapper.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\_cmd.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\certifi\cacert.pem" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\certifi\core.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\certifi\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\certifi\__main__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\big5freq.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\big5prober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\chardistribution.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\charsetgroupprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\charsetprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\cli\chardetect.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\cli\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\codingstatemachine.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\cp949prober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\enums.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\escprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\escsm.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\eucjpprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\euckrfreq.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\euckrprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\euctwfreq.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\euctwprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\gb2312freq.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\gb2312prober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\hebrewprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\jisfreq.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\jpcntx.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langbulgarianmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langcyrillicmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langgreekmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langhebrewmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langhungarianmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langthaimodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\langturkishmodel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\latin1prober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcharsetprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcsgroupprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcssm.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\sbcharsetprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\sbcsgroupprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\sjisprober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\universaldetector.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\utf8prober.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\version.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\chardet\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\ansi.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\ansitowin32.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\initialise.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\win32.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\winterm.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\colorama\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\database.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\index.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\locators.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\manifest.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\markers.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\metadata.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\resources.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\scripts.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\util.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\version.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\wheel.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\misc.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\shutil.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\sysconfig.cfg" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\sysconfig.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\tarfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distlib\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\distro.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\constants.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\alphabeticalattributes.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\base.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\inject_meta_charset.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\lint.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\optionaltags.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\sanitizer.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\whitespace.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\html5parser.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\serializer.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\genshi.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\sax.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\base.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\dom.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree_lxml.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\base.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\dom.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree_lxml.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\genshi.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_ihatexml.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_inputstream.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_tokenizer.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\datrie.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\py.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\_base.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\_utils.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\html5lib\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\codec.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\core.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\idnadata.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\intranges.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\package_data.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\uts46data.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\idna\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\ipaddress.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\linklockfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\mkdirlockfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\pidlockfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\sqlitelockfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\symlinklockfile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\lockfile\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\msgpack\exceptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\msgpack\fallback.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\msgpack\_version.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\msgpack\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\markers.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\requirements.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\specifiers.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\utils.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\version.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\_compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\_structures.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\__about__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\packaging\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\build.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\check.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\colorlog.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\envbuild.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\wrappers.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\_in_process.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pep517\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pkg_resources\py31compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pkg_resources\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\progress\bar.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\progress\counter.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\progress\spinner.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\progress\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pyparsing.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\core.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\parser.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\test.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\utils.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\writer.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\pytoml\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\adapters.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\api.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\auth.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\certs.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\cookies.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\exceptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\help.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\hooks.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\models.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\packages.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\sessions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\status_codes.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\structures.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\utils.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\_internal_utils.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\requests\__version__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\retrying.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\six.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\connection.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\connectionpool.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\appengine.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\ntlmpool.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\pyopenssl.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\securetransport.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\socks.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_appengine_environ.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\bindings.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\low_level.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\exceptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\fields.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\filepost.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\backports\makefile.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\backports\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\abnf_regexp.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\api.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\builder.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\compat.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\exceptions.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\iri.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\misc.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\normalizers.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\parseresult.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\uri.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\validators.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\_mixin.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\six.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\ssl_match_hostname\_implementation.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\ssl_match_hostname\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\poolmanager.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\request.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\response.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\connection.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\queue.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\request.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\response.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\retry.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\ssl_.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\timeout.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\url.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\wait.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\_collections.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\urllib3\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\webencodings\labels.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\webencodings\mklabels.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\webencodings\tests.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\webencodings\x_user_defined.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\webencodings\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\_vendor\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pip\__main__.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\extern\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\py31compat.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\appdirs.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\markers.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\requirements.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\specifiers.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\utils.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\version.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\_compat.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\_structures.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\__about__.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\pyparsing.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\six.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\_vendor\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\pkg_resources\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\INSTALLER" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\LICENSE" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\METADATA" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\RECORD" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\WHEEL" />
+    <None Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\zip-safe" />
+    <None Include="python27\Lib\site-packages\setuptools\archive_util.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\build_meta.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\alias.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\bdist_egg.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\bdist_rpm.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\bdist_wininst.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\build_clib.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\build_ext.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\build_py.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\develop.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\dist_info.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\easy_install.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\egg_info.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\install.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\install_egg_info.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\install_lib.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\install_scripts.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\py36compat.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\register.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\rotate.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\saveopts.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\sdist.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\setopt.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\test.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\upload.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\upload_docs.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\command\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\config.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\depends.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\dep_util.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\dist.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\extension.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\extern\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\glibc.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\glob.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\launch.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\lib2to3_ex.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\monkey.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\msvc.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\namespaces.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\package_index.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\pep425tags.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\py27compat.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\py31compat.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\py33compat.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\sandbox.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\script %28dev%29.tmpl" />
+    <None Include="python27\Lib\site-packages\setuptools\script.tmpl" />
+    <None Include="python27\Lib\site-packages\setuptools\site-patch.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\ssl_support.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\unicode_utils.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\version.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\wheel.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\windows_support.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_deprecation_warning.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\markers.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\requirements.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\specifiers.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\utils.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\version.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\_compat.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\_structures.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\__about__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\packaging\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\pyparsing.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\six.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\_vendor\__init__.pyc" />
+    <None Include="python27\Lib\site-packages\setuptools\__init__.pyc" />
+    <None Include="python27\Lib\site.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\sre_compile.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\sre_constants.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\sre_parse.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\stat.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\string.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\struct.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\sysconfig.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\textwrap.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\traceback.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\types.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\UserDict.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\warnings.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\weakref.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\wsgiref.egg-info">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\_abcoll.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\Lib\_weakrefset.pyc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="python27\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -266,6 +935,2235 @@
     <Content Include="harvesterCore.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="python27\DLLs\sqlite3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\abstract.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\asdl.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\ast.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\bitset.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\boolobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\bufferobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\bytearrayobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\bytesobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\bytes_methods.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\cellobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\ceval.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\classobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\cobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\code.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\codecs.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\compile.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\complexobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\cStringIO.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\datetime.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\descrobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\dictobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\dtoa.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\enumobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\errcode.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\eval.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\fileobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\floatobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\frameobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\funcobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\genobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\graminit.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\grammar.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\import.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\intobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\intrcheck.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\iterobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\listobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\longintrepr.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\longobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\marshal.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\memoryobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\metagrammar.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\methodobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\modsupport.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\moduleobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\node.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\object.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\objimpl.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\opcode.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\osdefs.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\parsetok.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\patchlevel.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pgen.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pgenheaders.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyarena.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pycapsule.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyconfig.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyctype.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pydebug.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyerrors.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyexpat.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyfpe.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pygetopt.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pymacconfig.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pymactoolbox.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pymath.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pymem.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pyport.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pystate.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pystrcmp.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pystrtod.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\Python-ast.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\Python.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pythonrun.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\pythread.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\py_curses.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\rangeobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\setobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\sliceobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\stringobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\structmember.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\structseq.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\symtable.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\sysmodule.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\timefuncs.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\token.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\traceback.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\tupleobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\ucnhash.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\unicodeobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\warnings.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\include\weakrefobject.h">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\abc.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\aifc.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\antigravity.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\anydbm.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\argparse.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ast.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\asynchat.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\asyncore.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\atexit.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\audiodev.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\base64.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\BaseHTTPServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\Bastion.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\bdb.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\binhex.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\bisect.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\bsddb\db.py" />
+    <Content Include="python27\Lib\bsddb\dbobj.py" />
+    <Content Include="python27\Lib\bsddb\dbrecio.py" />
+    <Content Include="python27\Lib\bsddb\dbshelve.py" />
+    <Content Include="python27\Lib\bsddb\dbtables.py" />
+    <Content Include="python27\Lib\bsddb\dbutils.py" />
+    <Content Include="python27\Lib\bsddb\__init__.py" />
+    <Content Include="python27\Lib\calendar.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\cgi.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\CGIHTTPServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\cgitb.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\chunk.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\cmd.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\code.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\codecs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\codeop.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\collections.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\colorsys.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\commands.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\compileall.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\compiler\ast.py" />
+    <Content Include="python27\Lib\compiler\consts.py" />
+    <Content Include="python27\Lib\compiler\future.py" />
+    <Content Include="python27\Lib\compiler\misc.py" />
+    <Content Include="python27\Lib\compiler\pyassem.py" />
+    <Content Include="python27\Lib\compiler\pycodegen.py" />
+    <Content Include="python27\Lib\compiler\symbols.py" />
+    <Content Include="python27\Lib\compiler\syntax.py" />
+    <Content Include="python27\Lib\compiler\transformer.py" />
+    <Content Include="python27\Lib\compiler\visitor.py" />
+    <Content Include="python27\Lib\compiler\__init__.py" />
+    <Content Include="python27\Lib\ConfigParser.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\contextlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\Cookie.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\cookielib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\copy.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\copy_reg.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\cProfile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\csv.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ctypes\macholib\dyld.py" />
+    <Content Include="python27\Lib\ctypes\macholib\dylib.py" />
+    <Content Include="python27\Lib\ctypes\macholib\framework.py" />
+    <Content Include="python27\Lib\ctypes\macholib\__init__.py" />
+    <Content Include="python27\Lib\ctypes\util.py" />
+    <Content Include="python27\Lib\ctypes\wintypes.py" />
+    <Content Include="python27\Lib\ctypes\_endian.py" />
+    <Content Include="python27\Lib\ctypes\__init__.py" />
+    <Content Include="python27\Lib\curses\ascii.py" />
+    <Content Include="python27\Lib\curses\has_key.py" />
+    <Content Include="python27\Lib\curses\panel.py" />
+    <Content Include="python27\Lib\curses\textpad.py" />
+    <Content Include="python27\Lib\curses\wrapper.py" />
+    <Content Include="python27\Lib\curses\__init__.py" />
+    <Content Include="python27\Lib\dbhash.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\decimal.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\difflib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\dircache.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\dis.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\distutils\archive_util.py" />
+    <Content Include="python27\Lib\distutils\bcppcompiler.py" />
+    <Content Include="python27\Lib\distutils\ccompiler.py" />
+    <Content Include="python27\Lib\distutils\cmd.py" />
+    <Content Include="python27\Lib\distutils\command\bdist.py" />
+    <Content Include="python27\Lib\distutils\command\bdist_dumb.py" />
+    <Content Include="python27\Lib\distutils\command\bdist_msi.py" />
+    <Content Include="python27\Lib\distutils\command\bdist_rpm.py" />
+    <Content Include="python27\Lib\distutils\command\bdist_wininst.py" />
+    <Content Include="python27\Lib\distutils\command\build.py" />
+    <Content Include="python27\Lib\distutils\command\build_clib.py" />
+    <Content Include="python27\Lib\distutils\command\build_ext.py" />
+    <Content Include="python27\Lib\distutils\command\build_py.py" />
+    <Content Include="python27\Lib\distutils\command\build_scripts.py" />
+    <Content Include="python27\Lib\distutils\command\check.py" />
+    <Content Include="python27\Lib\distutils\command\clean.py" />
+    <Content Include="python27\Lib\distutils\command\config.py" />
+    <Content Include="python27\Lib\distutils\command\install.py" />
+    <Content Include="python27\Lib\distutils\command\install_data.py" />
+    <Content Include="python27\Lib\distutils\command\install_egg_info.py" />
+    <Content Include="python27\Lib\distutils\command\install_headers.py" />
+    <Content Include="python27\Lib\distutils\command\install_lib.py" />
+    <Content Include="python27\Lib\distutils\command\install_scripts.py" />
+    <Content Include="python27\Lib\distutils\command\register.py" />
+    <Content Include="python27\Lib\distutils\command\sdist.py" />
+    <Content Include="python27\Lib\distutils\command\upload.py" />
+    <Content Include="python27\Lib\distutils\command\__init__.py" />
+    <Content Include="python27\Lib\distutils\config.py" />
+    <Content Include="python27\Lib\distutils\core.py" />
+    <Content Include="python27\Lib\distutils\cygwinccompiler.py" />
+    <Content Include="python27\Lib\distutils\debug.py" />
+    <Content Include="python27\Lib\distutils\dep_util.py" />
+    <Content Include="python27\Lib\distutils\dir_util.py" />
+    <Content Include="python27\Lib\distutils\dist.py" />
+    <Content Include="python27\Lib\distutils\emxccompiler.py" />
+    <Content Include="python27\Lib\distutils\errors.py" />
+    <Content Include="python27\Lib\distutils\extension.py" />
+    <Content Include="python27\Lib\distutils\fancy_getopt.py" />
+    <Content Include="python27\Lib\distutils\filelist.py" />
+    <Content Include="python27\Lib\distutils\file_util.py" />
+    <Content Include="python27\Lib\distutils\log.py" />
+    <Content Include="python27\Lib\distutils\msvc9compiler.py" />
+    <Content Include="python27\Lib\distutils\msvccompiler.py" />
+    <Content Include="python27\Lib\distutils\spawn.py" />
+    <Content Include="python27\Lib\distutils\sysconfig.py" />
+    <Content Include="python27\Lib\distutils\text_file.py" />
+    <Content Include="python27\Lib\distutils\unixccompiler.py" />
+    <Content Include="python27\Lib\distutils\util.py" />
+    <Content Include="python27\Lib\distutils\version.py" />
+    <Content Include="python27\Lib\distutils\versionpredicate.py" />
+    <Content Include="python27\Lib\distutils\__init__.py" />
+    <Content Include="python27\Lib\doctest.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\DocXMLRPCServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\dumbdbm.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\dummy_thread.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\dummy_threading.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\email\base64mime.py" />
+    <Content Include="python27\Lib\email\charset.py" />
+    <Content Include="python27\Lib\email\encoders.py" />
+    <Content Include="python27\Lib\email\errors.py" />
+    <Content Include="python27\Lib\email\feedparser.py" />
+    <Content Include="python27\Lib\email\generator.py" />
+    <Content Include="python27\Lib\email\header.py" />
+    <Content Include="python27\Lib\email\iterators.py" />
+    <Content Include="python27\Lib\email\message.py" />
+    <Content Include="python27\Lib\email\mime\application.py" />
+    <Content Include="python27\Lib\email\mime\audio.py" />
+    <Content Include="python27\Lib\email\mime\base.py" />
+    <Content Include="python27\Lib\email\mime\image.py" />
+    <Content Include="python27\Lib\email\mime\message.py" />
+    <Content Include="python27\Lib\email\mime\multipart.py" />
+    <Content Include="python27\Lib\email\mime\nonmultipart.py" />
+    <Content Include="python27\Lib\email\mime\text.py" />
+    <Content Include="python27\Lib\email\mime\__init__.py" />
+    <Content Include="python27\Lib\email\parser.py" />
+    <Content Include="python27\Lib\email\quoprimime.py" />
+    <Content Include="python27\Lib\email\utils.py" />
+    <Content Include="python27\Lib\email\_parseaddr.py" />
+    <Content Include="python27\Lib\email\__init__.py" />
+    <Content Include="python27\Lib\encodings\aliases.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\ascii.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\base64_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\big5.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\big5hkscs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\bz2_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\charmap.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp037.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1006.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1026.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1140.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1250.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1251.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1252.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1253.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1254.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1255.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1256.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1257.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp1258.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp424.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp437.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp500.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp720.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp737.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp775.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp850.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp852.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp855.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp856.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp857.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp858.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp860.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp861.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp862.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp863.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp864.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp865.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp866.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp869.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp874.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp875.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp932.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp949.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\cp950.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\euc_jisx0213.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\euc_jis_2004.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\euc_jp.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\euc_kr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\gb18030.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\gb2312.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\gbk.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\hex_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\hp_roman8.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\hz.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\idna.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp_1.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp_2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp_2004.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp_3.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_jp_ext.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso2022_kr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_1.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_10.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_11.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_13.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_14.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_15.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_16.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_3.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_4.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_5.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_6.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_7.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_8.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\iso8859_9.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\johab.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\koi8_r.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\koi8_u.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\latin_1.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_arabic.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_centeuro.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_croatian.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_cyrillic.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_farsi.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_greek.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_iceland.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_latin2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_roman.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_romanian.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mac_turkish.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\mbcs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\palmos.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\ptcp154.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\punycode.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\quopri_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\raw_unicode_escape.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\rot_13.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\shift_jis.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\shift_jisx0213.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\shift_jis_2004.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\string_escape.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\tis_620.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\undefined.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\unicode_escape.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\unicode_internal.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_16.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_16_be.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_16_le.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_32.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_32_be.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_32_le.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_7.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_8.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\utf_8_sig.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\uu_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\zlib_codec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\encodings\__init__.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\filecmp.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\fileinput.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\fnmatch.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\formatter.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\fpformat.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\fractions.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ftplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\functools.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\genericpath.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\getopt.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\getpass.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\gettext.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\glob.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\gzip.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\hashlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\heapq.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\hmac.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\hotshot\log.py" />
+    <Content Include="python27\Lib\hotshot\stats.py" />
+    <Content Include="python27\Lib\hotshot\stones.py" />
+    <Content Include="python27\Lib\hotshot\__init__.py" />
+    <Content Include="python27\Lib\htmlentitydefs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\htmllib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\HTMLParser.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\httplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ihooks.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\imaplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\imghdr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\importlib\__init__.py" />
+    <Content Include="python27\Lib\imputil.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\inspect.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\io.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\json\decoder.py" />
+    <Content Include="python27\Lib\json\encoder.py" />
+    <Content Include="python27\Lib\json\scanner.py" />
+    <Content Include="python27\Lib\json\tool.py" />
+    <Content Include="python27\Lib\json\__init__.py" />
+    <Content Include="python27\Lib\keyword.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\lib-tk\Canvas.py" />
+    <Content Include="python27\Lib\lib-tk\Dialog.py" />
+    <Content Include="python27\Lib\lib-tk\FileDialog.py" />
+    <Content Include="python27\Lib\lib-tk\FixTk.py" />
+    <Content Include="python27\Lib\lib-tk\ScrolledText.py" />
+    <Content Include="python27\Lib\lib-tk\SimpleDialog.py" />
+    <Content Include="python27\Lib\lib-tk\Tix.py" />
+    <Content Include="python27\Lib\lib-tk\tkColorChooser.py" />
+    <Content Include="python27\Lib\lib-tk\tkCommonDialog.py" />
+    <Content Include="python27\Lib\lib-tk\Tkconstants.py" />
+    <Content Include="python27\Lib\lib-tk\Tkdnd.py" />
+    <Content Include="python27\Lib\lib-tk\tkFileDialog.py" />
+    <Content Include="python27\Lib\lib-tk\tkFont.py" />
+    <Content Include="python27\Lib\lib-tk\Tkinter.py" />
+    <Content Include="python27\Lib\lib-tk\tkMessageBox.py" />
+    <Content Include="python27\Lib\lib-tk\tkSimpleDialog.py" />
+    <Content Include="python27\Lib\lib-tk\ttk.py" />
+    <Content Include="python27\Lib\lib-tk\turtle.py" />
+    <Content Include="python27\Lib\lib2to3\btm_matcher.py" />
+    <Content Include="python27\Lib\lib2to3\btm_utils.py" />
+    <Content Include="python27\Lib\lib2to3\fixer_base.py" />
+    <Content Include="python27\Lib\lib2to3\fixer_util.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_apply.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_asserts.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_basestring.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_buffer.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_dict.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_except.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_exec.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_execfile.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_exitfunc.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_filter.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_funcattrs.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_future.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_getcwdu.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_has_key.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_idioms.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_import.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_imports.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_imports2.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_input.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_intern.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_isinstance.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_itertools.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_itertools_imports.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_long.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_map.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_metaclass.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_methodattrs.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_ne.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_next.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_nonzero.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_numliterals.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_operator.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_paren.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_print.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_raise.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_raw_input.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_reduce.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_renames.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_repr.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_set_literal.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_standarderror.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_sys_exc.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_throw.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_tuple_params.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_types.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_unicode.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_urllib.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_ws_comma.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_xrange.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_xreadlines.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\fix_zip.py" />
+    <Content Include="python27\Lib\lib2to3\fixes\__init__.py" />
+    <Content Include="python27\Lib\lib2to3\Grammar.txt" />
+    <Content Include="python27\Lib\lib2to3\main.py" />
+    <Content Include="python27\Lib\lib2to3\patcomp.py" />
+    <Content Include="python27\Lib\lib2to3\PatternGrammar.txt" />
+    <Content Include="python27\Lib\lib2to3\pgen2\conv.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\driver.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\grammar.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\literals.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\parse.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\pgen.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\token.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\tokenize.py" />
+    <Content Include="python27\Lib\lib2to3\pgen2\__init__.py" />
+    <Content Include="python27\Lib\lib2to3\pygram.py" />
+    <Content Include="python27\Lib\lib2to3\pytree.py" />
+    <Content Include="python27\Lib\lib2to3\refactor.py" />
+    <Content Include="python27\Lib\lib2to3\__init__.py" />
+    <Content Include="python27\Lib\lib2to3\__main__.py" />
+    <Content Include="python27\Lib\linecache.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\locale.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\logging\config.py" />
+    <Content Include="python27\Lib\logging\handlers.py" />
+    <Content Include="python27\Lib\logging\__init__.py" />
+    <Content Include="python27\Lib\macpath.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\macurl2path.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mailbox.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mailcap.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\markupbase.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\md5.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mhlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mimetools.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mimetypes.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\MimeWriter.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\mimify.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\modulefinder.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\msilib\schema.py" />
+    <Content Include="python27\Lib\msilib\sequence.py" />
+    <Content Include="python27\Lib\msilib\text.py" />
+    <Content Include="python27\Lib\msilib\__init__.py" />
+    <Content Include="python27\Lib\multifile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\multiprocessing\connection.py" />
+    <Content Include="python27\Lib\multiprocessing\dummy\connection.py" />
+    <Content Include="python27\Lib\multiprocessing\dummy\__init__.py" />
+    <Content Include="python27\Lib\multiprocessing\forking.py" />
+    <Content Include="python27\Lib\multiprocessing\heap.py" />
+    <Content Include="python27\Lib\multiprocessing\managers.py" />
+    <Content Include="python27\Lib\multiprocessing\pool.py" />
+    <Content Include="python27\Lib\multiprocessing\process.py" />
+    <Content Include="python27\Lib\multiprocessing\queues.py" />
+    <Content Include="python27\Lib\multiprocessing\reduction.py" />
+    <Content Include="python27\Lib\multiprocessing\sharedctypes.py" />
+    <Content Include="python27\Lib\multiprocessing\synchronize.py" />
+    <Content Include="python27\Lib\multiprocessing\util.py" />
+    <Content Include="python27\Lib\multiprocessing\__init__.py" />
+    <Content Include="python27\Lib\mutex.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\netrc.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\new.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\nntplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ntpath.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\nturl2path.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\numbers.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\opcode.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\optparse.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\os.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\os2emxpath.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pdb.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pickle.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pickletools.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pipes.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pkgutil.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\platform.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\plistlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\popen2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\poplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\posixfile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\posixpath.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pprint.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\profile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pstats.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pty.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pyclbr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\pydoc.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\py_compile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\Queue.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\quopri.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\random.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\re.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\repr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\rexec.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\rfc822.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\rlcompleter.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\robotparser.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\runpy.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sched.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sets.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sgmllib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sha.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\shelve.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\shlex.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\shutil.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\SimpleHTTPServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\SimpleXMLRPCServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\site-packages\easy_install.py" />
+    <Content Include="python27\Lib\site-packages\pip-19.2.3.dist-info\entry_points.txt" />
+    <Content Include="python27\Lib\site-packages\pip-19.2.3.dist-info\LICENSE.txt" />
+    <Content Include="python27\Lib\site-packages\pip-19.2.3.dist-info\top_level.txt" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\build_env.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cache.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\autocompletion.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\base_command.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\cmdoptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\main_parser.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\parser.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\status_codes.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\cli\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\check.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\completion.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\configuration.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\debug.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\download.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\freeze.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\hash.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\help.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\install.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\list.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\search.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\show.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\uninstall.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\wheel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\commands\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\configuration.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\distributions\base.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\distributions\installed.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\distributions\source.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\distributions\wheel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\distributions\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\download.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\exceptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\index.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\legacy_resolve.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\locations.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\candidate.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\format_control.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\index.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\link.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\search_scope.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\selection_prefs.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\target_python.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\models\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\operations\check.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\operations\freeze.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\operations\prepare.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\operations\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\pep425tags.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\pyproject.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\constructors.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\req_file.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\req_install.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\req_set.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\req_tracker.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\req_uninstall.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\req\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\appdirs.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\deprecation.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\encoding.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\filesystem.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\glibc.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\hashes.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\logging.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\marker_files.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\misc.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\models.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\outdated.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\packaging.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\setuptools_build.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\temp_dir.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\typing.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\ui.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\virtualenv.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\utils\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\bazaar.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\git.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\mercurial.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\subversion.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\versioncontrol.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\vcs\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\wheel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_internal\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\appdirs.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\adapter.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\cache.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\file_cache.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\redis_cache.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\caches\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\controller.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\filewrapper.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\heuristics.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\serialize.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\wrapper.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\_cmd.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\cachecontrol\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\certifi\core.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\certifi\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\certifi\__main__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\big5freq.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\big5prober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\chardistribution.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\charsetgroupprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\charsetprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\cli\chardetect.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\cli\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\codingstatemachine.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\cp949prober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\enums.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\escprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\escsm.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\eucjpprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\euckrfreq.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\euckrprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\euctwfreq.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\euctwprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\gb2312freq.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\gb2312prober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\hebrewprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\jisfreq.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\jpcntx.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langbulgarianmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langcyrillicmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langgreekmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langhebrewmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langhungarianmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langthaimodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\langturkishmodel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\latin1prober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcharsetprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcsgroupprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\mbcssm.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\sbcharsetprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\sbcsgroupprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\sjisprober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\universaldetector.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\utf8prober.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\version.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\chardet\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\ansi.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\ansitowin32.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\initialise.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\win32.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\winterm.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\colorama\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\database.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\index.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\locators.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\manifest.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\markers.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\metadata.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\resources.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\scripts.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\t32.exe" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\t64.exe" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\util.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\version.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\w32.exe" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\w64.exe" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\wheel.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\misc.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\shutil.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\sysconfig.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\tarfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\_backport\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distlib\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\distro.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\constants.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\alphabeticalattributes.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\base.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\inject_meta_charset.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\lint.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\optionaltags.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\sanitizer.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\whitespace.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\filters\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\html5parser.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\serializer.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\genshi.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\sax.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treeadapters\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\base.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\dom.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree_lxml.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treebuilders\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\base.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\dom.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree_lxml.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\genshi.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\treewalkers\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_ihatexml.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_inputstream.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_tokenizer.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\datrie.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\py.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\_base.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_trie\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\_utils.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\html5lib\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\codec.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\core.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\idnadata.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\intranges.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\package_data.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\uts46data.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\idna\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\ipaddress.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\linklockfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\mkdirlockfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\pidlockfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\sqlitelockfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\symlinklockfile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\lockfile\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\msgpack\exceptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\msgpack\fallback.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\msgpack\_version.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\msgpack\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\markers.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\requirements.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\specifiers.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\utils.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\version.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\_compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\_structures.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\__about__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\packaging\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\build.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\check.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\colorlog.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\envbuild.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\wrappers.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\_in_process.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pep517\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pkg_resources\py31compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pkg_resources\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\progress\bar.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\progress\counter.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\progress\spinner.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\progress\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pyparsing.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\core.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\parser.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\test.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\utils.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\writer.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\pytoml\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\adapters.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\api.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\auth.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\certs.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\cookies.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\exceptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\help.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\hooks.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\models.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\packages.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\sessions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\status_codes.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\structures.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\utils.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\_internal_utils.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\requests\__version__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\retrying.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\six.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\connection.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\connectionpool.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\appengine.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\ntlmpool.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\pyopenssl.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\securetransport.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\socks.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_appengine_environ.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\bindings.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\low_level.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\_securetransport\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\contrib\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\exceptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\fields.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\filepost.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\backports\makefile.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\backports\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\abnf_regexp.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\api.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\builder.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\compat.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\exceptions.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\iri.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\misc.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\normalizers.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\parseresult.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\uri.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\validators.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\_mixin.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\rfc3986\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\six.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\ssl_match_hostname\_implementation.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\ssl_match_hostname\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\packages\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\poolmanager.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\request.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\response.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\connection.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\queue.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\request.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\response.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\retry.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\ssl_.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\timeout.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\url.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\wait.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\util\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\_collections.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\urllib3\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\webencodings\labels.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\webencodings\mklabels.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\webencodings\tests.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\webencodings\x_user_defined.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\webencodings\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\_vendor\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pip\__main__.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\extern\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\py31compat.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\appdirs.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\markers.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\requirements.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\specifiers.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\utils.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\version.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\_compat.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\_structures.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\__about__.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\packaging\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\pyparsing.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\six.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\_vendor\__init__.py" />
+    <Content Include="python27\Lib\site-packages\pkg_resources\__init__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\dependency_links.txt" />
+    <Content Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\entry_points.txt" />
+    <Content Include="python27\Lib\site-packages\setuptools-41.2.0.dist-info\top_level.txt" />
+    <Content Include="python27\Lib\site-packages\setuptools\archive_util.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\build_meta.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\cli-32.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\cli-64.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\cli.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\alias.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\bdist_egg.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\bdist_rpm.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\bdist_wininst.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\build_clib.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\build_ext.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\build_py.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\develop.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\dist_info.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\easy_install.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\egg_info.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\install.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\install_egg_info.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\install_lib.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\install_scripts.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\launcher manifest.xml" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\py36compat.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\register.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\rotate.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\saveopts.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\sdist.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\setopt.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\test.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\upload.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\upload_docs.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\command\__init__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\config.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\depends.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\dep_util.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\dist.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\extension.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\extern\__init__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\glibc.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\glob.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\gui-32.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\gui-64.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\gui.exe" />
+    <Content Include="python27\Lib\site-packages\setuptools\launch.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\lib2to3_ex.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\monkey.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\msvc.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\namespaces.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\package_index.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\pep425tags.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\py27compat.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\py31compat.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\py33compat.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\sandbox.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\site-patch.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\ssl_support.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\unicode_utils.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\version.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\wheel.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\windows_support.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_deprecation_warning.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\markers.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\requirements.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\specifiers.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\utils.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\version.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\_compat.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\_structures.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\__about__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\packaging\__init__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\pyparsing.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\six.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\_vendor\__init__.py" />
+    <Content Include="python27\Lib\site-packages\setuptools\__init__.py" />
+    <Content Include="python27\Lib\site.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\smtpd.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\smtplib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sndhdr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\socket.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\SocketServer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sqlite3\dbapi2.py" />
+    <Content Include="python27\Lib\sqlite3\dump.py" />
+    <Content Include="python27\Lib\sqlite3\__init__.py" />
+    <Content Include="python27\Lib\sre.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sre_compile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sre_constants.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sre_parse.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\ssl.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\stat.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\statvfs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\string.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\StringIO.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\stringold.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\stringprep.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\struct.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\subprocess.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sunau.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sunaudio.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\symbol.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\symtable.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\sysconfig.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\tabnanny.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\tarfile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\telnetlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\tempfile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\textwrap.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\this.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\threading.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\timeit.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\toaiff.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\token.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\tokenize.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\trace.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\traceback.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\tty.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\types.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\unittest\case.py" />
+    <Content Include="python27\Lib\unittest\loader.py" />
+    <Content Include="python27\Lib\unittest\main.py" />
+    <Content Include="python27\Lib\unittest\result.py" />
+    <Content Include="python27\Lib\unittest\runner.py" />
+    <Content Include="python27\Lib\unittest\signals.py" />
+    <Content Include="python27\Lib\unittest\suite.py" />
+    <Content Include="python27\Lib\unittest\util.py" />
+    <Content Include="python27\Lib\unittest\__init__.py" />
+    <Content Include="python27\Lib\unittest\__main__.py" />
+    <Content Include="python27\Lib\urllib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\urllib2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\urlparse.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\user.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\UserDict.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\UserList.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\UserString.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\uu.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\uuid.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\warnings.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\wave.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\weakref.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\webbrowser.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\whichdb.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\wsgiref\handlers.py" />
+    <Content Include="python27\Lib\wsgiref\headers.py" />
+    <Content Include="python27\Lib\wsgiref\simple_server.py" />
+    <Content Include="python27\Lib\wsgiref\util.py" />
+    <Content Include="python27\Lib\wsgiref\validate.py" />
+    <Content Include="python27\Lib\wsgiref\__init__.py" />
+    <Content Include="python27\Lib\xdrlib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\xmllib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\xmlrpclib.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\xml\dom\domreg.py" />
+    <Content Include="python27\Lib\xml\dom\expatbuilder.py" />
+    <Content Include="python27\Lib\xml\dom\minicompat.py" />
+    <Content Include="python27\Lib\xml\dom\minidom.py" />
+    <Content Include="python27\Lib\xml\dom\NodeFilter.py" />
+    <Content Include="python27\Lib\xml\dom\pulldom.py" />
+    <Content Include="python27\Lib\xml\dom\xmlbuilder.py" />
+    <Content Include="python27\Lib\xml\dom\__init__.py" />
+    <Content Include="python27\Lib\xml\etree\cElementTree.py" />
+    <Content Include="python27\Lib\xml\etree\ElementInclude.py" />
+    <Content Include="python27\Lib\xml\etree\ElementPath.py" />
+    <Content Include="python27\Lib\xml\etree\ElementTree.py" />
+    <Content Include="python27\Lib\xml\etree\__init__.py" />
+    <Content Include="python27\Lib\xml\parsers\expat.py" />
+    <Content Include="python27\Lib\xml\parsers\__init__.py" />
+    <Content Include="python27\Lib\xml\sax\expatreader.py" />
+    <Content Include="python27\Lib\xml\sax\handler.py" />
+    <Content Include="python27\Lib\xml\sax\saxutils.py" />
+    <Content Include="python27\Lib\xml\sax\xmlreader.py" />
+    <Content Include="python27\Lib\xml\sax\_exceptions.py" />
+    <Content Include="python27\Lib\xml\sax\__init__.py" />
+    <Content Include="python27\Lib\xml\__init__.py" />
+    <Content Include="python27\Lib\zipfile.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_abcoll.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_LWPCookieJar.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_MozillaCookieJar.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_osx_support.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_pyio.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_strptime.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_threading_local.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\_weakrefset.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\__future__.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Lib\__phello__.foo.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\python.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\python27.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\pythonw.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Scripts\easy_install-2.7.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Scripts\easy_install.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Scripts\pip.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Scripts\pip2.7.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Scripts\pip2.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\i18n\makelocalealias.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\i18n\msgfmt.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\i18n\pygettext.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\ChipViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\ColorDB.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\DetailsViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\html40colors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\ListViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\Main.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\namedcolors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\pyColorChooser.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\pynche.pyw">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\PyncheWidget.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\StripViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\Switchboard.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\TextViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\TypeinViewer.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\webcolors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\websafe.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\pynche\__init__.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\analyze_dxp.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\byext.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\byteyears.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\checkappend.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\checkpip.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\checkpyc.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\classfix.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\cleanfuture.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\combinerefs.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\copytime.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\crlf.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\cvsfiles.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\db2pickle.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\diff.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\dutree.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\eptags.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\finddiv.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\findlinksto.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\findnocoding.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\find_recursionlimit.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\fixcid.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\fixdiv.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\fixheader.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\fixnotice.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\fixps.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\google.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\gprof2html.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\h2py.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\hotshotmain.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\ifdef.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\lfcr.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\linktree.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\lll.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\logmerge.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\mailerdaemon.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\md5sum.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\methfix.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\mkreal.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\ndiff.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\nm2def.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\objgraph.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\parseentities.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\patchcheck.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pathfix.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pdeps.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pickle2db.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pindent.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\ptags.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pydocgui.pyw">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\pysource.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\redemo.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\reindent-rst.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\reindent.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\rgrep.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\serve.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\setup.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\suff.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\svneol.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\texcheck.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\texi2html.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\treesync.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\untabify.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\which.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\win_add2path.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="python27\Tools\scripts\xxci.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="structure.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -273,5 +3171,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

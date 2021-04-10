@@ -12,6 +12,10 @@ using GenotypeDataProcessing.Programs;
 using GenotypeDataProcessing.Structure;
 using GenotypeDataProcessing.StructureHarvester;
 using GenotypeDataProcessing.CLUMPP;
+using GenotypeDataProcessing.distruct;
+using DansCSharpLibrary.Serialization;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
 namespace GenotypeDataProcessing
 {
@@ -20,7 +24,6 @@ namespace GenotypeDataProcessing
     /// </summary>
     public partial class ProjectScreen : Form
     {
-
         /// <summary>
         /// Default constructor of ProjectScreen
         /// </summary>
@@ -33,6 +36,8 @@ namespace GenotypeDataProcessing
             lsvStructureInputData.Width = tabControl1.Width;
             rtxStructureText.Width = tabControl1.Width / 2;
 
+            ProjectInfo.projectNamePath = "testProject"; // todo - later delete
+
             prbJobProgressBar.Minimum = 0;
             prbJobProgressBar.Maximum = 100;
 
@@ -41,6 +46,120 @@ namespace GenotypeDataProcessing
             UpdateStructureTreeView();
             UpdateClumppTreeView();
             UpdateDistructTreeView();
+        }
+
+        /// <summary>
+        /// Constructor of ProjectScreen, when loading old project
+        /// </summary>
+        public ProjectScreen(string projectName)
+        {
+            InitializeComponent();
+
+            CreateDirectoryForProjects();
+
+            this.WindowState = FormWindowState.Maximized;
+
+            lsvStructureInputData.Width = tabControl1.Width;
+            rtxStructureText.Width = tabControl1.Width / 2;
+
+            ProjectInfo.projectName = projectName;
+            ProjectInfo.projectNamePath = "projects\\" + projectName;
+            LoadProjectData(ProjectInfo.projectNamePath);
+
+            prbJobProgressBar.Minimum = 0;
+            prbJobProgressBar.Maximum = 100;
+
+            CreateProjectDirectory();
+
+            UpdateStructureTreeView();
+            UpdateClumppTreeView();
+            UpdateDistructTreeView();
+        }
+
+        private void CreateDirectoryForProjects()
+        {
+            try
+            {
+                string projectDirectoryPath = "projects";
+
+                if (!Directory.Exists(projectDirectoryPath))
+                {
+                    Directory.CreateDirectory(projectDirectoryPath);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private void LoadProjectData(string projectName)
+        {
+            string projectPath = Path.Combine(projectName);
+            string structureDataInfoPath = Path.Combine(projectPath, ProjectInfo.structureInputInfoFile);
+            string structureParamSetsPath = Path.Combine(projectPath, ProjectInfo.structureParamSetsFile);
+            string structureJobInfoPath = Path.Combine(projectPath, ProjectInfo.structureJobInfoFile);
+
+            // load structure data
+            if (File.Exists(structureDataInfoPath))
+            {
+                try
+                {
+                    ProjectInfo.structureInputData = BinarySerialization.ReadFromBinaryFile<StructureInputData>(
+                    structureDataInfoPath);
+                    ProjectInfo.structureInputInfo = ProjectInfo.structureInputData.GetStructureInputInfo();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(
+                        e.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            // load structure param sets
+            if (File.Exists(structureParamSetsPath))
+            {
+                try
+                {
+                    ProjectInfo.structureParamSets = BinarySerialization.ReadFromBinaryFile<Dictionary<string,StructureParamSetStruct>>(
+                    structureParamSetsPath);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        e.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            // load structure job infos
+            if (File.Exists(structureJobInfoPath))
+            {
+                try
+                {
+                    ProjectInfo.structureJobInfo = BinarySerialization.ReadFromBinaryFile<Dictionary<string, StructureJobInfoStruct>>(
+                    structureJobInfoPath);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        e.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+
+            if (ProjectInfo.structureInputData.DataLoadedSuccesfully()) ExecuteWhenStructureDataLoaded();
+            if (ProjectInfo.structureParamSets.Count > 0)
+            {
+                deleteToolStripMenuItem.Enabled = true;
+                updateToolStripMenuItem.Enabled = true;
+                btnStartAnalysisStr.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -94,7 +213,7 @@ namespace GenotypeDataProcessing
             // main dir
             try
             {
-                string projectDirectoryPath = ProjectInfo.projectName;
+                string projectDirectoryPath = ProjectInfo.projectNamePath;
 
                 if (!Directory.Exists(projectDirectoryPath))
                 {
@@ -109,7 +228,7 @@ namespace GenotypeDataProcessing
             //structure dir
             try
             {
-                string structureDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+                string structureDirectoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
 
                 if (!Directory.Exists(structureDirectoryPath))
                 {
@@ -124,7 +243,7 @@ namespace GenotypeDataProcessing
             // structure harvester dir
             try
             {
-                string strucHarvesterDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureHarvesterFolder);
+                string strucHarvesterDirectoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureHarvesterFolder);
 
                 if (!Directory.Exists(strucHarvesterDirectoryPath))
                 {
@@ -139,7 +258,7 @@ namespace GenotypeDataProcessing
             // clumpp dir
             try
             {
-                string clumppDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+                string clumppDirectoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
 
 
                 if (!Directory.Exists(clumppDirectoryPath))
@@ -155,7 +274,7 @@ namespace GenotypeDataProcessing
             // distruct dir
             try
             {
-                string distructDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+                string distructDirectoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
 
                 if (!Directory.Exists(distructDirectoryPath))
                 {
@@ -173,7 +292,7 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateStructureTreeView()
         {
-            string structureFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+            string structureFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
 
             treeStructureFolder.Nodes.Clear();
 
@@ -188,7 +307,7 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateClumppTreeView()
         {
-            string clumppFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.clumppFolder);
+            string clumppFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
 
             treeClumppFolder.Nodes.Clear();
 
@@ -203,7 +322,7 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateDistructTreeView()
         {
-            string distructFolder = Path.Combine(ProjectInfo.projectName, ProjectInfo.distructFolder);
+            string distructFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
 
             treeDistructFolder.Nodes.Clear();
 
@@ -258,7 +377,7 @@ namespace GenotypeDataProcessing
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this);
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, FormSelectParamSetState.UPDATE_SET);
             formSelectParamSet.ShowDialog();
         }
 
@@ -276,7 +395,7 @@ namespace GenotypeDataProcessing
 
         private void treeStructureFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+            string path = Path.Combine(ProjectInfo.projectNamePath, e.Node.FullPath);
 
             try
             {
@@ -303,7 +422,7 @@ namespace GenotypeDataProcessing
 
         private void btnStartAnalysisStr_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
 
             FormStructureJobSettings formStructureJobSettings = new FormStructureJobSettings();
             formStructureJobSettings.ShowDialog();
@@ -349,13 +468,13 @@ namespace GenotypeDataProcessing
                 SafeChangeStructureProgressBar(newProgressValue);
         }
 
-        private delegate void SafeCallDelegate(int newValue);
+        private delegate void SafeCallDelegateProgressBar(int newValue);
 
         private void SafeChangeStructureProgressBar(int newValue)
         {
             if (prbJobProgressBar.InvokeRequired)
             {
-                var d = new SafeCallDelegate(SafeChangeStructureProgressBar);
+                var d = new SafeCallDelegateProgressBar(SafeChangeStructureProgressBar);
                 prbJobProgressBar.Invoke(d, new object[] { newValue });
             }
             else
@@ -396,29 +515,75 @@ namespace GenotypeDataProcessing
 
         private void btnChooseArchive_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.ShowDialog();
+            //FolderBrowserDialog fbd = new FolderBrowserDialog();
+            //fbd.ShowDialog();
 
-            if (fbd.SelectedPath != "")
+            //if (fbd.SelectedPath != "")
+            //{
+            //    txtStructureHarvesterArchive.Text = fbd.SelectedPath;
+
+            //    btnStartAnalysisStrHv.Enabled = true;
+            //}
+            if (ProjectInfo.structureJobInfo.Count > 0)
             {
-                txtStructureHarvesterArchive.Text = fbd.SelectedPath;
+                FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
+                                                            FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER);
+                formSelectParamSet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("There are no completed Structure jobs, Structure Harvester could continue with.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }      
+        }
 
-                btnStartAnalysisStrHv.Enabled = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="paramSet">selected Structure parameter set with job done</param>
+        public void SetSelectedStructureResults(string paramSet)
+        {
+            SafeChangeStructureHarvesterArchiveText(paramSet);
+
+            btnStartAnalysisStrHv.Enabled = true;
+        }
+
+        private delegate void SafeCallDelegateTextbox(string newText);
+
+        private void SafeChangeStructureHarvesterArchiveText(string newText)
+        {
+            if (txtStructureHarvesterArchive.InvokeRequired)
+            {
+                var t = new SafeCallDelegateTextbox(SafeChangeStructureHarvesterArchiveText);
+                txtStructureHarvesterArchive.Invoke(t, new object[] { newText });
+            }
+            else
+            {
+                txtStructureHarvesterArchive.Text = newText;
             }
         }
 
         private void btnStartAnalysisStrHv_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureHarvesterFolder);
+            string paramSetResultsPath = Path.Combine(
+                                            ProjectInfo.projectNamePath, 
+                                            ProjectInfo.structureFolder,
+                                            txtStructureHarvesterArchive.Text,
+                                            "results"
+                                            );
+            string harvesterResultsPath = Path.Combine(
+                                              ProjectInfo.projectNamePath,
+                                              ProjectInfo.structureHarvesterFolder,
+                                              txtStructureHarvesterArchive.Text
+                                              );
 
-            StructureHarvesterDataHandle structureHarvesterDataHandle = new StructureHarvesterDataHandle(txtStructureHarvesterArchive.Text, path);
-
-            structureHarvesterDataHandle.StartJob();
-
-            if (structureHarvesterDataHandle.IsStructureHarvesterJobDone())
-            {
-
-            }
+            StructureHarvesterDataHandle structureHarvesterDataHandle = new StructureHarvesterDataHandle(
+                                                                Path.Combine(paramSetResultsPath),
+                                                                Path.Combine(harvesterResultsPath));
+            structureHarvesterDataHandle.AsyncRun();
         }
 
         // ******* CLUMPP TAB ******* //
@@ -432,7 +597,7 @@ namespace GenotypeDataProcessing
 
         private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+            string path = Path.Combine(ProjectInfo.projectNamePath, e.Node.FullPath);
 
             try
             {
@@ -455,7 +620,7 @@ namespace GenotypeDataProcessing
 
         private void treeDistructFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            string path = Path.Combine(ProjectInfo.projectName, e.Node.FullPath);
+            string path = Path.Combine(ProjectInfo.projectNamePath, e.Node.FullPath);
 
             try
             {
@@ -466,6 +631,23 @@ namespace GenotypeDataProcessing
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // ******* closing project ******* //
+
+        private void ProjectScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string projectPath = Path.Combine(ProjectInfo.projectNamePath);
+
+            BinarySerialization.WriteToBinaryFile<StructureInputData>(
+                projectPath + "/" + ProjectInfo.structureInputInfoFile, 
+                ProjectInfo.structureInputData);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, StructureParamSetStruct>>(
+                projectPath + "/" + ProjectInfo.structureParamSetsFile,
+                ProjectInfo.structureParamSets);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, StructureJobInfoStruct>>(
+                projectPath + "/" + ProjectInfo.structureJobInfoFile,
+                ProjectInfo.structureJobInfo);
         }
     }
 }

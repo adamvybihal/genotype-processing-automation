@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.Structure
     /// <summary>
     /// Structure's parameter set
     /// </summary>
+    [Serializable]
     public struct StructureParamSetStruct
     {
         /// <summary>

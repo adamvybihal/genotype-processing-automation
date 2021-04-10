@@ -5,28 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GenotypeDataProcessing.DUTs;
 
 namespace GenotypeDataProcessing.Structure
 {
     /// <summary>
     /// Class which loads and checks input data for Structure software.
     /// </summary>
+    [Serializable]
     public class StructureInputData
     {
 
         private string structureDirectoryPath;
         private string[,] structureData;
         private bool dataLoaded = false;
-        private ST_InputDataError inputDataError;
+        private StructureInputDataError inputDataError;
+        private StructureInputInfoStruct structureInputInfo;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public StructureInputData()
+        {
+        }
 
         /// <summary>
         /// Two value constructor
         /// </summary>
         /// <param name="inputPath">Path of input</param>
         /// <param name="projectPath">Path of project</param>
-        public StructureInputData(string inputPath, string projectPath)
+        /// <param name="structureInputInfoStruct">Structure of input info</param>
+        public StructureInputData(string inputPath, string projectPath, StructureInputInfoStruct structureInputInfoStruct)
         {
+            structureInputInfo = structureInputInfoStruct;
+
             CreateStructureDirectory();
             CopyToProjectDir(inputPath, projectPath);
             LoadInputData();
@@ -36,7 +47,7 @@ namespace GenotypeDataProcessing.Structure
         {
             try
             {
-                structureDirectoryPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+                structureDirectoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
 
                 if (Directory.Exists(structureDirectoryPath))
                 {
@@ -106,7 +117,7 @@ namespace GenotypeDataProcessing.Structure
                     if (i < extraRows)
                     {
                         string[] cols = row.Trim().Split(delimiterChars);
-                        if (cols.Length != ProjectInfo.structureInputInfo.numLoci)
+                        if (cols.Length != structureInputInfo.numLoci)
                         {
                             inputDataError.columnsError = true;
                             inputDataError.errorRow = i;
@@ -160,13 +171,13 @@ namespace GenotypeDataProcessing.Structure
         {
             int rows = 0;
 
-            if (ProjectInfo.structureInputInfo.oneRowPerInd) rows += ProjectInfo.structureInputInfo.numInds;
-            else rows += (ProjectInfo.structureInputInfo.numInds * ProjectInfo.structureInputInfo.ploidy);
+            if (structureInputInfo.oneRowPerInd) rows += structureInputInfo.numInds;
+            else rows += (structureInputInfo.numInds * structureInputInfo.ploidy);
 
-            if (ProjectInfo.structureInputInfo.markerNames) rows++;
-            if (ProjectInfo.structureInputInfo.recessiveAlleles) rows++;
-            if (ProjectInfo.structureInputInfo.mapDistances) rows++;
-            if (ProjectInfo.structureInputInfo.phaseInfo) rows += ProjectInfo.structureInputInfo.numInds;
+            if (structureInputInfo.markerNames) rows++;
+            if (structureInputInfo.recessiveAlleles) rows++;
+            if (structureInputInfo.mapDistances) rows++;
+            if (structureInputInfo.phaseInfo) rows += structureInputInfo.numInds;
 
             return rows;
         }
@@ -175,9 +186,9 @@ namespace GenotypeDataProcessing.Structure
         {
             int extraRows = 0;
 
-            if (ProjectInfo.structureInputInfo.markerNames) extraRows++;
-            if (ProjectInfo.structureInputInfo.recessiveAlleles) extraRows++;
-            if (ProjectInfo.structureInputInfo.mapDistances) extraRows++;
+            if (structureInputInfo.markerNames) extraRows++;
+            if (structureInputInfo.recessiveAlleles) extraRows++;
+            if (structureInputInfo.mapDistances) extraRows++;
 
             return extraRows;
         }
@@ -186,14 +197,14 @@ namespace GenotypeDataProcessing.Structure
         {
             int cols = 0;
 
-            cols += ProjectInfo.structureInputInfo.numLoci;
+            cols += structureInputInfo.numLoci;
 
-            if (ProjectInfo.structureInputInfo.label) cols++;
-            if (ProjectInfo.structureInputInfo.popData) cols++;
-            if (ProjectInfo.structureInputInfo.popFlag) cols++;
-            if (ProjectInfo.structureInputInfo.locData) cols++;
-            if (ProjectInfo.structureInputInfo.phenotype) cols++;
-            cols += ProjectInfo.structureInputInfo.extraCols;
+            if (structureInputInfo.label) cols++;
+            if (structureInputInfo.popData) cols++;
+            if (structureInputInfo.popFlag) cols++;
+            if (structureInputInfo.locData) cols++;
+            if (structureInputInfo.phenotype) cols++;
+            cols += structureInputInfo.extraCols;
 
             //todo - single line format
 
@@ -202,7 +213,7 @@ namespace GenotypeDataProcessing.Structure
 
         private int CalculateBlankCols()
         {
-            int blankCols = CalculateCols() - ProjectInfo.structureInputInfo.numLoci;
+            int blankCols = CalculateCols() - structureInputInfo.numLoci;
 
             return blankCols;
         }
@@ -251,6 +262,15 @@ namespace GenotypeDataProcessing.Structure
             }
 
             return errorStr;
+        }
+
+        /// <summary>
+        /// Returns structure of Structure's input info
+        /// </summary>
+        /// <returns>StructureInputInfoStruct</returns>
+        public StructureInputInfoStruct GetStructureInputInfo()
+        {
+            return structureInputInfo;
         }
     }
 }

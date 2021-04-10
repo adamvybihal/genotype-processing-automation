@@ -84,6 +84,9 @@ namespace GenotypeDataProcessing.Structure
         {
             if (ProjectInfo.structureParamSets.ContainsKey(paramset))
             {
+                if (ProjectInfo.structureJobInfo.ContainsKey(paramset))
+                    ProjectInfo.structureJobInfo.Remove(paramset);
+
                 ProjectInfo.structureJobInfo.Add(paramset, jobInfo);
 
                 this.Close();

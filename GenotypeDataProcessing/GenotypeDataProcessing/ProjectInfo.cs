@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GenotypeDataProcessing.DUTs;
 using GenotypeDataProcessing.Structure;
 
 namespace GenotypeDataProcessing
@@ -13,10 +12,12 @@ namespace GenotypeDataProcessing
     /// </summary>
     public static class ProjectInfo
     {
+
+        public static string projectName;
         /// <summary>
-        /// Name of current project
+        /// Path to current project
         /// </summary>
-        public const string projectName = "testProject";
+        public static string projectNamePath;
 
         /// <summary>
         /// Name of folder, containing Structure data for current project
@@ -39,10 +40,14 @@ namespace GenotypeDataProcessing
         /// </summary>
         public const string distructFolder = "distruct";
 
+        public const string structureInputInfoFile = "structureinputdata.bin";
+        public const string structureParamSetsFile = "structureparamsets.bin";
+        public const string structureJobInfoFile = "structurejobinfo.bin";
+
         /// <summary>
         /// Class holding Structure's input data
         /// </summary>
-        public static StructureInputData structureInputData;
+        public static StructureInputData structureInputData = new StructureInputData();
         /// <summary>
         /// Structure holding info about Structure's input data
         /// </summary>

@@ -48,7 +48,7 @@ namespace GenotypeDataProcessing.Structure
 
         private void btnDeleteParamSet_Click(object sender, EventArgs e)
         {
-            string structureFolderPath = Path.Combine(ProjectInfo.projectName, ProjectInfo.structureFolder);
+            string structureFolderPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
 
             if (lsvParamSets.SelectedItems.Count > 0)
             {

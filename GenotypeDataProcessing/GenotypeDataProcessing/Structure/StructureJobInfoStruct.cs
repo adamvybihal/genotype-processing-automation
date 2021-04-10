@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.Structure
     /// <summary>
     /// Structure for holding info about Structure's job of certain parameter set
     /// </summary>
+    [Serializable]
     public struct StructureJobInfoStruct
     {
         /// <summary>

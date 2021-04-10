@@ -1,6 +1,8 @@
 ﻿using Aspose.Zip;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,9 +17,8 @@ namespace GenotypeDataProcessing.StructureHarvester
     public class StructureHarvesterDataHandle
     {
 
-        private bool succesfulJob = false;
-
-        private string directoryPath;
+        private string inputPath;
+        private string harvesteResultsDirectoryPath;
 
         /// <summary>
         /// Constructor
@@ -26,22 +27,22 @@ namespace GenotypeDataProcessing.StructureHarvester
         /// <param name="resultsPath">Path where Structure Harvester results are to be stored</param>
         public StructureHarvesterDataHandle(string inputDataPath, string resultsPath)
         {
-            directoryPath = resultsPath;
+            inputPath = inputDataPath;
+            harvesteResultsDirectoryPath = resultsPath;
 
             CreateDirectory();
-            ZipStructureResults(inputDataPath);
         }
 
         private void CreateDirectory()
         {
             try
             {
-                if (Directory.Exists(directoryPath))
+                if (Directory.Exists(harvesteResultsDirectoryPath))
                 {
                     return;
                 }
 
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(harvesteResultsDirectoryPath);
             }
             catch (Exception e)
             {
@@ -49,36 +50,88 @@ namespace GenotypeDataProcessing.StructureHarvester
             }
         }
 
-        private void ZipStructureResults(string folderToZip)
+        /// <summary>
+        /// Async run of Structure Harvester via Python
+        /// </summary>
+        public void AsyncRun()
         {
-            string path = Path.Combine(directoryPath, "archive.zip");
-
-            using (FileStream zipFile = File.Open(path, FileMode.Create))
+            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += (sender, args) =>
             {
-                using (Archive archive = new Archive())
-                {
-                    DirectoryInfo dir = new DirectoryInfo(folderToZip);
-                    archive.CreateEntries(dir);
-                    archive.Save(zipFile);
-                }
-            }
+                StartJob();
+            };
+            backgroundWorker.RunWorkerCompleted += (sender, args) =>
+            {
+                // todo - refresh Structure Harvester tryvju
+                //callerProjectScreen.ChangeStructureJobProgress((int)progressChangeRate);
+                MessageBox.Show("Structure Harvester job done!",
+                    "Done",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            };
+            backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
         /// Structure Harvester's job execution
         /// </summary>
-        public void StartJob()
+        private void StartJob()
         {
-            //todo!!
+            Process structureHarvesterRun = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "python27/python.exe",
+                Arguments = string.Format("{0} {1} {2} {3} {4}", 
+                                          "structureHarvester.py", 
+                                          "--dir=" + inputPath + "\\", 
+                                          "--out=" + harvesteResultsDirectoryPath + "\\", 
+                                          "--evanno", 
+                                          "--clumpp"),
+                WindowStyle = ProcessWindowStyle.Normal,
+                CreateNoWindow = true,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            };
+
+            try
+            {
+                structureHarvesterRun.StartInfo = startInfo;
+                structureHarvesterRun.Start();
+
+                var _ = ConsumeReader(structureHarvesterRun.StandardOutput);
+                _ = ConsumeReader(structureHarvesterRun.StandardError);
+
+                structureHarvesterRun.StandardInput.Flush();
+                structureHarvesterRun.StandardInput.Close();
+
+                structureHarvesterRun.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+            finally
+            {
+                structureHarvesterRun.Close();
+            }
         }
 
-        /// <summary>
-        /// Checks if run was succesful
-        /// </summary>
-        /// <returns>bool</returns>
-        public bool IsStructureHarvesterJobDone()
+        async static Task ConsumeReader(TextReader reader)
         {
-            return succesfulJob;
+            string text;
+
+            while ((text = await reader.ReadLineAsync()) != null)
+            {
+                Console.WriteLine(text);
+            }
         }
     }
 }
