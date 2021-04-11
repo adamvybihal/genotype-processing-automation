@@ -61,6 +61,7 @@ namespace GenotypeDataProcessing
 
             lsvStructureInputData.Width = tabControl1.Width;
             rtxStructureText.Width = tabControl1.Width / 2;
+            rtxStructureHarvesterText.Width = tabControl1.Width;
 
             ProjectInfo.projectName = projectName;
             ProjectInfo.projectNamePath = "projects\\" + projectName;
@@ -74,6 +75,7 @@ namespace GenotypeDataProcessing
             UpdateStructureTreeView();
             UpdateClumppTreeView();
             UpdateDistructTreeView();
+            UpdateStructureHarvesterTreeView();
         }
 
         private void CreateDirectoryForProjects()
@@ -331,7 +333,22 @@ namespace GenotypeDataProcessing
 
             rtxDistruct.Text = "";
         }
-        
+
+        /// <summary>
+        /// Updates TreeView of StructureHarvester folder
+        /// </summary>
+        public void UpdateStructureHarvesterTreeView()
+        {
+            string structureHarvesterFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureHarvesterFolder);
+
+            treeStructureHarvesterFolder.Nodes.Clear();
+
+            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureHarvesterFolder);
+            treeStructureHarvesterFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+
+            rtxStructureHarvesterText.Text = "";
+        }
+
         private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
         {
             var directoryNode = new TreeNode(directoryInfo.Name);
@@ -541,7 +558,7 @@ namespace GenotypeDataProcessing
         }
 
         /// <summary>
-        /// 
+        /// Set Text property of txtStructureHarvesterArchive to name of selected parameter set
         /// </summary>
         /// <param name="paramSet">selected Structure parameter set with job done</param>
         public void SetSelectedStructureResults(string paramSet)
@@ -581,9 +598,36 @@ namespace GenotypeDataProcessing
                                               );
 
             StructureHarvesterDataHandle structureHarvesterDataHandle = new StructureHarvesterDataHandle(
+                                                                this,
                                                                 Path.Combine(paramSetResultsPath),
                                                                 Path.Combine(harvesterResultsPath));
             structureHarvesterDataHandle.AsyncRun();
+
+            btnStartAnalysisStrHv.Enabled = false;
+        }
+
+        /// <summary>
+        /// Refresh Structure Harvester tab after a job is done 
+        /// </summary>
+        public void ExecuteAfterStructureHarvesterJobDone()
+        {
+            btnStartAnalysisStrHv.Enabled = true;
+            UpdateStructureHarvesterTreeView();
+        }
+
+        private void treeStructureHarvesterFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string path = Path.Combine(ProjectInfo.projectNamePath, e.Node.FullPath);
+
+            try
+            {
+                if (e.Node.Nodes.Count == 0)
+                    rtxStructureHarvesterText.Text = File.ReadAllText(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // ******* CLUMPP TAB ******* //
@@ -592,7 +636,6 @@ namespace GenotypeDataProcessing
         {
             FormClumppParams formClumppParams = new FormClumppParams(this);
             formClumppParams.ShowDialog();
-
         }
 
         private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -649,5 +692,7 @@ namespace GenotypeDataProcessing
                 projectPath + "/" + ProjectInfo.structureJobInfoFile,
                 ProjectInfo.structureJobInfo);
         }
+
+        
     }
 }

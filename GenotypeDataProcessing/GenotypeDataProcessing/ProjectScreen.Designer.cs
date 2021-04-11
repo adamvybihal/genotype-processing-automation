@@ -53,6 +53,8 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabStructureHarvester = new System.Windows.Forms.TabPage();
+            this.rtxStructureHarvesterText = new System.Windows.Forms.RichTextBox();
+            this.treeStructureHarvesterFolder = new System.Windows.Forms.TreeView();
             this.llblStructureHarvesterWeb = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -112,7 +114,7 @@ namespace GenotypeDataProcessing
             // btnStartAnalysisStr
             // 
             this.btnStartAnalysisStr.Enabled = false;
-            this.btnStartAnalysisStr.Location = new System.Drawing.Point(56, 423);
+            this.btnStartAnalysisStr.Location = new System.Drawing.Point(71, 291);
             this.btnStartAnalysisStr.Name = "btnStartAnalysisStr";
             this.btnStartAnalysisStr.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisStr.TabIndex = 2;
@@ -159,7 +161,7 @@ namespace GenotypeDataProcessing
             this.groupBox1.Controls.Add(this.cbxPerformDistructStr);
             this.groupBox1.Controls.Add(this.cbxPerformCLUMPPStr);
             this.groupBox1.Controls.Add(this.cbxPerformStructureHarvesterStr);
-            this.groupBox1.Location = new System.Drawing.Point(39, 281);
+            this.groupBox1.Location = new System.Drawing.Point(54, 414);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(192, 136);
             this.groupBox1.TabIndex = 8;
@@ -236,7 +238,7 @@ namespace GenotypeDataProcessing
             // lblStructureJobLabel
             // 
             this.lblStructureJobLabel.AutoSize = true;
-            this.lblStructureJobLabel.Location = new System.Drawing.Point(56, 498);
+            this.lblStructureJobLabel.Location = new System.Drawing.Point(71, 366);
             this.lblStructureJobLabel.Name = "lblStructureJobLabel";
             this.lblStructureJobLabel.Size = new System.Drawing.Size(146, 17);
             this.lblStructureJobLabel.TabIndex = 20;
@@ -245,7 +247,7 @@ namespace GenotypeDataProcessing
             // 
             // prbJobProgressBar
             // 
-            this.prbJobProgressBar.Location = new System.Drawing.Point(56, 468);
+            this.prbJobProgressBar.Location = new System.Drawing.Point(71, 336);
             this.prbJobProgressBar.Name = "prbJobProgressBar";
             this.prbJobProgressBar.Size = new System.Drawing.Size(160, 23);
             this.prbJobProgressBar.TabIndex = 19;
@@ -343,6 +345,8 @@ namespace GenotypeDataProcessing
             // tabStructureHarvester
             // 
             this.tabStructureHarvester.BackColor = System.Drawing.SystemColors.Control;
+            this.tabStructureHarvester.Controls.Add(this.rtxStructureHarvesterText);
+            this.tabStructureHarvester.Controls.Add(this.treeStructureHarvesterFolder);
             this.tabStructureHarvester.Controls.Add(this.llblStructureHarvesterWeb);
             this.tabStructureHarvester.Controls.Add(this.label4);
             this.tabStructureHarvester.Controls.Add(this.label3);
@@ -358,10 +362,28 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.TabIndex = 1;
             this.tabStructureHarvester.Text = "Structure Harvester";
             // 
+            // rtxStructureHarvesterText
+            // 
+            this.rtxStructureHarvesterText.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtxStructureHarvesterText.Location = new System.Drawing.Point(567, 3);
+            this.rtxStructureHarvesterText.Name = "rtxStructureHarvesterText";
+            this.rtxStructureHarvesterText.ReadOnly = true;
+            this.rtxStructureHarvesterText.Size = new System.Drawing.Size(459, 563);
+            this.rtxStructureHarvesterText.TabIndex = 18;
+            this.rtxStructureHarvesterText.Text = "";
+            // 
+            // treeStructureHarvesterFolder
+            // 
+            this.treeStructureHarvesterFolder.Location = new System.Drawing.Point(347, 6);
+            this.treeStructureHarvesterFolder.Name = "treeStructureHarvesterFolder";
+            this.treeStructureHarvesterFolder.Size = new System.Drawing.Size(214, 251);
+            this.treeStructureHarvesterFolder.TabIndex = 17;
+            this.treeStructureHarvesterFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeStructureHarvesterFolder_NodeMouseDoubleClick);
+            // 
             // llblStructureHarvesterWeb
             // 
             this.llblStructureHarvesterWeb.AutoSize = true;
-            this.llblStructureHarvesterWeb.Location = new System.Drawing.Point(387, 315);
+            this.llblStructureHarvesterWeb.Location = new System.Drawing.Point(384, 491);
             this.llblStructureHarvesterWeb.Name = "llblStructureHarvesterWeb";
             this.llblStructureHarvesterWeb.Size = new System.Drawing.Size(132, 17);
             this.llblStructureHarvesterWeb.TabIndex = 16;
@@ -372,7 +394,7 @@ namespace GenotypeDataProcessing
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 315);
+            this.label4.Location = new System.Drawing.Point(26, 491);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(359, 17);
             this.label4.TabIndex = 15;
@@ -381,7 +403,7 @@ namespace GenotypeDataProcessing
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 294);
+            this.label3.Location = new System.Drawing.Point(49, 470);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(454, 17);
             this.label3.TabIndex = 14;
@@ -390,7 +412,7 @@ namespace GenotypeDataProcessing
             // btnStartAnalysisStrHv
             // 
             this.btnStartAnalysisStrHv.Enabled = false;
-            this.btnStartAnalysisStrHv.Location = new System.Drawing.Point(185, 211);
+            this.btnStartAnalysisStrHv.Location = new System.Drawing.Point(104, 132);
             this.btnStartAnalysisStrHv.Name = "btnStartAnalysisStrHv";
             this.btnStartAnalysisStrHv.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisStrHv.TabIndex = 13;
@@ -400,37 +422,37 @@ namespace GenotypeDataProcessing
             // 
             // btnChooseArchive
             // 
-            this.btnChooseArchive.Location = new System.Drawing.Point(375, 53);
+            this.btnChooseArchive.Location = new System.Drawing.Point(130, 88);
             this.btnChooseArchive.Name = "btnChooseArchive";
             this.btnChooseArchive.Size = new System.Drawing.Size(107, 23);
             this.btnChooseArchive.TabIndex = 12;
-            this.btnChooseArchive.Text = "Choose File";
+            this.btnChooseArchive.Text = "Choose";
             this.btnChooseArchive.UseVisualStyleBackColor = true;
             this.btnChooseArchive.Click += new System.EventHandler(this.btnChooseArchive_Click);
             // 
             // txtStructureHarvesterArchive
             // 
-            this.txtStructureHarvesterArchive.Location = new System.Drawing.Point(86, 53);
+            this.txtStructureHarvesterArchive.Location = new System.Drawing.Point(40, 60);
             this.txtStructureHarvesterArchive.Name = "txtStructureHarvesterArchive";
             this.txtStructureHarvesterArchive.ReadOnly = true;
-            this.txtStructureHarvesterArchive.Size = new System.Drawing.Size(273, 22);
+            this.txtStructureHarvesterArchive.Size = new System.Drawing.Size(288, 22);
             this.txtStructureHarvesterArchive.TabIndex = 11;
-            this.txtStructureHarvesterArchive.Text = "choose file ...";
+            this.txtStructureHarvesterArchive.Text = "choose results ...";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 21);
+            this.label2.Location = new System.Drawing.Point(37, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(235, 17);
+            this.label2.Size = new System.Drawing.Size(291, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Select a folder with Structure results";
+            this.label2.Text = "Select a Structure parameter set with results:";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cbxDistructStrHv);
             this.groupBox2.Controls.Add(this.cbxCLUMPPStrHv);
-            this.groupBox2.Location = new System.Drawing.Point(64, 81);
+            this.groupBox2.Location = new System.Drawing.Point(68, 330);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(418, 107);
             this.groupBox2.TabIndex = 9;
@@ -881,6 +903,8 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
         private System.Windows.Forms.ProgressBar prbJobProgressBar;
         private System.Windows.Forms.Label lblStructureJobLabel;
+        private System.Windows.Forms.RichTextBox rtxStructureHarvesterText;
+        private System.Windows.Forms.TreeView treeStructureHarvesterFolder;
     }
 }
 

@@ -17,16 +17,19 @@ namespace GenotypeDataProcessing.StructureHarvester
     public class StructureHarvesterDataHandle
     {
 
+        private ProjectScreen callerProjectScreen;
         private string inputPath;
         private string harvesteResultsDirectoryPath;
 
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="projectScreen">ProjectScreen form, calling this class</param>
         /// <param name="inputDataPath">Path of folder with structure resulsts</param>
         /// <param name="resultsPath">Path where Structure Harvester results are to be stored</param>
-        public StructureHarvesterDataHandle(string inputDataPath, string resultsPath)
+        public StructureHarvesterDataHandle(ProjectScreen projectScreen, string inputDataPath, string resultsPath)
         {
+            callerProjectScreen = projectScreen;
             inputPath = inputDataPath;
             harvesteResultsDirectoryPath = resultsPath;
 
@@ -62,8 +65,7 @@ namespace GenotypeDataProcessing.StructureHarvester
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                // todo - refresh Structure Harvester tryvju
-                //callerProjectScreen.ChangeStructureJobProgress((int)progressChangeRate);
+                callerProjectScreen.ExecuteAfterStructureHarvesterJobDone();
                 MessageBox.Show("Structure Harvester job done!",
                     "Done",
                     MessageBoxButtons.OK,
