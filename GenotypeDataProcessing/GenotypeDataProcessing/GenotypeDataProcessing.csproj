@@ -358,80 +358,36 @@
     <None Include="python27\libs\_tkinter.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="python27\Lib\abc.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\argparse.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\codecs.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\collections.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\copy.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\copy_reg.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="python27\Lib\abc.pyc" />
+    <None Include="python27\Lib\argparse.pyc" />
+    <None Include="python27\Lib\codecs.pyc" />
+    <None Include="python27\Lib\collections.pyc" />
+    <None Include="python27\Lib\copy.pyc" />
+    <None Include="python27\Lib\copy_reg.pyc" />
     <None Include="python27\Lib\ctypes\macholib\fetch_macholib" />
     <None Include="python27\Lib\ctypes\macholib\fetch_macholib.bat" />
     <None Include="python27\Lib\ctypes\macholib\README.ctypes" />
     <None Include="python27\Lib\distutils\command\command_template" />
     <None Include="python27\Lib\distutils\README" />
-    <None Include="python27\Lib\encodings\aliases.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\encodings\cp1250.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\encodings\__init__.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\fnmatch.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\functools.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\genericpath.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\gettext.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\glob.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\heapq.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\keyword.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\linecache.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\locale.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\ntpath.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\os.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="python27\Lib\encodings\aliases.pyc" />
+    <None Include="python27\Lib\encodings\cp1250.pyc" />
+    <None Include="python27\Lib\encodings\__init__.pyc" />
+    <None Include="python27\Lib\fnmatch.pyc" />
+    <None Include="python27\Lib\functools.pyc" />
+    <None Include="python27\Lib\genericpath.pyc" />
+    <None Include="python27\Lib\gettext.pyc" />
+    <None Include="python27\Lib\glob.pyc" />
+    <None Include="python27\Lib\heapq.pyc" />
+    <None Include="python27\Lib\keyword.pyc" />
+    <None Include="python27\Lib\linecache.pyc" />
+    <None Include="python27\Lib\locale.pyc" />
+    <None Include="python27\Lib\ntpath.pyc" />
+    <None Include="python27\Lib\os.pyc" />
     <None Include="python27\Lib\pdb.doc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="python27\Lib\posixpath.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\re.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="python27\Lib\posixpath.pyc" />
+    <None Include="python27\Lib\re.pyc" />
     <None Include="python27\Lib\site-packages\easy_install.pyc" />
     <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\INSTALLER" />
     <None Include="python27\Lib\site-packages\pip-19.2.3.dist-info\METADATA" />
@@ -855,57 +811,25 @@
     <None Include="python27\Lib\site-packages\setuptools\_vendor\six.pyc" />
     <None Include="python27\Lib\site-packages\setuptools\_vendor\__init__.pyc" />
     <None Include="python27\Lib\site-packages\setuptools\__init__.pyc" />
-    <None Include="python27\Lib\site.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\sre_compile.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\sre_constants.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\sre_parse.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\stat.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\string.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\struct.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\sysconfig.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\textwrap.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\traceback.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\types.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\UserDict.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\warnings.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\weakref.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="python27\Lib\site.pyc" />
+    <None Include="python27\Lib\sre_compile.pyc" />
+    <None Include="python27\Lib\sre_constants.pyc" />
+    <None Include="python27\Lib\sre_parse.pyc" />
+    <None Include="python27\Lib\stat.pyc" />
+    <None Include="python27\Lib\string.pyc" />
+    <None Include="python27\Lib\struct.pyc" />
+    <None Include="python27\Lib\sysconfig.pyc" />
+    <None Include="python27\Lib\textwrap.pyc" />
+    <None Include="python27\Lib\traceback.pyc" />
+    <None Include="python27\Lib\types.pyc" />
+    <None Include="python27\Lib\UserDict.pyc" />
+    <None Include="python27\Lib\warnings.pyc" />
+    <None Include="python27\Lib\weakref.pyc" />
     <None Include="python27\Lib\wsgiref.egg-info">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="python27\Lib\_abcoll.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="python27\Lib\_weakrefset.pyc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="python27\Lib\_abcoll.pyc" />
+    <None Include="python27\Lib\_weakrefset.pyc" />
     <None Include="python27\LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
