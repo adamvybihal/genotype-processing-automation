@@ -103,47 +103,37 @@ namespace GenotypeDataProcessing
             string structureJobInfoPath = Path.Combine(projectPath, ProjectInfo.structureJobInfoFile);
 
             // load structure data
-            if (File.Exists(structureDataInfoPath))
-            {
-                try
-                {
-                    ProjectInfo.structureInputData = BinarySerialization.ReadFromBinaryFile<StructureInputData>(
-                    structureDataInfoPath);
-                    ProjectInfo.structureInputInfo = ProjectInfo.structureInputData.GetStructureInputInfo();
-                }
-                catch(Exception e)
-                {
-                    MessageBox.Show(
-                        e.Message,
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            ProjectInfo.structureInputData = LoadBinaryFile<StructureInputData>(structureDataInfoPath);
+
             // load structure param sets
-            if (File.Exists(structureParamSetsPath))
-            {
-                try
-                {
-                    ProjectInfo.structureParamSets = BinarySerialization.ReadFromBinaryFile<Dictionary<string,StructureParamSetStruct>>(
-                    structureParamSetsPath);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(
-                        e.Message,
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            ProjectInfo.structureParamSets = LoadBinaryFile<Dictionary<string, StructureParamSetStruct>>(structureParamSetsPath);
+            
             // load structure job infos
-            if (File.Exists(structureJobInfoPath))
+            ProjectInfo.structureJobInfo = LoadBinaryFile<Dictionary<string, StructureJobInfoStruct>>(structureJobInfoPath);
+
+            if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
+            {
+                ProjectInfo.structureInputInfo = ProjectInfo.structureInputData.GetStructureInputInfo();
+                ExecuteWhenStructureDataLoaded();
+            }
+
+            if (ProjectInfo.structureParamSets.Count > 0)
+            {
+                deleteToolStripMenuItem.Enabled = true;
+                updateToolStripMenuItem.Enabled = true;
+                btnStartAnalysisStr.Enabled = true;
+            }
+        }
+
+        private TClass LoadBinaryFile<TClass>(string pathToBinaryFile) where TClass : new()
+        {
+            TClass returnClass = new TClass();
+
+            if (File.Exists(pathToBinaryFile))
             {
                 try
                 {
-                    ProjectInfo.structureJobInfo = BinarySerialization.ReadFromBinaryFile<Dictionary<string, StructureJobInfoStruct>>(
-                    structureJobInfoPath);
+                    returnClass = BinarySerialization.ReadFromBinaryFile<TClass>(pathToBinaryFile);
                 }
                 catch (Exception e)
                 {
@@ -155,13 +145,7 @@ namespace GenotypeDataProcessing
                 }
             }
 
-            if (ProjectInfo.structureInputData.DataLoadedSuccesfully()) ExecuteWhenStructureDataLoaded();
-            if (ProjectInfo.structureParamSets.Count > 0)
-            {
-                deleteToolStripMenuItem.Enabled = true;
-                updateToolStripMenuItem.Enabled = true;
-                btnStartAnalysisStr.Enabled = true;
-            }
+            return returnClass;
         }
 
         /// <summary>
@@ -692,7 +676,5 @@ namespace GenotypeDataProcessing
                 projectPath + "/" + ProjectInfo.structureJobInfoFile,
                 ProjectInfo.structureJobInfo);
         }
-
-        
     }
 }

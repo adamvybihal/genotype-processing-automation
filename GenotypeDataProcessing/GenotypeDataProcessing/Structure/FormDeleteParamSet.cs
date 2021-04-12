@@ -68,8 +68,8 @@ namespace GenotypeDataProcessing.Structure
                         string fullParamSetPath = Path.Combine(structureFolderPath, itm.Text);
                         DeleteParamsetDirectory(fullParamSetPath);
 
-                        DeleteFromDictionary(ProjectInfo.structureParamSets, itm.Text);
-                        
+                        DeleteFromDictionary<StructureParamSetStruct>(ProjectInfo.structureParamSets, itm.Text);
+                        DeleteFromDictionary<StructureJobInfoStruct>(ProjectInfo.structureJobInfo, itm.Text);                        
                     }
 
                     callerProjectScreen.UpdateStructureTreeView();
@@ -103,7 +103,7 @@ namespace GenotypeDataProcessing.Structure
             }
         }
 
-        private void DeleteFromDictionary(Dictionary<string, StructureParamSetStruct> keyValuePairs, string paramset)
+        private void DeleteFromDictionary<TValue>(Dictionary<string, TValue> keyValuePairs, string paramset)
         {
             if (keyValuePairs.ContainsKey(paramset))
             {
