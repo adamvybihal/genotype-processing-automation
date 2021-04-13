@@ -12,7 +12,9 @@ namespace GenotypeDataProcessing
     /// </summary>
     public static class ProjectInfo
     {
-
+        /// <summary>
+        /// Name of current project
+        /// </summary>
         public static string projectName;
         /// <summary>
         /// Path to current project
@@ -40,8 +42,17 @@ namespace GenotypeDataProcessing
         /// </summary>
         public const string distructFolder = "distruct";
 
+        /// <summary>
+        /// Name of file, where to save input info of Structure
+        /// </summary>
         public const string structureInputInfoFile = "structureinputdata.bin";
+        /// <summary>
+        /// Name of file, where to save parameter sets for Structure
+        /// </summary>
         public const string structureParamSetsFile = "structureparamsets.bin";
+        /// <summary>
+        /// Name of file, where to save info about jobs of Structure
+        /// </summary>
         public const string structureJobInfoFile = "structurejobinfo.bin";
 
         /// <summary>

@@ -44,12 +44,13 @@ namespace GenotypeDataProcessing
             CreateProjectDirectory();
 
             UpdateStructureTreeView();
+            UpdateStructureHarvesterTreeView();
             UpdateClumppTreeView();
             UpdateDistructTreeView();
         }
 
         /// <summary>
-        /// Constructor of ProjectScreen, when loading old project
+        /// Constructor of ProjectScreen, when loading existing project
         /// </summary>
         public ProjectScreen(string projectName)
         {
@@ -72,10 +73,10 @@ namespace GenotypeDataProcessing
 
             CreateProjectDirectory();
 
-            UpdateStructureTreeView();
+            UpdateStructureTreeView();    
+            UpdateStructureHarvesterTreeView();
             UpdateClumppTreeView();
             UpdateDistructTreeView();
-            UpdateStructureHarvesterTreeView();
         }
 
         private void CreateDirectoryForProjects()
@@ -278,14 +279,17 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateStructureTreeView()
         {
-            string structureFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
-
-            treeStructureFolder.Nodes.Clear();
-
-            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureFolder);
-            treeStructureFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
-
+            UpdateTreeView(treeStructureFolder, Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder));
             rtxStructureText.Text = "";
+        }
+
+        /// <summary>
+        /// Updates TreeView of StructureHarvester folder
+        /// </summary>
+        public void UpdateStructureHarvesterTreeView()
+        {
+            UpdateTreeView(treeStructureHarvesterFolder, Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureHarvesterFolder));
+            rtxStructureHarvesterText.Text = "";
         }
 
         /// <summary>
@@ -293,13 +297,7 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateClumppTreeView()
         {
-            string clumppFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
-
-            treeClumppFolder.Nodes.Clear();
-
-            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(clumppFolder);
-            treeClumppFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
-
+            UpdateTreeView(treeClumppFolder, Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder));
             rtxClumpp.Text = "";
         }
 
@@ -308,29 +306,21 @@ namespace GenotypeDataProcessing
         /// </summary>
         public void UpdateDistructTreeView()
         {
-            string distructFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
-
-            treeDistructFolder.Nodes.Clear();
-
-            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(distructFolder);
-            treeDistructFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
-
+            UpdateTreeView(treeDistructFolder, Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder));
             rtxDistruct.Text = "";
         }
 
         /// <summary>
-        /// Updates TreeView of StructureHarvester folder
+        /// For updating a TreeView, when content of folder changes
         /// </summary>
-        public void UpdateStructureHarvesterTreeView()
+        /// <param name="treeViewToUpdate">Which TreeView to update</param>
+        /// <param name="folderToShow">String path to folder to show in treeview</param>
+        public void UpdateTreeView(TreeView treeViewToUpdate, string folderToShow)
         {
-            string structureHarvesterFolder = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureHarvesterFolder);
+            treeViewToUpdate.Nodes.Clear();
 
-            treeStructureHarvesterFolder.Nodes.Clear();
-
-            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(structureHarvesterFolder);
-            treeStructureHarvesterFolder.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
-
-            rtxStructureHarvesterText.Text = "";
+            DirectoryInfo rootDirectoryInfo = new DirectoryInfo(folderToShow);
+            treeViewToUpdate.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
         }
 
         private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
