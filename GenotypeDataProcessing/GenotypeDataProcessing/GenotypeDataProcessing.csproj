@@ -154,12 +154,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLUMPP\ClumppJob.cs" />
     <Compile Include="CLUMPP\ClumppParameterSet.cs" />
     <Compile Include="CLUMPP\ClumppParamStruct.cs" />
+    <Compile Include="CLUMPP\ClumppRunInfoStruct.cs" />
     <Compile Include="CLUMPP\DataTypeClumppEn.cs" />
+    <Compile Include="distruct\DistructJob.cs" />
     <Compile Include="distruct\DistructParameterSet.cs" />
     <Compile Include="distruct\DistructParamStruct.cs" />
-    <Compile Include="Structure\FormSelectParamSetState.cs" />
+    <Compile Include="FormSelectParamSetState.cs" />
     <Compile Include="Structure\StructureInputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
     <Compile Include="Structure\FormStructureJobSettings.cs">
@@ -201,13 +204,11 @@
       <DependentUpon>FormDistructParams.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Programs\CLUMPP.cs" />
-    <Compile Include="Programs\Distruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structure\FormSelectParamSet.cs">
+    <Compile Include="FormSelectParamSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Structure\FormSelectParamSet.Designer.cs">
+    <Compile Include="FormSelectParamSet.Designer.cs">
       <DependentUpon>FormSelectParamSet.cs</DependentUpon>
     </Compile>
     <Compile Include="Structure\StructureInputInfoStruct.cs" />
@@ -246,7 +247,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Structure\FormSelectParamSet.resx">
+    <EmbeddedResource Include="FormSelectParamSet.resx">
       <DependentUpon>FormSelectParamSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Structure\FormStructureJobSettings.resx">

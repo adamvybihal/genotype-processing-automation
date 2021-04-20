@@ -54,6 +54,10 @@ namespace GenotypeDataProcessing
         /// Name of file, where to save info about jobs of Structure
         /// </summary>
         public const string structureJobInfoFile = "structurejobinfo.bin";
+        /// <summary>
+        /// Name of file, where to save info about jobs of Structure Harvester
+        /// </summary>
+        public const string harvesterJobDoneFile = "harvesterjobdone.bin";
 
         /// <summary>
         /// Class holding Structure's input data
@@ -71,5 +75,10 @@ namespace GenotypeDataProcessing
         /// Dicitionary containing KeyValuePairs of name of Structure's parameter set, and info about job with that parameter set
         /// </summary>
         public static Dictionary<string, StructureJobInfoStruct> structureJobInfo = new Dictionary<string, StructureJobInfoStruct>();
+        /// <summary>
+        /// Dicitionary containing key of initial Structure' parameter set, and bool value.
+        /// Bool value is true, if Structure Harvester job is done for key parameter set.
+        /// </summary>
+        public static Dictionary<string, bool> harvesterJobDone = new Dictionary<string, bool>();
     }
 }

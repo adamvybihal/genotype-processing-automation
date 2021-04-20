@@ -524,13 +524,13 @@ namespace GenotypeDataProcessing
             // 
             // btnStartAnalysisCLUMPP
             // 
-            this.btnStartAnalysisCLUMPP.Enabled = false;
             this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(186, 273);
             this.btnStartAnalysisCLUMPP.Name = "btnStartAnalysisCLUMPP";
             this.btnStartAnalysisCLUMPP.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisCLUMPP.TabIndex = 20;
             this.btnStartAnalysisCLUMPP.Text = "Start a Job";
             this.btnStartAnalysisCLUMPP.UseVisualStyleBackColor = true;
+            this.btnStartAnalysisCLUMPP.Click += new System.EventHandler(this.btnStartAnalysisCLUMPP_Click);
             // 
             // label7
             // 

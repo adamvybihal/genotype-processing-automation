@@ -50,6 +50,9 @@ namespace GenotypeDataProcessing.Structure
                 case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
                     PopulateWithParamSetsNames<StructureJobInfoStruct>(ProjectInfo.structureJobInfo);
                     break;
+                case FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP:
+                    PopulateWithParamSetsNames<bool>(ProjectInfo.harvesterJobDone);
+                    break;
             }
         }
 
@@ -75,6 +78,9 @@ namespace GenotypeDataProcessing.Structure
                     case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
                         SelectSetForStructureHarvester(itm.Text);
                         break;
+                    case FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP:
+                        GoToClumppParametersSet(itm.Text);
+                        break;
                 }
             }
             else
@@ -99,6 +105,14 @@ namespace GenotypeDataProcessing.Structure
         private void SelectSetForStructureHarvester(string paramSet)
         {
             callerProjectScreen.SetSelectedStructureResults(paramSet);
+
+            this.Close();
+        }
+
+        private void GoToClumppParametersSet(string paramSet)
+        {
+            FormClumppParams formClumppParams = new FormClumppParams(callerProjectScreen);
+            formClumppParams.ShowDialog();
 
             this.Close();
         }

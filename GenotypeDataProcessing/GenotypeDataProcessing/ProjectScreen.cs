@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GenotypeDataProcessing.Programs;
 using GenotypeDataProcessing.Structure;
 using GenotypeDataProcessing.StructureHarvester;
 using GenotypeDataProcessing.CLUMPP;
@@ -102,15 +101,18 @@ namespace GenotypeDataProcessing
             string structureDataInfoPath = Path.Combine(projectPath, ProjectInfo.structureInputInfoFile);
             string structureParamSetsPath = Path.Combine(projectPath, ProjectInfo.structureParamSetsFile);
             string structureJobInfoPath = Path.Combine(projectPath, ProjectInfo.structureJobInfoFile);
-
+            string harvesterJobDonePath = Path.Combine(projectPath, ProjectInfo.harvesterJobDoneFile);
             // load structure data
             ProjectInfo.structureInputData = LoadBinaryFile<StructureInputData>(structureDataInfoPath);
 
             // load structure param sets
             ProjectInfo.structureParamSets = LoadBinaryFile<Dictionary<string, StructureParamSetStruct>>(structureParamSetsPath);
             
-            // load structure job infos
+            // load structure jobs info
             ProjectInfo.structureJobInfo = LoadBinaryFile<Dictionary<string, StructureJobInfoStruct>>(structureJobInfoPath);
+
+            // load structure harvester jobs info
+            ProjectInfo.harvesterJobDone = LoadBinaryFile<Dictionary<string, bool>>(harvesterJobDonePath);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
@@ -506,15 +508,6 @@ namespace GenotypeDataProcessing
 
         private void btnChooseArchive_Click(object sender, EventArgs e)
         {
-            //FolderBrowserDialog fbd = new FolderBrowserDialog();
-            //fbd.ShowDialog();
-
-            //if (fbd.SelectedPath != "")
-            //{
-            //    txtStructureHarvesterArchive.Text = fbd.SelectedPath;
-
-            //    btnStartAnalysisStrHv.Enabled = true;
-            //}
             if (ProjectInfo.structureJobInfo.Count > 0)
             {
                 FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
@@ -559,16 +552,18 @@ namespace GenotypeDataProcessing
 
         private void btnStartAnalysisStrHv_Click(object sender, EventArgs e)
         {
+            string paramSet = txtStructureHarvesterArchive.Text;
+
             string paramSetResultsPath = Path.Combine(
                                             ProjectInfo.projectNamePath, 
                                             ProjectInfo.structureFolder,
-                                            txtStructureHarvesterArchive.Text,
+                                            paramSet,
                                             "results"
                                             );
             string harvesterResultsPath = Path.Combine(
                                               ProjectInfo.projectNamePath,
                                               ProjectInfo.structureHarvesterFolder,
-                                              txtStructureHarvesterArchive.Text
+                                              paramSet
                                               );
 
             StructureHarvesterDataHandle structureHarvesterDataHandle = new StructureHarvesterDataHandle(
@@ -578,14 +573,24 @@ namespace GenotypeDataProcessing
             structureHarvesterDataHandle.AsyncRun();
 
             btnStartAnalysisStrHv.Enabled = false;
+            btnChooseArchive.Enabled = false;
         }
 
         /// <summary>
         /// Refresh Structure Harvester tab after a job is done 
         /// </summary>
-        public void ExecuteAfterStructureHarvesterJobDone()
+        public void ExecuteAfterStructureHarvesterJobDone(bool isDirEmpty)
         {
+            if (!isDirEmpty)
+            {
+                if (ProjectInfo.harvesterJobDone.ContainsKey(txtStructureHarvesterArchive.Text))
+                    ProjectInfo.harvesterJobDone.Remove(txtStructureHarvesterArchive.Text);
+
+                ProjectInfo.harvesterJobDone.Add(txtStructureHarvesterArchive.Text, true);
+            }
+
             btnStartAnalysisStrHv.Enabled = true;
+            btnChooseArchive.Enabled = true;
             UpdateStructureHarvesterTreeView();
         }
 
@@ -608,8 +613,13 @@ namespace GenotypeDataProcessing
 
         private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormClumppParams formClumppParams = new FormClumppParams(this);
-            formClumppParams.ShowDialog();
+            //FormClumppParams formClumppParams = new FormClumppParams(this);
+            //formClumppParams.ShowDialog();
+
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, 
+                                                            FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP);
+            formSelectParamSet.ShowDialog();
+
         }
 
         private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -625,6 +635,11 @@ namespace GenotypeDataProcessing
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnStartAnalysisCLUMPP_Click(object sender, EventArgs e)
+        {
+            ; ;
         }
 
         // ******* distruct ******* //
@@ -665,6 +680,9 @@ namespace GenotypeDataProcessing
             BinarySerialization.WriteToBinaryFile<Dictionary<string, StructureJobInfoStruct>>(
                 projectPath + "/" + ProjectInfo.structureJobInfoFile,
                 ProjectInfo.structureJobInfo);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, bool>>(
+                projectPath + "/" + ProjectInfo.harvesterJobDoneFile,
+                ProjectInfo.harvesterJobDone);
         }
     }
 }

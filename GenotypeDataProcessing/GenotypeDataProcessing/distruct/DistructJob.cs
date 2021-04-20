@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GenotypeDataProcessing.Programs
+namespace GenotypeDataProcessing.distruct
 {
     /// <summary>
-    /// Class for running distruct
+    /// Class for managing distruct SW job
     /// </summary>
-    public class Distruct
+    public class DistructJob
     {
-
         private string drawparamsFilePath;
         private string indivqFilePath;
         private string popqFilePath;
@@ -28,7 +29,7 @@ namespace GenotypeDataProcessing.Programs
         /// <param name="popqPath">A string path to input file of population q's</param>
         /// <param name="outputName">A name of distruct's output file</param>
         /// <param name="dataPath">A path to a folder where output will be generated</param>
-        public Distruct(string drawparamsPath, string indivqPath, string popqPath, string outputName, string dataPath)
+        public DistructJob(string drawparamsPath, string indivqPath, string popqPath, string outputName, string dataPath)
         {
             drawparamsFilePath = drawparamsPath;
             indivqFilePath = indivqPath;
@@ -46,10 +47,26 @@ namespace GenotypeDataProcessing.Programs
             return outuputFileName + ".ps";
         }
 
-        /// <summary>
-        /// Method that launches distruct.
-        /// </summary>
-        public void RunDistruct()
+        public void AsyncRun()
+        {
+            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += (sender, args) =>
+            {
+                StartProcess();
+            };
+            backgroundWorker.RunWorkerCompleted += (sender, args) =>
+            {
+                MessageBox.Show(
+                    "Completed",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            };
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void StartProcess()
         {
             Process distructRun = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -69,21 +86,50 @@ namespace GenotypeDataProcessing.Programs
                 distructRun.Start();
 
                 distructRun.StandardInput.WriteLine("distructWindows1.1 -d " + drawparamsFilePath + " -p " + popqFilePath + " -i " + indivqFilePath + " -o " + outputDataPath + outuputFileName + ".ps");
+
+                var _ = ConsumeReader(distructRun.StandardOutput);
+                _ = ConsumeReader(distructRun.StandardError);
+
                 distructRun.StandardInput.Flush();
                 distructRun.StandardInput.Close();
 
                 distructRun.WaitForExit();
-                Console.WriteLine(distructRun.StandardOutput.ReadToEnd());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
             }
             finally
             {
                 distructRun.Close();
+            }
+        }
 
+        async static Task ConsumeReader(TextReader reader)
+        {
+            string text;
+
+            while ((text = await reader.ReadLineAsync()) != null)
+            {
+                Console.WriteLine(text);
             }
         }
     }
+
+        //Command line options:
+        //-d drawparams
+        //-K K
+        //-M NUMPOPS
+        //-N NUMINDS
+        //-p input file(population q's)
+        //-i input file (individual q's)
+        //-a input file (labels atop figure)
+        //-b input file(labels below figure)
+        //-c input file(cluster permutation)
+        //-o output file
 }

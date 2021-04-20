@@ -65,12 +65,25 @@ namespace GenotypeDataProcessing.StructureHarvester
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                callerProjectScreen.ExecuteAfterStructureHarvesterJobDone();
-                MessageBox.Show("Structure Harvester job done!",
+                bool isDirEmpty = IsDirectoryEmpty();
+
+                callerProjectScreen.ExecuteAfterStructureHarvesterJobDone(isDirEmpty);
+                if (isDirEmpty)
+                {
+                    MessageBox.Show("Structure Harvester could not be executed!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                }
+                else
+                {
+                    MessageBox.Show("Structure Harvester job done!",
                     "Done",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                     );
+                }
             };
             backgroundWorker.RunWorkerAsync();
         }
@@ -134,6 +147,15 @@ namespace GenotypeDataProcessing.StructureHarvester
             {
                 Console.WriteLine(text);
             }
+        }
+
+        /// <summary>
+        /// Checks if result directory is empty after current run
+        /// </summary>
+        /// <returns>bool value</returns>
+        public bool IsDirectoryEmpty()
+        {
+            return !Directory.EnumerateFileSystemEntries(harvesteResultsDirectoryPath).Any();
         }
     }
 }
