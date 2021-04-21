@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenotypeDataProcessing.CLUMPP;
 using GenotypeDataProcessing.Structure;
 
 namespace GenotypeDataProcessing
@@ -58,6 +59,10 @@ namespace GenotypeDataProcessing
         /// Name of file, where to save info about jobs of Structure Harvester
         /// </summary>
         public const string harvesterJobDoneFile = "harvesterjobdone.bin";
+        /// <summary>
+        /// Name of file, where to save parameter sets of CLUMPP
+        /// </summary>
+        public const string clumppParamSetsFile = "clumppparamsets.bin";
 
         /// <summary>
         /// Class holding Structure's input data
@@ -80,5 +85,9 @@ namespace GenotypeDataProcessing
         /// Bool value is true, if Structure Harvester job is done for key parameter set.
         /// </summary>
         public static Dictionary<string, bool> harvesterJobDone = new Dictionary<string, bool>();
+        /// <summary>
+        /// Dictionary containing name of parameter set, and structure of actual CLUMPP parameters
+        /// </summary>
+        public static Dictionary<string, ClumppParamStruct> clumppParamSets = new Dictionary<string, ClumppParamStruct>();
     }
 }

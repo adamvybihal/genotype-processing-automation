@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.CLUMPP
     public struct ClumppRunInfoStruct
     {
         public string paramfile;
+        public string inputArgument;
         public string inputFile;
         public string outputFile;
         public string miscFile;

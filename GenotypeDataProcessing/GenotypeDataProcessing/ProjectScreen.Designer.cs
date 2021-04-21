@@ -69,13 +69,7 @@ namespace GenotypeDataProcessing
             this.treeClumppFolder = new System.Windows.Forms.TreeView();
             this.rtxClumpp = new System.Windows.Forms.RichTextBox();
             this.btnStartAnalysisCLUMPP = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnChoosePopulationsFile = new System.Windows.Forms.Button();
-            this.txtPopulationsFile = new System.Windows.Forms.TextBox();
-            this.btnChooseIndividualsFile = new System.Windows.Forms.Button();
-            this.txtIndividualsFile = new System.Windows.Forms.TextBox();
+            this.lblClumppRun = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cbxDistructClmp = new System.Windows.Forms.CheckBox();
@@ -488,13 +482,7 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Controls.Add(this.treeClumppFolder);
             this.tabCLUMPP.Controls.Add(this.rtxClumpp);
             this.tabCLUMPP.Controls.Add(this.btnStartAnalysisCLUMPP);
-            this.tabCLUMPP.Controls.Add(this.label7);
-            this.tabCLUMPP.Controls.Add(this.label6);
-            this.tabCLUMPP.Controls.Add(this.label5);
-            this.tabCLUMPP.Controls.Add(this.btnChoosePopulationsFile);
-            this.tabCLUMPP.Controls.Add(this.txtPopulationsFile);
-            this.tabCLUMPP.Controls.Add(this.btnChooseIndividualsFile);
-            this.tabCLUMPP.Controls.Add(this.txtIndividualsFile);
+            this.tabCLUMPP.Controls.Add(this.lblClumppRun);
             this.tabCLUMPP.Controls.Add(this.groupBox3);
             this.tabCLUMPP.Controls.Add(this.mnsClumpp);
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
@@ -506,7 +494,7 @@ namespace GenotypeDataProcessing
             // 
             // treeClumppFolder
             // 
-            this.treeClumppFolder.Location = new System.Drawing.Point(364, 256);
+            this.treeClumppFolder.Location = new System.Drawing.Point(200, 46);
             this.treeClumppFolder.Name = "treeClumppFolder";
             this.treeClumppFolder.Size = new System.Drawing.Size(188, 223);
             this.treeClumppFolder.TabIndex = 23;
@@ -524,7 +512,7 @@ namespace GenotypeDataProcessing
             // 
             // btnStartAnalysisCLUMPP
             // 
-            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(186, 273);
+            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(168, 295);
             this.btnStartAnalysisCLUMPP.Name = "btnStartAnalysisCLUMPP";
             this.btnStartAnalysisCLUMPP.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisCLUMPP.TabIndex = 20;
@@ -532,74 +520,21 @@ namespace GenotypeDataProcessing
             this.btnStartAnalysisCLUMPP.UseVisualStyleBackColor = true;
             this.btnStartAnalysisCLUMPP.Click += new System.EventHandler(this.btnStartAnalysisCLUMPP_Click);
             // 
-            // label7
+            // lblClumppRun
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 337);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(186, 17);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "* select at least one data file";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(175, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(187, 17);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Select Population Data File* ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(183, 19);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 17);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Select Individual Data File* ";
-            // 
-            // btnChoosePopulationsFile
-            // 
-            this.btnChoosePopulationsFile.Location = new System.Drawing.Point(364, 115);
-            this.btnChoosePopulationsFile.Name = "btnChoosePopulationsFile";
-            this.btnChoosePopulationsFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChoosePopulationsFile.TabIndex = 16;
-            this.btnChoosePopulationsFile.Text = "Choose File";
-            this.btnChoosePopulationsFile.UseVisualStyleBackColor = true;
-            // 
-            // txtPopulationsFile
-            // 
-            this.txtPopulationsFile.Location = new System.Drawing.Point(75, 115);
-            this.txtPopulationsFile.Name = "txtPopulationsFile";
-            this.txtPopulationsFile.ReadOnly = true;
-            this.txtPopulationsFile.Size = new System.Drawing.Size(273, 22);
-            this.txtPopulationsFile.TabIndex = 15;
-            this.txtPopulationsFile.Text = "choose file ...";
-            // 
-            // btnChooseIndividualsFile
-            // 
-            this.btnChooseIndividualsFile.Location = new System.Drawing.Point(364, 53);
-            this.btnChooseIndividualsFile.Name = "btnChooseIndividualsFile";
-            this.btnChooseIndividualsFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChooseIndividualsFile.TabIndex = 14;
-            this.btnChooseIndividualsFile.Text = "Choose File";
-            this.btnChooseIndividualsFile.UseVisualStyleBackColor = true;
-            // 
-            // txtIndividualsFile
-            // 
-            this.txtIndividualsFile.Location = new System.Drawing.Point(75, 53);
-            this.txtIndividualsFile.Name = "txtIndividualsFile";
-            this.txtIndividualsFile.ReadOnly = true;
-            this.txtIndividualsFile.Size = new System.Drawing.Size(273, 22);
-            this.txtIndividualsFile.TabIndex = 13;
-            this.txtIndividualsFile.Text = "choose file ...";
+            this.lblClumppRun.AutoSize = true;
+            this.lblClumppRun.Enabled = false;
+            this.lblClumppRun.Location = new System.Drawing.Point(184, 347);
+            this.lblClumppRun.Name = "lblClumppRun";
+            this.lblClumppRun.Size = new System.Drawing.Size(135, 17);
+            this.lblClumppRun.TabIndex = 19;
+            this.lblClumppRun.Text = "clumpp is running ...";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.cbxDistructClmp);
-            this.groupBox3.Location = new System.Drawing.Point(64, 143);
+            this.groupBox3.Location = new System.Drawing.Point(54, 421);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(418, 107);
             this.groupBox3.TabIndex = 9;
@@ -861,13 +796,7 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llblStructureHarvesterWeb;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnChoosePopulationsFile;
-        private System.Windows.Forms.TextBox txtPopulationsFile;
-        private System.Windows.Forms.Button btnChooseIndividualsFile;
-        private System.Windows.Forms.TextBox txtIndividualsFile;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblClumppRun;
         private System.Windows.Forms.Button btnStartAnalysisCLUMPP;
         private System.Windows.Forms.Button btnChooseIndivFile;
         private System.Windows.Forms.TextBox txtIndivFile;

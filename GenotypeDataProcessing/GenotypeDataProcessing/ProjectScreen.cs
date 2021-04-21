@@ -62,6 +62,7 @@ namespace GenotypeDataProcessing
             lsvStructureInputData.Width = tabControl1.Width;
             rtxStructureText.Width = tabControl1.Width / 2;
             rtxStructureHarvesterText.Width = tabControl1.Width;
+            rtxClumpp.Width = tabControl1.Width;
 
             ProjectInfo.projectName = projectName;
             ProjectInfo.projectNamePath = "projects\\" + projectName;
@@ -102,6 +103,7 @@ namespace GenotypeDataProcessing
             string structureParamSetsPath = Path.Combine(projectPath, ProjectInfo.structureParamSetsFile);
             string structureJobInfoPath = Path.Combine(projectPath, ProjectInfo.structureJobInfoFile);
             string harvesterJobDonePath = Path.Combine(projectPath, ProjectInfo.harvesterJobDoneFile);
+            string clumppParamSetsPath = Path.Combine(projectPath, ProjectInfo.clumppParamSetsFile);
             // load structure data
             ProjectInfo.structureInputData = LoadBinaryFile<StructureInputData>(structureDataInfoPath);
 
@@ -113,6 +115,9 @@ namespace GenotypeDataProcessing
 
             // load structure harvester jobs info
             ProjectInfo.harvesterJobDone = LoadBinaryFile<Dictionary<string, bool>>(harvesterJobDonePath);
+
+            // load clumpp param sets
+            ProjectInfo.clumppParamSets = LoadBinaryFile<Dictionary<string, ClumppParamStruct>>(clumppParamSetsPath);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
@@ -613,8 +618,6 @@ namespace GenotypeDataProcessing
 
         private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FormClumppParams formClumppParams = new FormClumppParams(this);
-            //formClumppParams.ShowDialog();
 
             FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, 
                                                             FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP);
@@ -639,7 +642,51 @@ namespace GenotypeDataProcessing
 
         private void btnStartAnalysisCLUMPP_Click(object sender, EventArgs e)
         {
-            ; ;
+            if (ProjectInfo.clumppParamSets.Count == 0)
+            {
+                MessageBox.Show(
+                    "There is no CLUMPP parameter set, for which you can start a job.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return;
+            }
+            
+            FormClumppJobSettings formClumppJobSettings = new FormClumppJobSettings();
+            formClumppJobSettings.ShowDialog();
+
+            string chosenParamset = formClumppJobSettings.GetChosenParamset();
+            if (chosenParamset == "")
+                return;
+
+            int kStart = formClumppJobSettings.GetStartingK();
+            int kEnd = formClumppJobSettings.GetEndingK();
+
+            string harvesterInputPath = Path.Combine(
+                                    ProjectInfo.projectNamePath,
+                                    ProjectInfo.structureHarvesterFolder,
+                                    chosenParamset);
+            string outputPath = Path.Combine(
+                                        ProjectInfo.projectNamePath,
+                                        ProjectInfo.clumppFolder,
+                                        chosenParamset);
+
+            ClumppJob clumppJob = new ClumppJob(this, harvesterInputPath, outputPath, kStart, kEnd);
+            clumppJob.BatchRun();
+
+            btnStartAnalysisCLUMPP.Enabled = false;
+            lblClumppRun.Visible = true;
+        }
+
+        /// <summary>
+        /// Necessary actions after CLUMPP job is done
+        /// </summary>
+        public void ExecuteWhenClumppDone()
+        {
+            btnStartAnalysisCLUMPP.Enabled = true;
+            lblClumppRun.Visible = false;
+            UpdateClumppTreeView();
         }
 
         // ******* distruct ******* //
@@ -683,6 +730,9 @@ namespace GenotypeDataProcessing
             BinarySerialization.WriteToBinaryFile<Dictionary<string, bool>>(
                 projectPath + "/" + ProjectInfo.harvesterJobDoneFile,
                 ProjectInfo.harvesterJobDone);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, ClumppParamStruct>>(
+                projectPath + "/" + ProjectInfo.clumppParamSetsFile,
+                ProjectInfo.clumppParamSets);
         }
     }
 }

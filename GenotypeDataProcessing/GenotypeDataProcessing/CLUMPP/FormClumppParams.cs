@@ -17,6 +17,7 @@ namespace GenotypeDataProcessing
 
         private ClumppParamStruct clumppParamStruct;
         private ProjectScreen callerProjectScreen;
+        private string parameterSet = "";
 
         /// <summary>
         /// FormClumppParams constructor
@@ -27,6 +28,32 @@ namespace GenotypeDataProcessing
             InitializeComponent();
 
             callerProjectScreen = projectScreen;
+        }
+
+        /// <summary>
+        /// FormClumppParams constructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen form calling this class</param>
+        /// <param name="paramset">Name of parameter set</param>
+        /// <param name="r">Iterations over each K</param>
+        /// <param name="inds">Number of individuals</param>
+        public FormClumppParams(ProjectScreen projectScreen, string paramset, int r, int inds)
+        {
+            InitializeComponent();            
+
+            callerProjectScreen = projectScreen;
+
+            parameterSet = paramset;
+            SetComponents(r, inds);
+        }
+
+        private void SetComponents(int runs, int individuals)
+        {
+            numRuns.Value = runs;
+            numIndividuals.Value = individuals;
+
+            numRuns.Enabled = false;
+            numIndividuals.Enabled = false;
         }
 
         private void cmbMethodToBeUsed_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +112,7 @@ namespace GenotypeDataProcessing
         {
             SetClumppParams();
 
-            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder, parameterSet);
 
             ClumppParameterSet clumppParameterSet = new ClumppParameterSet(clumppParamStruct, path);
 
@@ -96,6 +123,12 @@ namespace GenotypeDataProcessing
                 if (clumppParameterSet.IsParamfileCreated())
                 {
                     callerProjectScreen.UpdateClumppTreeView();
+
+                    if (ProjectInfo.clumppParamSets.ContainsKey(parameterSet))
+                        ProjectInfo.clumppParamSets.Remove(parameterSet);
+
+                    ProjectInfo.clumppParamSets.Add(parameterSet, clumppParamStruct);
+
                     this.Close();
                 }
             }

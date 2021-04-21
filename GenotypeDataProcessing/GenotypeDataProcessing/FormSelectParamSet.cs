@@ -111,7 +111,11 @@ namespace GenotypeDataProcessing.Structure
 
         private void GoToClumppParametersSet(string paramSet)
         {
-            FormClumppParams formClumppParams = new FormClumppParams(callerProjectScreen);
+            FormClumppParams formClumppParams = new FormClumppParams(
+                                                        callerProjectScreen,
+                                                        paramSet,
+                                                        ProjectInfo.structureJobInfo[paramSet].iterations,
+                                                        ProjectInfo.structureInputInfo.numInds);
             formClumppParams.ShowDialog();
 
             this.Close();

@@ -161,6 +161,7 @@ namespace GenotypeDataProcessing
             // 
             // numClusters
             // 
+            this.numClusters.Enabled = false;
             this.numClusters.Location = new System.Drawing.Point(255, 39);
             this.numClusters.Maximum = new decimal(new int[] {
             100000,

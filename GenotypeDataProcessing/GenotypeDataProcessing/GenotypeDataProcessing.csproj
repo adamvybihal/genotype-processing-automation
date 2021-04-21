@@ -159,6 +159,12 @@
     <Compile Include="CLUMPP\ClumppParamStruct.cs" />
     <Compile Include="CLUMPP\ClumppRunInfoStruct.cs" />
     <Compile Include="CLUMPP\DataTypeClumppEn.cs" />
+    <Compile Include="CLUMPP\FormClumppJobSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CLUMPP\FormClumppJobSettings.Designer.cs">
+      <DependentUpon>FormClumppJobSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="distruct\DistructJob.cs" />
     <Compile Include="distruct\DistructParameterSet.cs" />
     <Compile Include="distruct\DistructParamStruct.cs" />
@@ -223,6 +229,9 @@
     <Compile Include="Structure\StructureJobInfoStruct.cs" />
     <Compile Include="Structure\StructureParamSet.cs" />
     <Compile Include="Structure\StructureParamSetStruct.cs" />
+    <EmbeddedResource Include="CLUMPP\FormClumppJobSettings.resx">
+      <DependentUpon>FormClumppJobSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Structure\FormDeleteParamSet.resx">
       <DependentUpon>FormDeleteParamSet.cs</DependentUpon>
     </EmbeddedResource>

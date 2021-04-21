@@ -15,9 +15,7 @@ namespace GenotypeDataProcessing.CLUMPP
     {
 
         private string directoryPath;
-
         private ClumppParamStruct clumppParamStruct;
-
         private bool isParamfileCreated = false;
 
         /// <summary>
@@ -37,8 +35,6 @@ namespace GenotypeDataProcessing.CLUMPP
         {
             try
             {
-                directoryPath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.clumppFolder);
-
                 if (Directory.Exists(directoryPath))
                 {
                     return;
@@ -97,7 +93,8 @@ namespace GenotypeDataProcessing.CLUMPP
                 "POPFILE pop.popfile" + "\n" +
                 "OUTFILE outf.indivq" + "\n" +
                 "MISCFILE mis.miscfile" + "\n" +
-                "K " + clumppParamStruct.k + "\n";
+                "K 1" + "\n";
+                //"K " + clumppParamStruct.k + "\n";
 
             if (dataTypeClumpp == DataTypeClumppEn.ZERO) paramString += "C " + clumppParamStruct.individuals + "\n";
             else paramString += "C " + clumppParamStruct.populations + "\n";

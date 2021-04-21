@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.CLUMPP
     /// <summary>
     /// struct ClumppParamStruct holds data for clumpp's paramfile
     /// </summary>
+    [Serializable]
     public struct ClumppParamStruct
     {
         /// <summary>

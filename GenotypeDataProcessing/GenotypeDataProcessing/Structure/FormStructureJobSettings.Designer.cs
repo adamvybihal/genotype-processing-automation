@@ -177,7 +177,7 @@ namespace GenotypeDataProcessing.Structure
             this.Controls.Add(this.numFromK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormStructureJobSettings";
-            this.Text = "FormStructureJobSettings";
+            this.Text = "Structure Job Settings";
             ((System.ComponentModel.ISupportInitialize)(this.numFromK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numToK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numIterations)).EndInit();
