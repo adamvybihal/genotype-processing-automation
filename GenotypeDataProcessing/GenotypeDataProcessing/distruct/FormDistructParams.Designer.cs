@@ -33,6 +33,21 @@ namespace GenotypeDataProcessing
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.numIndividuals = new System.Windows.Forms.NumericUpDown();
+            this.numPreDefPopulations = new System.Windows.Forms.NumericUpDown();
+            this.numClusters = new System.Windows.Forms.NumericUpDown();
+            this.txtLblAtopFile = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnChoosePermutationFile = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPermutationFile = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnChooseLblsAtopFile = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnChooseLblsBelowFile = new System.Windows.Forms.Button();
+            this.txtLblBelowFile = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cbxPrintLblsBelow = new System.Windows.Forms.CheckBox();
             this.cbxPrintIndividuals = new System.Windows.Forms.CheckBox();
@@ -49,23 +64,11 @@ namespace GenotypeDataProcessing
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.numIndividuals = new System.Windows.Forms.NumericUpDown();
-            this.numPreDefPopulations = new System.Windows.Forms.NumericUpDown();
-            this.numClusters = new System.Windows.Forms.NumericUpDown();
-            this.txtLblAtopFile = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnChoosePermutationFile = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPermutationFile = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnChooseLblsAtopFile = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnChooseLblsBelowFile = new System.Windows.Forms.Button();
-            this.txtLblBelowFile = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numIndividualWidth)).BeginInit();
@@ -73,9 +76,6 @@ namespace GenotypeDataProcessing
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).BeginInit();
             this.SuspendLayout();
             // 
             // btnApply
@@ -134,6 +134,159 @@ namespace GenotypeDataProcessing
             this.tabPage1.Size = new System.Drawing.Size(562, 293);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Data settings";
+            // 
+            // numIndividuals
+            // 
+            this.numIndividuals.Location = new System.Drawing.Point(296, 248);
+            this.numIndividuals.Maximum = new decimal(new int[] {
+            27000000,
+            0,
+            0,
+            0});
+            this.numIndividuals.Name = "numIndividuals";
+            this.numIndividuals.Size = new System.Drawing.Size(120, 22);
+            this.numIndividuals.TabIndex = 33;
+            // 
+            // numPreDefPopulations
+            // 
+            this.numPreDefPopulations.Location = new System.Drawing.Point(296, 219);
+            this.numPreDefPopulations.Maximum = new decimal(new int[] {
+            27000000,
+            0,
+            0,
+            0});
+            this.numPreDefPopulations.Name = "numPreDefPopulations";
+            this.numPreDefPopulations.Size = new System.Drawing.Size(120, 22);
+            this.numPreDefPopulations.TabIndex = 32;
+            // 
+            // numClusters
+            // 
+            this.numClusters.Enabled = false;
+            this.numClusters.Location = new System.Drawing.Point(296, 189);
+            this.numClusters.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numClusters.Name = "numClusters";
+            this.numClusters.Size = new System.Drawing.Size(120, 22);
+            this.numClusters.TabIndex = 31;
+            this.numClusters.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // txtLblAtopFile
+            // 
+            this.txtLblAtopFile.Location = new System.Drawing.Point(78, 100);
+            this.txtLblAtopFile.Name = "txtLblAtopFile";
+            this.txtLblAtopFile.ReadOnly = true;
+            this.txtLblAtopFile.Size = new System.Drawing.Size(273, 22);
+            this.txtLblAtopFile.TabIndex = 27;
+            this.txtLblAtopFile.Text = "choose file ...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(75, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(283, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Input file of labels for below figure (optional)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(75, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(275, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Input file of labels for atop figure (optional)";
+            // 
+            // btnChoosePermutationFile
+            // 
+            this.btnChoosePermutationFile.Location = new System.Drawing.Point(367, 155);
+            this.btnChoosePermutationFile.Name = "btnChoosePermutationFile";
+            this.btnChoosePermutationFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChoosePermutationFile.TabIndex = 30;
+            this.btnChoosePermutationFile.Text = "Choose File";
+            this.btnChoosePermutationFile.UseVisualStyleBackColor = true;
+            this.btnChoosePermutationFile.Click += new System.EventHandler(this.btnChoosePermutationFile_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(75, 136);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(337, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Input file of permutation of clusters to print (optional)";
+            // 
+            // txtPermutationFile
+            // 
+            this.txtPermutationFile.Location = new System.Drawing.Point(78, 156);
+            this.txtPermutationFile.Name = "txtPermutationFile";
+            this.txtPermutationFile.ReadOnly = true;
+            this.txtPermutationFile.Size = new System.Drawing.Size(273, 22);
+            this.txtPermutationFile.TabIndex = 29;
+            this.txtPermutationFile.Text = "choose file ...";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(161, 191);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 17);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Number of clusters:";
+            // 
+            // btnChooseLblsAtopFile
+            // 
+            this.btnChooseLblsAtopFile.Location = new System.Drawing.Point(367, 99);
+            this.btnChooseLblsAtopFile.Name = "btnChooseLblsAtopFile";
+            this.btnChooseLblsAtopFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChooseLblsAtopFile.TabIndex = 28;
+            this.btnChooseLblsAtopFile.Text = "Choose File";
+            this.btnChooseLblsAtopFile.UseVisualStyleBackColor = true;
+            this.btnChooseLblsAtopFile.Click += new System.EventHandler(this.btnChooseLblsAtopFile_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(60, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 17);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Number of pre-defined populations:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(144, 250);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(148, 17);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Number of individuals:";
+            // 
+            // btnChooseLblsBelowFile
+            // 
+            this.btnChooseLblsBelowFile.Location = new System.Drawing.Point(367, 46);
+            this.btnChooseLblsBelowFile.Name = "btnChooseLblsBelowFile";
+            this.btnChooseLblsBelowFile.Size = new System.Drawing.Size(107, 23);
+            this.btnChooseLblsBelowFile.TabIndex = 26;
+            this.btnChooseLblsBelowFile.Text = "Choose File";
+            this.btnChooseLblsBelowFile.UseVisualStyleBackColor = true;
+            this.btnChooseLblsBelowFile.Click += new System.EventHandler(this.btnChooseLblsBelowFile_Click);
+            // 
+            // txtLblBelowFile
+            // 
+            this.txtLblBelowFile.Location = new System.Drawing.Point(78, 47);
+            this.txtLblBelowFile.Name = "txtLblBelowFile";
+            this.txtLblBelowFile.ReadOnly = true;
+            this.txtLblBelowFile.Size = new System.Drawing.Size(273, 22);
+            this.txtLblBelowFile.TabIndex = 25;
+            this.txtLblBelowFile.Text = "choose file ...";
             // 
             // tabPage2
             // 
@@ -362,138 +515,6 @@ namespace GenotypeDataProcessing
             this.label15.TabIndex = 45;
             this.label15.Text = "Width of an individual:";
             // 
-            // numIndividuals
-            // 
-            this.numIndividuals.Location = new System.Drawing.Point(296, 248);
-            this.numIndividuals.Name = "numIndividuals";
-            this.numIndividuals.Size = new System.Drawing.Size(120, 22);
-            this.numIndividuals.TabIndex = 33;
-            // 
-            // numPreDefPopulations
-            // 
-            this.numPreDefPopulations.Location = new System.Drawing.Point(296, 219);
-            this.numPreDefPopulations.Name = "numPreDefPopulations";
-            this.numPreDefPopulations.Size = new System.Drawing.Size(120, 22);
-            this.numPreDefPopulations.TabIndex = 32;
-            // 
-            // numClusters
-            // 
-            this.numClusters.Location = new System.Drawing.Point(296, 189);
-            this.numClusters.Name = "numClusters";
-            this.numClusters.Size = new System.Drawing.Size(120, 22);
-            this.numClusters.TabIndex = 31;
-            // 
-            // txtLblAtopFile
-            // 
-            this.txtLblAtopFile.Location = new System.Drawing.Point(78, 100);
-            this.txtLblAtopFile.Name = "txtLblAtopFile";
-            this.txtLblAtopFile.ReadOnly = true;
-            this.txtLblAtopFile.Size = new System.Drawing.Size(273, 22);
-            this.txtLblAtopFile.TabIndex = 27;
-            this.txtLblAtopFile.Text = "choose file ...";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 17);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Input file of labels for below figure (optional)";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(75, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(275, 17);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Input file of labels for atop figure (optional)";
-            // 
-            // btnChoosePermutationFile
-            // 
-            this.btnChoosePermutationFile.Location = new System.Drawing.Point(367, 155);
-            this.btnChoosePermutationFile.Name = "btnChoosePermutationFile";
-            this.btnChoosePermutationFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChoosePermutationFile.TabIndex = 30;
-            this.btnChoosePermutationFile.Text = "Choose File";
-            this.btnChoosePermutationFile.UseVisualStyleBackColor = true;
-            this.btnChoosePermutationFile.Click += new System.EventHandler(this.btnChoosePermutationFile_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(75, 136);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(337, 17);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Input file of permutation of clusters to print (optional)";
-            // 
-            // txtPermutationFile
-            // 
-            this.txtPermutationFile.Location = new System.Drawing.Point(78, 156);
-            this.txtPermutationFile.Name = "txtPermutationFile";
-            this.txtPermutationFile.ReadOnly = true;
-            this.txtPermutationFile.Size = new System.Drawing.Size(273, 22);
-            this.txtPermutationFile.TabIndex = 29;
-            this.txtPermutationFile.Text = "choose file ...";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(161, 191);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 17);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Number of clusters:";
-            // 
-            // btnChooseLblsAtopFile
-            // 
-            this.btnChooseLblsAtopFile.Location = new System.Drawing.Point(367, 99);
-            this.btnChooseLblsAtopFile.Name = "btnChooseLblsAtopFile";
-            this.btnChooseLblsAtopFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChooseLblsAtopFile.TabIndex = 28;
-            this.btnChooseLblsAtopFile.Text = "Choose File";
-            this.btnChooseLblsAtopFile.UseVisualStyleBackColor = true;
-            this.btnChooseLblsAtopFile.Click += new System.EventHandler(this.btnChooseLblsAtopFile_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(60, 221);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 17);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Number of pre-defined populations:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(144, 250);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 17);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Number of individuals:";
-            // 
-            // btnChooseLblsBelowFile
-            // 
-            this.btnChooseLblsBelowFile.Location = new System.Drawing.Point(367, 46);
-            this.btnChooseLblsBelowFile.Name = "btnChooseLblsBelowFile";
-            this.btnChooseLblsBelowFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChooseLblsBelowFile.TabIndex = 26;
-            this.btnChooseLblsBelowFile.Text = "Choose File";
-            this.btnChooseLblsBelowFile.UseVisualStyleBackColor = true;
-            this.btnChooseLblsBelowFile.Click += new System.EventHandler(this.btnChooseLblsBelowFile_Click);
-            // 
-            // txtLblBelowFile
-            // 
-            this.txtLblBelowFile.Location = new System.Drawing.Point(78, 47);
-            this.txtLblBelowFile.Name = "txtLblBelowFile";
-            this.txtLblBelowFile.ReadOnly = true;
-            this.txtLblBelowFile.Size = new System.Drawing.Size(273, 22);
-            this.txtLblBelowFile.TabIndex = 25;
-            this.txtLblBelowFile.Text = "choose file ...";
-            // 
             // FormDistructParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -508,6 +529,9 @@ namespace GenotypeDataProcessing
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -517,9 +541,6 @@ namespace GenotypeDataProcessing
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceBelow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceAbove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numIndividuals)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPreDefPopulations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numClusters)).EndInit();
             this.ResumeLayout(false);
 
         }

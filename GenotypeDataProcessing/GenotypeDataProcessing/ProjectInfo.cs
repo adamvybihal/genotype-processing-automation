@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GenotypeDataProcessing.CLUMPP;
 using GenotypeDataProcessing.Structure;
+using GenotypeDataProcessing.distruct;
 
 namespace GenotypeDataProcessing
 {
@@ -63,6 +64,14 @@ namespace GenotypeDataProcessing
         /// Name of file, where to save parameter sets of CLUMPP
         /// </summary>
         public const string clumppParamSetsFile = "clumppparamsets.bin";
+        /// <summary>
+        /// Name of file, where to save info about CLUMPP jobs
+        /// </summary>
+        public const string clumppJobInfoFile = "clumppjobinfo.bin";
+        /// <summary>
+        /// Name of file, where to save paramsets of distruct
+        /// </summary>
+        public const string distructParamSetsFile = "distructparamsets.bin";
 
         /// <summary>
         /// Class holding Structure's input data
@@ -89,5 +98,13 @@ namespace GenotypeDataProcessing
         /// Dictionary containing name of parameter set, and structure of actual CLUMPP parameters
         /// </summary>
         public static Dictionary<string, ClumppParamStruct> clumppParamSets = new Dictionary<string, ClumppParamStruct>();
+        /// <summary>
+        /// Dicitionary containing KeyValuePairs of name of CLUMPP's parameter set, and info about job with that parameter set
+        /// </summary>
+        public static Dictionary<string, ClumppJobInfoStruct> clumppJobInfo = new Dictionary<string, ClumppJobInfoStruct>();
+        /// <summary>
+        /// Dictionary containing name of parameter set, and structure of actual distruct parameters
+        /// </summary>
+        public static Dictionary<string, DistructParamStruct> distructParamSets = new Dictionary<string, DistructParamStruct>();
     }
 }

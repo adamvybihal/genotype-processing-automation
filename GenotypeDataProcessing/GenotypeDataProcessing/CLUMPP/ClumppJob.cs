@@ -16,6 +16,7 @@ namespace GenotypeDataProcessing.CLUMPP
     public class ClumppJob
     {
         private ProjectScreen callerProjectScreen;
+        private string parameterSetName;
         private string harvesterInputPath;
         private string outputDataPath;
         private int initK;
@@ -28,13 +29,15 @@ namespace GenotypeDataProcessing.CLUMPP
         /// ClumppJob constructor
         /// </summary>
         /// <param name="projectScreen">ProjectScreen calling this class</param>
+        /// <param name="paramset">Name of parameter set</param>
         /// <param name="folderWithInputsPath">A string path to Structure Harvester's results (CLUMPP's inputs)</param>
         /// <param name="outputPath">A path to a folder where output will be generated</param>
         /// <param name="fromK">starting K</param>
         /// <param name="toK">ending K</param>
-        public ClumppJob(ProjectScreen projectScreen, string folderWithInputsPath, string outputPath, int fromK, int toK)
+        public ClumppJob(ProjectScreen projectScreen, string paramset, string folderWithInputsPath, string outputPath, int fromK, int toK)
         {
             callerProjectScreen = projectScreen;
+            parameterSetName = paramset;
             harvesterInputPath = folderWithInputsPath;
             outputDataPath = outputPath;
             initK = fromK;
@@ -77,7 +80,7 @@ namespace GenotypeDataProcessing.CLUMPP
 
                     if (individualsDone && populationsDone)
                     {
-                        callerProjectScreen.UpdateClumppTreeView();
+                        callerProjectScreen.ExecuteWhenClumppDone(parameterSetName, initK, endK);
 
                         MessageBox.Show(
                                     "CLUMPP job is done!",

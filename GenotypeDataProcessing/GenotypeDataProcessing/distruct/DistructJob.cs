@@ -15,63 +15,80 @@ namespace GenotypeDataProcessing.distruct
     /// </summary>
     public class DistructJob
     {
-        private string drawparamsFilePath;
-        private string indivqFilePath;
-        private string popqFilePath;
-        private string outuputFileName;
-        private string outputDataPath;
+        private ProjectScreen callerProjectScreen;
+        private string paramsetName;
+        private string clumppInputPath;
+        private string distructOutputPath;
+        private int initK;
+        private int endK;
 
         /// <summary>
-        /// Class constructor
+        /// DistructJob Constructor
         /// </summary>
-        /// <param name="drawparamsPath">A string path to distruct's parameter file</param>
-        /// <param name="indivqPath">A string path to input file of individual q's</param>
-        /// <param name="popqPath">A string path to input file of population q's</param>
-        /// <param name="outputName">A name of distruct's output file</param>
-        /// <param name="dataPath">A path to a folder where output will be generated</param>
-        public DistructJob(string drawparamsPath, string indivqPath, string popqPath, string outputName, string dataPath)
+        /// <param name="projectScreen">Instance of ProjectScreen calling this class</param>
+        /// <param name="paramset">Name of parameter set</param>
+        /// <param name="inputPath">Path where inputs from CLUMPP are</param>
+        /// <param name="outputPath">Path where to save distruct outputs</param>
+        /// <param name="kStart">starting K</param>
+        /// <param name="kEnd">ending K</param>
+        public DistructJob(ProjectScreen projectScreen, string paramset, string inputPath, string outputPath, int kStart, int kEnd)
         {
-            drawparamsFilePath = drawparamsPath;
-            indivqFilePath = indivqPath;
-            popqFilePath = popqPath;
-            outuputFileName = outputName;
-            outputDataPath = dataPath;
+            callerProjectScreen = projectScreen;
+            paramsetName = paramset;
+            clumppInputPath = inputPath;
+            distructOutputPath = outputPath;
+            initK = kStart;
+            endK = kEnd;
         }
 
         /// <summary>
-        /// Method gets you the whole name of distruct's output file
+        /// Execute batch run of distruct
         /// </summary>
-        /// <returns>Returns string containing the whole name of distruct's output file</returns>
-        public string GetOutputFile()
+        public void BatchRun()
         {
-            return outuputFileName + ".ps";
+            AsyncRun(initK);
         }
 
-        public void AsyncRun()
+        private void AsyncRun(int currK)
         {
             BackgroundWorker backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork += (sender, args) =>
             {
-                StartProcess();
+                StartProcess(currK);
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                MessageBox.Show(
-                    "Completed",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                    );
+                if (currK < endK)
+                {
+                    AsyncRun(currK + 1);
+                }
+                else
+                {
+                    callerProjectScreen.ExecuteWhenDistructDone();
+
+                    MessageBox.Show(
+                                "distruct job completed!",
+                                "Information",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                                );
+                }           
             };
             backgroundWorker.RunWorkerAsync();
         }
 
-        private void StartProcess()
+        private void StartProcess(int currK)
         {
             Process distructRun = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = "cmd.exe",
+                FileName = "distruct.exe",
+                Arguments = string.Format("{0} {1} {2} {3} {4}",
+                                          "-d " + Path.Combine(distructOutputPath, "drawparams"),
+                                          "-K " + currK,
+                                          "-p " + Path.Combine(clumppInputPath, "K" + currK + ".popq"),
+                                          "-i " + Path.Combine(clumppInputPath, "K" + currK + ".indivq"),
+                                          "-o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")),
                 WindowStyle = ProcessWindowStyle.Normal,
                 CreateNoWindow = true,
                 RedirectStandardInput = true,
@@ -84,8 +101,6 @@ namespace GenotypeDataProcessing.distruct
             {
                 distructRun.StartInfo = startInfo;
                 distructRun.Start();
-
-                distructRun.StandardInput.WriteLine("distructWindows1.1 -d " + drawparamsFilePath + " -p " + popqFilePath + " -i " + indivqFilePath + " -o " + outputDataPath + outuputFileName + ".ps");
 
                 var _ = ConsumeReader(distructRun.StandardOutput);
                 _ = ConsumeReader(distructRun.StandardError);
@@ -124,8 +139,6 @@ namespace GenotypeDataProcessing.distruct
         //Command line options:
         //-d drawparams
         //-K K
-        //-M NUMPOPS
-        //-N NUMINDS
         //-p input file(population q's)
         //-i input file (individual q's)
         //-a input file (labels atop figure)

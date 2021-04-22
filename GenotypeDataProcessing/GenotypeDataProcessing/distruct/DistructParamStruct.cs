@@ -9,6 +9,7 @@ namespace GenotypeDataProcessing.distruct
     /// <summary>
     /// DistructParamStruct holds distruct's parameters
     /// </summary>
+    [Serializable]
     public struct DistructParamStruct
     {
         /// <summary>

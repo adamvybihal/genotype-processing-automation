@@ -104,6 +104,9 @@ namespace GenotypeDataProcessing
             string structureJobInfoPath = Path.Combine(projectPath, ProjectInfo.structureJobInfoFile);
             string harvesterJobDonePath = Path.Combine(projectPath, ProjectInfo.harvesterJobDoneFile);
             string clumppParamSetsPath = Path.Combine(projectPath, ProjectInfo.clumppParamSetsFile);
+            string clumppJobInfoPath = Path.Combine(projectPath, ProjectInfo.clumppJobInfoFile);
+            string distructParamSetsPath = Path.Combine(projectPath, ProjectInfo.distructParamSetsFile);
+
             // load structure data
             ProjectInfo.structureInputData = LoadBinaryFile<StructureInputData>(structureDataInfoPath);
 
@@ -118,6 +121,12 @@ namespace GenotypeDataProcessing
 
             // load clumpp param sets
             ProjectInfo.clumppParamSets = LoadBinaryFile<Dictionary<string, ClumppParamStruct>>(clumppParamSetsPath);
+
+            // load info about clumpp's job
+            ProjectInfo.clumppJobInfo = LoadBinaryFile<Dictionary<string, ClumppJobInfoStruct>>(clumppJobInfoPath);
+
+            // load distruct param sets
+            ProjectInfo.distructParamSets = LoadBinaryFile<Dictionary<string, DistructParamStruct>>(distructParamSetsPath);
 
             if (ProjectInfo.structureInputData.DataLoadedSuccesfully())
             {
@@ -406,18 +415,6 @@ namespace GenotypeDataProcessing
             }
         }
 
-        private void cbxPerformStructureHarvesterStr_CheckedChanged(object sender, EventArgs e)
-        {
-            cbxPerformCLUMPPStr.Enabled = cbxPerformStructureHarvesterStr.Checked;
-            if (!cbxPerformStructureHarvesterStr.Checked) cbxPerformCLUMPPStr.Checked = false;
-        }
-
-        private void cbxPerformCLUMPPStr_CheckedChanged(object sender, EventArgs e)
-        {
-            cbxPerformDistructStr.Enabled = cbxPerformCLUMPPStr.Checked;
-            if (!cbxPerformCLUMPPStr.Checked) cbxPerformDistructStr.Checked = false;
-        }
-
         private void btnStartAnalysisStr_Click(object sender, EventArgs e)
         {
             string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.structureFolder);
@@ -503,12 +500,6 @@ namespace GenotypeDataProcessing
         private void llblStructureHarvesterWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://taylor0.biology.ucla.edu/structureHarvester/");
-        }
-
-        private void cbxCLUMPPStrHv_CheckedChanged(object sender, EventArgs e)
-        {
-            cbxDistructStrHv.Enabled = cbxCLUMPPStrHv.Checked;
-            if (!cbxCLUMPPStrHv.Checked) cbxDistructStrHv.Checked = false;
         }
 
         private void btnChooseArchive_Click(object sender, EventArgs e)
@@ -672,7 +663,7 @@ namespace GenotypeDataProcessing
                                         ProjectInfo.clumppFolder,
                                         chosenParamset);
 
-            ClumppJob clumppJob = new ClumppJob(this, harvesterInputPath, outputPath, kStart, kEnd);
+            ClumppJob clumppJob = new ClumppJob(this, chosenParamset, harvesterInputPath, outputPath, kStart, kEnd);
             clumppJob.BatchRun();
 
             btnStartAnalysisCLUMPP.Enabled = false;
@@ -682,8 +673,26 @@ namespace GenotypeDataProcessing
         /// <summary>
         /// Necessary actions after CLUMPP job is done
         /// </summary>
-        public void ExecuteWhenClumppDone()
+        public void ExecuteWhenClumppDone(string paramset, int kStart, int kEnd)
         {
+            ClumppJobInfoStruct clumppJobInfoStruct;
+            clumppJobInfoStruct.startK = kStart;
+            clumppJobInfoStruct.endK = kEnd;
+
+            try
+            {
+                ProjectInfo.clumppJobInfo.Add(paramset, clumppJobInfoStruct);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+
             btnStartAnalysisCLUMPP.Enabled = true;
             lblClumppRun.Visible = false;
             UpdateClumppTreeView();
@@ -693,8 +702,61 @@ namespace GenotypeDataProcessing
 
         private void drawparamsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormDistructParams formDistructParams = new FormDistructParams(this);
-            formDistructParams.ShowDialog();
+            //FormDistructParams formDistructParams = new FormDistructParams(this);
+            //formDistructParams.ShowDialog();
+
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
+                                                            FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT);
+            formSelectParamSet.ShowDialog();
+        }
+
+        private void btnStartAnalysisDistruct_Click(object sender, EventArgs e)
+        {
+            if (ProjectInfo.clumppParamSets.Count == 0)
+            {
+                MessageBox.Show(
+                    "There are no parameter sets, for which you can start a job.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return;
+            }
+
+            FormDistructJobSettings formDistructJobSettings = new FormDistructJobSettings();
+            formDistructJobSettings.ShowDialog();
+
+            string chosenParamset = formDistructJobSettings.GetChosenParamset();
+            if (chosenParamset == "")
+                return;
+
+            int kStart = formDistructJobSettings.GetStartingK();
+            int kEnd = formDistructJobSettings.GetEndingK();
+
+            string clumppInputPath = Path.Combine(
+                                    ProjectInfo.projectNamePath,
+                                    ProjectInfo.clumppFolder,
+                                    chosenParamset);
+            string outputPath = Path.Combine(
+                                        ProjectInfo.projectNamePath,
+                                        ProjectInfo.distructFolder,
+                                        chosenParamset);
+
+            DistructJob distructJob = new DistructJob(this, chosenParamset, clumppInputPath, outputPath, kStart, kEnd);
+            distructJob.BatchRun();
+
+            btnStartAnalysisDistruct.Enabled = false;
+            lblDistructRun.Visible = true;
+        }
+
+        /// <summary>
+        /// Necessary actions after distruct job is completed
+        /// </summary>
+        public void ExecuteWhenDistructDone()
+        {
+            btnStartAnalysisDistruct.Enabled = true;
+            lblDistructRun.Visible = false;
+            UpdateDistructTreeView();
         }
 
         private void treeDistructFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -733,6 +795,12 @@ namespace GenotypeDataProcessing
             BinarySerialization.WriteToBinaryFile<Dictionary<string, ClumppParamStruct>>(
                 projectPath + "/" + ProjectInfo.clumppParamSetsFile,
                 ProjectInfo.clumppParamSets);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, ClumppJobInfoStruct>>(
+                projectPath + "/" + ProjectInfo.clumppJobInfoFile,
+                ProjectInfo.clumppJobInfo);
+            BinarySerialization.WriteToBinaryFile<Dictionary<string, DistructParamStruct>>(
+                projectPath + "/" + ProjectInfo.distructParamSetsFile,
+                ProjectInfo.distructParamSets);
         }
     }
 }

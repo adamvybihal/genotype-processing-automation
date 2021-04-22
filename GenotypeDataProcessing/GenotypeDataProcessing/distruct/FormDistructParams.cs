@@ -23,6 +23,8 @@ namespace GenotypeDataProcessing
         private DistructParamStruct distructParamStruct;
         private ProjectScreen callerProjectScreen;
 
+        private string paramsetName = "";
+
         /// <summary>
         /// One parameter constructor
         /// </summary>
@@ -30,6 +32,28 @@ namespace GenotypeDataProcessing
         public FormDistructParams(ProjectScreen projectScreen)
         {
             InitializeComponent();
+
+            callerProjectScreen = projectScreen;
+        }
+
+        /// <summary>
+        /// FormDistructParamsConstructor
+        /// </summary>
+        /// <param name="projectScreen">ProjectScreen Form which is calling this Form</param>
+        /// <param name="paramset">Name of parameter set</param>
+        /// <param name="pops">Number of pre-defined populations in the parameter set</param>
+        /// <param name="indivs">Number of individuals in the parameter set</param>
+        public FormDistructParams(ProjectScreen projectScreen, string paramset, int pops, int indivs)
+        {
+            InitializeComponent();
+
+            paramsetName = paramset;
+
+            numPreDefPopulations.Value = pops;
+            numIndividuals.Value = indivs;
+
+            numPreDefPopulations.Enabled = false;
+            numIndividuals.Enabled = false;
 
             callerProjectScreen = projectScreen;
         }
@@ -43,7 +67,7 @@ namespace GenotypeDataProcessing
         {
             SetDistructParams();
 
-            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder);
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder, paramsetName);
 
             DistructParameterSet distructParameterSet = new DistructParameterSet(distructParamStruct, path);
 
@@ -51,6 +75,8 @@ namespace GenotypeDataProcessing
 
             if (distructParameterSet.IsDrawparamsCreated())
             {
+                ProjectInfo.distructParamSets.Add(paramsetName, distructParamStruct);
+
                 callerProjectScreen.UpdateDistructTreeView();
                 this.Close();
             }

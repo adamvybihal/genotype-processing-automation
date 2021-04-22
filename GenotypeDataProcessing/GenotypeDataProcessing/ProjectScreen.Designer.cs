@@ -34,10 +34,6 @@ namespace GenotypeDataProcessing
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxPerformDistructStr = new System.Windows.Forms.CheckBox();
-            this.cbxPerformCLUMPPStr = new System.Windows.Forms.CheckBox();
-            this.cbxPerformStructureHarvesterStr = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStructure = new System.Windows.Forms.TabPage();
             this.lblStructureJobLabel = new System.Windows.Forms.Label();
@@ -62,44 +58,28 @@ namespace GenotypeDataProcessing
             this.btnChooseArchive = new System.Windows.Forms.Button();
             this.txtStructureHarvesterArchive = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbxDistructStrHv = new System.Windows.Forms.CheckBox();
-            this.cbxCLUMPPStrHv = new System.Windows.Forms.CheckBox();
             this.tabCLUMPP = new System.Windows.Forms.TabPage();
             this.treeClumppFolder = new System.Windows.Forms.TreeView();
             this.rtxClumpp = new System.Windows.Forms.RichTextBox();
             this.btnStartAnalysisCLUMPP = new System.Windows.Forms.Button();
             this.lblClumppRun = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbxDistructClmp = new System.Windows.Forms.CheckBox();
             this.mnsClumpp = new System.Windows.Forms.MenuStrip();
-            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDistruct = new System.Windows.Forms.TabPage();
+            this.lblDistructRun = new System.Windows.Forms.Label();
             this.treeDistructFolder = new System.Windows.Forms.TreeView();
             this.rtxDistruct = new System.Windows.Forms.RichTextBox();
             this.btnStartAnalysisDistruct = new System.Windows.Forms.Button();
-            this.btnChooseIndivFile = new System.Windows.Forms.Button();
-            this.txtIndivFile = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnChoosePopFile = new System.Windows.Forms.Button();
-            this.txtPopFile = new System.Windows.Forms.TextBox();
             this.mnsDistruct = new System.Windows.Forms.MenuStrip();
-            this.loadToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainMenu.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
             this.mnsStructure.SuspendLayout();
             this.tabStructureHarvester.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.tabCLUMPP.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.mnsClumpp.SuspendLayout();
             this.tabDistruct.SuspendLayout();
             this.mnsDistruct.SuspendLayout();
@@ -150,53 +130,6 @@ namespace GenotypeDataProcessing
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbxPerformDistructStr);
-            this.groupBox1.Controls.Add(this.cbxPerformCLUMPPStr);
-            this.groupBox1.Controls.Add(this.cbxPerformStructureHarvesterStr);
-            this.groupBox1.Location = new System.Drawing.Point(54, 414);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(192, 136);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Continue with:";
-            // 
-            // cbxPerformDistructStr
-            // 
-            this.cbxPerformDistructStr.AutoSize = true;
-            this.cbxPerformDistructStr.Enabled = false;
-            this.cbxPerformDistructStr.Location = new System.Drawing.Point(17, 86);
-            this.cbxPerformDistructStr.Name = "cbxPerformDistructStr";
-            this.cbxPerformDistructStr.Size = new System.Drawing.Size(76, 21);
-            this.cbxPerformDistructStr.TabIndex = 3;
-            this.cbxPerformDistructStr.Text = "distruct";
-            this.cbxPerformDistructStr.UseVisualStyleBackColor = true;
-            // 
-            // cbxPerformCLUMPPStr
-            // 
-            this.cbxPerformCLUMPPStr.AutoSize = true;
-            this.cbxPerformCLUMPPStr.Enabled = false;
-            this.cbxPerformCLUMPPStr.Location = new System.Drawing.Point(17, 59);
-            this.cbxPerformCLUMPPStr.Name = "cbxPerformCLUMPPStr";
-            this.cbxPerformCLUMPPStr.Size = new System.Drawing.Size(86, 21);
-            this.cbxPerformCLUMPPStr.TabIndex = 2;
-            this.cbxPerformCLUMPPStr.Text = "CLUMPP";
-            this.cbxPerformCLUMPPStr.UseVisualStyleBackColor = true;
-            this.cbxPerformCLUMPPStr.CheckedChanged += new System.EventHandler(this.cbxPerformCLUMPPStr_CheckedChanged);
-            // 
-            // cbxPerformStructureHarvesterStr
-            // 
-            this.cbxPerformStructureHarvesterStr.AutoSize = true;
-            this.cbxPerformStructureHarvesterStr.Enabled = false;
-            this.cbxPerformStructureHarvesterStr.Location = new System.Drawing.Point(17, 32);
-            this.cbxPerformStructureHarvesterStr.Name = "cbxPerformStructureHarvesterStr";
-            this.cbxPerformStructureHarvesterStr.Size = new System.Drawing.Size(154, 21);
-            this.cbxPerformStructureHarvesterStr.TabIndex = 1;
-            this.cbxPerformStructureHarvesterStr.Text = "Structure Harvester";
-            this.cbxPerformStructureHarvesterStr.UseVisualStyleBackColor = true;
-            this.cbxPerformStructureHarvesterStr.CheckedChanged += new System.EventHandler(this.cbxPerformStructureHarvesterStr_CheckedChanged);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabStructure);
@@ -220,7 +153,6 @@ namespace GenotypeDataProcessing
             this.tabStructure.Controls.Add(this.treeStructureFolder);
             this.tabStructure.Controls.Add(this.lsvStructureInputData);
             this.tabStructure.Controls.Add(this.btnStartAnalysisStr);
-            this.tabStructure.Controls.Add(this.groupBox1);
             this.tabStructure.Controls.Add(this.mnsStructure);
             this.tabStructure.Location = new System.Drawing.Point(4, 25);
             this.tabStructure.Name = "tabStructure";
@@ -348,7 +280,6 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.Controls.Add(this.btnChooseArchive);
             this.tabStructureHarvester.Controls.Add(this.txtStructureHarvesterArchive);
             this.tabStructureHarvester.Controls.Add(this.label2);
-            this.tabStructureHarvester.Controls.Add(this.groupBox2);
             this.tabStructureHarvester.Location = new System.Drawing.Point(4, 25);
             this.tabStructureHarvester.Name = "tabStructureHarvester";
             this.tabStructureHarvester.Padding = new System.Windows.Forms.Padding(3);
@@ -442,40 +373,6 @@ namespace GenotypeDataProcessing
             this.label2.TabIndex = 10;
             this.label2.Text = "Select a Structure parameter set with results:";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.cbxDistructStrHv);
-            this.groupBox2.Controls.Add(this.cbxCLUMPPStrHv);
-            this.groupBox2.Location = new System.Drawing.Point(68, 330);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(418, 107);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Continue with:";
-            // 
-            // cbxDistructStrHv
-            // 
-            this.cbxDistructStrHv.AutoSize = true;
-            this.cbxDistructStrHv.Enabled = false;
-            this.cbxDistructStrHv.Location = new System.Drawing.Point(143, 61);
-            this.cbxDistructStrHv.Name = "cbxDistructStrHv";
-            this.cbxDistructStrHv.Size = new System.Drawing.Size(76, 21);
-            this.cbxDistructStrHv.TabIndex = 3;
-            this.cbxDistructStrHv.Text = "distruct";
-            this.cbxDistructStrHv.UseVisualStyleBackColor = true;
-            // 
-            // cbxCLUMPPStrHv
-            // 
-            this.cbxCLUMPPStrHv.AutoSize = true;
-            this.cbxCLUMPPStrHv.Enabled = false;
-            this.cbxCLUMPPStrHv.Location = new System.Drawing.Point(143, 34);
-            this.cbxCLUMPPStrHv.Name = "cbxCLUMPPStrHv";
-            this.cbxCLUMPPStrHv.Size = new System.Drawing.Size(86, 21);
-            this.cbxCLUMPPStrHv.TabIndex = 2;
-            this.cbxCLUMPPStrHv.Text = "CLUMPP";
-            this.cbxCLUMPPStrHv.UseVisualStyleBackColor = true;
-            this.cbxCLUMPPStrHv.CheckedChanged += new System.EventHandler(this.cbxCLUMPPStrHv_CheckedChanged);
-            // 
             // tabCLUMPP
             // 
             this.tabCLUMPP.BackColor = System.Drawing.SystemColors.Control;
@@ -483,7 +380,6 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Controls.Add(this.rtxClumpp);
             this.tabCLUMPP.Controls.Add(this.btnStartAnalysisCLUMPP);
             this.tabCLUMPP.Controls.Add(this.lblClumppRun);
-            this.tabCLUMPP.Controls.Add(this.groupBox3);
             this.tabCLUMPP.Controls.Add(this.mnsClumpp);
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
             this.tabCLUMPP.Name = "tabCLUMPP";
@@ -530,56 +426,16 @@ namespace GenotypeDataProcessing
             this.lblClumppRun.TabIndex = 19;
             this.lblClumppRun.Text = "clumpp is running ...";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.cbxDistructClmp);
-            this.groupBox3.Location = new System.Drawing.Point(54, 421);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(418, 107);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Continue with:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(61, 61);
-            this.label10.MaximumSize = new System.Drawing.Size(300, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(293, 34);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "subsequent distruct run available, only if you run CLUMPP analysis of population " +
-    "data file";
-            // 
-            // cbxDistructClmp
-            // 
-            this.cbxDistructClmp.AutoSize = true;
-            this.cbxDistructClmp.Enabled = false;
-            this.cbxDistructClmp.Location = new System.Drawing.Point(155, 37);
-            this.cbxDistructClmp.Name = "cbxDistructClmp";
-            this.cbxDistructClmp.Size = new System.Drawing.Size(76, 21);
-            this.cbxDistructClmp.TabIndex = 3;
-            this.cbxDistructClmp.Text = "distruct";
-            this.cbxDistructClmp.UseVisualStyleBackColor = true;
-            // 
             // mnsClumpp
             // 
             this.mnsClumpp.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsClumpp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem1,
             this.paramfilesToolStripMenuItem});
             this.mnsClumpp.Location = new System.Drawing.Point(3, 3);
             this.mnsClumpp.Name = "mnsClumpp";
             this.mnsClumpp.Size = new System.Drawing.Size(1023, 28);
             this.mnsClumpp.TabIndex = 21;
             this.mnsClumpp.Text = "menuStrip1";
-            // 
-            // loadToolStripMenuItem1
-            // 
-            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
-            this.loadToolStripMenuItem1.Text = "Load";
             // 
             // paramfilesToolStripMenuItem
             // 
@@ -592,22 +448,17 @@ namespace GenotypeDataProcessing
             // creToolStripMenuItem
             // 
             this.creToolStripMenuItem.Name = "creToolStripMenuItem";
-            this.creToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.creToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.creToolStripMenuItem.Text = "Create ...";
             this.creToolStripMenuItem.Click += new System.EventHandler(this.paramfilesToolStripMenuItem_Click);
             // 
             // tabDistruct
             // 
             this.tabDistruct.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDistruct.Controls.Add(this.lblDistructRun);
             this.tabDistruct.Controls.Add(this.treeDistructFolder);
             this.tabDistruct.Controls.Add(this.rtxDistruct);
             this.tabDistruct.Controls.Add(this.btnStartAnalysisDistruct);
-            this.tabDistruct.Controls.Add(this.btnChooseIndivFile);
-            this.tabDistruct.Controls.Add(this.txtIndivFile);
-            this.tabDistruct.Controls.Add(this.label9);
-            this.tabDistruct.Controls.Add(this.label8);
-            this.tabDistruct.Controls.Add(this.btnChoosePopFile);
-            this.tabDistruct.Controls.Add(this.txtPopFile);
             this.tabDistruct.Controls.Add(this.mnsDistruct);
             this.tabDistruct.Location = new System.Drawing.Point(4, 25);
             this.tabDistruct.Name = "tabDistruct";
@@ -616,9 +467,19 @@ namespace GenotypeDataProcessing
             this.tabDistruct.TabIndex = 3;
             this.tabDistruct.Text = "distruct";
             // 
+            // lblDistructRun
+            // 
+            this.lblDistructRun.AutoSize = true;
+            this.lblDistructRun.Location = new System.Drawing.Point(203, 320);
+            this.lblDistructRun.Name = "lblDistructRun";
+            this.lblDistructRun.Size = new System.Drawing.Size(136, 17);
+            this.lblDistructRun.TabIndex = 28;
+            this.lblDistructRun.Text = "distruct is running ...";
+            this.lblDistructRun.Visible = false;
+            // 
             // treeDistructFolder
             // 
-            this.treeDistructFolder.Location = new System.Drawing.Point(377, 261);
+            this.treeDistructFolder.Location = new System.Drawing.Point(206, 44);
             this.treeDistructFolder.Name = "treeDistructFolder";
             this.treeDistructFolder.Size = new System.Drawing.Size(180, 187);
             this.treeDistructFolder.TabIndex = 27;
@@ -636,85 +497,24 @@ namespace GenotypeDataProcessing
             // 
             // btnStartAnalysisDistruct
             // 
-            this.btnStartAnalysisDistruct.Enabled = false;
-            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(195, 192);
+            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(173, 262);
             this.btnStartAnalysisDistruct.Name = "btnStartAnalysisDistruct";
             this.btnStartAnalysisDistruct.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisDistruct.TabIndex = 24;
             this.btnStartAnalysisDistruct.Text = "Start a Job";
             this.btnStartAnalysisDistruct.UseVisualStyleBackColor = true;
-            // 
-            // btnChooseIndivFile
-            // 
-            this.btnChooseIndivFile.Location = new System.Drawing.Point(361, 115);
-            this.btnChooseIndivFile.Name = "btnChooseIndivFile";
-            this.btnChooseIndivFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChooseIndivFile.TabIndex = 23;
-            this.btnChooseIndivFile.Text = "Choose File";
-            this.btnChooseIndivFile.UseVisualStyleBackColor = true;
-            // 
-            // txtIndivFile
-            // 
-            this.txtIndivFile.Location = new System.Drawing.Point(72, 115);
-            this.txtIndivFile.Name = "txtIndivFile";
-            this.txtIndivFile.ReadOnly = true;
-            this.txtIndivFile.Size = new System.Drawing.Size(273, 22);
-            this.txtIndivFile.TabIndex = 22;
-            this.txtIndivFile.Text = "choose file ...";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(121, 19);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(323, 17);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "Select Input File of Population Q-Matrix (required) ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(121, 81);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(311, 17);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Select Input File of Individual Q-Matrix (required)";
-            // 
-            // btnChoosePopFile
-            // 
-            this.btnChoosePopFile.Location = new System.Drawing.Point(361, 53);
-            this.btnChoosePopFile.Name = "btnChoosePopFile";
-            this.btnChoosePopFile.Size = new System.Drawing.Size(107, 23);
-            this.btnChoosePopFile.TabIndex = 19;
-            this.btnChoosePopFile.Text = "Choose File";
-            this.btnChoosePopFile.UseVisualStyleBackColor = true;
-            // 
-            // txtPopFile
-            // 
-            this.txtPopFile.Location = new System.Drawing.Point(72, 53);
-            this.txtPopFile.Name = "txtPopFile";
-            this.txtPopFile.ReadOnly = true;
-            this.txtPopFile.Size = new System.Drawing.Size(273, 22);
-            this.txtPopFile.TabIndex = 18;
-            this.txtPopFile.Text = "choose file ...";
+            this.btnStartAnalysisDistruct.Click += new System.EventHandler(this.btnStartAnalysisDistruct_Click);
             // 
             // mnsDistruct
             // 
             this.mnsDistruct.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsDistruct.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem2,
             this.drawparamsToolStripMenuItem2});
             this.mnsDistruct.Location = new System.Drawing.Point(3, 3);
             this.mnsDistruct.Name = "mnsDistruct";
             this.mnsDistruct.Size = new System.Drawing.Size(1023, 28);
             this.mnsDistruct.TabIndex = 25;
             this.mnsDistruct.Text = "menuStrip1";
-            // 
-            // loadToolStripMenuItem2
-            // 
-            this.loadToolStripMenuItem2.Name = "loadToolStripMenuItem2";
-            this.loadToolStripMenuItem2.Size = new System.Drawing.Size(56, 24);
-            this.loadToolStripMenuItem2.Text = "Load";
             // 
             // drawparamsToolStripMenuItem2
             // 
@@ -727,7 +527,7 @@ namespace GenotypeDataProcessing
             // createeToolStripMenuItem
             // 
             this.createeToolStripMenuItem.Name = "createeToolStripMenuItem";
-            this.createeToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.createeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.createeToolStripMenuItem.Text = "Create ...";
             this.createeToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
             // 
@@ -745,8 +545,6 @@ namespace GenotypeDataProcessing
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProjectScreen_FormClosing);
             this.mnsMainMenu.ResumeLayout(false);
             this.mnsMainMenu.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabStructure.ResumeLayout(false);
             this.tabStructure.PerformLayout();
@@ -754,12 +552,8 @@ namespace GenotypeDataProcessing
             this.mnsStructure.PerformLayout();
             this.tabStructureHarvester.ResumeLayout(false);
             this.tabStructureHarvester.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.tabCLUMPP.ResumeLayout(false);
             this.tabCLUMPP.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.mnsClumpp.ResumeLayout(false);
             this.mnsClumpp.PerformLayout();
             this.tabDistruct.ResumeLayout(false);
@@ -775,20 +569,11 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.Button btnStartAnalysisStr;
         private System.Windows.Forms.MenuStrip mnsMainMenu;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cbxPerformDistructStr;
-        private System.Windows.Forms.CheckBox cbxPerformCLUMPPStr;
-        private System.Windows.Forms.CheckBox cbxPerformStructureHarvesterStr;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabStructure;
         private System.Windows.Forms.TabPage tabStructureHarvester;
         private System.Windows.Forms.TabPage tabCLUMPP;
         private System.Windows.Forms.TabPage tabDistruct;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cbxDistructStrHv;
-        private System.Windows.Forms.CheckBox cbxCLUMPPStrHv;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox cbxDistructClmp;
         private System.Windows.Forms.Button btnChooseArchive;
         private System.Windows.Forms.TextBox txtStructureHarvesterArchive;
         private System.Windows.Forms.Label label2;
@@ -798,14 +583,7 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.LinkLabel llblStructureHarvesterWeb;
         private System.Windows.Forms.Label lblClumppRun;
         private System.Windows.Forms.Button btnStartAnalysisCLUMPP;
-        private System.Windows.Forms.Button btnChooseIndivFile;
-        private System.Windows.Forms.TextBox txtIndivFile;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnChoosePopFile;
-        private System.Windows.Forms.TextBox txtPopFile;
         private System.Windows.Forms.Button btnStartAnalysisDistruct;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.MenuStrip mnsStructure;
         private System.Windows.Forms.ListView lsvStructureInputData;
         private System.Windows.Forms.ToolStripMenuItem dataFileToolStripMenuItem;
@@ -818,11 +596,9 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.RichTextBox rtxStructureText;
         private System.Windows.Forms.MenuStrip mnsClumpp;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem paramfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creToolStripMenuItem;
         private System.Windows.Forms.MenuStrip mnsDistruct;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem drawparamsToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem createeToolStripMenuItem;
         private System.Windows.Forms.RichTextBox rtxClumpp;
@@ -834,6 +610,7 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.Label lblStructureJobLabel;
         private System.Windows.Forms.RichTextBox rtxStructureHarvesterText;
         private System.Windows.Forms.TreeView treeStructureHarvesterFolder;
+        private System.Windows.Forms.Label lblDistructRun;
     }
 }
 
