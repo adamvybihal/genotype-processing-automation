@@ -158,6 +158,7 @@ namespace GenotypeDataProcessing
             this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 19;
             this.label4.Text = "Number K:";
+            this.label4.Visible = false;
             // 
             // numClusters
             // 
@@ -171,6 +172,7 @@ namespace GenotypeDataProcessing
             this.numClusters.Name = "numClusters";
             this.numClusters.Size = new System.Drawing.Size(120, 22);
             this.numClusters.TabIndex = 22;
+            this.numClusters.Visible = false;
             // 
             // numRuns
             // 

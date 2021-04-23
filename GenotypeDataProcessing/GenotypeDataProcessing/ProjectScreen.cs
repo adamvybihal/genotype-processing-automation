@@ -384,7 +384,7 @@ namespace GenotypeDataProcessing
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, FormSelectParamSetState.UPDATE_SET);
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, FormSelectParamSetState.UPDATE_STRUCTURE_SET);
             formSelectParamSet.ShowDialog();
         }
 
@@ -610,10 +610,20 @@ namespace GenotypeDataProcessing
         private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this, 
-                                                            FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP);
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+                                                            this, 
+                                                            FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP
+                                                            );
             formSelectParamSet.ShowDialog();
+        }
 
+        private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+                                                            this,
+                                                            FormSelectParamSetState.UPDATE_CLUMPP_SET
+                                                            );
+            formSelectParamSet.ShowDialog();
         }
 
         private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -702,11 +712,17 @@ namespace GenotypeDataProcessing
 
         private void drawparamsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FormDistructParams formDistructParams = new FormDistructParams(this);
-            //formDistructParams.ShowDialog();
-
             FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
                                                             FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT);
+            formSelectParamSet.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+                                                            this,
+                                                            FormSelectParamSetState.UPDATE_DISTRUCT_SET
+                                                            );
             formSelectParamSet.ShowDialog();
         }
 

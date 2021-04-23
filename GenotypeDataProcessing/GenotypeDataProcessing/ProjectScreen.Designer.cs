@@ -74,6 +74,8 @@ namespace GenotypeDataProcessing
             this.mnsDistruct = new System.Windows.Forms.MenuStrip();
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMainMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
@@ -419,12 +421,12 @@ namespace GenotypeDataProcessing
             // lblClumppRun
             // 
             this.lblClumppRun.AutoSize = true;
-            this.lblClumppRun.Enabled = false;
             this.lblClumppRun.Location = new System.Drawing.Point(184, 347);
             this.lblClumppRun.Name = "lblClumppRun";
             this.lblClumppRun.Size = new System.Drawing.Size(135, 17);
             this.lblClumppRun.TabIndex = 19;
             this.lblClumppRun.Text = "clumpp is running ...";
+            this.lblClumppRun.Visible = false;
             // 
             // mnsClumpp
             // 
@@ -440,7 +442,8 @@ namespace GenotypeDataProcessing
             // paramfilesToolStripMenuItem
             // 
             this.paramfilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.creToolStripMenuItem});
+            this.creToolStripMenuItem,
+            this.updateToolStripMenuItem1});
             this.paramfilesToolStripMenuItem.Name = "paramfilesToolStripMenuItem";
             this.paramfilesToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.paramfilesToolStripMenuItem.Text = "Paramfiles";
@@ -519,7 +522,8 @@ namespace GenotypeDataProcessing
             // drawparamsToolStripMenuItem2
             // 
             this.drawparamsToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createeToolStripMenuItem});
+            this.createeToolStripMenuItem,
+            this.updateToolStripMenuItem2});
             this.drawparamsToolStripMenuItem2.Name = "drawparamsToolStripMenuItem2";
             this.drawparamsToolStripMenuItem2.Size = new System.Drawing.Size(107, 24);
             this.drawparamsToolStripMenuItem2.Text = "Drawparams";
@@ -527,9 +531,23 @@ namespace GenotypeDataProcessing
             // createeToolStripMenuItem
             // 
             this.createeToolStripMenuItem.Name = "createeToolStripMenuItem";
-            this.createeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.createeToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.createeToolStripMenuItem.Text = "Create ...";
             this.createeToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem1
+            // 
+            this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
+            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem1.Text = "Update";
+            this.updateToolStripMenuItem1.Click += new System.EventHandler(this.updateToolStripMenuItem1_Click);
+            // 
+            // updateToolStripMenuItem2
+            // 
+            this.updateToolStripMenuItem2.Name = "updateToolStripMenuItem2";
+            this.updateToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem2.Text = "Update";
+            this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
             // 
             // ProjectScreen
             // 
@@ -611,6 +629,8 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.RichTextBox rtxStructureHarvesterText;
         private System.Windows.Forms.TreeView treeStructureHarvesterFolder;
         private System.Windows.Forms.Label lblDistructRun;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem2;
     }
 }
 

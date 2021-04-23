@@ -26,18 +26,25 @@ namespace GenotypeDataProcessing
         private string paramsetName = "";
 
         /// <summary>
-        /// One parameter constructor
+        /// FormDistructParams constructor for updating existing parameter sets
         /// </summary>
         /// <param name="projectScreen">ProjectScreen Form which is calling this Form</param>
-        public FormDistructParams(ProjectScreen projectScreen)
+        /// <param name="paramset">Name of parameter set</param>
+        /// <param name="paramStruct">Parameters to be updated</param>
+        public FormDistructParams(ProjectScreen projectScreen, string paramset, DistructParamStruct paramStruct)
         {
             InitializeComponent();
 
             callerProjectScreen = projectScreen;
+            paramsetName = paramset;
+            SetComponents(paramStruct);
+
+            numPreDefPopulations.Enabled = false;
+            numIndividuals.Enabled = false;
         }
 
         /// <summary>
-        /// FormDistructParamsConstructor
+        /// FormDistructParams Constructor
         /// </summary>
         /// <param name="projectScreen">ProjectScreen Form which is calling this Form</param>
         /// <param name="paramset">Name of parameter set</param>
@@ -58,6 +65,33 @@ namespace GenotypeDataProcessing
             callerProjectScreen = projectScreen;
         }
 
+        private void SetComponents(DistructParamStruct paramStruct)
+        {
+            if (distructParamStruct.infileLabelAtop != "") txtLblAtopFile.Text = distructParamStruct.infileLabelAtop;
+            else txtLblAtopFile.Text = chooseFileString;
+
+            if (distructParamStruct.infileLabelBelow != "") txtLblBelowFile.Text = distructParamStruct.infileLabelBelow;
+            else txtLblBelowFile.Text = chooseFileString;
+
+            if (distructParamStruct.infileClustPerm != "") txtPermutationFile.Text = distructParamStruct.infileClustPerm;
+            else txtPermutationFile.Text = chooseFileString;
+
+            numClusters.Value = paramStruct.k;
+            numIndividuals.Value = paramStruct.numInds;
+            numPreDefPopulations.Value = paramStruct.numPops;
+
+            cbxPrintIndividuals.Checked = paramStruct.printIndivs;
+            cbxPrintLblsAtop.Checked = paramStruct.printLabelAtop;
+            cbxPrintLblsBelow.Checked = paramStruct.printLabelBelow;
+            cbxPrintSeparatingLines.Checked = paramStruct.printSep;
+
+            numFontSize.Value = (decimal)paramStruct.fontHeight;
+            numDistanceAbove.Value = (decimal)paramStruct.distAbove;
+            numDistanceBelow.Value = (decimal)paramStruct.distBelow;
+            numFigureHeight.Value = (decimal)paramStruct.boxHeight;
+            numIndividualWidth.Value = (decimal)paramStruct.indivWidth;
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -75,6 +109,9 @@ namespace GenotypeDataProcessing
 
             if (distructParameterSet.IsDrawparamsCreated())
             {
+                if (ProjectInfo.distructParamSets.ContainsKey(paramsetName))
+                    ProjectInfo.distructParamSets.Remove(paramsetName);
+
                 ProjectInfo.distructParamSets.Add(paramsetName, distructParamStruct);
 
                 callerProjectScreen.UpdateDistructTreeView();

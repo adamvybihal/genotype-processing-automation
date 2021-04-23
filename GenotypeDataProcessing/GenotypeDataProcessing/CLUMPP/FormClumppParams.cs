@@ -20,18 +20,22 @@ namespace GenotypeDataProcessing
         private string parameterSet = "";
 
         /// <summary>
-        /// FormClumppParams constructor
+        /// FormClumppParams constructor to update parameter set
         /// </summary>
         /// <param name="projectScreen">ProjectScreen form calling this class</param>
-        public FormClumppParams(ProjectScreen projectScreen)
+        /// <param name="paramsetName">Name of parameter set</param>
+        /// <param name="paramset">Parameter set to be updated</param>
+        public FormClumppParams(ProjectScreen projectScreen, string paramsetName, ClumppParamStruct paramset)
         {
             InitializeComponent();
 
             callerProjectScreen = projectScreen;
+            parameterSet = paramsetName;
+            SetComponents(paramset);
         }
 
         /// <summary>
-        /// FormClumppParams constructor
+        /// FormClumppParams constructor for new parameter set
         /// </summary>
         /// <param name="projectScreen">ProjectScreen form calling this class</param>
         /// <param name="paramset">Name of parameter set</param>
@@ -54,6 +58,63 @@ namespace GenotypeDataProcessing
 
             numRuns.Enabled = false;
             numIndividuals.Enabled = false;
+        }
+
+        private void SetComponents(ClumppParamStruct paramset)
+        {
+            numRuns.Enabled = false;
+            numIndividuals.Enabled = false;
+
+            numRuns.Value = paramset.r;
+            numIndividuals.Value = paramset.individuals;
+            numPopulations.Value = paramset.populations;
+
+            switch (paramset.m)
+            {
+                case 1:
+                    cmbMethodToBeUsed.Text = "FullSearch";
+                    break;
+                case 2:
+                    cmbMethodToBeUsed.Text = "Greedy";
+                    break;
+                case 3:
+                    cmbMethodToBeUsed.Text = "LargeKGreedy";
+                    break;
+            }
+
+            switch (paramset.greedyOption)
+            {
+                case 1:
+                    cmbGreedyOption.Text = "all possible input orders";
+                    break;
+                case 2:
+                    cmbGreedyOption.Text = "random input orders";
+                    break;
+                case 3:
+                    cmbGreedyOption.Text = "pre-specified input orders";
+                    break;
+            }
+
+            numRepeats.Value = paramset.repeats;
+
+            switch (paramset.printPermutedData)
+            {
+                case 0:
+                    cmbPrintPermutedData.Text = "don't print";
+                    break;
+                case 1:
+                    cmbPrintPermutedData.Text = "print into one file";
+                    break;
+                case 2:
+                    cmbPrintPermutedData.Text = "print each run into separate files";
+                    break;
+            }
+
+            cbxPrintEveryPerm.Checked = paramset.printEveryPerm;
+            cbxPrintRandomInputOrder.Checked = paramset.printRandomInputOrder;
+
+            cbxOverrideWarnings.Checked = paramset.overrideWarnings;
+            cbxOrderByRun.Checked = paramset.orderByRun;
         }
 
         private void cmbMethodToBeUsed_SelectedIndexChanged(object sender, EventArgs e)

@@ -89,10 +89,10 @@ namespace GenotypeDataProcessing.CLUMPP
             if (dataTypeClumpp == DataTypeClumppEn.ZERO) paramString = "DATATYPE 0\n";
             else paramString = "DATATYPE 1\n";
 
-            paramString += "INDFILE indiv.indfile" + "\n" +
-                "POPFILE pop.popfile" + "\n" +
-                "OUTFILE outf.indivq" + "\n" +
-                "MISCFILE mis.miscfile" + "\n" +
+            paramString += "INDFILE K1.indfile" + "\n" +
+                "POPFILE K1.popfile" + "\n" +
+                "OUTFILE K1.indivq" + "\n" +
+                "MISCFILE K1.miscfile" + "\n" +
                 "K 1" + "\n";
                 //"K " + clumppParamStruct.k + "\n";
 

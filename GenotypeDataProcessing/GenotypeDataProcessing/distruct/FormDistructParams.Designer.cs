@@ -176,6 +176,7 @@ namespace GenotypeDataProcessing
             0,
             0,
             0});
+            this.numClusters.Visible = false;
             // 
             // txtLblAtopFile
             // 
@@ -240,6 +241,7 @@ namespace GenotypeDataProcessing
             this.label4.Size = new System.Drawing.Size(131, 17);
             this.label4.TabIndex = 22;
             this.label4.Text = "Number of clusters:";
+            this.label4.Visible = false;
             // 
             // btnChooseLblsAtopFile
             // 

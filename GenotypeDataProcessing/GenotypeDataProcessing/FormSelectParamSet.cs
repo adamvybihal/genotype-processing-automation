@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GenotypeDataProcessing.CLUMPP;
+using GenotypeDataProcessing.distruct;
 
 namespace GenotypeDataProcessing.Structure
 {
@@ -40,7 +41,9 @@ namespace GenotypeDataProcessing.Structure
         {
             switch (selectParamSetState)
             {
-                case FormSelectParamSetState.UPDATE_SET:
+                case FormSelectParamSetState.UPDATE_STRUCTURE_SET:
+                case FormSelectParamSetState.UPDATE_CLUMPP_SET:
+                case FormSelectParamSetState.UPDATE_DISTRUCT_SET:
                     lblSelect.Text = "Select parameter set, which is to be updated.";
                     break;
                 case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
@@ -65,7 +68,7 @@ namespace GenotypeDataProcessing.Structure
 
             switch (selectParamSetState)
             {
-                case FormSelectParamSetState.UPDATE_SET:
+                case FormSelectParamSetState.UPDATE_STRUCTURE_SET:
                     PopulateWithParamSetsNames<StructureParamSetStruct>(ProjectInfo.structureParamSets);
                     break;
                 case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
@@ -74,8 +77,14 @@ namespace GenotypeDataProcessing.Structure
                 case FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP:
                     PopulateWithParamSetsNames<bool>(ProjectInfo.harvesterJobDone);
                     break;
+                case FormSelectParamSetState.UPDATE_CLUMPP_SET:
+                    PopulateWithParamSetsNames<ClumppParamStruct>(ProjectInfo.clumppParamSets);
+                    break;
                 case FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT:
                     PopulateWithParamSetsNames<ClumppJobInfoStruct>(ProjectInfo.clumppJobInfo);
+                    break;
+                case FormSelectParamSetState.UPDATE_DISTRUCT_SET:
+                    PopulateWithParamSetsNames<DistructParamStruct>(ProjectInfo.distructParamSets);
                     break;
             }
         }
@@ -96,17 +105,23 @@ namespace GenotypeDataProcessing.Structure
 
                 switch (selectParamSetState)
                 {
-                    case FormSelectParamSetState.UPDATE_SET:
-                        GoToParameterSetUpdate(itm.Text);
+                    case FormSelectParamSetState.UPDATE_STRUCTURE_SET:
+                        GoToStructureParameterSetUpdate(itm.Text);
                         break;
                     case FormSelectParamSetState.SELECT_COMPLETED_SET_FOR_HARVESTER:
                         SelectSetForStructureHarvester(itm.Text);
                         break;
                     case FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP:
-                        GoToClumppParametersSet(itm.Text);
+                        GoToNewClumppParametersSet(itm.Text);
+                        break;
+                    case FormSelectParamSetState.UPDATE_CLUMPP_SET:
+                        GoToClumppParameterSetUpdate(itm.Text);
                         break;
                     case FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT:
-                        GoToDistructParameterSet(itm.Text);
+                        GoToNewDistructParameterSet(itm.Text);
+                        break;
+                    case FormSelectParamSetState.UPDATE_DISTRUCT_SET:
+                        GoToDistructParameterSetUpdate(itm.Text);
                         break;
                 }
             }
@@ -121,20 +136,7 @@ namespace GenotypeDataProcessing.Structure
             }
         }
 
-        private void GoToDistructParameterSet(string paramSet)
-        {
-            FormDistructParams formDistructParams = new FormDistructParams(
-                                                            callerProjectScreen,
-                                                            paramSet,
-                                                            ProjectInfo.clumppParamSets[paramSet].populations,
-                                                            ProjectInfo.structureInputInfo.numInds
-                                                            );
-            formDistructParams.ShowDialog();
-
-            this.Close();
-        }
-
-        private void GoToParameterSetUpdate(string paramSet)
+        private void GoToStructureParameterSetUpdate(string paramSet)
         {
             FormStructureParameterSet formStructureParameterSet = new FormStructureParameterSet(callerProjectScreen, 
                                                                             FormStructureParameterSetState.UPDATE,
@@ -151,14 +153,52 @@ namespace GenotypeDataProcessing.Structure
             this.Close();
         }
 
-        private void GoToClumppParametersSet(string paramSet)
+        private void GoToNewClumppParametersSet(string paramSet)
         {
             FormClumppParams formClumppParams = new FormClumppParams(
                                                         callerProjectScreen,
                                                         paramSet,
                                                         ProjectInfo.structureJobInfo[paramSet].iterations,
-                                                        ProjectInfo.structureInputInfo.numInds);
+                                                        ProjectInfo.structureInputInfo.numInds
+                                                        );
             formClumppParams.ShowDialog();
+
+            this.Close();
+        }
+
+        private void GoToClumppParameterSetUpdate(string paramSet)
+        {
+            FormClumppParams formClumppParams = new FormClumppParams(
+                                                        callerProjectScreen,
+                                                        paramSet,
+                                                        ProjectInfo.clumppParamSets[paramSet]
+                                                        );
+            formClumppParams.ShowDialog();
+
+            this.Close();
+        }
+
+        private void GoToNewDistructParameterSet(string paramSet)
+        {
+            FormDistructParams formDistructParams = new FormDistructParams(
+                                                            callerProjectScreen,
+                                                            paramSet,
+                                                            ProjectInfo.clumppParamSets[paramSet].populations,
+                                                            ProjectInfo.structureInputInfo.numInds
+                                                            );
+            formDistructParams.ShowDialog();
+
+            this.Close();
+        }
+
+        private void GoToDistructParameterSetUpdate(string paramSet)
+        {
+            FormDistructParams formDistructParams = new FormDistructParams(
+                                                            callerProjectScreen,
+                                                            paramSet,
+                                                            ProjectInfo.distructParamSets[paramSet]
+                                                            );
+            formDistructParams.ShowDialog();
 
             this.Close();
         }
