@@ -66,6 +66,7 @@ namespace GenotypeDataProcessing
             this.mnsClumpp = new System.Windows.Forms.MenuStrip();
             this.paramfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDistruct = new System.Windows.Forms.TabPage();
             this.lblDistructRun = new System.Windows.Forms.Label();
             this.treeDistructFolder = new System.Windows.Forms.TreeView();
@@ -74,8 +75,8 @@ namespace GenotypeDataProcessing
             this.mnsDistruct = new System.Windows.Forms.MenuStrip();
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnConvert = new System.Windows.Forms.Button();
             this.mnsMainMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
@@ -451,13 +452,21 @@ namespace GenotypeDataProcessing
             // creToolStripMenuItem
             // 
             this.creToolStripMenuItem.Name = "creToolStripMenuItem";
-            this.creToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.creToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.creToolStripMenuItem.Text = "Create ...";
             this.creToolStripMenuItem.Click += new System.EventHandler(this.paramfilesToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem1
+            // 
+            this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
+            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(148, 26);
+            this.updateToolStripMenuItem1.Text = "Update";
+            this.updateToolStripMenuItem1.Click += new System.EventHandler(this.updateToolStripMenuItem1_Click);
             // 
             // tabDistruct
             // 
             this.tabDistruct.BackColor = System.Drawing.SystemColors.Control;
+            this.tabDistruct.Controls.Add(this.btnConvert);
             this.tabDistruct.Controls.Add(this.lblDistructRun);
             this.tabDistruct.Controls.Add(this.treeDistructFolder);
             this.tabDistruct.Controls.Add(this.rtxDistruct);
@@ -535,19 +544,22 @@ namespace GenotypeDataProcessing
             this.createeToolStripMenuItem.Text = "Create ...";
             this.createeToolStripMenuItem.Click += new System.EventHandler(this.drawparamsToolStripMenuItem_Click);
             // 
-            // updateToolStripMenuItem1
-            // 
-            this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
-            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.updateToolStripMenuItem1.Text = "Update";
-            this.updateToolStripMenuItem1.Click += new System.EventHandler(this.updateToolStripMenuItem1_Click);
-            // 
             // updateToolStripMenuItem2
             // 
             this.updateToolStripMenuItem2.Name = "updateToolStripMenuItem2";
-            this.updateToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.updateToolStripMenuItem2.Size = new System.Drawing.Size(148, 26);
             this.updateToolStripMenuItem2.Text = "Update";
             this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
+            // 
+            // btnConvert
+            // 
+            this.btnConvert.Location = new System.Drawing.Point(229, 460);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(141, 23);
+            this.btnConvert.TabIndex = 29;
+            this.btnConvert.Text = "Convert .ps to .pdf";
+            this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // ProjectScreen
             // 
@@ -631,6 +643,7 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.Label lblDistructRun;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem2;
+        private System.Windows.Forms.Button btnConvert;
     }
 }
 

@@ -80,15 +80,26 @@ namespace GenotypeDataProcessing.distruct
         private void StartProcess(int currK)
         {
             Process distructRun = new Process();
+            //ProcessStartInfo startInfo = new ProcessStartInfo
+            //{
+            //    FileName = "distruct.exe",
+            //    Arguments = string.Format(" {0} {1} {2} {3} {4}",
+            //                              "-d " + Path.Combine(distructOutputPath, "drawparams"),
+            //                              "-K " + currK,
+            //                              "-p " + Path.Combine(clumppInputPath, "K" + currK + ".popq"),
+            //                              "-i " + Path.Combine(clumppInputPath, "K" + currK + ".indivq"),
+            //                              "-o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")),
+            //    WindowStyle = ProcessWindowStyle.Normal,
+            //    CreateNoWindow = true,
+            //    RedirectStandardInput = true,
+            //    RedirectStandardOutput = true,
+            //    RedirectStandardError = true,
+            //    UseShellExecute = false
+            //};
+
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = "distruct.exe",
-                Arguments = string.Format("{0} {1} {2} {3} {4}",
-                                          "-d " + Path.Combine(distructOutputPath, "drawparams"),
-                                          "-K " + currK,
-                                          "-p " + Path.Combine(clumppInputPath, "K" + currK + ".popq"),
-                                          "-i " + Path.Combine(clumppInputPath, "K" + currK + ".indivq"),
-                                          "-o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")),
+                FileName = "cmd.exe",
                 WindowStyle = ProcessWindowStyle.Normal,
                 CreateNoWindow = true,
                 RedirectStandardInput = true,
@@ -101,6 +112,15 @@ namespace GenotypeDataProcessing.distruct
             {
                 distructRun.StartInfo = startInfo;
                 distructRun.Start();
+
+                distructRun.StandardInput.WriteLine(
+                    "distructWindows1.1.exe -d " + distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK +
+                    " -p " + clumppInputPath + "K" + currK + ".popq" +
+                    " -i " + clumppInputPath + "K" + currK + ".indivq" +
+                    //" -K " + currK +
+                    //" -o " + distructOutputPath + "K" + currK + ".ps"
+                    " -o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")
+                    );
 
                 var _ = ConsumeReader(distructRun.StandardOutput);
                 _ = ConsumeReader(distructRun.StandardError);

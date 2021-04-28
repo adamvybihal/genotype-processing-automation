@@ -41,6 +41,8 @@ namespace GenotypeDataProcessing
 
             numPreDefPopulations.Enabled = false;
             numIndividuals.Enabled = false;
+
+            SetRangeOfK();
         }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace GenotypeDataProcessing
         {
             InitializeComponent();
 
+            callerProjectScreen = projectScreen;
             paramsetName = paramset;
 
             numPreDefPopulations.Value = pops;
@@ -62,11 +65,34 @@ namespace GenotypeDataProcessing
             numPreDefPopulations.Enabled = false;
             numIndividuals.Enabled = false;
 
-            callerProjectScreen = projectScreen;
+            cbxRange.Checked = false;
+            numEndK.Enabled = false;
+
+            SetRangeOfK();
+        }
+
+        private void SetRangeOfK()
+        {
+            int minK = ProjectInfo.clumppJobInfo[paramsetName].startK;
+            int maxK = ProjectInfo.clumppJobInfo[paramsetName].endK;
+
+            numStartK.Minimum = minK;
+            numStartK.Maximum = maxK;
+
+            numEndK.Minimum = minK;
+            numEndK.Maximum = maxK;
         }
 
         private void SetComponents(DistructParamStruct paramStruct)
         {
+            numStartK.Value = paramStruct.kStart;
+
+            if (numStartK.Value == numEndK.Value)
+                cbxRange.Checked = false;
+
+            numEndK.Value = paramStruct.kEnd;
+            cbxRange.Checked = true;
+
             if (distructParamStruct.infileLabelAtop != "") txtLblAtopFile.Text = distructParamStruct.infileLabelAtop;
             else txtLblAtopFile.Text = chooseFileString;
 
@@ -76,7 +102,7 @@ namespace GenotypeDataProcessing
             if (distructParamStruct.infileClustPerm != "") txtPermutationFile.Text = distructParamStruct.infileClustPerm;
             else txtPermutationFile.Text = chooseFileString;
 
-            numClusters.Value = paramStruct.k;
+            numStartK.Value = paramStruct.k;
             numIndividuals.Value = paramStruct.numInds;
             numPreDefPopulations.Value = paramStruct.numPops;
 
@@ -90,6 +116,40 @@ namespace GenotypeDataProcessing
             numDistanceBelow.Value = (decimal)paramStruct.distBelow;
             numFigureHeight.Value = (decimal)paramStruct.boxHeight;
             numIndividualWidth.Value = (decimal)paramStruct.indivWidth;
+
+            switch (distructParamStruct.orientation)
+            {
+                case 0:
+                    cmbOrientation.Text = "horizontal";
+                    break;
+                case 1:
+                    cmbOrientation.Text = "vertical";
+                    break;
+                case 2:
+                    cmbOrientation.Text = "reverse horizontal";
+                    break;
+                case 3:
+                    cmbOrientation.Text = "reverse vertical";
+                    break;
+            }
+            cbxPrintInfileName.Enabled = (cmbOrientation.Text == "horizontal");
+
+            numXOrigin.Value = (decimal)distructParamStruct.xOrigin;
+            numYOrigin.Value = (decimal)distructParamStruct.yOrigin;
+            numXScale.Value = (decimal)distructParamStruct.xScale;
+            numYScale.Value = (decimal)distructParamStruct.yScale;
+            numAngleLabelAtop.Value = (decimal)distructParamStruct.angleLabelAtop;
+            numAngleLabelBelow.Value = (decimal)distructParamStruct.angleLabelBelow;
+
+            numLineWidthRim.Value = (decimal)distructParamStruct.lineWidthRim;
+            numLineWidthSep.Value = (decimal)distructParamStruct.lineWidthSep;
+            numLineWidthInd.Value = (decimal)distructParamStruct.lineWidthInd;
+
+            cbxGrayscale.Checked = distructParamStruct.grayscale;
+            cbxEchoData.Checked = distructParamStruct.echoData;
+            cbxReprintData.Checked = distructParamStruct.reprintData;
+            cbxPrintInfileName.Checked = distructParamStruct.printInfileName;
+            cbxPrintColorBrewer.Checked = distructParamStruct.printColorBrewer;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -99,15 +159,31 @@ namespace GenotypeDataProcessing
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            if (cbxRange.Checked && (numStartK.Value > numEndK.Value))
+            {
+                MessageBox.Show(
+                    "Starting K is greater than ending K!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return; 
+            }
+
             SetDistructParams();
 
             string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder, paramsetName);
 
-            DistructParameterSet distructParameterSet = new DistructParameterSet(distructParamStruct, path);
+            DistructParameterSet distructParameterSet = new DistructParameterSet(
+                                                                distructParamStruct,
+                                                                path,
+                                                                distructParamStruct.kStart,
+                                                                distructParamStruct.kEnd
+                                                                );
 
-            distructParameterSet.CreateDrawparams();
+            distructParameterSet.CreateParameterFiles();
 
-            if (distructParameterSet.IsDrawparamsCreated())
+            if (distructParameterSet.AreParamFilesCreated())
             {
                 if (ProjectInfo.distructParamSets.ContainsKey(paramsetName))
                     ProjectInfo.distructParamSets.Remove(paramsetName);
@@ -121,6 +197,12 @@ namespace GenotypeDataProcessing
 
         private void SetDistructParams()
         {
+            distructParamStruct.kStart = (int)numStartK.Value;
+
+            if (cbxRange.Checked) distructParamStruct.kEnd = (int)numEndK.Value;
+            else distructParamStruct.kEnd = distructParamStruct.kStart;
+
+
             if (txtLblAtopFile.Text != chooseFileString) distructParamStruct.infileLabelAtop = txtLblAtopFile.Text;
             else distructParamStruct.infileLabelAtop = "";
 
@@ -130,7 +212,7 @@ namespace GenotypeDataProcessing
             if (txtPermutationFile.Text != chooseFileString) distructParamStruct.infileClustPerm = txtPermutationFile.Text;
             else distructParamStruct.infileClustPerm = "";
 
-            distructParamStruct.k = (int)numClusters.Value;
+            distructParamStruct.k = (int)numStartK.Value;
             distructParamStruct.numInds = (int)numIndividuals.Value;
             distructParamStruct.numPops = (int)numPreDefPopulations.Value;
 
@@ -144,6 +226,39 @@ namespace GenotypeDataProcessing
             distructParamStruct.distBelow = (double)numDistanceBelow.Value;
             distructParamStruct.boxHeight = (double)numFigureHeight.Value;
             distructParamStruct.indivWidth = (double)numIndividualWidth.Value;
+
+            switch (cmbOrientation.Text)
+            {
+                case "horizontal":
+                    distructParamStruct.orientation = 0;
+                    break;
+                case "vertical":
+                    distructParamStruct.orientation = 1;
+                    break;
+                case "reverse horizontal":
+                    distructParamStruct.orientation = 2;
+                    break;
+                case "reverse vertical":
+                    distructParamStruct.orientation = 3;
+                    break;
+            }
+
+            distructParamStruct.xOrigin = (double)numXOrigin.Value;
+            distructParamStruct.yOrigin = (double)numYOrigin.Value;
+            distructParamStruct.xScale = (double)numXScale.Value;
+            distructParamStruct.yScale = (double)numYScale.Value;
+            distructParamStruct.angleLabelAtop = (double)numAngleLabelAtop.Value;
+            distructParamStruct.angleLabelBelow = (double)numAngleLabelBelow.Value;
+
+            distructParamStruct.lineWidthRim = (double)numLineWidthRim.Value;
+            distructParamStruct.lineWidthSep = (double)numLineWidthSep.Value;
+            distructParamStruct.lineWidthInd = (double)numLineWidthInd.Value;
+
+            distructParamStruct.grayscale = cbxGrayscale.Checked;
+            distructParamStruct.echoData = cbxEchoData.Checked;
+            distructParamStruct.reprintData = cbxReprintData.Checked;
+            distructParamStruct.printInfileName = cbxPrintInfileName.Checked;
+            distructParamStruct.printColorBrewer = cbxPrintColorBrewer.Checked;
         }
 
         private void btnChooseLblsBelowFile_Click(object sender, EventArgs e)
@@ -177,6 +292,16 @@ namespace GenotypeDataProcessing
             {
                 txtPermutationFile.Text = fileDialog.FileName;
             }
+        }
+
+        private void cbxRange_CheckedChanged(object sender, EventArgs e)
+        {
+            numEndK.Enabled = cbxRange.Checked;
+        }
+
+        private void cmbOrientation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbxPrintInfileName.Enabled = (cmbOrientation.Text == "horizontal");
         }
     }
 }

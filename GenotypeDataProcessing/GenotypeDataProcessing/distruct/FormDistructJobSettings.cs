@@ -95,8 +95,8 @@ namespace GenotypeDataProcessing.distruct
                 string paramset = lsvParamSets.SelectedItems[0].Text;
                 try
                 {
-                    int minK = ProjectInfo.clumppJobInfo[paramset].startK;
-                    int maxK = ProjectInfo.clumppJobInfo[paramset].endK;
+                    int minK = ProjectInfo.distructParamSets[paramset].kStart;
+                    int maxK = ProjectInfo.distructParamSets[paramset].kEnd;
 
                     numFromK.Minimum = minK;
                     numFromK.Maximum = maxK;

@@ -17,17 +17,26 @@ namespace GenotypeDataProcessing.distruct
 
         private DistructParamStruct distructParamStruct;
         private string directoryPath;
-        private bool isDrawparamsCreated = false;
+
+        private int initK;
+        private int lastK;
+
+        private bool areParameterFilesCreated = false;
 
         /// <summary>
-        /// Constructor with two parameters
+        /// DistructParameterSet constructor
         /// </summary>
         /// <param name="distructParam">Structure containing distruct parameters</param>
         /// <param name="path">path where will distruct parameter file be created</param>
-        public DistructParameterSet(DistructParamStruct distructParam, string path)
+        /// <param name="startK">starting K</param>
+        /// <param name="endK">ending K</param>
+        public DistructParameterSet(DistructParamStruct distructParam, string path, int startK, int endK)
         {
             distructParamStruct = distructParam;
             directoryPath = path;
+
+            initK = startK;
+            lastK = endK;
 
             CreateDirectory();
         }
@@ -54,14 +63,27 @@ namespace GenotypeDataProcessing.distruct
         }
 
         /// <summary>
-        /// Method creates drawparams file
+        /// Create drawparams files for all Ks
         /// </summary>
-        public void CreateDrawparams()
+        public void CreateParameterFiles()
         {
-            isDrawparamsCreated = false;
-            string drawparamsString = SetDrawparamsString();
+            areParameterFilesCreated = false;
 
-            string drawparamsPath = Path.Combine(directoryPath, "drawparams.");
+            for (int i = initK; i <= lastK; i++)
+            {
+                CreateDrawparams(i);
+            }
+
+            areParameterFilesCreated = true;
+        }
+
+        private void CreateDrawparams(int currK)
+        {
+            
+            string drawparamsString = SetDrawparamsString(currK);
+            string drawparamsName = "drawparams" + currK;
+
+            string drawparamsPath = Path.Combine(directoryPath, drawparamsName);
 
             try
             {
@@ -70,8 +92,6 @@ namespace GenotypeDataProcessing.distruct
                     byte[] info = new UTF8Encoding(true).GetBytes(drawparamsString);
                     fs.Write(info, 0, info.Length);
                 }
-
-                isDrawparamsCreated = true;
             }
             catch (Exception ex)
             {
@@ -79,16 +99,16 @@ namespace GenotypeDataProcessing.distruct
             }
         }
 
-        private string SetDrawparamsString()
+        private string SetDrawparamsString(int currK)
         {
-            return "#define INFILE_POPQ     clumpp-testData/K3.popq" + "\n" +    
-                "#define INFILE_INDIVQ      clumpp-testData/K3.indivq" + "\n" +
+            return "#define INFILE_POPQ K" + currK + ".popq" + "\n" +
+                "#define INFILE_INDIVQ K" + currK + ".indivq" + "\n" +
                 "#define INFILE_LABEL_BELOW " + distructParamStruct.infileLabelBelow + "\n" +
                 "#define INFILE_LABEL_ATOP  " + distructParamStruct.infileLabelAtop + "\n" +
                 "#define INFILE_CLUST_PERM  " + distructParamStruct.infileClustPerm + "\n" +
-                "#define OUTFILE            outfile.ps" + "\n" +
+                "#define OUTFILE K" + currK + ".ps" + "\n" +
 
-                "#define K	" + distructParamStruct.k + "\n" +
+                "#define K " + currK + "\n" +
                 "#define NUMPOPS " + distructParamStruct.numPops + "\n" +
                 "#define NUMINDS " + distructParamStruct.numInds + "\n" +
 
@@ -103,30 +123,30 @@ namespace GenotypeDataProcessing.distruct
                 "#define BOXHEIGHT  " + distructParamStruct.boxHeight.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
                 "#define INDIVWIDTH " + distructParamStruct.indivWidth.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
 
-                "#define ORIENTATION 0" + "\n" +
-                "#define XORIGIN 72" + "\n" +
-                "#define YORIGIN 288" + "\n" +
-                "#define XSCALE 1" + "\n" +
-                "#define YSCALE 1" + "\n" +
-                "#define ANGLE_LABEL_ATOP 60" + "\n" +
-                "#define ANGLE_LABEL_BELOW 60" + "\n" +
-                "#define LINEWIDTH_RIM  3" + "\n" +
-                "#define LINEWIDTH_SEP 0.3" + "\n" +
-                "#define LINEWIDTH_IND 0.3" + "\n" +
-                "#define GRAYSCALE 0" + "\n" +
-                "#define ECHO_DATA 1" + "\n" +
-                "#define REPRINT_DATA 1" + "\n" +
-                "#define PRINT_INFILE_NAME 0" + "\n" +
-                "#define PRINT_COLOR_BREWER 1";
+                "#define ORIENTATION " + distructParamStruct.orientation + "\n" +
+                "#define XORIGIN " + distructParamStruct.xOrigin.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define YORIGIN " + distructParamStruct.yOrigin.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define XSCALE " + distructParamStruct.xScale.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define YSCALE " + distructParamStruct.yScale.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define ANGLE_LABEL_ATOP " + distructParamStruct.angleLabelAtop.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define ANGLE_LABEL_BELOW " + distructParamStruct.angleLabelBelow.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define LINEWIDTH_RIM  " + distructParamStruct.lineWidthRim.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define LINEWIDTH_SEP " + distructParamStruct.lineWidthSep.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define LINEWIDTH_IND " + distructParamStruct.lineWidthInd.ToString(CultureInfo.InvariantCulture.NumberFormat) + "\n" +
+                "#define GRAYSCALE " + ReturnLogical(distructParamStruct.grayscale) + "\n" +
+                "#define ECHO_DATA " + ReturnLogical(distructParamStruct.echoData) + "\n" +
+                "#define REPRINT_DATA " + ReturnLogical(distructParamStruct.reprintData) + "\n" +
+                "#define PRINT_INFILE_NAME " + ReturnLogical(distructParamStruct.printInfileName) + "\n" +
+                "#define PRINT_COLOR_BREWER " + ReturnLogical(distructParamStruct.printColorBrewer);
         }
         
         /// <summary>
         /// Informs of successful creation of file drawparams
         /// </summary>
         /// <returns>true if drawparams was created, false if not</returns>
-        public bool IsDrawparamsCreated()
+        public bool AreParamFilesCreated()
         {
-            return isDrawparamsCreated;
+            return areParameterFilesCreated;
         }
 
         /// <summary>
