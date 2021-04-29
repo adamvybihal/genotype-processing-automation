@@ -16,9 +16,11 @@ namespace GenotypeDataProcessing.distruct
     public class DistructJob
     {
         private ProjectScreen callerProjectScreen;
+
         private string paramsetName;
         private string clumppInputPath;
         private string distructOutputPath;
+
         private int initK;
         private int endK;
 
@@ -58,6 +60,26 @@ namespace GenotypeDataProcessing.distruct
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
+                string fileName = "K" + currK + ".ps";
+
+                try
+                {
+                    File.Move(
+                        Path.Combine(distructOutputPath, fileName),
+                        Path.Combine(distructOutputPath, paramsetName, fileName)
+                        );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
+                
+
                 if (currK < endK)
                 {
                     AsyncRun(currK + 1);
@@ -80,22 +102,6 @@ namespace GenotypeDataProcessing.distruct
         private void StartProcess(int currK)
         {
             Process distructRun = new Process();
-            //ProcessStartInfo startInfo = new ProcessStartInfo
-            //{
-            //    FileName = "distruct.exe",
-            //    Arguments = string.Format(" {0} {1} {2} {3} {4}",
-            //                              "-d " + Path.Combine(distructOutputPath, "drawparams"),
-            //                              "-K " + currK,
-            //                              "-p " + Path.Combine(clumppInputPath, "K" + currK + ".popq"),
-            //                              "-i " + Path.Combine(clumppInputPath, "K" + currK + ".indivq"),
-            //                              "-o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")),
-            //    WindowStyle = ProcessWindowStyle.Normal,
-            //    CreateNoWindow = true,
-            //    RedirectStandardInput = true,
-            //    RedirectStandardOutput = true,
-            //    RedirectStandardError = true,
-            //    UseShellExecute = false
-            //};
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -117,8 +123,6 @@ namespace GenotypeDataProcessing.distruct
                     "distructWindows1.1.exe -d " + distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK +
                     " -p " + clumppInputPath + "K" + currK + ".popq" +
                     " -i " + clumppInputPath + "K" + currK + ".indivq" +
-                    //" -K " + currK +
-                    //" -o " + distructOutputPath + "K" + currK + ".ps"
                     " -o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")
                     );
 
@@ -155,14 +159,4 @@ namespace GenotypeDataProcessing.distruct
             }
         }
     }
-
-        //Command line options:
-        //-d drawparams
-        //-K K
-        //-p input file(population q's)
-        //-i input file (individual q's)
-        //-a input file (labels atop figure)
-        //-b input file(labels below figure)
-        //-c input file(cluster permutation)
-        //-o output file
 }
