@@ -29,6 +29,9 @@ namespace GenotypeDataProcessing
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.btnStartAnalysisStr = new System.Windows.Forms.Button();
             this.mnsMainMenu = new System.Windows.Forms.MenuStrip();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,9 +54,6 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester = new System.Windows.Forms.TabPage();
             this.rtxStructureHarvesterText = new System.Windows.Forms.RichTextBox();
             this.treeStructureHarvesterFolder = new System.Windows.Forms.TreeView();
-            this.llblStructureHarvesterWeb = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnStartAnalysisStrHv = new System.Windows.Forms.Button();
             this.btnChooseArchive = new System.Windows.Forms.Button();
             this.txtStructureHarvesterArchive = new System.Windows.Forms.TextBox();
@@ -68,6 +68,7 @@ namespace GenotypeDataProcessing
             this.creToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDistruct = new System.Windows.Forms.TabPage();
+            this.btnConvert = new System.Windows.Forms.Button();
             this.lblDistructRun = new System.Windows.Forms.Label();
             this.treeDistructFolder = new System.Windows.Forms.TreeView();
             this.rtxDistruct = new System.Windows.Forms.RichTextBox();
@@ -76,7 +77,13 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnConvert = new System.Windows.Forms.Button();
+            this.btnEvannoGraphs = new System.Windows.Forms.Button();
+            this.chartStructureHarvester = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cmbHarversterChartType = new System.Windows.Forms.ComboBox();
+            this.cmbHarvesterParamSet = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.mnsMainMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
@@ -86,6 +93,8 @@ namespace GenotypeDataProcessing
             this.mnsClumpp.SuspendLayout();
             this.tabDistruct.SuspendLayout();
             this.mnsDistruct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartAnalysisStr
@@ -106,7 +115,7 @@ namespace GenotypeDataProcessing
             this.projectToolStripMenuItem});
             this.mnsMainMenu.Location = new System.Drawing.Point(0, 0);
             this.mnsMainMenu.Name = "mnsMainMenu";
-            this.mnsMainMenu.Size = new System.Drawing.Size(1037, 28);
+            this.mnsMainMenu.Size = new System.Drawing.Size(1114, 28);
             this.mnsMainMenu.TabIndex = 3;
             this.mnsMainMenu.Text = "menuStrip1";
             // 
@@ -143,7 +152,7 @@ namespace GenotypeDataProcessing
             this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1037, 598);
+            this.tabControl1.Size = new System.Drawing.Size(1114, 766);
             this.tabControl1.TabIndex = 9;
             // 
             // tabStructure
@@ -274,11 +283,9 @@ namespace GenotypeDataProcessing
             // tabStructureHarvester
             // 
             this.tabStructureHarvester.BackColor = System.Drawing.SystemColors.Control;
+            this.tabStructureHarvester.Controls.Add(this.groupBox1);
             this.tabStructureHarvester.Controls.Add(this.rtxStructureHarvesterText);
             this.tabStructureHarvester.Controls.Add(this.treeStructureHarvesterFolder);
-            this.tabStructureHarvester.Controls.Add(this.llblStructureHarvesterWeb);
-            this.tabStructureHarvester.Controls.Add(this.label4);
-            this.tabStructureHarvester.Controls.Add(this.label3);
             this.tabStructureHarvester.Controls.Add(this.btnStartAnalysisStrHv);
             this.tabStructureHarvester.Controls.Add(this.btnChooseArchive);
             this.tabStructureHarvester.Controls.Add(this.txtStructureHarvesterArchive);
@@ -286,17 +293,17 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.Location = new System.Drawing.Point(4, 25);
             this.tabStructureHarvester.Name = "tabStructureHarvester";
             this.tabStructureHarvester.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStructureHarvester.Size = new System.Drawing.Size(1029, 569);
+            this.tabStructureHarvester.Size = new System.Drawing.Size(1106, 737);
             this.tabStructureHarvester.TabIndex = 1;
             this.tabStructureHarvester.Text = "Structure Harvester";
             // 
             // rtxStructureHarvesterText
             // 
             this.rtxStructureHarvesterText.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxStructureHarvesterText.Location = new System.Drawing.Point(567, 3);
+            this.rtxStructureHarvesterText.Location = new System.Drawing.Point(644, 3);
             this.rtxStructureHarvesterText.Name = "rtxStructureHarvesterText";
             this.rtxStructureHarvesterText.ReadOnly = true;
-            this.rtxStructureHarvesterText.Size = new System.Drawing.Size(459, 563);
+            this.rtxStructureHarvesterText.Size = new System.Drawing.Size(459, 731);
             this.rtxStructureHarvesterText.TabIndex = 18;
             this.rtxStructureHarvesterText.Text = "";
             // 
@@ -307,35 +314,6 @@ namespace GenotypeDataProcessing
             this.treeStructureHarvesterFolder.Size = new System.Drawing.Size(214, 251);
             this.treeStructureHarvesterFolder.TabIndex = 17;
             this.treeStructureHarvesterFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeStructureHarvesterFolder_NodeMouseDoubleClick);
-            // 
-            // llblStructureHarvesterWeb
-            // 
-            this.llblStructureHarvesterWeb.AutoSize = true;
-            this.llblStructureHarvesterWeb.Location = new System.Drawing.Point(384, 491);
-            this.llblStructureHarvesterWeb.Name = "llblStructureHarvesterWeb";
-            this.llblStructureHarvesterWeb.Size = new System.Drawing.Size(132, 17);
-            this.llblStructureHarvesterWeb.TabIndex = 16;
-            this.llblStructureHarvesterWeb.TabStop = true;
-            this.llblStructureHarvesterWeb.Text = "Structure Harvester";
-            this.llblStructureHarvesterWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblStructureHarvesterWeb_LinkClicked);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 491);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(359, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "In case you don\'t have Python, use web version via link:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 470);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(454, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Analysis with Structure Harvester requires Python installed on your PC.";
             // 
             // btnStartAnalysisStrHv
             // 
@@ -475,14 +453,24 @@ namespace GenotypeDataProcessing
             this.tabDistruct.Location = new System.Drawing.Point(4, 25);
             this.tabDistruct.Name = "tabDistruct";
             this.tabDistruct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDistruct.Size = new System.Drawing.Size(1029, 569);
+            this.tabDistruct.Size = new System.Drawing.Size(1106, 737);
             this.tabDistruct.TabIndex = 3;
             this.tabDistruct.Text = "distruct";
+            // 
+            // btnConvert
+            // 
+            this.btnConvert.Location = new System.Drawing.Point(287, 147);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(141, 48);
+            this.btnConvert.TabIndex = 29;
+            this.btnConvert.Text = "Convert .ps to .pdf";
+            this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // lblDistructRun
             // 
             this.lblDistructRun.AutoSize = true;
-            this.lblDistructRun.Location = new System.Drawing.Point(203, 320);
+            this.lblDistructRun.Location = new System.Drawing.Point(91, 294);
             this.lblDistructRun.Name = "lblDistructRun";
             this.lblDistructRun.Size = new System.Drawing.Size(136, 17);
             this.lblDistructRun.TabIndex = 28;
@@ -491,7 +479,7 @@ namespace GenotypeDataProcessing
             // 
             // treeDistructFolder
             // 
-            this.treeDistructFolder.Location = new System.Drawing.Point(206, 44);
+            this.treeDistructFolder.Location = new System.Drawing.Point(67, 60);
             this.treeDistructFolder.Name = "treeDistructFolder";
             this.treeDistructFolder.Size = new System.Drawing.Size(180, 187);
             this.treeDistructFolder.TabIndex = 27;
@@ -500,16 +488,16 @@ namespace GenotypeDataProcessing
             // rtxDistruct
             // 
             this.rtxDistruct.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxDistruct.Location = new System.Drawing.Point(563, 31);
+            this.rtxDistruct.Location = new System.Drawing.Point(640, 31);
             this.rtxDistruct.Name = "rtxDistruct";
             this.rtxDistruct.ReadOnly = true;
-            this.rtxDistruct.Size = new System.Drawing.Size(463, 535);
+            this.rtxDistruct.Size = new System.Drawing.Size(463, 703);
             this.rtxDistruct.TabIndex = 26;
             this.rtxDistruct.Text = "";
             // 
             // btnStartAnalysisDistruct
             // 
-            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(173, 262);
+            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(78, 253);
             this.btnStartAnalysisDistruct.Name = "btnStartAnalysisDistruct";
             this.btnStartAnalysisDistruct.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisDistruct.TabIndex = 24;
@@ -524,7 +512,7 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem2});
             this.mnsDistruct.Location = new System.Drawing.Point(3, 3);
             this.mnsDistruct.Name = "mnsDistruct";
-            this.mnsDistruct.Size = new System.Drawing.Size(1023, 28);
+            this.mnsDistruct.Size = new System.Drawing.Size(1100, 28);
             this.mnsDistruct.TabIndex = 25;
             this.mnsDistruct.Text = "menuStrip1";
             // 
@@ -551,22 +539,93 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem2.Text = "Update";
             this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
             // 
-            // btnConvert
+            // btnEvannoGraphs
             // 
-            this.btnConvert.Location = new System.Drawing.Point(229, 460);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(141, 23);
-            this.btnConvert.TabIndex = 29;
-            this.btnConvert.Text = "Convert .ps to .pdf";
-            this.btnConvert.UseVisualStyleBackColor = true;
-            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
+            this.btnEvannoGraphs.Location = new System.Drawing.Point(409, 102);
+            this.btnEvannoGraphs.Name = "btnEvannoGraphs";
+            this.btnEvannoGraphs.Size = new System.Drawing.Size(144, 23);
+            this.btnEvannoGraphs.TabIndex = 19;
+            this.btnEvannoGraphs.Text = "View Chart";
+            this.btnEvannoGraphs.UseVisualStyleBackColor = true;
+            this.btnEvannoGraphs.Click += new System.EventHandler(this.btnEvannoGraphs_Click);
+            // 
+            // chartStructureHarvester
+            // 
+            chartArea3.Name = "myCoolArea";
+            this.chartStructureHarvester.ChartAreas.Add(chartArea3);
+            this.chartStructureHarvester.Location = new System.Drawing.Point(41, 131);
+            this.chartStructureHarvester.Name = "chartStructureHarvester";
+            series3.ChartArea = "myCoolArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "graph";
+            this.chartStructureHarvester.Series.Add(series3);
+            this.chartStructureHarvester.Size = new System.Drawing.Size(553, 334);
+            this.chartStructureHarvester.TabIndex = 20;
+            this.chartStructureHarvester.Text = "chart1";
+            title3.Name = "chartTitle";
+            this.chartStructureHarvester.Titles.Add(title3);
+            // 
+            // cmbHarversterChartType
+            // 
+            this.cmbHarversterChartType.FormattingEnabled = true;
+            this.cmbHarversterChartType.Items.AddRange(new object[] {
+            "mean est. LnP(Data)",
+            "Ln\'(K)",
+            "|Ln\'\'(K)|",
+            "Delta K"});
+            this.cmbHarversterChartType.Location = new System.Drawing.Point(409, 72);
+            this.cmbHarversterChartType.Name = "cmbHarversterChartType";
+            this.cmbHarversterChartType.Size = new System.Drawing.Size(144, 24);
+            this.cmbHarversterChartType.TabIndex = 21;
+            this.cmbHarversterChartType.Text = "Delta K";
+            // 
+            // cmbHarvesterParamSet
+            // 
+            this.cmbHarvesterParamSet.FormattingEnabled = true;
+            this.cmbHarvesterParamSet.Location = new System.Drawing.Point(409, 32);
+            this.cmbHarvesterParamSet.Name = "cmbHarvesterParamSet";
+            this.cmbHarvesterParamSet.Size = new System.Drawing.Size(144, 24);
+            this.cmbHarvesterParamSet.TabIndex = 22;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.chartStructureHarvester);
+            this.groupBox1.Controls.Add(this.cmbHarversterChartType);
+            this.groupBox1.Controls.Add(this.btnEvannoGraphs);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cmbHarvesterParamSet);
+            this.groupBox1.Location = new System.Drawing.Point(8, 263);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(630, 471);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "View Charts";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(351, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Select parameter set analyzed by Structure Harvester:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(285, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 17);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Select chart type:";
             // 
             // ProjectScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1037, 626);
+            this.ClientSize = new System.Drawing.Size(1114, 794);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.mnsMainMenu);
             this.MainMenuStrip = this.mnsMainMenu;
@@ -590,6 +649,9 @@ namespace GenotypeDataProcessing
             this.tabDistruct.PerformLayout();
             this.mnsDistruct.ResumeLayout(false);
             this.mnsDistruct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,9 +670,6 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.TextBox txtStructureHarvesterArchive;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnStartAnalysisStrHv;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.LinkLabel llblStructureHarvesterWeb;
         private System.Windows.Forms.Label lblClumppRun;
         private System.Windows.Forms.Button btnStartAnalysisCLUMPP;
         private System.Windows.Forms.Button btnStartAnalysisDistruct;
@@ -644,6 +703,13 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem2;
         private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.Button btnEvannoGraphs;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartStructureHarvester;
+        private System.Windows.Forms.ComboBox cmbHarversterChartType;
+        private System.Windows.Forms.ComboBox cmbHarvesterParamSet;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
     }
 }
 

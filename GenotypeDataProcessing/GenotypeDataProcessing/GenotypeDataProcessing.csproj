@@ -146,6 +146,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -179,6 +180,8 @@
       <DependentUpon>FormDistructJobSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSelectParamSetState.cs" />
+    <Compile Include="StructureHarvester\HarvesterChartType.cs" />
+    <Compile Include="StructureHarvester\HarvesterChartValues.cs" />
     <Compile Include="Structure\StructureInputDataError.cs" />
     <Compile Include="StructureHarvester\StructureHarvesterDataHandle.cs" />
     <Compile Include="Structure\FormStructureJobSettings.cs">

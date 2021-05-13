@@ -15,6 +15,7 @@ using GenotypeDataProcessing.distruct;
 using DansCSharpLibrary.Serialization;
 using Aspose.Page.EPS;
 using Aspose.Page.EPS.Device;
+using System.Text.RegularExpressions;
 
 namespace GenotypeDataProcessing
 {
@@ -140,6 +141,8 @@ namespace GenotypeDataProcessing
                 updateToolStripMenuItem.Enabled = true;
                 btnStartAnalysisStr.Enabled = true;
             }
+
+            RefreshHarvesterChartParamSetComboBox();
         }
 
         private TClass LoadBinaryFile<TClass>(string pathToBinaryFile) where TClass : new()
@@ -588,6 +591,7 @@ namespace GenotypeDataProcessing
             btnStartAnalysisStrHv.Enabled = true;
             btnChooseArchive.Enabled = true;
             UpdateStructureHarvesterTreeView();
+            RefreshHarvesterChartParamSetComboBox();
         }
 
         private void treeStructureHarvesterFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -602,6 +606,79 @@ namespace GenotypeDataProcessing
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RefreshHarvesterChartParamSetComboBox()
+        {
+            foreach (var kvp in ProjectInfo.harvesterJobDone)
+            {
+                cmbHarvesterParamSet.Items.Add(kvp.Key);
+            }
+        }
+
+        private void btnEvannoGraphs_Click(object sender, EventArgs e)
+        {
+            if (cmbHarvesterParamSet.Text == "")
+                return;
+
+            string txtFile;
+
+            const string xAxisLabel = "K";
+            string yAxisLabel;
+            string chartTitle;
+
+            HarvesterChartType chartType;
+            switch (cmbHarversterChartType.Text)
+            {
+                case "mean est. LnP(Data)":
+                    chartType = HarvesterChartType.MEAN_LnP;
+                    yAxisLabel = "Mean of est. Ln prob of data";
+                    chartTitle = "L(K) mean";
+                    txtFile = "summary.txt";
+                    break;
+                case "Ln'(K)":
+                    chartType = HarvesterChartType.FIRST_DERIVATIVE_Ln;
+                    yAxisLabel = "L'(K)";
+                    chartTitle = "Rate of change of the likelihood distribution";
+                    txtFile = "evanno.txt";
+                    break;
+                case "|Ln''(K)|":
+                    chartType = HarvesterChartType.SECOND_DERIVATIVE_Ln;
+                    yAxisLabel = "|L''(K)|";
+                    chartTitle = "Absolute value of the 2nd order rate of change of the likelihood distribution";
+                    txtFile = "evanno.txt";
+                    break;
+                case "Delta K":
+                default:
+                    chartType = HarvesterChartType.DELTA_K;
+                    yAxisLabel = "Delta K";
+                    chartTitle = "Delta K = mean(|L''(K)|) / sd(L(K))";
+                    txtFile = "evanno.txt";
+                    break;
+            }
+
+            string fileName = Path.Combine(
+                                           ProjectInfo.projectNamePath,
+                                           ProjectInfo.structureHarvesterFolder,
+                                           cmbHarvesterParamSet.Text,
+                                           txtFile
+                                           );
+
+            HarvesterChartValues chartValues = new HarvesterChartValues(fileName, chartType);
+
+            if (chartValues.DoesFileExist())
+            {
+                var chartData = chartValues.GetDataForChart();
+                chartStructureHarvester.Series["graph"].Points.Clear();
+                chartStructureHarvester.ChartAreas["myCoolArea"].AxisX.Title = xAxisLabel;
+                chartStructureHarvester.ChartAreas["myCoolArea"].AxisY.Title = yAxisLabel;
+                chartStructureHarvester.Titles[0].Text = chartTitle;            
+
+                foreach (var valsForCurrentK in chartData)
+                {
+                    chartStructureHarvester.Series["graph"].Points.AddXY(valsForCurrentK[0], valsForCurrentK[1]);
+                }
             }
         }
 
@@ -792,22 +869,45 @@ namespace GenotypeDataProcessing
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            string dataDir = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder, "set1");
-            // Initialize PDF output stream
-            System.IO.FileStream pdfStream = new System.IO.FileStream(dataDir + "/outputPDF.pdf", System.IO.FileMode.Create, System.IO.FileAccess.Write);
-            // Initialize PostScript input stream
-            System.IO.FileStream psStream = new System.IO.FileStream(dataDir + "/K4.ps", System.IO.FileMode.Open, System.IO.FileAccess.Read);
+            if (treeDistructFolder.SelectedNode == null)
+                return;
+
+            string filePath = Path.Combine(ProjectInfo.projectNamePath, treeDistructFolder.SelectedNode.FullPath);
+            string extension = Path.GetExtension(filePath);
+
+            if (extension != ".ps")
+            {
+                MessageBox.Show(
+                    "Please select a file in PostScript format.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return;
+            }
+
+            string dirPath = Path.Combine(ProjectInfo.projectNamePath, treeDistructFolder.SelectedNode.Parent.FullPath);
+            string fileWithoutExtension = Path.GetFileNameWithoutExtension(treeDistructFolder.SelectedNode.Text);
+            ConvertPsToPdf(dirPath, fileWithoutExtension);
+        }
+
+        private void ConvertPsToPdf(string dirPath, string fileName)
+        {
+            string psPath = Path.Combine(dirPath, fileName + ".ps");
+            string pdfPath = Path.Combine(dirPath, fileName + ".pdf");
+
+            // PDF output
+            System.IO.FileStream pdfStream = new System.IO.FileStream(pdfPath, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+            // PostScript input
+            System.IO.FileStream psStream = new System.IO.FileStream(psPath, System.IO.FileMode.Open, System.IO.FileAccess.Read);
             PsDocument document = new PsDocument(psStream);
 
-            // If you want to convert Postscript file despite of minor errors set this flag
             bool suppressErrors = true;
 
-            //Initialize options object with necessary parameters.
+
             PdfSaveOptions options = new PdfSaveOptions(suppressErrors);
-            // If you want to add special folder where fonts are stored. Default fonts folder in OS is always included.
             options.AdditionalFontsFolders = new string[] { @"{FONT_FOLDER}" };
 
-            // Default page size is 595x842 and it is not mandatory to set it in PdfDevice
             Aspose.Page.EPS.Device.PdfDevice device = new Aspose.Page.EPS.Device.PdfDevice(pdfStream);
             // But if you need to specify size and image format use following line
             //Aspose.Page.EPS.Device.PdfDevice device = new Aspose.Page.EPS.Device.PdfDevice(pdfStream, new System.Drawing.Size(595, 842));
@@ -820,6 +920,13 @@ namespace GenotypeDataProcessing
             {
                 psStream.Close();
                 pdfStream.Close();
+                UpdateDistructTreeView();
+                MessageBox.Show(
+                    "File conversion done.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
             }
 
             //Review errors
