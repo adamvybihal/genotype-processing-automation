@@ -356,7 +356,7 @@ namespace GenotypeDataProcessing
 
         private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // todo
+            this.Close();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,6 +436,9 @@ namespace GenotypeDataProcessing
 
                 lblStructureJobLabel.Visible = true;
 
+                lblCurrKStructure.Visible = true;
+                lblCurrIterStructure.Visible = true;
+
                 StructureJob structureJob = new StructureJob(this, 
                                                             selectedParamSet, 
                                                             path, 
@@ -453,8 +456,6 @@ namespace GenotypeDataProcessing
         public void ChangeStructureJobProgress(int add)
         {
             StructureProgressBarAdd(add);
-
-            IsStructureJobDone();
         }
 
         private void StructureProgressBarAdd(int add)
@@ -481,21 +482,64 @@ namespace GenotypeDataProcessing
             }
         }
 
-        private void IsStructureJobDone()
+        /// <summary>
+        /// Method to display current K and iteration of that K, which is being processed by Structure
+        /// </summary>
+        /// <param name="currK">current K</param>
+        /// <param name="currIteration">current iteration</param>
+        public void ShowCurrentKAndIteration(int currK, int currIteration)
         {
-            if (prbJobProgressBar.Value == prbJobProgressBar.Maximum)
+            SafeChangeStructureCurrKLabel("Current K, being processed: " + currK);
+            SafeChangeStructureCurrIterationLabel("Current iteration of K:" + currIteration);
+        }
+
+        private delegate void SafeCallDelegateStructureLabel(string newText);
+
+        private void SafeChangeStructureCurrKLabel(string newText)
+        {
+            if (lblCurrKStructure.InvokeRequired)
             {
-                btnStartAnalysisStr.Enabled = true;
-                lblStructureJobLabel.Visible = false;
-
-                MessageBox.Show(
-                    "Structure job done!",
-                    "Done",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                UpdateStructureTreeView();
+                var d = new SafeCallDelegateStructureLabel(SafeChangeStructureCurrKLabel);
+                lblCurrKStructure.Invoke(d, new object[] { newText });
             }
+            else
+            {
+                lblCurrKStructure.Text = newText;
+            }
+        }
+
+        private void SafeChangeStructureCurrIterationLabel(string newText)
+        {
+            if (lblCurrIterStructure.InvokeRequired)
+            {
+                var d = new SafeCallDelegateStructureLabel(SafeChangeStructureCurrIterationLabel);
+                lblCurrIterStructure.Invoke(d, new object[] { newText });
+            }
+            else
+            {
+                lblCurrIterStructure.Text = newText;
+            }
+        }
+
+        /// <summary>
+        /// Executes when Structure job is done
+        /// </summary>
+        public void WhenStructureIsJobDone()
+        {
+            //if (prbJobProgressBar.Value == prbJobProgressBar.Maximum)
+            //{
+            //    btnStartAnalysisStr.Enabled = true;
+            //    lblStructureJobLabel.Visible = false;
+
+            //    UpdateStructureTreeView();
+            //}
+            btnStartAnalysisStr.Enabled = true;
+            lblStructureJobLabel.Visible = false;
+
+            lblCurrKStructure.Visible = false;
+            lblCurrIterStructure.Visible = false;
+
+            UpdateStructureTreeView();
         }
 
         // ******* Structure Harvester TAB ******* //

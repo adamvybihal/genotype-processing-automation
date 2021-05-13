@@ -52,6 +52,13 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabStructureHarvester = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chartStructureHarvester = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cmbHarversterChartType = new System.Windows.Forms.ComboBox();
+            this.btnEvannoGraphs = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbHarvesterParamSet = new System.Windows.Forms.ComboBox();
             this.rtxStructureHarvesterText = new System.Windows.Forms.RichTextBox();
             this.treeStructureHarvesterFolder = new System.Windows.Forms.TreeView();
             this.btnStartAnalysisStrHv = new System.Windows.Forms.Button();
@@ -77,24 +84,19 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEvannoGraphs = new System.Windows.Forms.Button();
-            this.chartStructureHarvester = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.cmbHarversterChartType = new System.Windows.Forms.ComboBox();
-            this.cmbHarvesterParamSet = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblCurrKStructure = new System.Windows.Forms.Label();
+            this.lblCurrIterStructure = new System.Windows.Forms.Label();
             this.mnsMainMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
             this.mnsStructure.SuspendLayout();
             this.tabStructureHarvester.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).BeginInit();
             this.tabCLUMPP.SuspendLayout();
             this.mnsClumpp.SuspendLayout();
             this.tabDistruct.SuspendLayout();
             this.mnsDistruct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartAnalysisStr
@@ -159,6 +161,8 @@ namespace GenotypeDataProcessing
             // 
             this.tabStructure.AutoScroll = true;
             this.tabStructure.BackColor = System.Drawing.SystemColors.Control;
+            this.tabStructure.Controls.Add(this.lblCurrIterStructure);
+            this.tabStructure.Controls.Add(this.lblCurrKStructure);
             this.tabStructure.Controls.Add(this.lblStructureJobLabel);
             this.tabStructure.Controls.Add(this.prbJobProgressBar);
             this.tabStructure.Controls.Add(this.rtxStructureText);
@@ -169,7 +173,7 @@ namespace GenotypeDataProcessing
             this.tabStructure.Location = new System.Drawing.Point(4, 25);
             this.tabStructure.Name = "tabStructure";
             this.tabStructure.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStructure.Size = new System.Drawing.Size(1029, 569);
+            this.tabStructure.Size = new System.Drawing.Size(1106, 737);
             this.tabStructure.TabIndex = 0;
             this.tabStructure.Text = "Structure";
             // 
@@ -194,10 +198,10 @@ namespace GenotypeDataProcessing
             // rtxStructureText
             // 
             this.rtxStructureText.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxStructureText.Location = new System.Drawing.Point(370, 31);
+            this.rtxStructureText.Location = new System.Drawing.Point(447, 31);
             this.rtxStructureText.Name = "rtxStructureText";
             this.rtxStructureText.ReadOnly = true;
-            this.rtxStructureText.Size = new System.Drawing.Size(335, 535);
+            this.rtxStructureText.Size = new System.Drawing.Size(335, 703);
             this.rtxStructureText.TabIndex = 18;
             this.rtxStructureText.Text = "";
             // 
@@ -213,9 +217,9 @@ namespace GenotypeDataProcessing
             // 
             this.lsvStructureInputData.Dock = System.Windows.Forms.DockStyle.Right;
             this.lsvStructureInputData.HideSelection = false;
-            this.lsvStructureInputData.Location = new System.Drawing.Point(705, 31);
+            this.lsvStructureInputData.Location = new System.Drawing.Point(782, 31);
             this.lsvStructureInputData.Name = "lsvStructureInputData";
-            this.lsvStructureInputData.Size = new System.Drawing.Size(321, 535);
+            this.lsvStructureInputData.Size = new System.Drawing.Size(321, 703);
             this.lsvStructureInputData.TabIndex = 14;
             this.lsvStructureInputData.UseCompatibleStateImageBehavior = false;
             // 
@@ -227,7 +231,7 @@ namespace GenotypeDataProcessing
             this.parameterSetToolStripMenuItem});
             this.mnsStructure.Location = new System.Drawing.Point(3, 3);
             this.mnsStructure.Name = "mnsStructure";
-            this.mnsStructure.Size = new System.Drawing.Size(1023, 28);
+            this.mnsStructure.Size = new System.Drawing.Size(1100, 28);
             this.mnsStructure.TabIndex = 13;
             this.mnsStructure.Text = "menuStrip2";
             // 
@@ -297,6 +301,87 @@ namespace GenotypeDataProcessing
             this.tabStructureHarvester.TabIndex = 1;
             this.tabStructureHarvester.Text = "Structure Harvester";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.chartStructureHarvester);
+            this.groupBox1.Controls.Add(this.cmbHarversterChartType);
+            this.groupBox1.Controls.Add(this.btnEvannoGraphs);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cmbHarvesterParamSet);
+            this.groupBox1.Location = new System.Drawing.Point(8, 263);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(630, 471);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "View Charts";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(285, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 17);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Select chart type:";
+            // 
+            // chartStructureHarvester
+            // 
+            chartArea3.Name = "myCoolArea";
+            this.chartStructureHarvester.ChartAreas.Add(chartArea3);
+            this.chartStructureHarvester.Location = new System.Drawing.Point(41, 131);
+            this.chartStructureHarvester.Name = "chartStructureHarvester";
+            series3.ChartArea = "myCoolArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "graph";
+            this.chartStructureHarvester.Series.Add(series3);
+            this.chartStructureHarvester.Size = new System.Drawing.Size(553, 334);
+            this.chartStructureHarvester.TabIndex = 20;
+            this.chartStructureHarvester.Text = "chart1";
+            title3.Name = "chartTitle";
+            this.chartStructureHarvester.Titles.Add(title3);
+            // 
+            // cmbHarversterChartType
+            // 
+            this.cmbHarversterChartType.FormattingEnabled = true;
+            this.cmbHarversterChartType.Items.AddRange(new object[] {
+            "mean est. LnP(Data)",
+            "Ln\'(K)",
+            "|Ln\'\'(K)|",
+            "Delta K"});
+            this.cmbHarversterChartType.Location = new System.Drawing.Point(409, 72);
+            this.cmbHarversterChartType.Name = "cmbHarversterChartType";
+            this.cmbHarversterChartType.Size = new System.Drawing.Size(144, 24);
+            this.cmbHarversterChartType.TabIndex = 21;
+            this.cmbHarversterChartType.Text = "Delta K";
+            // 
+            // btnEvannoGraphs
+            // 
+            this.btnEvannoGraphs.Location = new System.Drawing.Point(409, 102);
+            this.btnEvannoGraphs.Name = "btnEvannoGraphs";
+            this.btnEvannoGraphs.Size = new System.Drawing.Size(144, 23);
+            this.btnEvannoGraphs.TabIndex = 19;
+            this.btnEvannoGraphs.Text = "View Chart";
+            this.btnEvannoGraphs.UseVisualStyleBackColor = true;
+            this.btnEvannoGraphs.Click += new System.EventHandler(this.btnEvannoGraphs_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(351, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Select parameter set analyzed by Structure Harvester:";
+            // 
+            // cmbHarvesterParamSet
+            // 
+            this.cmbHarvesterParamSet.FormattingEnabled = true;
+            this.cmbHarvesterParamSet.Location = new System.Drawing.Point(409, 32);
+            this.cmbHarvesterParamSet.Name = "cmbHarvesterParamSet";
+            this.cmbHarvesterParamSet.Size = new System.Drawing.Size(144, 24);
+            this.cmbHarvesterParamSet.TabIndex = 22;
+            // 
             // rtxStructureHarvesterText
             // 
             this.rtxStructureHarvesterText.Dock = System.Windows.Forms.DockStyle.Right;
@@ -365,7 +450,7 @@ namespace GenotypeDataProcessing
             this.tabCLUMPP.Location = new System.Drawing.Point(4, 25);
             this.tabCLUMPP.Name = "tabCLUMPP";
             this.tabCLUMPP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCLUMPP.Size = new System.Drawing.Size(1029, 569);
+            this.tabCLUMPP.Size = new System.Drawing.Size(1106, 737);
             this.tabCLUMPP.TabIndex = 2;
             this.tabCLUMPP.Text = "CLUMPP";
             // 
@@ -380,10 +465,10 @@ namespace GenotypeDataProcessing
             // rtxClumpp
             // 
             this.rtxClumpp.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtxClumpp.Location = new System.Drawing.Point(558, 31);
+            this.rtxClumpp.Location = new System.Drawing.Point(635, 31);
             this.rtxClumpp.Name = "rtxClumpp";
             this.rtxClumpp.ReadOnly = true;
-            this.rtxClumpp.Size = new System.Drawing.Size(468, 535);
+            this.rtxClumpp.Size = new System.Drawing.Size(468, 703);
             this.rtxClumpp.TabIndex = 22;
             this.rtxClumpp.Text = "";
             // 
@@ -414,7 +499,7 @@ namespace GenotypeDataProcessing
             this.paramfilesToolStripMenuItem});
             this.mnsClumpp.Location = new System.Drawing.Point(3, 3);
             this.mnsClumpp.Name = "mnsClumpp";
-            this.mnsClumpp.Size = new System.Drawing.Size(1023, 28);
+            this.mnsClumpp.Size = new System.Drawing.Size(1100, 28);
             this.mnsClumpp.TabIndex = 21;
             this.mnsClumpp.Text = "menuStrip1";
             // 
@@ -539,86 +624,25 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem2.Text = "Update";
             this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
             // 
-            // btnEvannoGraphs
+            // lblCurrKStructure
             // 
-            this.btnEvannoGraphs.Location = new System.Drawing.Point(409, 102);
-            this.btnEvannoGraphs.Name = "btnEvannoGraphs";
-            this.btnEvannoGraphs.Size = new System.Drawing.Size(144, 23);
-            this.btnEvannoGraphs.TabIndex = 19;
-            this.btnEvannoGraphs.Text = "View Chart";
-            this.btnEvannoGraphs.UseVisualStyleBackColor = true;
-            this.btnEvannoGraphs.Click += new System.EventHandler(this.btnEvannoGraphs_Click);
+            this.lblCurrKStructure.AutoSize = true;
+            this.lblCurrKStructure.Location = new System.Drawing.Point(71, 396);
+            this.lblCurrKStructure.Name = "lblCurrKStructure";
+            this.lblCurrKStructure.Size = new System.Drawing.Size(185, 17);
+            this.lblCurrKStructure.TabIndex = 21;
+            this.lblCurrKStructure.Text = "Current K, being processed:";
+            this.lblCurrKStructure.Visible = false;
             // 
-            // chartStructureHarvester
+            // lblCurrIterStructure
             // 
-            chartArea3.Name = "myCoolArea";
-            this.chartStructureHarvester.ChartAreas.Add(chartArea3);
-            this.chartStructureHarvester.Location = new System.Drawing.Point(41, 131);
-            this.chartStructureHarvester.Name = "chartStructureHarvester";
-            series3.ChartArea = "myCoolArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Name = "graph";
-            this.chartStructureHarvester.Series.Add(series3);
-            this.chartStructureHarvester.Size = new System.Drawing.Size(553, 334);
-            this.chartStructureHarvester.TabIndex = 20;
-            this.chartStructureHarvester.Text = "chart1";
-            title3.Name = "chartTitle";
-            this.chartStructureHarvester.Titles.Add(title3);
-            // 
-            // cmbHarversterChartType
-            // 
-            this.cmbHarversterChartType.FormattingEnabled = true;
-            this.cmbHarversterChartType.Items.AddRange(new object[] {
-            "mean est. LnP(Data)",
-            "Ln\'(K)",
-            "|Ln\'\'(K)|",
-            "Delta K"});
-            this.cmbHarversterChartType.Location = new System.Drawing.Point(409, 72);
-            this.cmbHarversterChartType.Name = "cmbHarversterChartType";
-            this.cmbHarversterChartType.Size = new System.Drawing.Size(144, 24);
-            this.cmbHarversterChartType.TabIndex = 21;
-            this.cmbHarversterChartType.Text = "Delta K";
-            // 
-            // cmbHarvesterParamSet
-            // 
-            this.cmbHarvesterParamSet.FormattingEnabled = true;
-            this.cmbHarvesterParamSet.Location = new System.Drawing.Point(409, 32);
-            this.cmbHarvesterParamSet.Name = "cmbHarvesterParamSet";
-            this.cmbHarvesterParamSet.Size = new System.Drawing.Size(144, 24);
-            this.cmbHarvesterParamSet.TabIndex = 22;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.chartStructureHarvester);
-            this.groupBox1.Controls.Add(this.cmbHarversterChartType);
-            this.groupBox1.Controls.Add(this.btnEvannoGraphs);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbHarvesterParamSet);
-            this.groupBox1.Location = new System.Drawing.Point(8, 263);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 471);
-            this.groupBox1.TabIndex = 23;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "View Charts";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(351, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Select parameter set analyzed by Structure Harvester:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(285, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 17);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Select chart type:";
+            this.lblCurrIterStructure.AutoSize = true;
+            this.lblCurrIterStructure.Location = new System.Drawing.Point(71, 423);
+            this.lblCurrIterStructure.Name = "lblCurrIterStructure";
+            this.lblCurrIterStructure.Size = new System.Drawing.Size(143, 17);
+            this.lblCurrIterStructure.TabIndex = 22;
+            this.lblCurrIterStructure.Text = "Current iteration of K:";
+            this.lblCurrIterStructure.Visible = false;
             // 
             // ProjectScreen
             // 
@@ -641,6 +665,9 @@ namespace GenotypeDataProcessing
             this.mnsStructure.PerformLayout();
             this.tabStructureHarvester.ResumeLayout(false);
             this.tabStructureHarvester.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).EndInit();
             this.tabCLUMPP.ResumeLayout(false);
             this.tabCLUMPP.PerformLayout();
             this.mnsClumpp.ResumeLayout(false);
@@ -649,9 +676,6 @@ namespace GenotypeDataProcessing
             this.tabDistruct.PerformLayout();
             this.mnsDistruct.ResumeLayout(false);
             this.mnsDistruct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartStructureHarvester)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,6 +734,8 @@ namespace GenotypeDataProcessing
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCurrKStructure;
+        private System.Windows.Forms.Label lblCurrIterStructure;
     }
 }
 

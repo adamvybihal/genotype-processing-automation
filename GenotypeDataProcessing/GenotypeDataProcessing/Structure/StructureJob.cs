@@ -79,13 +79,7 @@ namespace GenotypeDataProcessing.Structure
         /// </summary>
         public void BatchRunExecute()
         {
-            for (int k = initK; k <= endingK; k++)
-            {
-                Parallel.For(1, iterations + 1, i =>
-                {
-                    AsyncRun(k, i);
-                });
-            }
+            AsyncRun(initK, 1);
         }
 
         private void AsyncRun(int currentK, int currentIteration)
@@ -93,11 +87,32 @@ namespace GenotypeDataProcessing.Structure
             BackgroundWorker backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork += (sender, args) =>
             {
+                callerProjectScreen.ShowCurrentKAndIteration(currentK, currentIteration);
                 StartProcess(currentK, currentIteration);
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
-                callerProjectScreen.ChangeStructureJobProgress((int)progressChangeRate);
+                callerProjectScreen.ChangeStructureJobProgress(Convert.ToInt32(progressChangeRate));
+
+                if (currentIteration < iterations)
+                {
+                    AsyncRun(currentK, currentIteration + 1);
+                }
+                else if (currentK < endingK)
+                {
+                    AsyncRun(currentK + 1, 1);
+                }
+                else
+                {
+                    callerProjectScreen.WhenStructureIsJobDone();
+
+                    MessageBox.Show(
+                        "Structure job is done!",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                }
             };
             backgroundWorker.RunWorkerAsync();
         }
