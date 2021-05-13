@@ -29,9 +29,9 @@ namespace GenotypeDataProcessing
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.btnStartAnalysisStr = new System.Windows.Forms.Button();
             this.mnsMainMenu = new System.Windows.Forms.MenuStrip();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,8 @@ namespace GenotypeDataProcessing
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStructure = new System.Windows.Forms.TabPage();
+            this.lblCurrIterStructure = new System.Windows.Forms.Label();
+            this.lblCurrKStructure = new System.Windows.Forms.Label();
             this.lblStructureJobLabel = new System.Windows.Forms.Label();
             this.prbJobProgressBar = new System.Windows.Forms.ProgressBar();
             this.rtxStructureText = new System.Windows.Forms.RichTextBox();
@@ -84,8 +86,6 @@ namespace GenotypeDataProcessing
             this.drawparamsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.createeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblCurrKStructure = new System.Windows.Forms.Label();
-            this.lblCurrIterStructure = new System.Windows.Forms.Label();
             this.mnsMainMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStructure.SuspendLayout();
@@ -176,6 +176,26 @@ namespace GenotypeDataProcessing
             this.tabStructure.Size = new System.Drawing.Size(1106, 737);
             this.tabStructure.TabIndex = 0;
             this.tabStructure.Text = "Structure";
+            // 
+            // lblCurrIterStructure
+            // 
+            this.lblCurrIterStructure.AutoSize = true;
+            this.lblCurrIterStructure.Location = new System.Drawing.Point(71, 423);
+            this.lblCurrIterStructure.Name = "lblCurrIterStructure";
+            this.lblCurrIterStructure.Size = new System.Drawing.Size(143, 17);
+            this.lblCurrIterStructure.TabIndex = 22;
+            this.lblCurrIterStructure.Text = "Current iteration of K:";
+            this.lblCurrIterStructure.Visible = false;
+            // 
+            // lblCurrKStructure
+            // 
+            this.lblCurrKStructure.AutoSize = true;
+            this.lblCurrKStructure.Location = new System.Drawing.Point(71, 396);
+            this.lblCurrKStructure.Name = "lblCurrKStructure";
+            this.lblCurrKStructure.Size = new System.Drawing.Size(185, 17);
+            this.lblCurrKStructure.TabIndex = 21;
+            this.lblCurrKStructure.Text = "Current K, being processed:";
+            this.lblCurrKStructure.Visible = false;
             // 
             // lblStructureJobLabel
             // 
@@ -327,19 +347,21 @@ namespace GenotypeDataProcessing
             // 
             // chartStructureHarvester
             // 
-            chartArea3.Name = "myCoolArea";
-            this.chartStructureHarvester.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "myCoolArea";
+            this.chartStructureHarvester.ChartAreas.Add(chartArea1);
             this.chartStructureHarvester.Location = new System.Drawing.Point(41, 131);
             this.chartStructureHarvester.Name = "chartStructureHarvester";
-            series3.ChartArea = "myCoolArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Name = "graph";
-            this.chartStructureHarvester.Series.Add(series3);
+            series1.ChartArea = "myCoolArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.MarkerSize = 15;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
+            series1.Name = "graph";
+            this.chartStructureHarvester.Series.Add(series1);
             this.chartStructureHarvester.Size = new System.Drawing.Size(553, 334);
             this.chartStructureHarvester.TabIndex = 20;
             this.chartStructureHarvester.Text = "chart1";
-            title3.Name = "chartTitle";
-            this.chartStructureHarvester.Titles.Add(title3);
+            title1.Name = "chartTitle";
+            this.chartStructureHarvester.Titles.Add(title1);
             // 
             // cmbHarversterChartType
             // 
@@ -623,26 +645,6 @@ namespace GenotypeDataProcessing
             this.updateToolStripMenuItem2.Size = new System.Drawing.Size(148, 26);
             this.updateToolStripMenuItem2.Text = "Update";
             this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
-            // 
-            // lblCurrKStructure
-            // 
-            this.lblCurrKStructure.AutoSize = true;
-            this.lblCurrKStructure.Location = new System.Drawing.Point(71, 396);
-            this.lblCurrKStructure.Name = "lblCurrKStructure";
-            this.lblCurrKStructure.Size = new System.Drawing.Size(185, 17);
-            this.lblCurrKStructure.TabIndex = 21;
-            this.lblCurrKStructure.Text = "Current K, being processed:";
-            this.lblCurrKStructure.Visible = false;
-            // 
-            // lblCurrIterStructure
-            // 
-            this.lblCurrIterStructure.AutoSize = true;
-            this.lblCurrIterStructure.Location = new System.Drawing.Point(71, 423);
-            this.lblCurrIterStructure.Name = "lblCurrIterStructure";
-            this.lblCurrIterStructure.Size = new System.Drawing.Size(143, 17);
-            this.lblCurrIterStructure.TabIndex = 22;
-            this.lblCurrIterStructure.Text = "Current iteration of K:";
-            this.lblCurrIterStructure.Visible = false;
             // 
             // ProjectScreen
             // 
