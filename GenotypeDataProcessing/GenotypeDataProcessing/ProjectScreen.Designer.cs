@@ -478,9 +478,9 @@ namespace GenotypeDataProcessing
             // 
             // treeClumppFolder
             // 
-            this.treeClumppFolder.Location = new System.Drawing.Point(200, 46);
+            this.treeClumppFolder.Location = new System.Drawing.Point(71, 50);
             this.treeClumppFolder.Name = "treeClumppFolder";
-            this.treeClumppFolder.Size = new System.Drawing.Size(188, 223);
+            this.treeClumppFolder.Size = new System.Drawing.Size(239, 223);
             this.treeClumppFolder.TabIndex = 23;
             this.treeClumppFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeClumppFolder_NodeMouseDoubleClick);
             // 
@@ -496,7 +496,7 @@ namespace GenotypeDataProcessing
             // 
             // btnStartAnalysisCLUMPP
             // 
-            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(168, 295);
+            this.btnStartAnalysisCLUMPP.Location = new System.Drawing.Point(81, 297);
             this.btnStartAnalysisCLUMPP.Name = "btnStartAnalysisCLUMPP";
             this.btnStartAnalysisCLUMPP.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisCLUMPP.TabIndex = 20;
@@ -507,7 +507,7 @@ namespace GenotypeDataProcessing
             // lblClumppRun
             // 
             this.lblClumppRun.AutoSize = true;
-            this.lblClumppRun.Location = new System.Drawing.Point(184, 347);
+            this.lblClumppRun.Location = new System.Drawing.Point(97, 349);
             this.lblClumppRun.Name = "lblClumppRun";
             this.lblClumppRun.Size = new System.Drawing.Size(135, 17);
             this.lblClumppRun.TabIndex = 19;
@@ -577,7 +577,7 @@ namespace GenotypeDataProcessing
             // lblDistructRun
             // 
             this.lblDistructRun.AutoSize = true;
-            this.lblDistructRun.Location = new System.Drawing.Point(91, 294);
+            this.lblDistructRun.Location = new System.Drawing.Point(102, 332);
             this.lblDistructRun.Name = "lblDistructRun";
             this.lblDistructRun.Size = new System.Drawing.Size(136, 17);
             this.lblDistructRun.TabIndex = 28;
@@ -588,7 +588,7 @@ namespace GenotypeDataProcessing
             // 
             this.treeDistructFolder.Location = new System.Drawing.Point(67, 60);
             this.treeDistructFolder.Name = "treeDistructFolder";
-            this.treeDistructFolder.Size = new System.Drawing.Size(180, 187);
+            this.treeDistructFolder.Size = new System.Drawing.Size(202, 225);
             this.treeDistructFolder.TabIndex = 27;
             this.treeDistructFolder.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeDistructFolder_NodeMouseDoubleClick);
             // 
@@ -604,7 +604,7 @@ namespace GenotypeDataProcessing
             // 
             // btnStartAnalysisDistruct
             // 
-            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(78, 253);
+            this.btnStartAnalysisDistruct.Location = new System.Drawing.Point(89, 291);
             this.btnStartAnalysisDistruct.Name = "btnStartAnalysisDistruct";
             this.btnStartAnalysisDistruct.Size = new System.Drawing.Size(160, 38);
             this.btnStartAnalysisDistruct.TabIndex = 24;

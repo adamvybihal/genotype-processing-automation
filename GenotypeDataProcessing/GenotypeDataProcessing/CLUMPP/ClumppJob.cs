@@ -164,7 +164,7 @@ namespace GenotypeDataProcessing.CLUMPP
                     infoToReturn.inputArgument = "-p ";
                     infoToReturn.inputFile = "K" + currK + ".popfile";
                     infoToReturn.outputFile = "K" + currK + ".popq";
-                    infoToReturn.miscFile = "K" + currK + "indiv.miscfile";
+                    infoToReturn.miscFile = "K" + currK + "pop.miscfile";
                     break;
                 default:
                     break;

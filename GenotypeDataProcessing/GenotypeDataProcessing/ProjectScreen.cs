@@ -16,6 +16,7 @@ using DansCSharpLibrary.Serialization;
 using Aspose.Page.EPS;
 using Aspose.Page.EPS.Device;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace GenotypeDataProcessing
 {
@@ -487,10 +488,12 @@ namespace GenotypeDataProcessing
         /// </summary>
         /// <param name="currK">current K</param>
         /// <param name="currIteration">current iteration</param>
-        public void ShowCurrentKAndIteration(int currK, int currIteration)
+        /// <param name="maxK">max K wich will be analysed</param>
+        /// <param name="totalIterations">total of iterations over each K</param>
+        public void ShowCurrentKAndIteration(int currK, int currIteration, int maxK, int totalIterations)
         {
-            SafeChangeStructureCurrKLabel("Current K, being processed: " + currK);
-            SafeChangeStructureCurrIterationLabel("Current iteration of K:" + currIteration);
+            SafeChangeStructureCurrKLabel("Current K, being processed: " + currK + " (of " + maxK + ")");
+            SafeChangeStructureCurrIterationLabel("Current iteration of K:" + currIteration + " (of " + totalIterations + ")");
         }
 
         private delegate void SafeCallDelegateStructureLabel(string newText);
@@ -655,6 +658,20 @@ namespace GenotypeDataProcessing
 
         private void RefreshHarvesterChartParamSetComboBox()
         {
+            cmbHarvesterParamSet.Items.Clear();
+
+            if (ProjectInfo.harvesterJobDone.Count == 0)
+            {
+                cmbHarvesterParamSet.Enabled = false;
+                cmbHarversterChartType.Enabled = false;
+                btnEvannoGraphs.Enabled = false;
+                return;
+            }
+
+            cmbHarvesterParamSet.Enabled = true;
+            cmbHarversterChartType.Enabled = true;
+            btnEvannoGraphs.Enabled = true;
+
             foreach (var kvp in ProjectInfo.harvesterJobDone)
             {
                 cmbHarvesterParamSet.Items.Add(kvp.Key);
@@ -900,6 +917,12 @@ namespace GenotypeDataProcessing
         {
             string path = Path.Combine(ProjectInfo.projectNamePath, e.Node.FullPath);
 
+            if (Path.GetExtension(path) == ".pdf")
+            {
+                ShowPDF(path);
+                return;
+            }
+
             try
             {
                 if (e.Node.Nodes.Count == 0)
@@ -908,6 +931,26 @@ namespace GenotypeDataProcessing
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ShowPDF(string path)
+        {
+            try
+            {
+                //axDistructPDF.src = path;
+                //axDistructPDF.LoadFile(path);
+                //browserPDF.Navigate(@path);
+                Process.Start(path);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(
+                    e.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
             }
         }
 

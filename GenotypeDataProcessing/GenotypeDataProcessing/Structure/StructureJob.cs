@@ -87,7 +87,7 @@ namespace GenotypeDataProcessing.Structure
             BackgroundWorker backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork += (sender, args) =>
             {
-                callerProjectScreen.ShowCurrentKAndIteration(currentK, currentIteration);
+                callerProjectScreen.ShowCurrentKAndIteration(currentK, currentIteration, endingK, iterations);
                 StartProcess(currentK, currentIteration);
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
