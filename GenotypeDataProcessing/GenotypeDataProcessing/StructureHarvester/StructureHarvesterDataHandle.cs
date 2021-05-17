@@ -42,7 +42,9 @@ namespace GenotypeDataProcessing.StructureHarvester
             {
                 if (Directory.Exists(harvesteResultsDirectoryPath))
                 {
-                    return;
+                    DirectoryInfo dir = new DirectoryInfo(harvesteResultsDirectoryPath);
+                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
+                    dir.Delete(true);
                 }
 
                 Directory.CreateDirectory(harvesteResultsDirectoryPath);
