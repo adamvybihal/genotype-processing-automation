@@ -51,9 +51,8 @@ namespace GenotypeDataProcessing.distruct
 
                 try
                 {
-                    File.Copy(distructParamStruct.infileLabelBelow, copyPath, true);
-
                     distructParamStruct.infileLabelBelow = copyPath;
+                    File.Copy(distructParamStruct.infileLabelBelow, copyPath, true);
                 }
                 catch (IOException copyError)
                 {
@@ -68,9 +67,8 @@ namespace GenotypeDataProcessing.distruct
 
                 try
                 {
-                    File.Copy(distructParamStruct.infileLabelAtop, copyPath, true);
-
                     distructParamStruct.infileLabelAtop = copyPath;
+                    File.Copy(distructParamStruct.infileLabelAtop, copyPath, true);
                 }
                 catch (IOException copyError)
                 {
@@ -85,9 +83,8 @@ namespace GenotypeDataProcessing.distruct
 
                 try
                 {
-                    File.Copy(distructParamStruct.infileClustPerm, copyPath, true);
-
                     distructParamStruct.infileClustPerm = copyPath;
+                    File.Copy(distructParamStruct.infileClustPerm, copyPath, true);   
                 }
                 catch (IOException copyError)
                 {
