@@ -29,6 +29,27 @@ namespace GenotypeDataProcessing.CLUMPP
             directoryPath = path;
 
             CreateDirectory();
+            CopyUserInputFiles();
+        }
+
+        private void CopyUserInputFiles()
+        {
+            if (clumppParamStruct.permutationFile != "")
+            {
+                string fileName = Path.GetFileName(clumppParamStruct.permutationFile);
+                string copyPath = Path.Combine(directoryPath, fileName);
+
+                try
+                {
+                    File.Copy(clumppParamStruct.permutationFile, copyPath, true);
+
+                    clumppParamStruct.permutationFile = copyPath;
+                }
+                catch (IOException copyError)
+                {
+                    Console.WriteLine(copyError.Message);
+                }
+            }
         }
 
         private void CreateDirectory()

@@ -61,12 +61,16 @@ namespace GenotypeDataProcessing.distruct
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
                 string fileName = "K" + currK + ".ps";
+                string movedFilePath = Path.Combine(distructOutputPath, paramsetName, fileName);
 
                 try
                 {
+                    if (File.Exists(movedFilePath))
+                        File.Delete(movedFilePath);
+
                     File.Move(
                         Path.Combine(distructOutputPath, fileName),
-                        Path.Combine(distructOutputPath, paramsetName, fileName)
+                        movedFilePath
                         );
                 }
                 catch (Exception ex)

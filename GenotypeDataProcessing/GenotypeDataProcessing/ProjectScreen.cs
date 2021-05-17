@@ -747,21 +747,42 @@ namespace GenotypeDataProcessing
 
         private void paramfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
-                                                            this, 
+            if (ProjectInfo.harvesterJobDone.Count > 0)
+            {
+                FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+                                                            this,
                                                             FormSelectParamSetState.SELECT_HARVESTER_JOB_FOR_CLUMPP
                                                             );
-            formSelectParamSet.ShowDialog();
+                formSelectParamSet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("There are no completed Structure Harvester jobs, CLUMPP could continue with.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
 
         private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+            if (ProjectInfo.clumppParamSets.Count > 0)
+            {
+                FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
                                                             this,
                                                             FormSelectParamSetState.UPDATE_CLUMPP_SET
                                                             );
-            formSelectParamSet.ShowDialog();
+                formSelectParamSet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("There are no created CLUMPP parameter sets to update.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
 
         private void treeClumppFolder_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -853,18 +874,40 @@ namespace GenotypeDataProcessing
 
         private void drawparamsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
-                                                            FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT);
-            formSelectParamSet.ShowDialog();
+            if (ProjectInfo.clumppJobInfo.Count > 0)
+            {
+                FormSelectParamSet formSelectParamSet = new FormSelectParamSet(this,
+                                                                            FormSelectParamSetState.SELECT_CLUMPP_JOB_FOR_DISTRUCT);
+                formSelectParamSet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("There are no completed CLUMPP jobs, distruct could continue with.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
 
         private void updateToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
+            if (ProjectInfo.distructParamSets.Count > 0)
+            {
+                FormSelectParamSet formSelectParamSet = new FormSelectParamSet(
                                                             this,
                                                             FormSelectParamSetState.UPDATE_DISTRUCT_SET
                                                             );
-            formSelectParamSet.ShowDialog();
+                formSelectParamSet.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("There are no created distruct parameter sets to update.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
 
         private void btnStartAnalysisDistruct_Click(object sender, EventArgs e)
@@ -938,9 +981,6 @@ namespace GenotypeDataProcessing
         {
             try
             {
-                //axDistructPDF.src = path;
-                //axDistructPDF.LoadFile(path);
-                //browserPDF.Navigate(@path);
                 Process.Start(path);
             }
             catch (Exception e)

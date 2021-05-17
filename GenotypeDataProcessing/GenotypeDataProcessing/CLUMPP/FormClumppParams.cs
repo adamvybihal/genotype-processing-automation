@@ -229,6 +229,7 @@ namespace GenotypeDataProcessing
             }
 
             clumppParamStruct.repeats = (int)numRepeats.Value;
+            clumppParamStruct.permutationFile = txtPermutationFile.Text;
 
             switch (cmbPrintPermutedData.Text)
             {
@@ -248,6 +249,17 @@ namespace GenotypeDataProcessing
 
             clumppParamStruct.overrideWarnings = cbxOverrideWarnings.Checked;
             clumppParamStruct.orderByRun = cbxOrderByRun.Checked;
+        }
+
+        private void btnChoosePermutationFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                txtPermutationFile.Text = fileDialog.FileName;
+            }
         }
     }
 }

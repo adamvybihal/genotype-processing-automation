@@ -263,6 +263,7 @@ namespace GenotypeDataProcessing
             this.btnChoosePermutationFile.TabIndex = 13;
             this.btnChoosePermutationFile.Text = "choose";
             this.btnChoosePermutationFile.UseVisualStyleBackColor = true;
+            this.btnChoosePermutationFile.Click += new System.EventHandler(this.btnChoosePermutationFile_Click);
             // 
             // txtPermutationFile
             // 

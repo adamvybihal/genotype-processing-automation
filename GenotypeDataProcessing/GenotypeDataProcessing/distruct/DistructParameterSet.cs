@@ -39,6 +39,61 @@ namespace GenotypeDataProcessing.distruct
             lastK = endK;
 
             CreateDirectory();
+            CopyUserInputFiles();
+        }
+
+        private void CopyUserInputFiles()
+        {
+            if (distructParamStruct.infileLabelBelow != "")
+            {
+                string fileName = Path.GetFileName(distructParamStruct.infileLabelBelow);
+                string copyPath = Path.Combine(directoryPath, fileName);
+
+                try
+                {
+                    File.Copy(distructParamStruct.infileLabelBelow, copyPath, true);
+
+                    distructParamStruct.infileLabelBelow = copyPath;
+                }
+                catch (IOException copyError)
+                {
+                    Console.WriteLine(copyError.Message);
+                }
+            }
+
+            if (distructParamStruct.infileLabelAtop != "")
+            {
+                string fileName = Path.GetFileName(distructParamStruct.infileLabelAtop);
+                string copyPath = Path.Combine(directoryPath, fileName);
+
+                try
+                {
+                    File.Copy(distructParamStruct.infileLabelAtop, copyPath, true);
+
+                    distructParamStruct.infileLabelAtop = copyPath;
+                }
+                catch (IOException copyError)
+                {
+                    Console.WriteLine(copyError.Message);
+                }
+            }
+
+            if (distructParamStruct.infileClustPerm != "")
+            {
+                string fileName = Path.GetFileName(distructParamStruct.infileClustPerm);
+                string copyPath = Path.Combine(directoryPath, fileName);
+
+                try
+                {
+                    File.Copy(distructParamStruct.infileClustPerm, copyPath, true);
+
+                    distructParamStruct.infileClustPerm = copyPath;
+                }
+                catch (IOException copyError)
+                {
+                    Console.WriteLine(copyError.Message);
+                }
+            }
         }
 
         private void CreateDirectory()
