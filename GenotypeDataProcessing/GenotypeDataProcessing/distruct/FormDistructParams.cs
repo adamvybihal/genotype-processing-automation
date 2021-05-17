@@ -93,14 +93,9 @@ namespace GenotypeDataProcessing
             numEndK.Value = paramStruct.kEnd;
             cbxRange.Checked = true;
 
-            if (distructParamStruct.infileLabelAtop != "") txtLblAtopFile.Text = distructParamStruct.infileLabelAtop;
-            else txtLblAtopFile.Text = chooseFileString;
-
-            if (distructParamStruct.infileLabelBelow != "") txtLblBelowFile.Text = distructParamStruct.infileLabelBelow;
-            else txtLblBelowFile.Text = chooseFileString;
-
-            if (distructParamStruct.infileClustPerm != "") txtPermutationFile.Text = distructParamStruct.infileClustPerm;
-            else txtPermutationFile.Text = chooseFileString;
+            txtLblAtopFile.Text = paramStruct.infileLabelAtop;
+            txtLblBelowFile.Text = paramStruct.infileLabelBelow;
+            txtPermutationFile.Text = paramStruct.infileClustPerm;
 
             numStartK.Value = paramStruct.k;
             numIndividuals.Value = paramStruct.numInds;
@@ -117,7 +112,7 @@ namespace GenotypeDataProcessing
             numFigureHeight.Value = (decimal)paramStruct.boxHeight;
             numIndividualWidth.Value = (decimal)paramStruct.indivWidth;
 
-            switch (distructParamStruct.orientation)
+            switch (paramStruct.orientation)
             {
                 case 0:
                     cmbOrientation.Text = "horizontal";
@@ -134,22 +129,22 @@ namespace GenotypeDataProcessing
             }
             cbxPrintInfileName.Enabled = (cmbOrientation.Text == "horizontal");
 
-            numXOrigin.Value = (decimal)distructParamStruct.xOrigin;
-            numYOrigin.Value = (decimal)distructParamStruct.yOrigin;
-            numXScale.Value = (decimal)distructParamStruct.xScale;
-            numYScale.Value = (decimal)distructParamStruct.yScale;
-            numAngleLabelAtop.Value = (decimal)distructParamStruct.angleLabelAtop;
-            numAngleLabelBelow.Value = (decimal)distructParamStruct.angleLabelBelow;
+            numXOrigin.Value = (decimal)paramStruct.xOrigin;
+            numYOrigin.Value = (decimal)paramStruct.yOrigin;
+            numXScale.Value = (decimal)paramStruct.xScale;
+            numYScale.Value = (decimal)paramStruct.yScale;
+            numAngleLabelAtop.Value = (decimal)paramStruct.angleLabelAtop;
+            numAngleLabelBelow.Value = (decimal)paramStruct.angleLabelBelow;
 
-            numLineWidthRim.Value = (decimal)distructParamStruct.lineWidthRim;
-            numLineWidthSep.Value = (decimal)distructParamStruct.lineWidthSep;
-            numLineWidthInd.Value = (decimal)distructParamStruct.lineWidthInd;
+            numLineWidthRim.Value = (decimal)paramStruct.lineWidthRim;
+            numLineWidthSep.Value = (decimal)paramStruct.lineWidthSep;
+            numLineWidthInd.Value = (decimal)paramStruct.lineWidthInd;
 
-            cbxGrayscale.Checked = distructParamStruct.grayscale;
-            cbxEchoData.Checked = distructParamStruct.echoData;
-            cbxReprintData.Checked = distructParamStruct.reprintData;
-            cbxPrintInfileName.Checked = distructParamStruct.printInfileName;
-            cbxPrintColorBrewer.Checked = distructParamStruct.printColorBrewer;
+            cbxGrayscale.Checked = paramStruct.grayscale;
+            cbxEchoData.Checked = paramStruct.echoData;
+            cbxReprintData.Checked = paramStruct.reprintData;
+            cbxPrintInfileName.Checked = paramStruct.printInfileName;
+            cbxPrintColorBrewer.Checked = paramStruct.printColorBrewer;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
