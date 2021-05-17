@@ -51,8 +51,9 @@ namespace GenotypeDataProcessing.distruct
 
                 try
                 {
+                    string temp = distructParamStruct.infileLabelBelow;
                     distructParamStruct.infileLabelBelow = copyPath;
-                    File.Copy(distructParamStruct.infileLabelBelow, copyPath, true);
+                    File.Copy(temp, copyPath, true);
                 }
                 catch (IOException copyError)
                 {
