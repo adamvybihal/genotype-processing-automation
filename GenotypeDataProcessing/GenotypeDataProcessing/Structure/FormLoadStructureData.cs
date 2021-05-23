@@ -100,7 +100,7 @@ namespace GenotypeDataProcessing
             {
                 MessageBox.Show("Data set loaded succesfully.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                CreateProjectInfoFile();
+                //CreateProjectInfoFile();
 
                 callerProjectScreen.ExecuteWhenStructureDataLoaded();
                 callerProjectScreen.UpdateStructureTreeView();
@@ -113,30 +113,30 @@ namespace GenotypeDataProcessing
             }
         }
 
-        private void CreateProjectInfoFile()
-        {
-            string infoString = GetProjectInfoFileString();
+        //private void CreateProjectInfoFile()
+        //{
+        //    string infoString = GetProjectInfoFileString();
 
-            string filePath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.projectName + ".myproj");
+        //    string filePath = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.projectName + ".myproj");
 
-            try
-            {
-                using (FileStream fs = File.Create(filePath))
-                {
-                    byte[] info = new UTF8Encoding(true).GetBytes(infoString);
-                    fs.Write(info, 0, info.Length);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
-            }
-        }
+        //    try
+        //    {
+        //        using (FileStream fs = File.Create(filePath))
+        //        {
+        //            byte[] info = new UTF8Encoding(true).GetBytes(infoString);
+        //            fs.Write(info, 0, info.Length);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(
+        //            ex.Message,
+        //            "Error",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error
+        //            );
+        //    }
+        //}
 
         private string GetProjectInfoFileString()
         {
