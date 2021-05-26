@@ -24,6 +24,8 @@ namespace GenotypeDataProcessing.distruct
         private int initK;
         private int endK;
 
+        private string outputType;
+
         /// <summary>
         /// DistructJob Constructor
         /// </summary>
@@ -41,6 +43,16 @@ namespace GenotypeDataProcessing.distruct
             distructOutputPath = outputPath;
             initK = kStart;
             endK = kEnd;
+
+            SetOutputType();
+        }
+
+        private void SetOutputType()
+        {
+            if (ProjectInfo.distructParamSets[paramsetName].printIndivs)
+                outputType = "indiv";
+            else
+                outputType = "pop";
         }
 
         /// <summary>
@@ -63,7 +75,7 @@ namespace GenotypeDataProcessing.distruct
             {
                 DeleteFromBaseDirectory(currK);
 
-                string fileName = "K" + currK + ".ps";
+                string fileName = "K" + currK + outputType + ".ps";
                 string movedFilePath = Path.Combine(distructOutputPath, paramsetName, fileName);
 
                 try
@@ -180,15 +192,8 @@ namespace GenotypeDataProcessing.distruct
                 distructRun.StartInfo = startInfo;
                 distructRun.Start();
 
-                //distructRun.StandardInput.WriteLine(
-                //    "distructWindows1.1.exe -d " + distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK +
-                //    " -p " + clumppInputPath + "K" + currK + ".popq" +
-                //    " -i " + clumppInputPath + "K" + currK + ".indivq" +
-                //    " -o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")
-                //    );
-
                 distructRun.StandardInput.WriteLine(
-                    "distructWindows1.1.exe -d " + "drawparams" + currK + " -o K" + currK + ".ps"
+                    "distructWindows1.1.exe -d " + "drawparams" + currK + " -o K" + currK + outputType + ".ps"
                     );
 
                 var _ = ConsumeReader(distructRun.StandardOutput);

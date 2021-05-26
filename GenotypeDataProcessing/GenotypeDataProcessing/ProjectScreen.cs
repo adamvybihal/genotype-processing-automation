@@ -1036,8 +1036,6 @@ namespace GenotypeDataProcessing
             options.AdditionalFontsFolders = new string[] { @"{FONT_FOLDER}" };
 
             Aspose.Page.EPS.Device.PdfDevice device = new Aspose.Page.EPS.Device.PdfDevice(pdfStream);
-            // But if you need to specify size and image format use following line
-            //Aspose.Page.EPS.Device.PdfDevice device = new Aspose.Page.EPS.Device.PdfDevice(pdfStream, new System.Drawing.Size(595, 842));
 
             try
             {
