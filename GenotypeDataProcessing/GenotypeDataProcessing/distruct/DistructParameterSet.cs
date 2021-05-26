@@ -26,11 +26,12 @@ namespace GenotypeDataProcessing.distruct
         /// <summary>
         /// DistructParameterSet constructor
         /// </summary>
+        /// <param name="paramsetName">name of parameter set</param>
         /// <param name="distructParam">Structure containing distruct parameters</param>
         /// <param name="path">path where will distruct parameter file be created</param>
         /// <param name="startK">starting K</param>
         /// <param name="endK">ending K</param>
-        public DistructParameterSet(DistructParamStruct distructParam, string path, int startK, int endK)
+        public DistructParameterSet(string paramsetName, DistructParamStruct distructParam, string path, int startK, int endK)
         {
             distructParamStruct = distructParam;
             directoryPath = path;
@@ -46,14 +47,11 @@ namespace GenotypeDataProcessing.distruct
         {
             if (distructParamStruct.infileLabelBelow != "")
             {
-                string fileName = Path.GetFileName(distructParamStruct.infileLabelBelow);
-                string copyPath = Path.Combine(directoryPath, fileName);
-
                 try
                 {
-                    string temp = distructParamStruct.infileLabelBelow;
-                    distructParamStruct.infileLabelBelow = copyPath;
-                    File.Copy(temp, copyPath, true);
+                    File.Copy(distructParamStruct.infileLabelBelowPath,
+                              distructParamStruct.infileLabelBelowCopy, 
+                              true);
                 }
                 catch (IOException copyError)
                 {
@@ -63,13 +61,11 @@ namespace GenotypeDataProcessing.distruct
 
             if (distructParamStruct.infileLabelAtop != "")
             {
-                string fileName = Path.GetFileName(distructParamStruct.infileLabelAtop);
-                string copyPath = Path.Combine(directoryPath, fileName);
-
                 try
                 {
-                    distructParamStruct.infileLabelAtop = copyPath;
-                    File.Copy(distructParamStruct.infileLabelAtop, copyPath, true);
+                    File.Copy(distructParamStruct.infileLabelAtopPath,
+                              distructParamStruct.infileLabelAtopCopy,
+                              true);
                 }
                 catch (IOException copyError)
                 {
@@ -79,13 +75,11 @@ namespace GenotypeDataProcessing.distruct
 
             if (distructParamStruct.infileClustPerm != "")
             {
-                string fileName = Path.GetFileName(distructParamStruct.infileClustPerm);
-                string copyPath = Path.Combine(directoryPath, fileName);
-
                 try
                 {
-                    distructParamStruct.infileClustPerm = copyPath;
-                    File.Copy(distructParamStruct.infileClustPerm, copyPath, true);   
+                    File.Copy(distructParamStruct.infileClustPermPath,
+                              distructParamStruct.infileClustPermCopy,
+                              true);
                 }
                 catch (IOException copyError)
                 {

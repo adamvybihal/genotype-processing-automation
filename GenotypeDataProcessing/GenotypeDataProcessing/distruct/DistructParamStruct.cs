@@ -34,13 +34,37 @@ namespace GenotypeDataProcessing.distruct
         /// </summary>
         public string infileLabelBelow;
         /// <summary>
+        /// path of input file of labels for below figure
+        /// </summary>
+        public string infileLabelBelowPath;
+        /// <summary>
+        /// path of input file of labels for below figure
+        /// </summary>
+        public string infileLabelBelowCopy;
+        /// <summary>
         /// input file of labels for atop figure
         /// </summary>
         public string infileLabelAtop;
         /// <summary>
+        /// path of input file of labels for atop figure
+        /// </summary>
+        public string infileLabelAtopPath;
+        /// <summary>
+        /// path of input file of labels for atop figure
+        /// </summary>
+        public string infileLabelAtopCopy;
+        /// <summary>
         /// input file of permutation of clusters to print
         /// </summary>
         public string infileClustPerm;
+        /// <summary>
+        /// path of input file of permutation of clusters to print
+        /// </summary>
+        public string infileClustPermPath;
+        /// <summary>
+        /// path of input file of permutation of clusters to print
+        /// </summary>
+        public string infileClustPermCopy;
         /// <summary>
         /// name of output file
         /// </summary>

@@ -93,9 +93,9 @@ namespace GenotypeDataProcessing
             numEndK.Value = paramStruct.kEnd;
             cbxRange.Checked = true;
 
-            txtLblAtopFile.Text = paramStruct.infileLabelAtop;
-            txtLblBelowFile.Text = paramStruct.infileLabelBelow;
-            txtPermutationFile.Text = paramStruct.infileClustPerm;
+            txtLblAtopFile.Text = paramStruct.infileLabelAtopPath;
+            txtLblBelowFile.Text = paramStruct.infileLabelBelowPath;
+            txtPermutationFile.Text = paramStruct.infileClustPermPath;
 
             numStartK.Value = paramStruct.k;
             numIndividuals.Value = paramStruct.numInds;
@@ -170,6 +170,7 @@ namespace GenotypeDataProcessing
             string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder, paramsetName);
 
             DistructParameterSet distructParameterSet = new DistructParameterSet(
+                                                                paramsetName,
                                                                 distructParamStruct,
                                                                 path,
                                                                 distructParamStruct.kStart,
@@ -197,15 +198,7 @@ namespace GenotypeDataProcessing
             if (cbxRange.Checked) distructParamStruct.kEnd = (int)numEndK.Value;
             else distructParamStruct.kEnd = distructParamStruct.kStart;
 
-
-            if (txtLblAtopFile.Text != chooseFileString) distructParamStruct.infileLabelAtop = txtLblAtopFile.Text;
-            else distructParamStruct.infileLabelAtop = "";
-
-            if (txtLblBelowFile.Text != chooseFileString) distructParamStruct.infileLabelBelow = txtLblBelowFile.Text;
-            else distructParamStruct.infileLabelBelow = "";
-
-            if (txtPermutationFile.Text != chooseFileString) distructParamStruct.infileClustPerm = txtPermutationFile.Text;
-            else distructParamStruct.infileClustPerm = "";
+            SetInputFilesParams();
 
             distructParamStruct.k = (int)numStartK.Value;
             distructParamStruct.numInds = (int)numIndividuals.Value;
@@ -254,6 +247,50 @@ namespace GenotypeDataProcessing
             distructParamStruct.reprintData = cbxReprintData.Checked;
             distructParamStruct.printInfileName = cbxPrintInfileName.Checked;
             distructParamStruct.printColorBrewer = cbxPrintColorBrewer.Checked;
+        }
+
+        private void SetInputFilesParams()
+        {
+            string path = Path.Combine(ProjectInfo.projectNamePath, ProjectInfo.distructFolder, paramsetName);
+
+            if (txtLblAtopFile.Text != chooseFileString)
+            {
+                distructParamStruct.infileLabelAtopPath = txtLblAtopFile.Text;
+                distructParamStruct.infileLabelAtop = Path.GetFileName(distructParamStruct.infileLabelAtopPath);
+                distructParamStruct.infileLabelAtopCopy = Path.Combine(path, distructParamStruct.infileLabelAtop);
+            }
+            else
+            {
+                distructParamStruct.infileLabelAtop = "";
+                distructParamStruct.infileLabelAtopPath = "";
+                distructParamStruct.infileLabelAtopCopy = "";
+            }
+
+            if (txtLblBelowFile.Text != chooseFileString)
+            {
+                distructParamStruct.infileLabelBelowPath = txtLblBelowFile.Text;
+                distructParamStruct.infileLabelBelow = Path.GetFileName(distructParamStruct.infileLabelBelowPath);
+                distructParamStruct.infileLabelBelowCopy = Path.Combine(path, distructParamStruct.infileLabelBelow);
+            }
+            else
+            {
+                distructParamStruct.infileLabelBelow = "";
+                distructParamStruct.infileLabelBelowPath = "";
+                distructParamStruct.infileLabelBelowCopy = "";
+            }
+
+            if (txtPermutationFile.Text != chooseFileString)
+            {
+                distructParamStruct.infileClustPermPath = txtPermutationFile.Text;
+                distructParamStruct.infileClustPerm = Path.GetFileName(distructParamStruct.infileClustPermPath);
+                distructParamStruct.infileClustPermCopy = Path.Combine(path, distructParamStruct.infileClustPerm);
+            }
+            else
+            {
+                distructParamStruct.infileClustPerm = "";
+                distructParamStruct.infileClustPermPath = "";
+                distructParamStruct.infileClustPermCopy = "";
+            }
         }
 
         private void btnChooseLblsBelowFile_Click(object sender, EventArgs e)

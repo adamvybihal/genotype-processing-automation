@@ -56,10 +56,13 @@ namespace GenotypeDataProcessing.distruct
             BackgroundWorker backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork += (sender, args) =>
             {
+                CopyInputFiles(currK);
                 StartProcess(currK);
             };
             backgroundWorker.RunWorkerCompleted += (sender, args) =>
             {
+                DeleteFromBaseDirectory(currK);
+
                 string fileName = "K" + currK + ".ps";
                 string movedFilePath = Path.Combine(distructOutputPath, paramsetName, fileName);
 
@@ -69,7 +72,7 @@ namespace GenotypeDataProcessing.distruct
                         File.Delete(movedFilePath);
 
                     File.Move(
-                        Path.Combine(distructOutputPath, fileName),
+                        Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, fileName),
                         movedFilePath
                         );
                 }
@@ -103,6 +106,60 @@ namespace GenotypeDataProcessing.distruct
             backgroundWorker.RunWorkerAsync();
         }
 
+        private void CopyInputFiles(int currK)
+        {
+            string drawparamsFilePath = distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK;
+            CopyToBaseDir(drawparamsFilePath, "drawparams" + currK);
+
+            string clumppPopqPath = clumppInputPath + "K" + currK + ".popq";
+            CopyToBaseDir(clumppPopqPath, "K" + currK + ".popq");
+
+            string clumppIndivqPath = clumppInputPath + "K" + currK + ".indivq";
+            CopyToBaseDir(clumppIndivqPath, "K" + currK + ".indivq");
+
+            string labelsAtopPath = ProjectInfo.distructParamSets[paramsetName].infileLabelAtopCopy;
+            CopyToBaseDir(labelsAtopPath, ProjectInfo.distructParamSets[paramsetName].infileLabelAtop);
+
+            string labelsBelowPath = ProjectInfo.distructParamSets[paramsetName].infileLabelBelowCopy;
+            CopyToBaseDir(labelsBelowPath, ProjectInfo.distructParamSets[paramsetName].infileLabelBelow);
+
+            string clustPermPath = ProjectInfo.distructParamSets[paramsetName].infileClustPermCopy;
+            CopyToBaseDir(clustPermPath, ProjectInfo.distructParamSets[paramsetName].infileClustPerm);
+        }
+
+        private void CopyToBaseDir(string filePath, string copiedFileName)
+        {
+            try
+            {
+                File.Copy(
+                   filePath,
+                   Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, copiedFileName),
+                   true
+                   );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }    
+        }
+
+        private void DeleteFromBaseDirectory(int currK)
+        {
+            try
+            {
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "drawparams" + currK));
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "K" + currK + ".popq"));
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "K" + currK + ".indivq"));
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, ProjectInfo.distructParamSets[paramsetName].infileLabelAtop));
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, ProjectInfo.distructParamSets[paramsetName].infileLabelBelow));
+                File.Delete(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, ProjectInfo.distructParamSets[paramsetName].infileClustPerm));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private void StartProcess(int currK)
         {
             Process distructRun = new Process();
@@ -123,11 +180,15 @@ namespace GenotypeDataProcessing.distruct
                 distructRun.StartInfo = startInfo;
                 distructRun.Start();
 
+                //distructRun.StandardInput.WriteLine(
+                //    "distructWindows1.1.exe -d " + distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK +
+                //    " -p " + clumppInputPath + "K" + currK + ".popq" +
+                //    " -i " + clumppInputPath + "K" + currK + ".indivq" +
+                //    " -o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")
+                //    );
+
                 distructRun.StandardInput.WriteLine(
-                    "distructWindows1.1.exe -d " + distructOutputPath + "\\" + paramsetName + "\\" + "drawparams" + currK +
-                    " -p " + clumppInputPath + "K" + currK + ".popq" +
-                    " -i " + clumppInputPath + "K" + currK + ".indivq" +
-                    " -o " + Path.Combine(distructOutputPath, "K" + currK + ".ps")
+                    "distructWindows1.1.exe -d " + "drawparams" + currK + " -o K" + currK + ".ps"
                     );
 
                 var _ = ConsumeReader(distructRun.StandardOutput);
